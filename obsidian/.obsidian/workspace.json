@@ -11,11 +11,40 @@
             "id": "f92a143b31d3dc08",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Welcome.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "0a20327e16ac35ae",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Untitled.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "7a9efae5f1a003f9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Untitled 1.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -81,6 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Untitled 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Untitled 1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +149,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Untitled 1.md"
+              }
             }
           }
         ]
@@ -138,8 +171,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "f92a143b31d3dc08",
+  "active": "7a9efae5f1a003f9",
   "lastOpenFiles": [
+    "Untitled.md",
+    "Untitled 1.md",
     "Welcome.md"
   ]
 }
