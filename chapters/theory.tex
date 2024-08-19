@@ -1,6 +1,22 @@
 % Theoretical background
-%\clearpage%if the chapter heading starts close to bottom of the page, force a line break and remove the vertical vspace
-\vspace{21.5pt}
+%\clearpage % Uncomment if needed to force a page break before the chapter
+%\vspace{21.5pt} % Consider removing unless extra space is absolutely necessary
 \chapter{Theoretical background}
 
 Check Final Year Project Guide for the content of Theoretical background chapter.
+
+Imperative \ref{code:imperative} or declarative \ref{code:declarative}? Who cares.
+
+This is what imperative looks like:
+\begin{code} 
+  \inputminted{javascript}{code/imperative.js} 
+  \captionof{listing}{Some \gls{js} code} 
+  \label{code:imperative}
+\end{code}
+
+Same thing but "functionally":
+\begin{code}
+  \inputminted{javascript}{code/declarative.js} 
+  \captionof{listing}{Some "functional" \gls{js} code}
+  \label{code:declarative}
+\end{code}
