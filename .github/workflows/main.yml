@@ -31,23 +31,23 @@ jobs:
           xelatex -shell-escape -8bit main
           xelatex -shell-escape -8bit main
           mkdir -p pub
-          mv main.pdf pub/main_fi.pdf
+          mv main.pdf pub/Pennanen_Arttu_fi.pdf
 
       - name: Compile English PDF (bilingual abstract)
         run: |
           sed -i 's/^\\def\\thesislang{finnish}.*/\\def\\thesislang{english}/' chapters/0info.tex
           sed -i 's/^\\def\\secondlang{english}.*/\\def\\secondlang{finnish}/' chapters/0info.tex
           xelatex -shell-escape -8bit main
-          mv main.pdf pub/main_en_bi.pdf
+          mv main.pdf pub/Pennanen_Arttu_en_bi.pdf
 
       - name: Compile English PDF (single abstract)
         run: |
           sed -i 's/^\\def\\bilingual{yes}.*/\\def\\bilingual{no}/' chapters/0info.tex
           xelatex -shell-escape -8bit main
-          mv main.pdf pub/main_en.pdf
+          mv main.pdf pub/Pennanen_Arttu_en.pdf
 
       - name: Upload PDFs for download
         uses: actions/upload-artifact@v4
         with:
-          name: assets-for-download
+          name: compiled_thesis
           path: pub
