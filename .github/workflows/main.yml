@@ -19,14 +19,14 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Cache LaTeX packages
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: /usr/local/texlive
           key: ${{ runner.os }}-texlive
           restore-keys: ${{ runner.os }}-texlive
 
       - name: Cache apt packages
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: /var/cache/apt
           key: ${{ runner.os }}-apt
