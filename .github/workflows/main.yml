@@ -16,8 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Cache LaTeX packages
         uses: actions/cache@v4
@@ -26,12 +25,11 @@ jobs:
           key: ${{ runner.os }}-texlive
           restore-keys: ${{ runner.os }}-texlive
 
-      - name: Cache APT packages
+      - name: Cache apt packages
         uses: actions/cache@v4
         with:
           path: /var/cache/apt
           key: ${{ runner.os }}-apt
-          restore-keys: ${{ runner.os }}-apt
 
       - name: Install dependencies
         run: |
@@ -46,13 +44,11 @@ jobs:
           xelatex -shell-escape -8bit main
           xelatex -shell-escape -8bit main
           mkdir -p pub
-          mv main.pdf Pennanen_Arttu.pdf
+          mv main.pdf pub/Pennanen_Arttu.pdf
 
-      - name: Publish PDF to GitHub Releases
-        uses: softprops/action-gh-release@v1
+      - name: Upload PDF for download
+        uses: actions/upload-artifact@v4
         with:
-          prerelease: true
-          name: latest
-          tag_name: latest
-          files: Pennanen_Arttu.pdf
-          fail_on_unmatched_files: true
+          name: compiled_thesis
+          path: pub
+          if-no-files-found: error
