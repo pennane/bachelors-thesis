@@ -126,8 +126,20 @@
 \counterwithout{table}{chapter}
 
 %SOURCE CODE
-\newenvironment{code}{\captionsetup{type=listing}}{}
-\IfLanguageName{finnish}{\SetupFloatingEnvironment{listing}{name=Koodiesimerkki}}{}%was Listaus
+\newenvironment{code}
+{
+    \begin{samepage} % Start keeping content on the same page
+    \captionsetup{type=listing}
+}
+{
+    \end{samepage} % End keeping content on the same page
+}
+
+\IfLanguageName{finnish}
+{
+    \SetupFloatingEnvironment{listing}{name=Koodiesimerkki}
+}
+{}%was Listaus
 %\counterwithout{lstlisting}{chapter}
 %moved after begin document, otherwise does not compile
 
