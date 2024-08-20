@@ -4,36 +4,34 @@
 \pagestyle{empty} %remove page number
 \newgeometry{top=1.5cm,left=4cm,right=.5cm}
 \begin{otherlanguage}{finnish}
-{\large\textbf{Tiivistelmä}}
-{\renewcommand{\arraystretch}{1.1}
-  \begin{tabular}{@{}p{4.7cm} >{\raggedright\arraybackslash}p{10.8cm}@{}}
-  Tekijä: & \makeatletter\@author\makeatother
-  \\
-  Otsikko: & \otsikko
-  \\
-  Sivumäärä: & \pageref*{LastPage} sivua %+ \total{chapter} liitettä
-  \\
-  Aika: & \pvm
-  \\[6.5mm]
-  Tutkinto: & \tutkinto
-  \\
-  Tutkinto-ohjelma: & \kohjelma
-  \\
-  Ammatillinen pääaine: & \suuntautumis
-  \\
-  Ohjaajat: & \ohjaajat
-  \\[11mm]
-  \cmidrule[.7pt](l{-.15em}r{5.5em}){1-2}
-  \multicolumn{2}{>{\raggedright}p{15.5cm}}{
-  \vspace{.2mm}
-  \tiivistelma
+  {\large\textbf{Tiivistelmä}}
+  {\renewcommand{\arraystretch}{1.1}
+    \begin{tabular}{@{}p{4.7cm} >{\raggedright\arraybackslash}p{10.8cm}@{}}
+      Tekijä:               & \makeatletter\@author\makeatother
+      \\
+      Otsikko:              & \otsikko
+      \\
+      Sivumäärä:            & \pageref*{LastPage} sivua         %+ \total{chapter} liitettä
+      \\
+      Aika:                 & \pvm
+      \\[6.5mm]
+      Tutkinto:             & \tutkinto
+      \\
+      Tutkinto-ohjelma:     & \kohjelma
+      \\
+      Ammatillinen pääaine: & \suuntautumis
+      \\
+      Ohjaajat:             & \ohjaajat
+      \\[11mm]
+      \cmidrule[.7pt](l{-.15em}r{5.5em}){1-2}
+      \vspace{.2mm}
+      \tiivistelma
+      \\
+      \\
+      Avainsanat:           & \avainsanat
+      \\
+    \end{tabular}
   }
-  \\
-  \\
-  Avainsanat: & \avainsanat
-  \\
-\end{tabular}
-}
 \end{otherlanguage}
 \restoregeometry
 \clearpage

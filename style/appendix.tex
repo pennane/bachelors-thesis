@@ -13,14 +13,14 @@
 \renewcommand{\thechapter}{\arabic{chapter}}
 
 \newcommand\liite[1]{
-%each appendix start on a new page
-\clearpage
-%each appendix restart page num to one
-\setcounter{page}{1}
-%special counter for appendix TODO: this is a ugly quick hack :( Should find a better way to count the page per appendix.
-\newtotcounter{appx#1}
-%overwrite the header
-\makeevenhead{plain}{}{}{\appname \thechapter \\ \thepage\,(\stepcounter{appx#1}\total{appx#1})}
-\makeoddhead{plain}{}{}{\appname \thechapter \\ \thepage\,(\stepcounter{appx#1}\total{appx#1})}}
+    %each appendix start on a new page
+    \clearpage
+    %each appendix restart page num to one
+    \setcounter{page}{1}
+    %special counter for appendix TODO: this is a ugly quick hack :( Should find a better way to count the page per appendix.
+    \newtotcounter{appx#1}
+    %overwrite the header
+    \makeevenhead{plain}{}{}{\appname \thechapter \\ \thepage\,(\stepcounter{appx#1}\total{appx#1})}
+    \makeoddhead{plain}{}{}{\appname \thechapter \\ \thepage\,(\stepcounter{appx#1}\total{appx#1})}}
 
 

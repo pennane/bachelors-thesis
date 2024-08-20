@@ -30,8 +30,8 @@
   \setlength{\RaggedRightRightskip}{0pt plus 1fil}%TODO: fix the Overfull/Underfull warnings when \RaggedRight (likely in title and abstact)
 }{}
 \makeatletter
-  \let\@gnewline\@raggedtwoe@saved@gnewline% Restore original functionality of \newline
-  \let\\\@raggedtwoe@savedcr% Restore original functionality of \\
+\let\@gnewline\@raggedtwoe@saved@gnewline% Restore original functionality of \newline
+\let\\\@raggedtwoe@savedcr% Restore original functionality of \\
 \makeatother
 
 %celsius
@@ -63,9 +63,9 @@
 
 % citep-macro for reference with period inside square brackets [1.]
 \newcommand{\citep}[1]{
- \renewcommand\citeright{.]}
- \cite{#1}
- \renewcommand\citeright{]}
+  \renewcommand\citeright{.]}
+  \cite{#1}
+  \renewcommand\citeright{]}
 }
 
 %set date format to D.M.YYYY
@@ -128,16 +128,16 @@
 %SOURCE CODE
 \newenvironment{code}
 {
-    \begin{samepage} % Start keeping content on the same page
+  \begin{samepage} % Start keeping content on the same page
     \captionsetup{type=listing}
-}
-{
-    \end{samepage} % End keeping content on the same page
+    }
+    {
+  \end{samepage} % End keeping content on the same page
 }
 
 \IfLanguageName{finnish}
 {
-    \SetupFloatingEnvironment{listing}{name=Koodiesimerkki}
+  \SetupFloatingEnvironment{listing}{name=Koodiesimerkki}
 }
 {}%was Listaus
 %\counterwithout{lstlisting}{chapter}
@@ -161,7 +161,7 @@
 %spacing after a chapter in toc
 \preto\section{%
   \ifnum\value{section}=0\addtocontents{toc}{\vskip11pt}\fi
-}
+ }
 %spacing after a section in toc
 \renewcommand{\cftsectionaftersnumb}{\vspace*{-3pt}}
 %spacing after a subsection in toc
@@ -195,26 +195,26 @@
 \renewenvironment{quote}
 {\list{}{\rightmargin=0pt\leftmargin=2.2cm\topsep=-14pt}%
   \item\relax\singlespacing}%\fontsize{10pt}{10pt}
-    {\vspace{8pt}\endlist}
+{\vspace{8pt}\endlist}
 
 %BIBLIOGRAPHY
 %TODO: toggle for Harward v.s. Vancouver
 \usepackage[
-backend=biber,
-bibencoding=utf8,%
-citetracker=true,%
-isbn=false,%
-doi=false,%
-url=true,%
-usetranslator=true,%
-bibstyle=ext-authoryear,%
-citestyle=numeric-comp,%
-sorting=none,%
-sortcites=true,%
-block=none,%
-terseinits=false,%
-giveninits=false,%
-maxbibnames=99,%
+  backend=biber,
+  bibencoding=utf8,%
+  citetracker=true,%
+  isbn=false,%
+  doi=false,%
+  url=true,%
+  usetranslator=true,%
+  bibstyle=ext-authoryear,%
+  citestyle=numeric-comp,%
+  sorting=none,%
+  sortcites=true,%
+  block=none,%
+  terseinits=false,%
+  giveninits=false,%
+  maxbibnames=99,%
 ]{biblatex}
 
 \setlength{\bibitemsep}{11pt}
@@ -237,54 +237,54 @@ maxbibnames=99,%
 \DeclareFieldFormat{citetitle}{#1}
 \DeclareFieldFormat{journaltitle}{#1} % remove underline
 \DeclareFieldFormat*{url}{%
-\ifentrytype{online}{\IfLanguageName{finnish}{Verkkoaineisto}{Online}\addperiod\space}{}%
-\ifentrytype{video}{Video\addperiod\space}{}%
-\textless\url{#1}\textgreater\addperiod
+  \ifentrytype{online}{\IfLanguageName{finnish}{Verkkoaineisto}{Online}\addperiod\space}{}%
+  \ifentrytype{video}{Video\addperiod\space}{}%
+  \textless\url{#1}\textgreater\addperiod
 } % you can modify how to url looks here
 %TODO: remove leading 0 for day and month for Finnish dates
 \DeclareFieldFormat{urldate}{\space\bibstring{urlseen}\space#1} % remove () from date
 %try set translation to biblio
 \DefineBibliographyStrings{english}{%
-    urlfrom = {available at},%
-    urlseen = {Visited on},%
-    fromenglish = {from English},%
-    fromfinnish = {from Finnish},%
-    fromgerman = {from German},%
-    fromjapanese = {from Japanese},%
+  urlfrom = {available at},%
+  urlseen = {Visited on},%
+  fromenglish = {from English},%
+  fromfinnish = {from Finnish},%
+  fromgerman = {from German},%
+  fromjapanese = {from Japanese},%
 }
 \DefineBibliographyStrings{finnish}{%
   %  urlfrom={Linkki: },%
-    urlfrom = {},%
-    urlseen = {Luettu},%
-    fromjapanese = {japanista},%
-    fromenglish = {englannista},%
-    fromfinnish = {suomesta},%
-    fromgerman = {saksasta},%
+  urlfrom = {},%
+  urlseen = {Luettu},%
+  fromjapanese = {japanista},%
+  fromenglish = {englannista},%
+  fromfinnish = {suomesta},%
+  fromgerman = {saksasta},%
 }
 {
   %new cite command: "Vancouver Short"
   \DeclareCiteCommand{\citeVS}
-    {\usebibmacro{prenote}}
-    {\usebibmacro{author}, \usebibmacro{title}}
-    {\multicitedelim}
-    {\usebibmacro{postnote}}
+  {\usebibmacro{prenote}}
+  {\usebibmacro{author}, \usebibmacro{title}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
 
   % new cite command: "Vancouver Short Collection" - necessary when referencing whole collections.
   \DeclareCiteCommand{\citeVSc}
-    {\usebibmacro{prenote}}
-    {\usebibmacro{editor}, \usebibmacro{title}}
-    {\multicitedelim}
-    {\usebibmacro{postnote}}
+  {\usebibmacro{prenote}}
+  {\usebibmacro{editor}, \usebibmacro{title}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
 }
 
 % when citing multiple sentences/entire paragraph, add a dot inside the brackets
 \DeclareCiteCommand{\citep}[\mkbibbrackets]
-  {\usebibmacro{cite:init}%
-    \usebibmacro{prenote}}
-  {\usebibmacro{citeindex}%
-     \usebibmacro{cite:comp}}
-  {\multicitedelim}
-  {\usebibmacro{postnote}\addperiod}
+{\usebibmacro{cite:init}%
+  \usebibmacro{prenote}}
+{\usebibmacro{citeindex}%
+  \usebibmacro{cite:comp}}
+{\multicitedelim}
+{\usebibmacro{postnote}\addperiod}
 
 \addbibresource{biblio.bib}% for biblatex you need out \printbibliography too
 
@@ -297,12 +297,12 @@ maxbibnames=99,%
 \usepackage{hyperxmp}
 \def\isolang{\IfLanguageName{finnish}{fi}{en}} %iso code (based on main language)
 \ifdefstring{\thesiscopy}{all}{%
-    \def\copyen{Copyright \textcopyright\ \the\year{}, \theauthor}
-    \def\copyfi{Kaikki oikeudet pidätetään.  \textcopyright\ \the\year{}, \theauthor}
-  }{%
-    \usepackage[type={CC},modifier={\thesiscopy},version={4.0},]{doclicense}
-    \def\copyen{\thetitle\ \textcopyright\ \the\year{} by \theauthor\ is licensed under {\doclicenseLongNameRef}}
-    \def\copyfi{\otsikko\ \textcopyright\ \the\year{}, jonka tekijä on \theauthor, on julkaistu {\doclicenseLongNameRef} lisenssillä}
+  \def\copyen{Copyright \textcopyright\ \the\year{}, \theauthor}
+  \def\copyfi{Kaikki oikeudet pidätetään.  \textcopyright\ \the\year{}, \theauthor}
+}{%
+  \usepackage[type={CC},modifier={\thesiscopy},version={4.0},]{doclicense}
+  \def\copyen{\thetitle\ \textcopyright\ \the\year{} by \theauthor\ is licensed under {\doclicenseLongNameRef}}
+  \def\copyfi{\otsikko\ \textcopyright\ \the\year{}, jonka tekijä on \theauthor, on julkaistu {\doclicenseLongNameRef} lisenssillä}
 }
 \hypersetup{%
   pdfdisplaydoctitle,
@@ -344,9 +344,9 @@ maxbibnames=99,%
 \newglossarystyle{mystyle}{%
   \setglossarystyle{list}% base this style on the list style
   \renewcommand*{\glossentry}[2]{%
-  \item[\glsentryitem{##1}%
-    \glstarget{##1}{\glossentryname{##1}:}]
-  \glossentrydesc{##1}\glspostdescription\space ##2}
+    \item[\glsentryitem{##1}%
+                \glstarget{##1}{\glossentryname{##1}:}]
+    \glossentrydesc{##1}\glspostdescription\space ##2}
 }
 \setglossarystyle{mystyle}
 
