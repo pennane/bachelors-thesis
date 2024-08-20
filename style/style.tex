@@ -155,7 +155,7 @@
 \setcounter{tocdepth}{2}
 %subsection numbered
 \setcounter{secnumdepth}{2}
-\renewcommand{\tocheadstart}{\vspace*{-33.5pt}}
+\renewcommand{\tocheadstart}{}
 \renewcommand{\printtoctitle}[1]{\fontsize{13.5pt}{13.5pt}\bfseries #1\vspace*{-4pt}}
 %\renewcommand{\aftertoctitle}{\vspace*{-22pt}\afterchaptertitle}
 %spacing after a chapter in toc
@@ -301,8 +301,8 @@ maxbibnames=99,%
     \def\copyfi{Kaikki oikeudet pidätetään.  \textcopyright\ \the\year{}, \theauthor}
   }{%
     \usepackage[type={CC},modifier={\thesiscopy},version={4.0},]{doclicense}
-    \def\copyen{\thetitle\ \textcopyright\ \the\year{} by \theauthor\ is licensed under \doclicenseLongNameRef}
-    \def\copyfi{\otsikko\ \textcopyright\ \the\year{}, jonka tekijä on \theauthor, on julkaistu \doclicenseLongNameRef lisenssillä}
+    \def\copyen{\thetitle\ \textcopyright\ \the\year{} by \theauthor\ is licensed under {\doclicenseLongNameRef}}
+    \def\copyfi{\otsikko\ \textcopyright\ \the\year{}, jonka tekijä on \theauthor, on julkaistu {\doclicenseLongNameRef} lisenssillä}
 }
 \hypersetup{%
   pdfdisplaydoctitle,

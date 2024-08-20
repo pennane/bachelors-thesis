@@ -64,15 +64,15 @@
 % your thesis. Normally, you do not need to modify the abstract style. It's content comes
 % from the chapters/0info.tex file.
 \ifdefstring{\bilingual}{no}{%
+  \input{style/abstract_en.tex}
+}{%
+  \IfLanguageName{finnish}{%order of abstracts based on main language and spacing hell
+    \input{style/abstract_fi_fi.tex}
+    \input{style/abstract_fi_en.tex}
+  }{
     \input{style/abstract_en.tex}
-    }{%
-    \IfLanguageName{finnish}{%order of abstracts based on main language and spacing hell
-        \input{style/abstract_fi_fi.tex}
-        \input{style/abstract_fi_en.tex}
-        }{
-        \input{style/abstract_en.tex}
-        \input{style/abstract_fi.tex}
-    }
+    \input{style/abstract_fi.tex}
+  }
 }
 %----------------------------------------------------------------------------------------
 %	License? Acknowledgement?

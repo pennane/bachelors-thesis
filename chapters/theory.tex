@@ -12,29 +12,29 @@ da fak on kaan \gls{functional_programming}.
 Olkoon \( f: A \rightarrow B \) ja \( g: B \rightarrow C \) kaksi funktiota. Funktioiden \( f \) ja \( g \) yhdistämistä merkitään \( g \circ f \), ja se on funktio joukosta \( A \) joukkoon \( C \), joka määritellään seuraavasti:
 
 \[
-(g \circ f)(x) = g(f(x))
+  (g \circ f)(x) = g(f(x))
 \]
 
 Esimerkiksi, jos \( f(x) = 2x + 3 \) ja \( g(x) = x^2 \), niin yhdistetty funktio \( (g \circ f)(x) \) lasketaan seuraavasti:
 
 \[
-(g \circ f)(x) = g(f(x)) = g(2x + 3) = (2x + 3)^2
+  (g \circ f)(x) = g(f(x)) = g(2x + 3) = (2x + 3)^2
 \]
 
 Laajennetaan \( (2x + 3)^2 \):
 
 \[
-(g \circ f)(x) = 4x^2 + 12x + 9
+  (g \circ f)(x) = 4x^2 + 12x + 9
 \]
 
 \section{Blaa ja blaa}
 
 Imperatiivinen \ref{code:imperative} vai deklaratiivinen \ref{code:declarative}? Ketä ginee.
 
-Imperatiivisestni: 
+Imperatiivisestni:
 
-\begin{code} 
-  \inputminted{javascript}{code/imperative.js} 
+\begin{code}
+  \inputminted{javascript}{code/imperative.js}
   \captionof{listing}{Imperatiivinen tapa \gls{js} koodissa poistaa parilliset ja tuplata parittomat numerot}
   \label{code:imperative}
 \end{code}
@@ -42,7 +42,7 @@ Imperatiivisestni:
 thö declarative:
 
 \begin{code}
-  \inputminted{javascript}{code/declarative.js} 
+  \inputminted{javascript}{code/declarative.js}
   \captionof{listing}{Funktionaalinen tapa \gls{js} koodissa poistaa parilliset ja tuplata parittomat numerot}
   \label{code:declarative}
 \end{code}
