@@ -10,19 +10,16 @@ da fak on kaan \gls{functional_programming}.
 \section{Funktioiden yhdistäminen}
 
 Olkoon \( f: A \rightarrow B \) ja \( g: B \rightarrow C \) kaksi funktiota. Funktioiden \( f \) ja \( g \) yhdistämistä merkitään \( g \circ f \), ja se on funktio joukosta \( A \) joukkoon \( C \), joka määritellään seuraavasti:
-
 \[
   (g \circ f)(x) = g(f(x))
 \]
 
 Esimerkiksi, jos \( f(x) = 2x + 3 \) ja \( g(x) = x^2 \), niin yhdistetty funktio \( (g \circ f)(x) \) lasketaan seuraavasti:
-
 \[
   (g \circ f)(x) = g(f(x)) = g(2x + 3) = (2x + 3)^2
 \]
 
 Laajennetaan \( (2x + 3)^2 \):
-
 \[
   (g \circ f)(x) = 4x^2 + 12x + 9
 \]
