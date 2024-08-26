@@ -131,3 +131,9 @@ https://ramdajs.com/docs/
 https://ramdajs.com/repl/?v=0.30.1
 
 ---
+
+https://www.youtube.com/watch?v=3n17wHe5wEw
+
+Functional Programming for Pragmatists • Richard Feldman • GOTO 2021
+3.17
+"when i hear people explain like hey here's why functional programming is awesome its lots of pretty subjective debatable"

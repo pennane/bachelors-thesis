@@ -24,3 +24,4 @@ _minted-*
 *.upa
 *.upb
 *.pyg
+*-SAVE-ERROR

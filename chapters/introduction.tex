@@ -1,0 +1,69 @@
+% Introduction
+
+\chapter{Johdanto}
+
+TODO
+
+\section{Motivaatio}
+
+\glsdisp{functional_programming}{Funktionaalisen ohjelmoinnin} rooli ohjelmistokehityksessä on kasvanut viime vuosina. Kuitenkin siitä, mitä funktionaalisen ohjelmoinnin pitäisi olla ja miten sitä tulisi käyttää, ei tunnu olevan yksimielisyyttä, mikä johtaa ristiriitaisiin näkemyksiin ja keskusteluihin aiheesta.
+
+Tiukasti funktionaaliseen ohjelmointiin tarkoitetut kielet eivät tunnu saavan nostetta alleen päästäkseen yleiseen suosioon (Kuva \ref{fig:fplangpopularity}).  Toisaalta muuten funktionaalisen ohjelmoinnin keinoja ripotellaan muuten osaksi \glsdisp{imperative_programming}{imperatiivisia-} sekä \glsdisp{object_oriented_programming}{olio-ohjelmointikieliä}.
+
+
+
+\begin{figure}[htbp]
+    \pgfplotstableread[col sep=comma]{multiTimeline.csv}\datatable
+
+    % Extract the number of entries
+    \pgfplotstablegetrowsof{\datatable} % Determine the number of rows in the table
+    \pgfmathtruncatemacro{\rows}{\pgfplotsretval-1} % Subtract 1 because rows are zero-indexed
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+                width=\linewidth, % Use full width of the text area
+                height=8cm, % Adjust the height of the plot
+                ylabel={Suosio},
+                xlabel={Vuosi},
+                xtick={0,12,...,\rows},
+                xticklabel style={rotate=45, anchor=east},
+                xticklabels={2004, 2005, 2006, ..., 2024},
+                legend pos=north west,
+                grid=major,
+                cycle list name=color list
+            ]
+            \addplot [mark=none, color=blue] table [x expr=\coordindex, y=Erlang] {\datatable};
+            \addplot [mark=none, color=red] table [x expr=\coordindex, y=Haskell] {\datatable};
+            \addplot [mark=none, color=green] table [x expr=\coordindex, y=OCaml] {\datatable};
+            \addplot [mark=none, color=orange] table [x expr=\coordindex, y=Elixir] {\datatable};
+            \addplot [mark=none, color=purple] table [x expr=\coordindex, y=Scala] {\datatable};
+            \legend{Erlang, Haskell, OCaml, Elixir, Scala}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Erlangin, Haskelin, OCamlin, Elixirin ja Scalan suosiokehitys vuosina 2004–2024. Erlang osoittaa tasaista laskua, kun taas Elixir kasvaa tasaisesti vuoden 2010 jälkeen \cite{fplanggoogletrend}.}
+    \label{fig:fplangpopularity}
+\end{figure}
+
+Opintojen ohessa tieto- ja viestintätekniikan insinööriksi, olen työskennellyt ohjelmistokehittäjänä tuoteohjelmistoyrityksessä, jossa käytetään paljon käytänteitä, jotka mielletään perityvän funktionaalisesta ohjelmoinnista. Nämä käytänteet eivät kuitenkaan ole pakotettuja, vaan ohjelmistokehittäjät ovat voineet valita koodityylinsä suhteellisen vapaasti. Kuitenkin koodikatselmuksissa ja muissa keskusteluissa on usein kuullut lauseita kuten \textquote{tähän olisi voinut käyttää koostefunktiota} tai \textquote{voit halutessasi käyttää funktionaalista ohjelmointityyliä, kun se sopii tilanteeseen}.
+
+Ennen työpaikallani aloittamista tiesin funktionaalisesta ohjelmoinnista lähinnä sen, että sillä on vahva matemaattinen perusta, ja että siinä pyritään kuvailemaan ohjelman toiminta (\glsdisp{declarative_programming}{deklaratiivinen ohjelmakoodi}) suorien käskyjen sijaan (imperatiivinen ohjelmakoodi). Myöskin oli vahva ajatus siitä, että funktionaalinen ohjelmointi olisi täysin eri maailmassa ja uudella tasolla olio-ohjelmointiin tai muuten imperatiiviseen ohjelmointiin verrattuna.
+
+Työpaikalla oppimani käsitys funktionaalisesta ohjelmoinnista laajeni ja muuttui. Siitä tuli enemmänkin tapa rakentaa ja käyttää uudelleenkäytettäviä koodipalikoita eli funktioita.
+
+Koostefunktiot, joissa funktioita suoritettiin toinen toisensa jälkeen antaen aina edellisen tuloste seuraavan syötteeksi tuntuivat mullistavalta. Koodi dokumentoi itse itseään, kun kaikki ohjelman vaiheet ovat selkeästi nimetyissä palikoissa, ettei erillisiä kommentteja tarvitse edes lisätä. Miksei tätä oltu käsitelty millään luennolla?
+
+Kuitenkin työpaikalla funktionaalisen ohjelmoinnin suosio oli varsin polarisoitunutta. Kiinnostukseni funktionaalista ohjelmointia kohtaan kasvoi.
+
+Funktionaalisen ohjelmoinnin taustalla oleva teoria on kiehtovaa, perustavanlaatuista ja luotettavaa. Matematiikka ei valehtele. Funktionaalisen ohjelmakoodin kirjoittaminen on hauskaa, tuntuu \textquote{fiksulta} ja \textquote{oikealta}. Tunnepohjainen perustelu on totta kai sallittavaa, mutta se ei välttämättä vielä vakuuta muita suuntaan tai toiseen. Kuitenkaan kaikki eivät pidä funktionaalista ohjelmointia totuutena ja keinona, millä ratkaista kaikki ongelmat. Työpaikalla olen kuullut paljon perusteltuja mielipiteitä vahvasti \glslink{programming_paradigm}{paradigman} puolesta kuin myös vastaan.
+
+Luettavuus, tehokkuus ja ylläpidettävyys ovat kolme keskeistä osa-aluetta, jotka ovat nousseet eniten esiin työpaikalla keskusteluissa, kun arvioidaan funktionaalisen ohjelmointitavan hyödyllisyyttä. Näistä erityisesti luettavuutta on yleensä pidetty kaikkein tärkeimpänä.ohjelmakoodin ei tarvitse olla tehokasta ennen kuin optimointia todella tarvitaan, ja ylläpidettävyyden perusta on vahvasti sidoksissa siihen, kuinka luettavaa koodi on.
+
+Kun yritin selittää veljelleni (kenellä ei ole ohjelmointitaustaa) aihepiiristä, mitä haluaisin insinöörityössäni tutkia, hänen reaktionsa oli: \enquote{Mitä tarkoitat \glsdisp{functional_programming}{funktionaalisella koodilla}, ai sitä että se toimii?} Kommentti sai minutkin havahtumaan termin humoristisuudelle. Vaikka en ehkä ole vielä kovin kokenut jakamaan filosofisia ajatuksia ohjelmointityyleistä, on varmaa, että toivoisin kaikkien pyrkivän kirjoittamaan toiminnallista, tai toisin sanoen \gls{functional_programming}, ohjelmakoodia.
+
+Siksi tahdonkin tutkia funktionaalisen ohjelmoinnin käytännön haasteita ja selvittää, mitkä ongelmat ja rajoitukset tekevät tästä lähestymistavasta ajoittain haastavan. Tarkastelen paradigmaa sellaisen ohjelmointikielen näkökulmasta, mitä ei varsinaisesti ole tarkoitettu funktionaaliseen ohjelmointiin. Tämä ohjelmointikieli on \gls{js} (ja \gls{ts}). Syynä, että kokemukseni ja osaamiseni painottuu kyseiseen kieleen, ja myöskin sillä kieli on tällä hetkellä markkinoiden käytetyimpiä. JavaScript soveltuu funktionaaliseen ohjelmointiin ominaisuuksiensa ansiosta.
+
+Tarkoituksena on löytää parempi määritelmä sille, mitä on funktionaalinen ohjelmointi, miten sitä kannattaa käyttää ja että onko syytä pohjimmiltaan funktionaalisiin ohjelmontikieliin ohjelmointikielistä, joissa ohjelmointitapa on vain tuettu, muttei vaadittu.
+
+Jos jotain ei vaadita, taipuu se loppujen lopuksi puuttumaan.
+
+

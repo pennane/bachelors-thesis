@@ -1,4 +1,58 @@
 {
   "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
-  "editor.tabSize": 4
+  "editor.tabSize": 4,
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "Latexmk (XeLaTeX)",
+      "tools": ["latexmk-xelatex"]
+    },
+    {
+      "name": "Quick XeLaTeX",
+      "tools": ["xelatex"]
+    },
+    {
+      "name": "Full Build (XeLaTeX -> Biber -> MakeGlossaries -> XeLaTeX (x2))",
+      "tools": ["xelatex", "biber", "makeglossaries", "xelatex", "xelatex"]
+    }
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "xelatex",
+      "command": "xelatex",
+      "args": [
+        "-shell-escape",
+        "-8bit",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "biber",
+      "command": "biber",
+      "args": ["%DOCFILE%"]
+    },
+    {
+      "name": "makeglossaries",
+      "command": "makeglossaries",
+      "args": ["%DOCFILE%"]
+    },
+    {
+      "name": "latexmk-xelatex",
+      "command": "latexmk",
+      "args": [
+        "-xelatex",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-shell-escape",
+        "-8bit",
+        "%DOC%"
+      ]
+    }
+  ],
+  "latex-workshop.latex.build.forceRecipeUsage": true,
+  "latex-workshop.latex.autoBuild.run": "never",
+  "latex-workshop.view.pdf.viewer": "tab"
 }
