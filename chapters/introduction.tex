@@ -11,7 +11,7 @@ TODO
 Tiukasti funktionaaliseen ohjelmointiin tarkoitetut kielet eivät tunnu saavan nostetta alleen päästäkseen yleiseen suosioon (Kuva \ref{fig:fplangpopularity}).  Toisaalta muuten funktionaalisen ohjelmoinnin keinoja on ripoteltu muuten osaksi \glsdisp{imperative_programming}{imperatiivisia-} sekä \glsdisp{object_oriented_programming}{olio-ohjelmointikieliä}.
 
 \begin{figure}[htbp]
-    \pgfplotstableread[col sep=comma]{multiTimeline.csv}\datatable
+    \pgfplotstableread[col sep=comma]{data/fp_lang_popularity.csv}\datatable
     \pgfplotstablegetrowsof{\datatable}
     \pgfmathtruncatemacro{\rows}{\pgfplotsretval-1}
     \centering
