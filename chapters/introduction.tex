@@ -62,17 +62,13 @@ Koostefunktiot, joissa funktioita suoritetaan toinen toisensa jälkeen, ja annet
 
 \begin{code}
     \begin{minted}{typescript}
-const nextState = (
-    state: State,
-    action: Action | null,
-    timestamp: number
-) =>
-    R.pipe(
-        handleInput(action),
-        updateTimetamps(timestamp),
+    const nextState = R.pipe(
+        handleInput,
+        updateTimestamp,
         decreaseMoveTimer,
         handleFall
-        )(state)
+    )
+    
 \end{minted}
     \caption{TypeScript-esimerkki funktiokompositiosta käytännönprojektissa. Valittu pätkä on osa funktionaalisella tyylillä kirjoitettua Tetris-peliä.}
     \label{code:first_pipeline}
