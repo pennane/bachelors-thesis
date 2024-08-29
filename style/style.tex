@@ -241,21 +241,13 @@
   \ifentrytype{video}{Video\addperiod\space}{}%
   \textless\url{#1}\textgreater\addperiod
 } % you can modify how to url looks here
-%TODO: remove leading 0 for day and month for Finnish dates
-\DeclareFieldFormat{urldate}{\space\bibstring{urlseen}\space#1} % remove () from date
-%try set translation to biblio
-\DefineBibliographyStrings{english}{%
-  urlfrom = {available at},%
-  urlseen = {Visited on},%
-  fromenglish = {from English},%
-  fromfinnish = {from Finnish},%
-  fromgerman = {from German},%
-  fromjapanese = {from Japanese},%
+
+\DeclareFieldFormat{urldate}{%
+  \ifentrytype{video}{\space Katsottu\space#1}{\space Luettu\space#1}%
 }
+
 \DefineBibliographyStrings{finnish}{%
-  %  urlfrom={Linkki: },%
   urlfrom = {},%
-  urlseen = {Luettu},%
   fromjapanese = {japanista},%
   fromenglish = {englannista},%
   fromfinnish = {suomesta},%
