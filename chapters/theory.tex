@@ -3,7 +3,9 @@
 \vspace{21.5pt}
 \chapter{Teoreettinen tausta}
 
-TODO
+Jotta voidaan tutkia sitä, miten funktionaalinen ohjelmointi vaikuttaa ohjelmointiin \gls{ts} ympäristössä, on kartoitettava mitä ylipäätään funktionaalinen ohjelmointi on kieliagnostisesti. Tämän jälkeen voidaan tarkastella miten funktionaalinen ohjelmointi on näkynyt \gls{ts} projekteissa, ja lopuksi voidaan vertailla mikä osa tästä on kategorisesti funktionaalista, mikä olio-ohjelmallista, tai pelkästään proseduaalista.
+
+Näillä tiedoilla voidaan lähteä tutkimaan miten käytänteet näkyvät hyödyllisesti tai haitallisesti ohjelmistoprojekteissa, joissa halutaan käyttää funktionaalista ohjelmointia pragmaattisesti.
 
 \section{Funktionaalinen ohjelmointi}
 
@@ -11,10 +13,11 @@ TODO
 
 Nopea historia, lamdakalkyyli. Olennaiset asiat. Immutability ja "pure function"
 
-TODO,
+TODO
 
 \subsection{Yhdistefunktiot ja niiden merkitys}
 
+Funktionaalinen ohjelmointi on pääasiassa vain ja ainoastaan funktioiden yhdistämistä tai koostamista.
 
 TODO
 
@@ -83,11 +86,17 @@ Pari idistä siitä, mitä hyötyy kun lähtee syvään päähänn. Toisaalta my
 
 TODO
 
+Tyypitys on todella tärkeää. Tyypit ohjaavat koodia ja estävät vääriä tiloja ohjemakoodin kääntämisvaiheessa.
+
+TODO Mites \gls{js} :D
+
 
 
 \subsection{Parametrinen polymorfismi}
 
 TODO
+
+Haskelille ominaista, \gls{fp} ominaista.
 
 
 \subsection{Hindley-Milner tyyppijärjestelmä}
@@ -98,12 +107,15 @@ Feldmanin mukaan, mahdottomat tilat ovat testausta parempaa \cite{impossiblebett
 
 Myös Dijkstran idis abstraktiosta sopii kauniisti tähän, ja esimerkki siitä et mitä \gls{fp} on parhaimmillaan.
 
+Parametrinen polymorfismi näkyy täs myös.
+
 \section{Pragmaattisuus}
 
 TODO
 
-Kun funktionaalisen ohjelmoinnin kauneus on matemaattisissa kulmakivissä jotka eivät taivu, miten sitä voi yhdistää nykymaailman pikakoodaukseen? Python, \gls{ts} yms.
+Kun funktionaalisen ohjelmoinnin kauneus on matemaattisissa kulmakivissä jotka eivät taivu, miten sitä voi yhdistää nykymaailman pikakoodaukseen? Python, \gls{ts} yms. Chat gpt? Miten se edes osaa kirjoittaa fp koodia :D
 
+TODO miten uncle bob sanoo? \cite{martin2017pragmaticfp}
 
 \subsection{A monad is a monoid in the category of endofunctors}
 
@@ -113,24 +125,49 @@ Hyvää bäntteriä siitä, miksei fp ole lähtenyt lentoon, miksi pragmaattisuu
 
 Nopea kattaus \textquote{developer advocate} -heppujen mielipiteistä.
 
+Viittaus Promise-spesifikaation monadittomuuteen, mainitaan myös alempana
+
 \subsection{Funktionaalisen ohjelmoinnin ripottelu}
 
 TODO
 
 Idiksiä siitä että juuri otetaan funktionaalisen ohjemoinnin parhaat palat
 
+Youtube videoista konkreettisia esimerkkejä.
+
 \section{Funktionaalinen ohjelmointi \& Typescript}
 
 
 TODO
 
-Koska aijon käyttää Typescriptiä koodiesimerkeissä tms, niin on aiheellista kirjoittaa siitä miten Typescriptissä \gls{fp} näkyy.
+Typescriptiä tullaan käyttämään insinöörityön koodiesimerkeissä, niin on aiheellista näyttää miten Typescriptissä \gls{fp} näkyy.
+
+TODO TypeScript tyypit HYVÄ! Rich Hickey tykkää myös, voi tehä "product type" tms
+
+Toisaalta TS -> overhead, välillä joutuu kikkailemaan
+
+\subsection{Promise-tietorakenne ja osittaismonadisuus}
+
+Promise ei ole monadi :( \cite{read-it-later-11481,promises-spec-94}
+
+Se ei ole monadi, koska \gls{js} spesifikaatiota määriteltäessä ei päästy yhteisymmärrykseen siitä, että Promise-tietorakenteen tulisi olla monadi. Syy on moniuloitteinen, mutta pääasiallisesti sivuaa sitä, että funktionaalinen ohjelmointi, ja sen käsitteet, ovat vaikea selittää tarvittavalla laajuudella sellaisille, joilla ei ole aiempaa ymmärrystä aiheesta. \citep{promises-spec-94}
+
+Tämä kirjoitushetkellä jo yli kymmenen vuotta sitten tehty päätös heikensi merkittävästi \{gls}:n mahdollisuuksia viedä funktionaalista ohjelmointia eteenpäin. \Gls{js} kielenä on laajuudeltaan ongelmallinen. Uusia ominaisuuksia ei voi lisätä, jos vastaavanlaisia ominaisuuksia on aiemmin ollut osana suosittuja \gls{js}-kirjastoja \cite{proposal-joint-iteration,prototype_library_trends}.
+
+TODO lisää siitä että ei tulla ikinä saamaan "builtin" monadeja
+TODO myös että no mitä se tarkoittaa, onko juuri promisen kannalta mitään merkitystä
 
 \subsection{Ramda.js}
 
-TODO
+Koska funktionaalisen ohjelmakoodin tuottaminen \gls{js} tai \gls{ts} ympäristössä enemmän tai vähemmän vaatii jotain kirjastoa, joko itse ohjelmoitua tai ulkoista, niin tähän insinöörityöhön on kirjastoksi valittu Ramda.js.
 
-Koska funktionaalisen ohjelmakoodin tuottaminen \gls{js} tai \gls{ts} ympäristössä vaatii jotain kirjastoa, joko itse ohjelmoitua tai ulkoista, niin tähän on valittu Ramda.js. Olen käyttänyt sitä töissä ja vapaa-ajalla.
+Ramda.js, ja kirjaston taustalla oleelinen Fantasy Land -algebrallinen spesifikaatio, ovat kirjastoja jotka pyrkivät johdonmukaiseen funktionaaliseen ohjelmointiin JavaScriptissä. Näiden kirjastojen kehittäjistöstä löytyy samoja henkilöitä jotka aikoinaan pyrkivät saamaan Promise-tietorakenteen virallisesti monadiseksi \cite{ramda:contributors,fantasy-land:contributors,promises-spec-94}. Näyttää siltä, että kun tähän tavoitteeseen ei päästy, päättivät kehittäjät tuoda funktionaalisen ohjelmoinnin JavaScriptiin omin keinoin.
+
+TODO miten ramda toimii
+
+TODO miten ramda sopii omien funktioiden kanssa
+
+TODO miten typescript? ei hyvä, tyypit ovat mitä sattuu (kokemuspohjaisesti)
 
 \subsection{Rajoitteet}
 
