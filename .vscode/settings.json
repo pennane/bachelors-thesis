@@ -53,7 +53,7 @@
     }
   ],
   "latex-workshop.latex.build.forceRecipeUsage": true,
-  "latex-workshop.latex.autoBuild.run": "never",
+  "latex-workshop.latex.autoBuild.run": "onFileChange",
   "latex-workshop.view.pdf.viewer": "tab",
   "files.exclude": {
     "**/*.aux": true,
