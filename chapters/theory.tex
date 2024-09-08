@@ -3,36 +3,39 @@
 \vspace{21.5pt}
 \chapter{Teoreettinen tausta}
 
-Jotta voidaan tutkia sitä, miten funktionaalinen ohjelmointi vaikuttaa ohjelmointiin \gls{ts} ympäristössä, on kartoitettava mitä ylipäätään funktionaalinen ohjelmointi on \glsdisp{language_agnostic}{kieliagnostisesti}. Tämän jälkeen voidaan tarkastella miten funktionaalinen ohjelmointi näkyy \gls{ts}-projekteissa, ja lopuksi voidaan vertailla sitä, miten funktionaalinen ohjelmointi, olio-ohjelmointi, tai proseduaalinen ohjelmointi eroavat käytännössä.
+Jotta voidaan tutkia sitä, miten funktionaalinen ohjelmointi vaikuttaa ohjelmointiin \gls{ts} ympäristössä, on kartoitettava mitä ylipäätään funktionaalinen ohjelmointi on.
 
-Näillä tiedoilla voidaan lähteä tutkimaan miten käytänteet näkyvät hyödyllisesti tai haitallisesti ohjelmistoprojekteissa, joissa halutaan käyttää funktionaalista ohjelmointia pragmaattisesti.
+Teoriaosuudessa pyritään avaamaan funktionaalisen ohjelmoinnin perusteet \glsdisp{language_agnostic}{kieliagnostisesti}, ja toisaalta myös JavaScript- sekä TypeScript-ekosysteemien kannalta.
+
+Teoriaosuuden lopussa pohjustuksen jälkeen voidaan vielä vertailla sitä, miten funktionaalinen ohjelmointi, olio-ohjelmointi, tai proseduaalinen ohjelmointi eroavat käytännössä.
+
+Lopulta näillä tiedoilla voidaan lähteä tutkimaan miten funktionaalisen ohjelmoinnin käytänteet näkyvät hyödyllisesti tai haitallisesti ohjelmistoprojekteissa.
 
 \section{Funktionaalinen ohjelmointi}
 
-TODO
+Funktionaalinen ohjelmointi on ohjelmointiparadigma, jonka juuret ulottuvat 1930-luvulle ja lambda-kalkyylin kehitykseen. Lähestymistapa korostaa funktioiden käyttöä perusyksikköinä ja pyrkii välttämään muuttuvia tiloja sekä sivuvaikutuksia. Funktionaalisen ohjelmoinnin keskeisiä käsitteitä ovat \glsdisp{pure_function}{puhtaat funktiot}, \glsdisp{higher_order_function}{korkeamman asteen funktiot}, \gls{immutable_data} sekä \gls{declarative_programming}. \citep{Tan2004}
 
-FP
-
-Nopea historia, lambdakalkyyli ja kombinaattorit (Kuva \ref{code:javascript_combinators}). Olennaiset asiat. Immutability ja "pure function"
+Funktionaalinen ohjelmointi mahdollistaa koodin uudelleenkäytettävyyden. Lambda-kalkyylin perustein jokaikisen ongelman voi purkaa pieniksi funktioiksi. \citep{BlellochHarper2015} Lambda-kalkyylin voi ajatella olevan esoteerinen ohjelmointikieli. Sen voi kuitenkin myös ottaa osaksi ohjelmoijan työkalupakkia missä tahansa ohjelmointikielessä, joka kohtelee funktioita ensiluokkaisina, eli siten, että niitä voi käyttää muuttujina (Koodiesimerkki \ref{code:javascript_combinators}). Kombinaattorit ovat omalla tavallaan sitä, mitä suunnittelumallit ovat olio-ohjelmoinnissa: tapa ratkaista ongelmia yleisesti ja siten, että siitä voidaan keskustella.
 
 \begin{code}
 	\begin{minted}{javascript}
-const I  = x => x
-const K  = x => y => x
-const A  = f => x => f (x)
-const T  = x => f => f (x)
-const W  = f => x => f (x) (x)
-const C  = f => y => x => f (x) (y)
-const B  = f => g => x => f (g (x))
-const S  = f => g => x => f (x) (g (x))
-const S_ = f => g => x => f (g (x)) (x)
-const S2 = f => g => h => x => f (g (x)) (h (x))
+const identity      = x => x
+const constant      = x => y => x
+const apply         = f => x => f (x)
+const thrush        = x => f => f (x)
+const duplication   = f => x => f (x) (x)
+const flip          = f => y => x => f (x) (y)
+const compose       = f => g => x => f (g (x))
+const substitution  = f => g => x => f (x) (g (x))
+
 \end{minted}
-	\caption{Yleiset kombinaattorit esitettynä JavaScriptissä \cite{javascript_combinators}}
+	\caption{Yleiset kombinaattorit esitettynä JavaScriptissä \cite{javascript_combinators}. Kombinaattoreilla voi esittäää lambda-kalkyyliä, ja ohjelmoida Turing-vahvoja ohjelmia.}
 	\label{code:javascript_combinators}
 \end{code}
 
-TODO
+Kombinaattorit näyttävät uhkaviilta ja raa'assa muodossaan niiden hyötyarvoa voi olla hankala havaita. Niiden käyttämistä voi kuitenkin perustella niidein niiden perustavanlaatuisten ja kieliagnostisien ominaisuuksien takia. Ohjelmoidessa funktionaalisesti ei kombinaattoreita tarvitse ajatella. Niitä tulee kirjoittamaan varmasti vähintään vahingossa, sillä niitä vaaditaan funktioita pyörittäessä. On hyvä tiedostaa käytössä olevat rakennuspalikat, ja millä nimellä etsiä niistä tietoa tarvittaessa.
+
+
 
 \subsection{Yhdistefunktiot ja niiden merkitys}
 
