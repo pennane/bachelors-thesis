@@ -61,12 +61,6 @@
 \usepackage{float} % For forced figure location with modifier H (\begin{figure}[H])
 \usepackage{wrapfig}
 
-% citep-macro for reference with period inside square brackets [1.]
-\newcommand{\citep}[1]{
-  \renewcommand\citeright{.]}
-  \cite{#1}
-  \renewcommand\citeright{]}
-}
 
 %set date format to D.M.YYYY
 \def\pvm{\the\day.\the\month.\the\year}
@@ -269,14 +263,15 @@
   {\usebibmacro{postnote}}
 }
 
-% when citing multiple sentences/entire paragraph, add a dot inside the brackets
-\DeclareCiteCommand{\citep}[\mkbibbrackets]
+\DeclareCiteCommand{\citeb}[\mkbibbrackets]
 {\usebibmacro{cite:init}%
   \usebibmacro{prenote}}
 {\usebibmacro{citeindex}%
   \usebibmacro{cite:comp}}
-{\multicitedelim}
-{\usebibmacro{postnote}\addperiod}
+{}
+{\usebibmacro{cite:dump}%
+  \usebibmacro{postnote}\addperiod}
+
 
 \addbibresource{biblio.bib}% for biblatex you need out \printbibliography too
 
