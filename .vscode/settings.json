@@ -84,5 +84,6 @@
     "**/*.run.xml": true,
     "**/*-SAVE-ERROR": true,
     "_minted*": true
-  }
+  },
+  "editor.wordWrap": "on"
 }
