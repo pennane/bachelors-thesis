@@ -4,7 +4,15 @@
 
 Siitä mitä \glsdisp{functional_programming}{Funktionaalisen ohjelmoinnin} tulisi olla ja miten sitä tulisi käyttää, ei tunnu olevan yksimielisyyttä. Matemaatikot vannovat funktionaalisen ohjelmoinnin oikeellisuuden nimeen, ja pragmaatikot kauhistuvat. Kuuluisan ristiriitaiset ja mutkikkaat keskustelut hämärtävät pohjaa, minkä päälle funktionaalinen ohjelmointi on rakennettu. \citep{stackoverflow_what_monad,stackoverflow:why_monad,promises-spec-94}
 
-Kuitenkin funktionaalista ohjelmointia kutsutaan ilmiselväksi reitiksi ohjelmoida ja esimerkiksi olio-ohjelmointia ylivertaisemmaksi \cite[1]{the_oo_way}. Jopa Robert C. Martin, tunnettu ohjelmointikäytäntöjen asiantuntija ja olio-ohjelmoinnin puolestapuhuja, on siirtynyt merkittävästi funktionaalisen ohjelmoinnin suuntaan \cite{martin2019whyclojure,martin2017pragmaticfp}. Lienee olla tarvetta saada selville miten funktionaalisuutta saataisiin enemmän osaksi nykyohjelmoijan työkalupakkia.
+Funktionaalisen ohjelmoinnin hyötyjä on usein sanoittu havaittavan suurelti vain matemaattisissa tai datapainotteisissa ohjelmissa \cite[10]{cantarella_fp_haitat}. Ajatus on haastettavissa.
+
+Ensimmäisenä huomiona on se, että suuri osa ohjelmista on juurikin datapainoitteisia \cite{gartnerb2b}. Tietokannassa on dataa, jota näytetään käyttöliittymässä. Samaan aikaan kerätään lisää dataa, jota näytetään toisissa käyttöliittymissä. Toisin sanoen varsin datapainoitteista.
+
+Toisena huomiona on se, että kaikki ongelmat voidaan mallintaa matemaattisesti. Funktionaalisen ohjelmoinnin Turing-vahva lambda-kalkyyli-pohja määritelmällisesti mahdollistaa sen, että funktionaalisessa ohjelmoinnissa voi toteuttaa kaiken saman kuin olio-ohjelmoinnissa \cite{Tan2004,computerphile_lambda}.
+
+Ongelmien mallintaminen matemaattisesti ei kuitenkaan helppoa, ja tuntuu vaativan vahvoja tyyppijärjestelmiä mallinnuksen järkevästi todistamiseksi.
+
+Kuitenkin pikku hiljaa funktionaalista ohjelmointia aletaan kutsumaan ilmiselväksi reitiksi ohjelmoida, ja esimerkiksi olio-ohjelmointia ylivertaisemmaksi \cite[1]{the_oo_way}. Jopa Robert C. Martin, tunnettu ohjelmointikäytäntöjen asiantuntija ja olio-ohjelmoinnin puolestapuhuja, on siirtynyt merkittävästi funktionaalisen ohjelmoinnin suuntaan \cite{martin2019whyclojure,martin2017pragmaticfp}. Lienee olla tarvetta saada selville miten funktionaalisuutta saataisiin enemmän osaksi nykyohjelmoijan työkalupakkia.
 
 Tiukasti funktionaaliseen ohjelmointiin tarkoitetut kielet eivät tunnu saavan nostetta päästäkseen yleiseen suosioon (Kuva \ref{fig:fplangpopularity}). Ero siirtyessä \glsdisp{object_oriented_programming}{olio-ohjelmoinnista} tai \glsdisp{imperative_programming}{imperatiivisesta ohjelmoinnista} funktionaaliseen ohjelmointiin on kuin yöllä ja päivällä. Siksi funktionaalisen ohjelmoinnin keinoja ripotellaan osaksi suosittuja ohjelmointikieliä, jotka ovat perimmäiseltä filosofialtaan täysin muuta kuin funktionaalinen ohjelmointi. Kenties ajatellaan niin, että varpaat on ensin kasteltava, ennen kuin voi hypätä syvään päätyyn.
 
@@ -51,7 +59,7 @@ Myös kirjoitushetkellä tason 3 TC39-esitys \gls{js} iteraattorien apumetodeill
 
 Tehtäessä työtä osana Hoxhunt Oy:n tuotekehitystiimiä on saatu kokemusta funktionaalisesta ohjelmoinnista. Kokemuspohjaista tietoa on kerätty tiimiläisiltä sekä muuten omalta osalta. On nähty kuinka funktionaalisen ohjelmoinnin käytänteitä käytetään, siten että ensin niiden käyttöön on kannustettu, ja toisin pyritty estämään. Koodikatselmuksissa ja muissa keskusteluissa on usein kuultu ajatuksia kärkkäästi niin funktionaalisen ohjelmoinnin puolesta kuin vastaan.
 
-Funktionaalisen ohjelmoinnin kulkakivi on sen matemaattinen perusta \cite{computerphile_lambda}. Toisinaan funktionaalista ohjelmointia on mielletty eräänlaiseksi matemaattisena todistamiseksi, jota humoristisesti ajatellaan vain matematiikan maisterin tutkinnon suorittaneiden taitavan. Voi olla vaikea nähdä funktionaalisen ohjelmoinnin hyötyjä, jos kokee sen ylipäätään vain ylimääräisenä monimutkaisuutena.
+Funktionaalisen ohjelmoinnin kulkakivi on sen matemaattinen perusta \cite{computerphile_lambda,Tan2004}. Toisinaan funktionaalista ohjelmointia on mielletty eräänlaiseksi matemaattisena todistamiseksi, jota humoristisesti ajatellaan vain matematiikan maisterin tutkinnon suorittaneiden taitavan. Voi olla vaikea nähdä funktionaalisen ohjelmoinnin hyötyjä, jos kokee sen ylipäätään vain ylimääräisenä monimutkaisuutena.
 
 Kääntöpuoli on funktionaalisen koodin selittävyys: deklaratiivisuus. Jos on nähty funktionaalisen ohjelmoinnin tuntemattomuuden tai havaitun monimutkaisuuden läpi, niin on löydetty se kuinka funktionaaliset ohjelmat voidaan lukea läpi kuin kirjat. Tämä johtuu siitä, että funktionaalinen ohjelmakoodi on perusteiltaan (\glsdisp{declarative_programming}{deklaratiivista ohjelmakoodia}) suorien käskyjen sijaan (\glsdisp{imperative_programming}{imperatiivinen ohjelmakoodi}) \cite{ms:fp_vs_imperative}.
 

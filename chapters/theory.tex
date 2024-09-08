@@ -13,7 +13,8 @@ Lopulta näillä tiedoilla voidaan lähteä tutkimaan miten funktionaalisen ohje
 
 \section{Funktionaalinen ohjelmointi}
 
-Funktionaalinen ohjelmointi on ohjelmointiparadigma, jonka juuret ulottuvat 1930-luvulle ja lambda-kalkyylin kehitykseen. Lähestymistapa korostaa funktioiden käyttöä perusyksikköinä ja pyrkii välttämään muuttuvia tiloja sekä sivuvaikutuksia. Funktionaalisen ohjelmoinnin keskeisiä käsitteitä ovat \glsdisp{pure_function}{puhtaat funktiot}, \glsdisp{higher_order_function}{korkeamman asteen funktiot}, \gls{immutable_data} sekä \gls{declarative_programming}. \citep{Tan2004}
+Funktionaalinen ohjelmointi on ohjelmointiparadigma, jonka juuret ulottuvat 1930-luvulle ja lambda-kalkyylin kehitykseen. Lähestymistapa korostaa funktioiden käyttöä perusyksikköinä ja pyrkii välttämään muuttuvia tiloja sekä sivuvaikutuksia. Funktionaalisen ohjelmoinnin keskeisiä käsitteitä ovat \glsdisp{pure_function}{puhtaat funktiot}, \glsdisp{higher_order_function}{korkeamman asteen funktiot}, \gls{immutable_data} sekä \gls{declarative_programming}. \citep{Tan2004,computerphile_lambda}
+
 
 Funktionaalinen ohjelmointi mahdollistaa koodin uudelleenkäytettävyyden. Lambda-kalkyylin perustein jokaikisen ongelman voi purkaa pieniksi funktioiksi. \citep{BlellochHarper2015} Lambda-kalkyylin voi ajatella olevan esoteerinen ohjelmointikieli. Sen voi kuitenkin myös ottaa osaksi ohjelmoijan työkalupakkia missä tahansa ohjelmointikielessä, joka kohtelee funktioita ensiluokkaisina, eli siten, että niitä voi käyttää muuttujina (Koodiesimerkki \ref{code:javascript_combinators}). Kombinaattorit ovat omalla tavallaan sitä, mitä suunnittelumallit ovat olio-ohjelmoinnissa: tapa ratkaista ongelmia yleisesti ja siten, että siitä voidaan keskustella.
 
@@ -35,11 +36,12 @@ const substitution  = f => g => x => f (x) (g (x))
 
 Kombinaattorit näyttävät uhkaviilta ja raa'assa muodossaan niiden hyötyarvoa voi olla hankala havaita. Niiden käyttämistä voi kuitenkin perustella niidein niiden perustavanlaatuisten ja kieliagnostisien ominaisuuksien takia. Ohjelmoidessa funktionaalisesti ei kombinaattoreita tarvitse ajatella. Niitä tulee kirjoittamaan varmasti vähintään vahingossa, sillä niitä vaaditaan funktioita pyörittäessä. On hyvä tiedostaa käytössä olevat rakennuspalikat, ja millä nimellä etsiä niistä tietoa tarvittaessa.
 
+\subsection{Yhdistefunktiot ja niiden vahva merkitys}
 
-
-\subsection{Yhdistefunktiot ja niiden merkitys}
+Vaikka usein funktionaalista ohjelmointia mainostaessa puhutaan funktioiden puhtauden ja datan muuttumattomuuden olevan kaikista oleellisinta, on tälle myöskin vaihtoehtoinen mielipide. blaah blaah :D
 
 Funktionaalinen ohjelmointi on pääasiassa vain ja ainoastaan funktioiden yhdistämistä tai koostamista.
+
 
 
 TODO
@@ -76,19 +78,13 @@ h x = f (g x)
 \bigskip
 \begin{code}
 	\begin{minted}{javascript}
-function f(x) {
-  return 2 * x;
-}
+const f = x => 2 * x;
 
-function g(x) {
-  return x + 3;
-}
+const g = x => x + 3;
 
-function h(x) {
-  return f(g(x));
-}
+const h = x => f(g(x))
 \end{minted}
-	\caption{JavaScript-esimerkki funktiokompositiosta}
+	\caption{JavaScript-esimerkki funktiokompositiosta ilman pipe-funktiota}
 	\label{code:javascript_composition}
 \end{code}
 
@@ -182,11 +178,14 @@ TODO
 
 Pari idistä siitä, mitä hyötyy kun lähtee syvään päähänn. Toisaalta myös se, että miten sinne edes pääsee ja miten sen voi erottaa.
 
+
 \section{Tyypitys}
 
 TODO
 
-Tyypitys on todella tärkeää. Tyypit ohjaavat koodia ja estävät vääriä tiloja ohjemakoodin kääntämisvaiheessa.
+Tyypitys on todella tärkeää. Tyypit ohjaavat koodia ja estävät vääriä tiloja ohjemakoodin kääntämisvaiheessa. Tyypeillä pidetään ohjelmoija niissä raameissa, mitä funktionaalinen ohjelmointi usein vaatii \cite[44]{cantarella_fp_haitat}.
+
+JavaScriptissä tyypit eivät näy ohjelmoijalle muuten kuin sillon, kun ohjelma räjähtää ajon aikana. TypeScriptissä tyypit tulevat tielle. Haskelissa (ja PHP:ssa)
 
 TODO Mites \gls{js} :D
 
@@ -214,6 +213,7 @@ Myös Dijkstran idis abstraktiosta sopii kauniisti tähän, ja esimerkki siitä 
 
 Parametrinen polymorfismi näkyy täs myös.
 
+
 \section{Pragmaattisuus}
 
 TODO
@@ -240,7 +240,25 @@ Idiksiä siitä että juuri otetaan funktionaalisen ohjemoinnin parhaat palat
 
 Youtube videoista konkreettisia esimerkkejä.
 
+Cantarella on mun kanssa samaa mieltä :) "Mitä enemmän paradigmoihin liittyviä näkemyksiä käsitteleviin artikkeleihin perehtyy, sen myötämielisemmäksi tulee ajatukselle, että paradigmoja tulisi yhdistellä vapaammin"  \cite[45]{cantarella_fp_haitat}
+
 \section{Funktionaalinen ohjelmointi \& Typescript}
+
+
+\begin{code}
+	\begin{minted}{javascript}
+function rnd(min, max) { 
+	return Math.floor(Math.random() * max) + min;
+}
+const rnd2 = (min, max) => Math.floor(Math.random() * max) + min;
+const rnd3 = min => max => Math.floor(Math.random() * max) + min;
+
+
+
+\end{minted}
+	\caption{Kolme eri tapaa kirjoittaa funktio JavaScriptissä \cite{okhravi-g-discussion}. Funktiomäärittely, funktioilmaus ja osittain sovellettava funktioilmaus}
+	\label{code:javascript_function_types}
+\end{code}
 
 
 TODO
@@ -250,6 +268,8 @@ Typescriptiä tullaan käyttämään insinöörityön koodiesimerkeissä, niin o
 TODO TypeScript tyypit HYVÄ! Rich Hickey tykkää myös, voi tehä "product type" tms
 
 Toisaalta TS -> overhead, välillä joutuu kikkailemaan
+
+On huomattu, että JavaScript koodia kirjoittaessa voi olla vaikeaa pysytellä puhtaan funktionaalisen ohjelmoinnin raameissa, ja että usein olisi mielletysti helpompaa toteuttaa imperatiivisia ratkaisuja \cite[44]{cantarella_fp_haitat}.  LOLOL :D tää on just miks fp good
 
 \subsection{Promise-tietorakenne ja osittaismonadisuus}
 
