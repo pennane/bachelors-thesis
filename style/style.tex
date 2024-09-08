@@ -8,9 +8,9 @@
 %condition e.g. for adding or not space in TOC,...
 \usepackage{etoolbox}
 \ifdefstring{\bilingual}{yes}{
-  \usepackage[\secondlang,\thesislang]{babel}% finnish (or swedish) and english
+	\usepackage[\secondlang,\thesislang]{babel}% finnish (or swedish) and english
 }{
-  \usepackage[\thesislang]{babel}% english only
+	\usepackage[\thesislang]{babel}% english only
 }
 \usepackage{iflang}
 \usepackage{amsmath}
@@ -26,8 +26,8 @@
 
 \usepackage{ragged2e}
 \IfLanguageName{finnish}{
-  \RaggedRight%2021 template, align left and hyphennization for Finnish version
-  \setlength{\RaggedRightRightskip}{0pt plus 1fil}%TODO: fix the Overfull/Underfull warnings when \RaggedRight (likely in title and abstact)
+	\RaggedRight%2021 template, align left and hyphennization for Finnish version
+	\setlength{\RaggedRightRightskip}{0pt plus 1fil}%TODO: fix the Overfull/Underfull warnings when \RaggedRight (likely in title and abstact)
 }{}
 \makeatletter
 \let\@gnewline\@raggedtwoe@saved@gnewline% Restore original functionality of \newline
@@ -69,16 +69,16 @@
 \DTMsetup{datesep=.}
 \DTMnewdatestyle{dMonthyyyy}
 {%
-  \renewcommand{\DTMdisplaydate}[4]{%
-    \number##3 % day
-    ~% separator
-    \DTMenglishmonthname{##2}% month name
-    ~% separator
-    \number##1% year
-  }%
-  \renewcommand{\DTMDisplaydate}[4]{%
-    \DTMdisplaydate{##4}{##3}{##2}{##1}%
-  }%
+	\renewcommand{\DTMdisplaydate}[4]{%
+		\number##3 % day
+		~% separator
+		\DTMenglishmonthname{##2}% month name
+		~% separator
+		\number##1% year
+	}%
+	\renewcommand{\DTMDisplaydate}[4]{%
+		\DTMdisplaydate{##4}{##3}{##2}{##1}%
+	}%
 }
 \DTMsetdatestyle{dMonthyyyy}
 \date{\today}
@@ -122,16 +122,16 @@
 %SOURCE CODE
 \newenvironment{code}
 {
-  \begin{samepage} % Start keeping content on the same page
-    \captionsetup{type=listing}
-    }
-    {
-  \end{samepage} % End keeping content on the same page
+	\begin{samepage} % Start keeping content on the same page
+		\captionsetup{type=listing}
+		}
+		{
+	\end{samepage} % End keeping content on the same page
 }
 
 \IfLanguageName{finnish}
 {
-  \SetupFloatingEnvironment{listing}{name=Koodiesimerkki}
+	\SetupFloatingEnvironment{listing}{name=Koodiesimerkki}
 }
 {}%was Listaus
 %\counterwithout{lstlisting}{chapter}
@@ -162,8 +162,8 @@
 \renewcommand{\cftsubsectionaftersnumb}{\vspace*{-1pt}}
 %appendix in toc with "Appendix " + num
 \IfLanguageName{finnish}{
-  \renewcommand*{\cftappendixname}{Liite\space}
-  \renewcommand{\appendixtocname}{Liitteet}
+	\renewcommand*{\cftappendixname}{Liite\space}
+	\renewcommand{\appendixtocname}{Liitteet}
 }{\renewcommand*{\cftappendixname}{Appendix\space}}
 %appendix header
 \IfLanguageName{finnish}{\def\appname{Liite\space}}{\def\appname{Appendix\space}}
@@ -188,27 +188,27 @@
 %QUOTE
 \renewenvironment{quote}
 {\list{}{\rightmargin=0pt\leftmargin=2.2cm\topsep=-14pt}%
-  \item\relax\singlespacing}%\fontsize{10pt}{10pt}
+	\item\relax\singlespacing}%\fontsize{10pt}{10pt}
 {\vspace{8pt}\endlist}
 
 %BIBLIOGRAPHY
 %TODO: toggle for Harward v.s. Vancouver
 \usepackage[
-  backend=biber,
-  bibencoding=utf8,%
-  citetracker=true,%
-  isbn=false,%
-  doi=false,%
-  url=true,%
-  usetranslator=true,%
-  bibstyle=ext-authoryear,%
-  citestyle=numeric-comp,%
-  sorting=none,%
-  sortcites=true,%
-  block=none,%
-  terseinits=false,%
-  giveninits=false,%
-  maxbibnames=99,%
+	backend=biber,
+	bibencoding=utf8,%
+	citetracker=true,%
+	isbn=false,%
+	doi=false,%
+	url=true,%
+	usetranslator=true,%
+	bibstyle=ext-authoryear,%
+	citestyle=numeric-comp,%
+	sorting=none,%
+	sortcites=true,%
+	block=none,%
+	terseinits=false,%
+	giveninits=false,%
+	maxbibnames=99,%
 ]{biblatex}
 
 \setlength{\bibitemsep}{11pt}
@@ -231,46 +231,46 @@
 \DeclareFieldFormat{citetitle}{#1}
 \DeclareFieldFormat{journaltitle}{#1} % remove underline
 \DeclareFieldFormat*{url}{%
-  \ifentrytype{online}{\IfLanguageName{finnish}{Verkkoaineisto}{Online}\addperiod\space}{}%
-  \ifentrytype{video}{Video\addperiod\space}{}%
-  \textless\url{#1}\textgreater\addperiod
+	\ifentrytype{online}{\IfLanguageName{finnish}{Verkkoaineisto}{Online}\addperiod\space}{}%
+	\ifentrytype{video}{Video\addperiod\space}{}%
+	\textless\url{#1}\textgreater\addperiod
 } % you can modify how to url looks here
 
 \DeclareFieldFormat{urldate}{%
-  \ifentrytype{video}{\space Katsottu\space#1}{\space Luettu\space#1}%
+	\ifentrytype{video}{\space Katsottu\space#1}{\space Luettu\space#1}%
 }
 
 \DefineBibliographyStrings{finnish}{%
-  urlfrom = {},%
-  fromjapanese = {japanista},%
-  fromenglish = {englannista},%
-  fromfinnish = {suomesta},%
-  fromgerman = {saksasta},%
+	urlfrom = {},%
+	fromjapanese = {japanista},%
+	fromenglish = {englannista},%
+	fromfinnish = {suomesta},%
+	fromgerman = {saksasta},%
 }
 {
-  %new cite command: "Vancouver Short"
-  \DeclareCiteCommand{\citeVS}
-  {\usebibmacro{prenote}}
-  {\usebibmacro{author}, \usebibmacro{title}}
-  {\multicitedelim}
-  {\usebibmacro{postnote}}
+	%new cite command: "Vancouver Short"
+	\DeclareCiteCommand{\citeVS}
+	{\usebibmacro{prenote}}
+	{\usebibmacro{author}, \usebibmacro{title}}
+	{\multicitedelim}
+	{\usebibmacro{postnote}}
 
-  % new cite command: "Vancouver Short Collection" - necessary when referencing whole collections.
-  \DeclareCiteCommand{\citeVSc}
-  {\usebibmacro{prenote}}
-  {\usebibmacro{editor}, \usebibmacro{title}}
-  {\multicitedelim}
-  {\usebibmacro{postnote}}
+	% new cite command: "Vancouver Short Collection" - necessary when referencing whole collections.
+	\DeclareCiteCommand{\citeVSc}
+	{\usebibmacro{prenote}}
+	{\usebibmacro{editor}, \usebibmacro{title}}
+	{\multicitedelim}
+	{\usebibmacro{postnote}}
 }
 
-\DeclareCiteCommand{\citeb}[\mkbibbrackets]
+\DeclareCiteCommand{\citep}[\mkbibbrackets]
 {\usebibmacro{cite:init}%
-  \usebibmacro{prenote}}
+	\usebibmacro{prenote}}
 {\usebibmacro{citeindex}%
-  \usebibmacro{cite:comp}}
+	\usebibmacro{cite:comp}}
 {}
 {\usebibmacro{cite:dump}%
-  \usebibmacro{postnote}\addperiod}
+	\usebibmacro{postnote}\addperiod}
 
 
 \addbibresource{biblio.bib}% for biblatex you need out \printbibliography too
@@ -284,34 +284,34 @@
 \usepackage{hyperxmp}
 \def\isolang{\IfLanguageName{finnish}{fi}{en}} %iso code (based on main language)
 \ifdefstring{\thesiscopy}{all}{%
-  \def\copyen{Copyright \textcopyright\ \the\year{}, \theauthor}
-  \def\copyfi{Kaikki oikeudet pidätetään.  \textcopyright\ \the\year{}, \theauthor}
+	\def\copyen{Copyright \textcopyright\ \the\year{}, \theauthor}
+	\def\copyfi{Kaikki oikeudet pidätetään.  \textcopyright\ \the\year{}, \theauthor}
 }{%
-  \usepackage[type={CC},modifier={\thesiscopy},version={4.0},]{doclicense}
-  \def\copyen{\thetitle\ \textcopyright\ \the\year{} by \theauthor\ is licensed under {\doclicenseLongNameRef}}
-  \def\copyfi{\otsikko\ \textcopyright\ \the\year{}, jonka tekijä on \theauthor, on julkaistu {\doclicenseLongNameRef} lisenssillä}
+	\usepackage[type={CC},modifier={\thesiscopy},version={4.0},]{doclicense}
+	\def\copyen{\thetitle\ \textcopyright\ \the\year{} by \theauthor\ is licensed under {\doclicenseLongNameRef}}
+	\def\copyfi{\otsikko\ \textcopyright\ \the\year{}, jonka tekijä on \theauthor, on julkaistu {\doclicenseLongNameRef} lisenssillä}
 }
 \hypersetup{%
-  pdfdisplaydoctitle,
-  %breaklinks=true,%searching for overfull warnings
-  pdfencoding=auto,
-  bookmarksdepth=subsection,
-  unicode=true,
-  keeppdfinfo=true,
-  pdflang={\isolang},
-  pdfmetalang={\isolang},
-  pdftitle={\IfLanguageName{finnish}{\otsikko}{\thetitle}},
-  pdfkeywords={\IfLanguageName{finnish}{\avainsanat}{\metropoliakeywords}},
-  pdfcopyright={\IfLanguageName{finnish}{\copyfi}{\copyen}},
-  pdfsubject={\IfLanguageName{finnish}{\aihe}{\subject}},
+	pdfdisplaydoctitle,
+	%breaklinks=true,%searching for overfull warnings
+	pdfencoding=auto,
+	bookmarksdepth=subsection,
+	unicode=true,
+	keeppdfinfo=true,
+	pdflang={\isolang},
+	pdfmetalang={\isolang},
+	pdftitle={\IfLanguageName{finnish}{\otsikko}{\thetitle}},
+	pdfkeywords={\IfLanguageName{finnish}{\avainsanat}{\metropoliakeywords}},
+	pdfcopyright={\IfLanguageName{finnish}{\copyfi}{\copyen}},
+	pdfsubject={\IfLanguageName{finnish}{\aihe}{\subject}},
 }
 
 \ifdefstring{\bilingual}{yes}{%metadata (title and copyright) in multiple language
-  \XMPLangAlt{\IfLanguageName{finnish}{en}{fi}}{%
-    pdftitle={\IfLanguageName{finnish}{\thetitle}{\otsikko}},
-    pdfcopyright={\IfLanguageName{finnish}{\copyen}{\copyfi}},
-    pdfsubject={\IfLanguageName{finnish}{\subject}{\aihe}},
-  }
+	\XMPLangAlt{\IfLanguageName{finnish}{en}{fi}}{%
+		pdftitle={\IfLanguageName{finnish}{\thetitle}{\otsikko}},
+		pdfcopyright={\IfLanguageName{finnish}{\copyen}{\copyfi}},
+		pdfsubject={\IfLanguageName{finnish}{\subject}{\aihe}},
+	}
 }{}
 \urlstyle{same}
 
@@ -329,11 +329,11 @@
 % Abbreviations, acronym and glossary, in case of bug, remove temporary the noredefwarn
 \usepackage[acronym,toc,nonumberlist,section=chapter,noredefwarn]{glossaries}%xindy,%toc, ,nomain
 \newglossarystyle{mystyle}{%
-  \setglossarystyle{list}% base this style on the list style
-  \renewcommand*{\glossentry}[2]{%
-    \item[\glsentryitem{##1}%
-                \glstarget{##1}{\glossentryname{##1}:}]
-    \glossentrydesc{##1}\glspostdescription\space ##2}
+	\setglossarystyle{list}% base this style on the list style
+	\renewcommand*{\glossentry}[2]{%
+		\item[\glsentryitem{##1}%
+		            \glstarget{##1}{\glossentryname{##1}:}]
+		\glossentrydesc{##1}\glspostdescription\space ##2}
 }
 \setglossarystyle{mystyle}
 
