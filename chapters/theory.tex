@@ -262,7 +262,82 @@ const divide = (x:number) => (y:NonZeroNumber): number => x / y
     \label{code:ts_set_theory_6}
 \end{code}
 
-Joukko-opin yhdistäminen ohjelmointiin ei ole ajattelutapa, joka rinnastetaan suoraan funktionaaliseen ohjelmointiin. Puhtaat funktiot ovat kuitenkin fundamentaalisesti aina siirtymisiä joukoista joukkoihin, on joukko-opin ajattelu vähintäänkin tervetullutta.
+Joukko-opin yhdistäminen ohjelmointiin ei ole ajattelutapa, joka rinnastetaan suoraan funktionaaliseen ohjelmointiin. Puhtaat funktiot ovat kuitenkin fundamentaalisesti aina siirtymisiä joukoista joukkoihin, on joukko-opin ajattelu vähintäänkin tervetullutta (Kuva \ref{fig:function_composition_in_sets}).
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        % Ellipses for sets A, B, and C with background colors
+        \draw[thick, ellipse, fill=green!20] (0,0.875) ellipse (0.8cm and 1.75cm);  % Set A with light blue background
+        \draw[thick, ellipse, fill=blue!20] (3,0.875) ellipse (0.8cm and 1.75cm); % Set B with light green background
+        \draw[thick, ellipse, fill=red!20] (6,0.875) ellipse (0.8cm and 1.75cm);   % Set C with light red background
+
+        % Nodes for set A (without borders)
+        \node[draw=none] (A1) at (0,2) {1};
+        \node[draw=none] (A2) at (0,1.25) {2};
+        \node[draw=none] (A3) at (0,0.5) {3};
+        \node[draw=none] (A4) at (0,-0.25) {4};
+
+        % Nodes for set B (without borders)
+        \node[draw=none] (B1) at (3,2) {A};
+        \node[draw=none] (B2) at (3,1.25) {B};
+        \node[draw=none] (B3) at (3,0.5) {C};
+        \node[draw=none] (B4) at (3,-0.25) {D};
+
+        % Nodes for set C (without borders)
+        \node[draw=none] (C1) at (6,2) {$\alpha$};
+        \node[draw=none] (C2) at (6,1.25) {$\beta$};
+        \node[draw=none] (C3) at (6,0.5) {$\gamma$};
+        \node[draw=none] (C4) at (6,-0.25) {$\delta$};
+
+        % Arrows from A to B
+        \draw[->] (A1) -- (B1);
+        \draw[->] (A2) -- (B3);
+        \draw[->] (A3) -- (B2);
+        \draw[->] (A4) -- (B4);
+
+        % Arrows from B to C
+        \draw[->] (B1) -- (C2);
+        \draw[->] (B2) -- (C1);
+        \draw[->] (B3) -- (C3);
+        \draw[->] (B4) -- (C4);
+
+        % Labels for sets
+        \node[draw=none, text=green!50!black] at (-.5,3.25) {$A = \{1,2,3,4\}$};
+        \node[draw=none, text=blue] at (3,3.25) {$B = \{A,B,C,D\}$};
+        \node[draw=none, text=red] at (6.5,3.25) {$C = \{\alpha, \beta, \gamma, \delta\}$};
+
+        % Arrow to new diagram
+        \draw[->, line width=1.5mm, black] (3,-1.25) -- (3,-2.25) node[midway, right] {};
+
+        % Corrected ellipses for sets A and C below the original picture
+        \draw[thick, ellipse, fill=green!20] (0,-4.125) ellipse (0.8cm and 1.75cm);  % Set A with light blue background
+        \draw[thick, ellipse, fill=red!20] (6,-4.125) ellipse (0.8cm and 1.75cm);   % Set C with light red background
+
+        % Corrected nodes for set A (without borders) - Lower position
+        \node[draw=none] (A1b) at (0,-3) {1};
+        \node[draw=none] (A2b) at (0,-3.75) {2};
+        \node[draw=none] (A3b) at (0,-4.5) {3};
+        \node[draw=none] (A4b) at (0,-5.25) {4};
+
+        % Corrected nodes for set C (without borders) - Lower position
+        \node[draw=none] (C1b) at (6,-3) {$\alpha$};
+        \node[draw=none] (C2b) at (6,-3.75) {$\beta$};
+        \node[draw=none] (C3b) at (6,-4.5) {$\gamma$};
+        \node[draw=none] (C4b) at (6,-5.25) {$\delta$};
+
+        % Direct arrows from A to C (composition)
+        \draw[->] (A1b) -- (C2b);
+        \draw[->] (A2b) -- (C3b);
+        \draw[->] (A3b) -- (C1b);
+        \draw[->] (A4b) -- (C4b);
+    \end{tikzpicture}
+    \vspace{10pt}
+    \caption{Funktioiden yhdistäminen joukko-opin näkökulmasta. Funktiot f : A$\,\to\,$B ja g : B$\,\to\,$C yhdistämällä saadaan g : A$\,\to\,$C.}
+    \label{fig:function_composition_in_sets}
+\end{figure}
+
+Älykkäällä kääntäjällä voi poistaa turhia laskutoimituksia. Kuvassa \ref{fig:function_composition_in_sets} näkyy, että keskimmäisen funktion evaluointi on käytännössä turhaa.
 
 
 
@@ -276,79 +351,6 @@ Kategoriateoria tutkii matemaattisia rakenteita ja niiden välisiä suhteita eri
 Kategoriateoria näkyy osittain myös JavaScriptissä, jossa Promise-luokka toimii lähes kuin \gls{monad}. Promise-luokka mahdollistaa asynkronisten operaatioiden ketjuttamisen ja virheiden käsittelyn tavalla, joka on verrattavissa kategoriateorian monadien tarjoamaan rakenteeseen. \citep{promises-spec-94}
 
 
-% \begin{figure}[htbp]
-% 	\centering
-% 	\begin{tikzpicture}
-% 		% Ellipses for sets A, B, and C with background colors
-% 		\draw[thick, ellipse, fill=green!20] (0,0.5) ellipse (0.8cm and 2cm);  % Set A with light blue background
-% 		\draw[thick, ellipse, fill=blue!20] (3,0.5) ellipse (0.8cm and 2cm); % Set B with light green background
-% 		\draw[thick, ellipse, fill=red!20] (6,0.5) ellipse (0.8cm and 2cm);   % Set C with light red background
-
-% 		% Nodes for set A (without borders)
-% 		\node[draw=none] (A1) at (0,2) {1};
-% 		\node[draw=none] (A2) at (0,1) {2};
-% 		\node[draw=none] (A3) at (0,0) {3};
-% 		\node[draw=none] (A4) at (0,-1) {4};
-
-% 		% Nodes for set B (without borders)
-% 		\node[draw=none] (B1) at (3,2) {1};
-% 		\node[draw=none] (B2) at (3,1) {2};
-% 		\node[draw=none] (B3) at (3,0) {3};
-% 		\node[draw=none] (B4) at (3,-1) {4};
-
-% 		% Nodes for set C (without borders)
-% 		\node[draw=none] (C1) at (6,2) {1};
-% 		\node[draw=none] (C2) at (6,1) {2};
-% 		\node[draw=none] (C3) at (6,0) {3};
-% 		\node[draw=none] (C4) at (6,-1) {4};
-
-% 		% Arrows from A to B
-% 		\draw[->] (A1) -- (B1);
-% 		\draw[->] (A2) -- (B3);
-% 		\draw[->] (A3) -- (B2);
-% 		\draw[->] (A4) -- (B4);
-
-% 		% Arrows from B to C
-% 		\draw[->] (B1) -- (C2);
-% 		\draw[->] (B2) -- (C1);
-% 		\draw[->] (B3) -- (C3);
-% 		\draw[->] (B4) -- (C4);
-
-% 		% Labels for sets
-% 		\node[draw=none, text=green!50!black] at (0,3) {$A = \{1,2,3,4\}$};
-% 		\node[draw=none, text=blue] at (3,3) {$B = \{1,2,3,4\}$};
-% 		\node[draw=none, text=red] at (6,3) {$C = \{1,2,3,4\}$};
-
-% 		% Arrow to new diagram
-% 		\draw[->, line width=1.5mm, black] (3,-1.75) -- (3,-2.75) node[midway, right] {};
-
-% 		% New diagram with direct A to C composition
-% 		% Ellipses for sets A and C below the original picture
-% 		\draw[thick, ellipse, fill=green!20] (0,-4.5) ellipse (0.8cm and 2cm);  % Set A with light blue background
-% 		\draw[thick, ellipse, fill=red!20] (6,-4.5) ellipse (0.8cm and 2cm);   % Set C with light red background
-
-% 		% Nodes for set A (without borders) - Lower position
-% 		\node[draw=none] (A1b) at (0,-3) {1};
-% 		\node[draw=none] (A2b) at (0,-4) {2};
-% 		\node[draw=none] (A3b) at (0,-5) {3};
-% 		\node[draw=none] (A4b) at (0,-6) {4};
-
-% 		% Nodes for set C (without borders) - Lower position
-% 		\node[draw=none] (C1b) at (6,-3) {1};
-% 		\node[draw=none] (C2b) at (6,-4) {2};
-% 		\node[draw=none] (C3b) at (6,-5) {3};
-% 		\node[draw=none] (C4b) at (6,-6) {4};
-
-% 		% Direct arrows from A to C (composition)
-% 		\draw[->] (A1b) -- (C2b);
-% 		\draw[->] (A2b) -- (C3b);
-% 		\draw[->] (A3b) -- (C1b);
-% 		\draw[->] (A4b) -- (C4b);
-
-% 	\end{tikzpicture}
-% 	\caption{Funktioiden yhdistäminen joukko-opin näkökulmasta. Funktiot f : A$\,\to\,$B ja g : B$\,\to\,$C yhdistämällä saadaan g : A$\,\to\,$C.}
-% \end{figure}
-
 Lähestytään maailmaa, missä abstraktin taso nousee hyvin korkealle, jossa syvälliseen ymmärtämiseen vaaditaan korkeamman asteen matematiikan opintoja.
 
 Luettaessa kategoriateoriaan liittyvää materiaalia, tai katsottaessa monia tunteja kategoriateoriaan liittyviä videoita, alkaa saamaan käsityksen siitä mitä kategoriateoria todellisuudessa on. Sen konkreettisesta käyttämisestä voi olla kuitenkin silti vaikea löytää sopivia tilanteita.
@@ -358,9 +360,15 @@ Ohjelmoinnin teoreettinen puoli on hyvä pitää mielessä, eikä sen opiskelust
 Jos ongelmat kuitenkin pystyy yleistämään oikealle tasolle, saa hyvässä tapauksessa monta voittoa, niin tehokkuuden kuin uudelleenkäytettävyyden piireissä \cite{clojure_compiler,bartosz_category_for_progamers}.
 
 
-% \section{Tyypitys - todnäk rajaan ulos}
+\section{Tyyppijärjestelmät - tod.näk. rajaan ulos}
 
-% TODO
+TODO
+
+Tässä osassa voisi käydä läpi sitä, mitkä ovat ohjelmointikielen vaatimukset, että joukko-oppi -osan tyylistä koodia voi kirjoittaa.
+
+Myös tarkemmin suositukset. Sillä esimerkiksi vaikka TypeScriptillä voi tehdä järkevää, varmaa ohjelmakoodia, ei se kuitenkaan ole täydellinen kieli tehtävään.
+
+Inssityö varmaan selviää ilman tätä osaa, mutta se olisi mielenkiintoinen.
 
 % Tyypitys on todella tärkeää. Tyypit ohjaavat koodia ja estävät vääriä tiloja ohjemakoodin kääntämisvaiheessa. Tyypeillä pidetään ohjelmoija niissä raameissa, mitä funktionaalinen ohjelmointi usein vaatii \cite[44]{cantarella_fp_haitat}.
 
