@@ -240,7 +240,7 @@ Matemaattisen jakamisen voi ajatella siirtymisenä kahden joukon yhdisteestä, n
 
 Joukkojen käyttöä voi pakottaa staattisella tyypityksellä. Ilman tyypityksen staattisuutta ohjelmoija ei helposti pysy määrätyissä raameissa \cite[44]{cantarella_fp_haitat}. Tyypit ohjaavat koodia ja estävät vääriä tiloja ohjemakoodin kääntämisvaiheessa.
 
-Jos jakamisesimerkkiin saa määritettyä joukot funktion oikeiksi rajoitteiksi, on funktion väärinkäyttö mahdotonta. Avuksi tarvitsee tuoda staattinen tyypitys \glsdisp{ts}{TypeScriptillä} \glsdisp{js}{JavaScriptin} \cite{typsecript_website}.
+Jos jakamisesimerkkiin saa määritettyä joukot funktion oikeiksi rajoitteiksi, ei funktiota voi käyttää väärin. Avuksi tarvitsee tuoda staattinen tyypitys \glsdisp{ts}{TypeScriptillä} \glsdisp{js}{JavaScriptiin} (Koodiesimerkki \ref{code:ts_set_theory_5}) \cite{typsecript_website}.
 
 \begin{code}
     \begin{minted}{typescript}
@@ -251,7 +251,7 @@ const isNonZeroNumber = (x:number): x is NonZeroNumber => x !== 0
     \caption{Joukon NonZeroNumber määrittäminen ja alkion sisältymisen tarkistaminen TypeScriptissä}
 \end{code}
 
-Tyyppi NonZeroNumber edustaa kaikkien ei-nolla-numeroiden joukkoa. Jos tyypin sijoittaa alkuperäiseen divide funktioon, on funktion väärinkäyttö mahdotonta. Kääntäjä pitää siitä huolen.
+Tyyppi NonZeroNumber edustaa kaikkien ei-nolla-numeroiden joukkoa. Jos tyypin sijoittaa alkuperäiseen divide funktioon, on funktion väärinkäyttö mahdotonta (Koodiesimerkki \ref{code:ts_set_theory_6}). Kääntäjä pitää siitä huolen.
 
 
 \begin{code}
@@ -262,7 +262,7 @@ const divide = (x:number) => (y:NonZeroNumber): number => x / y
     \label{code:ts_set_theory_6}
 \end{code}
 
-Joukko-opin yhdistäminen ohjelmointiin ei ole ajattelutapa, joka rinnastetaan suoraan funktionaaliseen ohjelmointiin. Puhtaat funktiot ovat kuitenkin fundamentaalisesti aina siirtymisiä joukoista joukkoihin, on joukko-opin ajattelu vähintäänkin tervetullutta (Kuva \ref{fig:function_composition_in_sets}).
+Joukko-opin yhdistäminen ohjelmointiin ei ole ajattelutapa, jota rinnastetaan ainosstaan funktionaaliseen ohjelmointiin. Puhtaat funktiot ovat kuitenkin fundamentaalisesti aina siirtymisiä joukoista joukkoihin. Siksi joukko-opin ajattelu on vähintäänkin tervetullutta (Kuva \ref{fig:function_composition_in_sets}).
 
 \begin{figure}[htbp]
     \centering
