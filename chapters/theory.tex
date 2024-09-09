@@ -242,7 +242,7 @@ Nyt mietitään joukko-oppia. Jakamisen voi ajatella siirtymisenä kahden joukon
 
 Joukkojen käyttöä voi pakottaa staattisella tyypityksellä. Ilman tyypityksen staattisuutta ohjelmoija ei helposti pysy määrätyissä raameissa \cite[44]{cantarella_fp_haitat}. Tyypit ohjaavat koodia ja estävät vääriä tiloja ohjemakoodin kääntämisvaiheessa.
 
-Jos jakamisesimerkkiin saa määritettyä joukot funktion oikeiksi rajoiksi, on funktion väärinkäyttö mahdotonta. Avuksi tarvitsee tuoda TypeScript.
+Jos jakamisesimerkkiin saa määritettyä joukot funktion oikeiksi rajoiksi, on funktion väärinkäyttö mahdotonta. Avuksi tarvitsee tuoda \gls{ts}, \glsdisp{js}{JavaScriptin} päälle rakennettu ohjelmointikieli joka on tyypitetty \cite{typsecript_website}.
 
 \begin{code}
 	\begin{minted}{typescript}
@@ -264,20 +264,18 @@ const divide = (x:number) => (y:NonZeroNumber): number => x / y
 	\label{code:ts_set_theory_6}
 \end{code}
 
-Kyseessä ei ole ajattelutapa, jota rinnastetaan suoraan funktionaaliseen ohjelmointiin. Mutta koska puhtaat funktiot ovat fundamentaalisesti siirtymisiä joukoista joukkoihin, on joukko-opin ajattelu vähintäänkin tervetullutta.
+Joukko-opin yhdistäminen ohjelmointiin ei ole ajattelutapa, joka rinnastetaan suoraan funktionaaliseen ohjelmointiin. Puhtaat funktiot ovat kuitenkin fundamentaalisesti aina siirtymisiä joukoista joukkoihin, on joukko-opin ajattelu vähintäänkin tervetullutta.
 
 
 
 \subsection{Kategoriateoria}
 
 
-Joukko-oppi on kaukana ainoasta ohjelmointiin sovellettavista matemaattisista osa-alueista. Funktionaaliselle ohjelmoinnille oleellisin osa-alue on \gls{category_theory} \cite{bartosz_category_for_progamers,promises-spec-94}.
+Joukko-oppi ei ole ainoa ohjelmointiin sovellettava matemaattinen osa-alue. Funktionaaliselle ohjelmoinnille oleellisin osa-alue on \gls{category_theory} \cite{bartosz_category_for_progamers,promises-spec-94}.
 
-Kategoriateoria tutkii matemaattisia rakenteita ja niiden välisiä suhteita hyvin abstraktilla tasolla. Se keskittyy objektien (kuten joukkojen tai tyyppien) ja niiden välillä olevien morfismien (funktioiden tai muunnosten) tutkimiseen. Kategoriateorian avulla voidaan ymmärtää ja formalisoida monimutkaisia matemaattisia ja ohjelmallisia rakenteita. \cite{bartosz_category_for_progamers,promises-spec-94,category_theory}
+Kategoriateoria tutkii matemaattisia rakenteita ja niiden välisiä suhteita erittäin abstraktilla tasolla. Se keskittyy objektien (kuten joukkojen tai tyyppien) ja niiden välillä olevien morfismien (funktioiden tai muunnosten) tutkimiseen. Kategoriateorian avulla voidaan ymmärtää ja formalisoida monimutkaisia matemaattisia ja ohjelmallisia rakenteita. \citep{bartosz_category_for_progamers,promises-spec-94,category_theory}
 
-Käytännössä kategoriateoria ilmenee funktionaalisessa ohjelmoinnissa esimerkiksi \glsdisp{monad}{monadien} muodossa. Kategoriateorian rakenteet mahdollistavat koodin yleistämisen ja uudelleenkäytön erittäin korkealla tasolla, tarjoten vahvoja työkaluja ohjelmointiongelmien ratkaisuun. Kategoriateoria tarjoaa myös kehyksen, jonka puitteissa voidaan kehittää tehokkaita ja turvallisia ohjelmia abstraktoimalla ja yhdistelemällä erilaisia operatioita. \cite{bartosz_category_for_progamers,promises-spec-94,category_theory}
-
-Kategoriateoria näkyy myös JavaScriptissä, jossa Promise-luokka toimii lähes kuin monadi. Se mahdollistaa asynkronisten operaatioiden ketjuttamisen ja virheiden käsittelyn tavalla, joka on verrattavissa kategoriateorian monadien tarjoamaan rakenteeseen. \cite{promises-spec-94}
+Kategoriateoria näkyy osittain myös JavaScriptissä, jossa Promise-luokka toimii lähes kuin \gls{monad}. Promise-luokka mahdollistaa asynkronisten operaatioiden ketjuttamisen ja virheiden käsittelyn tavalla, joka on verrattavissa kategoriateorian monadien tarjoamaan rakenteeseen. \citep{promises-spec-94}
 
 
 % \begin{figure}[htbp]
@@ -399,33 +397,33 @@ Jos ongelmat kuitenkin pystyy yleistämään oikealle tasolle, saa hyvässä tap
 
 \section{Pragmaattisuus}
 
-TODO
+Funktionaalisen ohjelmoinnin tärkein teoria alkaa olla käytynä. On aika tarkastella teoreettisella tasolla sitä, miten funktionaalinen ohjelmoinnin voi tuoda \gls{js} (ja \gls{ts}) arsenaaliin.
 
-Kun funktionaalisen ohjelmoinnin kauneus on matemaattisissa kulmakivissä jotka eivät taivu, miten sitä voi yhdistää nykymaailman pikakoodaukseen? Python, \gls{ts} yms. Chat gpt? Miten se edes osaa kirjoittaa fp koodia :D
+Kun funktionaalisen ohjelmoinnin kauneus on matemaattisissa kulmakivissä, joilla ei ole tapaa taipua, miten sen voi yhdistää säännöttömään JavaScriptiin tai muuhun vastaavanlaiseen kieleen?
 
-TODO miten uncle bob sanoo? \cite{martin2017pragmaticfp}
+Mikä on se lähestymistapa, jota tarvitaan käytännönläheiseen, pragmaattiseen, funktionaaliseen ohjelmointiin?
 
 \subsection{Monadi on monoidi endofunktorien kategoriassa}
 
-TODO
+Monadi on monoidi endofunktorien kategoriassa on fraasi, jota käytetään humoristisesti yhteyksissä, missä pyritään selittämään funktionaalisen ohjelmoinnin matemaattisen osa-alueen kategoriateorian \gls{monad}-rakennetta \cite{bartosz_category_for_progamers_10}. Fraasi on surullisenkuuluisa, ja lienee yksi syy sille, miksei funktionaalinen ohjelmointi ole suositumpaa. Jos funktionaalisen ohjelmoinnin käsitteiden ymmärtämiseen tarvitsee useiden yliopistosasoisien kurssien taustatiedot, ei sopeutuminen ole helppoa.
 
-Hyvää bäntteriä siitä, miksei fp ole lähtenyt lentoon, miksi pragmaattisuus on hot. Miten fp näkyy nykymaailmassa ja miten se mielletään. Pohja kategoriateoriassa pelottaa.
+Myöskin ohjelmoijat, jotka ovat tehneet kauan olio-ohjelmointia tai proseduraalista ohjelmointia, tahtovat toimia niillä tavoilla, mitä ovat oppineet. Esimerkiksi perustellaan niin, että JavaScript ei ole funktionaalinen ohjelmointikieli, vaikka siinä periaatteessa funktionaalista ohjelmointia voi kirjoittaakkin. Tälläiset ongelmat tietysti ulottuvat pidemmälle kuin vain ohjelmointityyleihin. \citep{is_reduce_bad}
 
-Nopea kattaus {developer advocate} -heppujen mielipiteistä.
-
-Viittaus Promise-spesifikaation monadittomuuteen, mainitaan myös alempana
+On harmillista perustella asioita pelkästään historiallisista syistä. Silloin ohjelmointikieleet jäävät paikalleen \cite{promises-spec-94}.
 
 \subsection{Funktionaalisen ohjelmoinnin ripottelu}
 
-TODO
+Kokemusten perusteella työpaikalla on havaittu funktionaalisen ohjelmoinnin paikallisuuden toimivan kohtuullisen hyvin muuten proseduraalisen ohjelmakoodin ympäristössä.
 
-Idiksiä siitä että juuri otetaan funktionaalisen ohjemoinnin parhaat palat
+Robert C. Martinin mukaan pragmaattinen funktionaalinen ohjelmointi on sitä, että käytetään esimerkiksi \glsdisp{immutable_data}{muuttumattomuutta} ja puhtaita funktioita silloin, kun ne parantavat ohjelman luettavuutta, ylläpidettävyyttä ja suorituskykyä, ja kuitenkin niin, ettei vaadita täydellistä sitoutumista funktionaalisen ohjelmoinnin paradigmaan. \cite{martin2017pragmaticfp}
 
-Youtube videoista konkreettisia esimerkkejä.
+Myös Cantarella mainitsee opinnäytetyönsä loppupuolella ajatuksen, että mitä enemmän paradigmoihin liittyviin artikkeleihin perehtyy, sitä myötämielisemmäksi tulee ajatukselle, että paradigmoja tulisi yhdistellä vapaammin. \citep[45]{cantarella_fp_haitat}
 
-Cantarella on mun kanssa samaa mieltä :) "Mitä enemmän paradigmoihin liittyviä näkemyksiä käsitteleviin artikkeleihin perehtyy, sen myötämielisemmäksi tulee ajatukselle, että paradigmoja tulisi yhdistellä vapaammin"  \cite[45]{cantarella_fp_haitat}
+Pragmaattista funktionaalista ohjelmointia vaikuttaa siis olevan se, että otetaan vain mitä tarvitaan. Toisaalta se, mitä tarvitaan ei ole välittömästi selvää.
 
 \section{Funktionaalinen ohjelmointi \& Typescript}
+
+TODO
 
 
 \begin{code}
