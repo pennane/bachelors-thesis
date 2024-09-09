@@ -48,7 +48,6 @@ Kombinaattorit ovat omalla tavallaan sitä, mitä suunnittelumallit ovat olio-oh
 
 \begin{code}
     \begin{minted}{javascript}
-
 const identity      = x => x
 const constant      = x => y => x
 const apply         = f => x => f (x)
@@ -78,7 +77,7 @@ On tärkeää huomata, että kaiken ei tarvitse olla täysin puhdasta ja muuttum
 
 Loppujen lopuksi funktionaalisen ohjelmoinnin perusta on funktioissa ja niiden yhdistämisessä. Datan muuttumattomuus ja sivuvaikutuksettomuus on vain esivaatimus funktioiden ennustettavuudelle.
 
-\Gls{composed_function} tarkoittaa yksinkertaisesti kahden tai useamman funktion yhdistämistä siten, että yhden funktion tulos syötetään seuraavalle. Esimerkiksi funktion f(g(x)) voi nähdä kahden funktion f ja g yhdisteenä, jossa g suoritetaan ensin ja sen tulos annetaan funktiolle f (Koodiesimerkki \ref{code:javascript_manual_composition}).
+\Gls{composed_function} tarkoittaa yksinkertaisesti kahden, tai useamman, funktion yhdistämistä siten, että yhden funktion tulos syötetään seuraavalle. Esimerkiksi funktion f(g(x)) voi nähdä kahden funktion f ja g yhdisteenä, jossa g suoritetaan ensin ja sen tulos annetaan funktiolle f (Koodiesimerkki \ref{code:javascript_manual_composition}).
 
 \begin{code}
     \begin{minted}{javascript}
@@ -94,7 +93,7 @@ const h = x => f(g(x))
 
 Funktionaalisissa ohjelmointikielissä yhdistettyjä funktioita pystyy usein kirjoittamaan käyttäen kieleen sisäänrakennettuja operaattoreja, joilla koostaminen on helpompaa ja suoraan osana ohjelmointikieltä \cite{fsharpcomposition,haskellcomposition}.
 JavaScriptissä ei ole vastaavanlaista sisäänrakennettua operaattoria.
-(Vaikkakin sellainen on kehitteillä \cite{tc39_pipeline_operator})
+(Vaikkakin sellainen on kehitteillä \cite{tc39_pipeline_operator}.)
 Operaattorin voi kuitenkin kirjoittaa helposti itse funktiona (Koodiesimerkki \ref{code:javascript_pipe_composition}).
 
 \begin{code}
@@ -165,20 +164,18 @@ Esimerkissä näytetyt funktiot ovat hyvin yksinkertaisia. Kuitenkin ne ovat tä
 
 \section{Joukko-oppi}
 
-Ohjelmointi on aina ollut matemaattista.
+Ohjelmoinnin ja matematiikan syvällinen yhteys on tunnettu tosiasia. Myös \gls{set_theory} muodostaa perustan monille ohjelmointirakenteille ja -abstraktioille. Joukko-oppi on matematiikan haara, joka tutkii joukkojen ominaisuuksia ja niiden välisiä suhteita. Ohjelmoinnissa tämä ilmenee selkeimmin joukko-tietorakenteiden kautta, jotka mahdollistavat uniikkien alkioiden kokoelmien käsittelyn tehokkaasti ja ilmaisuvoimaisesti \cite{mdn_set,mdn_set_methods}. Toisaalta joukko-oppi liittyy suoraan funktionaaliseen ohjelmointiin, sillä puhtaat funktiot voidaan ajatella olevan muutoksia joukoista toisiin \cite{bartosz_category_for_progamers}.
 
 \subsection{Joukko-tietorakenne}
 
-Olio-ohjelmoinnissa, tai ylipäätään ohjelmoinnissa, joukko-oppi näkyy ohjelmoijalle yleensä joukko-tietorakenteen muodossa. Jopa JavaScriptissä on sisäänrakennettu joukko-tietorakenne \cite{mdn_set}.
+Ohjelmoinnissa joukko-tietorakennetta käytetään hyvin laajasti, ja sen merkitys on keskeinen monissa ohjelmointikielissä, kuten Pythonissa, Javassa ja JavaScriptissä. Joukko-tietorakenne mahdollistaa alkioiden tallentamisen ilman duplikaatteja. Sen operaatiot, kuten unioni, leikkaus ja erotus, ovat suoraan peräisin matemaattisesta joukko-opista. Joukko-tietorakenteen tehokkuus ja yksinkertaisuus tekevät siitä tehokkaan työkalun monenlaisissa sovelluksissa. \citep{mdn_set,ecma_spec}
 
 Joukko-tietorakenne kuvaa joukko-opin joukkoa. Käytännössä joukko-tietorakenteessa säilytetään kokoelma uniikkeja alkioita. Joukko-tietorakenne on ohjelmoinnissa mieluinen työkalu sen tehokkuuden ansiosta \cite{ecma_spec}.
 
-Kokemusten mukaan ohjelmoija ei usein mieti joukko-tietorakennetta matemaattisista lähtökohdista. Tästä kuitenkin voisi olla hyötyä.
-
-
+Kokemusten mukaan ohjelmoija ei usein mieti joukko-tietorakennetta matemaattisista lähtökohdista. Tästä kuitenkin voisi olla hyötyä. Joukko-opin periaatteiden ymmärtäminen ja soveltaminen ohjelmoinnissa ei ainoastaan tehosta ohjelmointia, vaan myös laajentaa näkemystä siitä, miten abstraktit matemaattiset konseptit voidaan muuttaa konkreettisiksi työkaluiksi ohjelmistokehityksessä. Tämä yhdistelmä tarjoaa ohjelmoijille sekä teoreettisen että käytännöllisen perustan, joka on arvokas monissa erilaisissa sovelluksissa ja ongelmanratkaisutilanteissa \cite{bartosz_category_for_progamers}.
 
 \subsection{Siirtyminen joukoista toisiin}
-Jos joukko-oppia rupeaa miettimään ohjelmoinnissa siirtyminä joukoista toisiin, saa kieliagnostista osaamista kirjoittaa koodia. Kun miettii, mitä ylipäätään voi laskea, pääsee ohjelmoinnissa omalle abstraktille tasolle. \citep{Tan2004,BlellochHarper2015}
+Jos joukko-oppia rupeaa miettimään ohjelmoinnissa siirtyminä joukoista toisiin, kehittää kieliagnostista osaamista kirjoittaa koodia. Kun miettii, mitä ylipäätään voi laskea, pääsee ohjelmoinnissa omalle abstraktille tasolle. \citep{Tan2004,BlellochHarper2015}
 
 Tarkastellaan seuraavia tilanteita.
 
