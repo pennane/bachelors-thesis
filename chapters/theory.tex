@@ -7,7 +7,7 @@ Jotta voidaan tutkia sitä, miten funktionaalinen ohjelmointi vaikuttaa ohjelmoi
 
 Teoriaosuudessa pyritään avaamaan funktionaalisen ohjelmoinnin perusteet \glsdisp{language_agnostic}{kieliagnostisesti}, ja toisaalta myös JavaScript- sekä TypeScript-ekosysteemien kannalta.
 
-Teoriaosuuden lopussa pohjustuksen jälkeen voidaan vielä vertailla sitä, miten funktionaalinen ohjelmointi, olio-ohjelmointi, tai proseduaalinen ohjelmointi eroavat käytännössä.
+Teoriaosuuden lopussa pohjustuksen jälkeen voidaan vielä vertailla sitä, miten funktionaalinen ohjelmointi, olio-ohjelmointi, tai proseduraalinen ohjelmointi eroavat käytännössä.
 
 Lopulta näillä tiedoilla voidaan lähteä tutkimaan miten funktionaalisen ohjelmoinnin käytänteet näkyvät hyödyllisesti tai haitallisesti ohjelmistoprojekteissa.
 
@@ -20,34 +20,34 @@ Funktionaalinen ohjelmointi on ohjelmointiparadigma, jonka juuret ulottuvat 1930
 Ohjelmoidessa funktionaalista ohjelmakoodia nimeämiskäytänteet ovat yhtä vaikeita kuin aina. Tässä insinöörityössä käytetään Haskell-ohjelmoijien keskuudessa näkyviä nimeämiskäytänteitä, jossa käytetään lyhyitä ja \textquote{intuitiivisia} nimiä funktioille ja muuttujille. Esimerkiksi:
 
 \begin{itemize}
-	\item x: Yleisesti käytetty muuttuja tai parametri, joka edustaa arvoa, jota funktiot käsittelevät. Jos näkyvyys-alalla on muita funktioita, niitä nimetään usein aakkosjärjestyksessä x:stä eteenpäin (x, y, z).
-	\item xs: Muuttuja, joka edustaa useita arvoja (useita x-kirjaimia). Usein sisältää listan arvoista, mutta tietorakenteen tietäminen ei ole merkittävää.
-	\item f: Yksittäinen funktio, jota voidaan käyttää käsittelemään arvoja. Jos näkyvyys-alalla on muita funktioita, niitä nimetään usein aakkosjärjestyksessä f:stä eteenpäin (f, g, h, i...).
-	\item fs: Muuttuja, joka edustaa useita funktioita (useita f-kirjaimia). Usein sisältää listan funktioista, mutta tietorakenteen tietäminen ei ole merkittävää.
+    \item x: Yleisesti käytetty muuttuja tai parametri, joka edustaa arvoa, jota funktiot käsittelevät. Jos näkyvyys-alalla on muita funktioita, niitä nimetään usein aakkosjärjestyksessä x:stä eteenpäin (x, y, z).
+    \item xs: Muuttuja, joka edustaa useita arvoja (useita x-kirjaimia). Usein sisältää listan arvoista, mutta tietorakenteen tietäminen ei ole merkittävää.
+    \item f: Yksittäinen funktio, jota voidaan käyttää käsittelemään arvoja. Jos näkyvyys-alalla on muita funktioita, niitä nimetään usein aakkosjärjestyksessä f:stä eteenpäin (f, g, h, i...).
+    \item fs: Muuttuja, joka edustaa useita funktioita (useita f-kirjaimia). Usein sisältää listan funktioista, mutta tietorakenteen tietäminen ei ole merkittävää.
 \end{itemize}
 
 Esimerkkejä käytänteiden käytöstä:
 
 \begin{code}
-	\begin{minted}{javascript}
+    \begin{minted}{javascript}
 const map    = f => xs => xs.map(f)
 const either = f => g => x => f(x) || g(x)
 const max    = x => y => x > y ? x : y
 const pipe   = fs => x => fs.reduce((acc, f) => f(acc), x)
 \end{minted}
-	\caption{Esimerkkejä insinöörityössä käytettävistä nimeämiskäytänteistä.}
-	\label{code:javascript_naming_convention_example}
+    \caption{Esimerkkejä insinöörityössä käytettävistä nimeämiskäytänteistä.}
+    \label{code:javascript_naming_convention_example}
 \end{code}
 
 \subsection{Kombinaattorit}
 
 
-Funktionaalinen ohjelmointi mahdollistaa koodin uudelleenkäytettävyyden. Lambda-kalkyylin perustein jokaikisen ongelman voi purkaa pieniksi funktioiksi. \citep{BlellochHarper2015} Lambda-kalkyylin voi ajatella olevan esoteerinen ohjelmointikieli. Sen voi kuitenkin myös ottaa osaksi ohjelmoijan työkalupakkia missä tahansa ohjelmointikielessä, joka kohtelee funktioita ensiluokkaisina, eli siten, että niitä voi käyttää muuttujina (Koodiesimerkki \ref{code:javascript_combinators}).
+Funktionaalinen ohjelmointi mahdollistaa koodin uudelleenkäytettävyyden. Lambda-kalkyylin perustein joka ikisien ongelman voi purkaa pieniksi funktioiksi. \citep{BlellochHarper2015} Lambda-kalkyylin voi ajatella olevan esoteerinen ohjelmointikieli. Sen voi kuitenkin myös ottaa osaksi ohjelmoijan työkalupakkia missä tahansa ohjelmointikielessä, joka kohtelee funktioita ensiluokkaisina, eli siten, että niitä voi käyttää muuttujina (Koodiesimerkki \ref{code:javascript_combinators}).
 
 Kombinaattorit ovat omalla tavallaan sitä, mitä suunnittelumallit ovat olio-ohjelmoinnissa: tapa ratkaista ongelmia yleisesti ja siten, että siitä voidaan keskustella.
 
 \begin{code}
-	\begin{minted}{javascript}
+    \begin{minted}{javascript}
 
 const identity      = x => x
 const constant      = x => y => x
@@ -59,11 +59,11 @@ const compose       = f => g => x => f (g (x))
 const substitution  = f => g => x => f (x) (g (x))
 
 \end{minted}
-	\caption{Yleiset kombinaattorit esitettynä JavaScriptissä \cite{javascript_combinators}. Kombinaattoreilla voi esittäää lambda-kalkyyliä, ja ohjelmoida Turing-vahvoja ohjelmia.}
-	\label{code:javascript_combinators}
+    \caption{Yleiset kombinaattorit esitettynä JavaScriptissä \cite{javascript_combinators}. Kombinaattoreilla voi esittää lambda-kalkyyliä, ja ohjelmoida Turing-vahvoja ohjelmia.}
+    \label{code:javascript_combinators}
 \end{code}
 
-Kombinaattorit näyttävät uhkaviilta ja raa'assa muodossaan niiden hyötyarvoa voi olla hankala havaita. Niiden käyttämistä voi kuitenkin perustella niidein niiden perustavanlaatuisten ja kieliagnostisien ominaisuuksien takia. Ohjelmoidessa funktionaalisesti ei kombinaattoreita tarvitse ajatella. Niitä tulee kirjoittamaan varmasti vähintään vahingossa, sillä niitä vaaditaan funktioita pyörittäessä. On hyvä tiedostaa käytössä olevat rakennuspalikat, ja millä nimellä etsiä niistä tietoa tarvittaessa.
+Kombinaattorit näyttävät uhkaaviilta ja raa'assa muodossaan niiden hyötyarvoa voi olla hankala havaita. Niiden käyttämistä voi kuitenkin perustella niiden perustavanlaatuisten ja kieliagnostisien ominaisuuksien takia. Ohjelmoidessa funktionaalisesti ei kombinaattoreita kuitenkaan tarvitse paljoa ajatella. Niitä tulee kirjoittamaan varmasti vähintään vahingossa, sillä niitä vaaditaan funktioita pyörittäessä. Kuitenkin on hyvä tiedostaa käytössä olevat rakennuspalikat, ja millä nimellä etsiä niistä tietoa tarvittaessa.
 
 
 
@@ -81,15 +81,15 @@ Loppujen lopuksi funktionaalisen ohjelmoinnin perusta on funktioissa ja niiden y
 \Gls{composed_function} tarkoittaa yksinkertaisesti kahden tai useamman funktion yhdistämistä siten, että yhden funktion tulos syötetään seuraavalle. Esimerkiksi funktion f(g(x)) voi nähdä kahden funktion f ja g yhdisteenä, jossa g suoritetaan ensin ja sen tulos annetaan funktiolle f (Koodiesimerkki \ref{code:javascript_manual_composition}).
 
 \begin{code}
-	\begin{minted}{javascript}
+    \begin{minted}{javascript}
 const f = x => 2 * x
 
 const g = x => x + 3
 
 const h = x => f(g(x))
 \end{minted}
-	\caption{JavaScript-esimerkki yhdistetystä funktiosta h ilman pipe tai compose funktiota}
-	\label{code:javascript_manual_composition}
+    \caption{JavaScript-esimerkki yhdistetystä funktiosta h ilman pipe tai compose funktiota}
+    \label{code:javascript_manual_composition}
 \end{code}
 
 Funktionaalisissa ohjelmointikielissä yhdistettyjä funktioita pystyy usein kirjoittamaan käyttäen kieleen sisäänrakennettuja operaattoreja, joilla koostaminen on helpompaa ja suoraan osana ohjelmointikieltä \cite{fsharpcomposition,haskellcomposition}.
@@ -98,7 +98,7 @@ JavaScriptissä ei ole vastaavanlaista sisäänrakennettua operaattoria.
 Operaattorin voi kuitenkin kirjoittaa helposti itse funktiona (Koodiesimerkki \ref{code:javascript_pipe_composition}).
 
 \begin{code}
-	\begin{minted}{javascript}
+    \begin{minted}{javascript}
 const pipe    = f => g => x => g(f(x))
 const compose = f => g => x => f(g(x))
 
@@ -106,20 +106,20 @@ const h = pipe(f)(g)
 // tai vaihtoehtoisesti
 const h = compose(g)(f)
 \end{minted}
-	\caption{JavaScript-esimerkki funktiokompositiosta pipe ja compose funktioilla}
-	\label{code:javascript_pipe_composition}
+    \caption{JavaScript-esimerkki funktiokompositiosta pipe ja compose funktioilla}
+    \label{code:javascript_pipe_composition}
 \end{code}
 
-Voi olla mielenkiinoista huomata, että Koodiesimerkin compose löytyy myös aiemmin mainituista tunnetuista kombinaattoreista (Koodiesimerkki \ref{code:javascript_combinators}).
+Voi olla mielenkiinoista huomata, että Koodiesimerkin \mintinline{javascript}{compose} löytyy myös aiemmin mainituista tunnetuista kombinaattoreista (Koodiesimerkki \ref{code:javascript_combinators}).
 
-Koodiesimerkissä on näytettynä kaksi eri tapaa yhdistää funktioita: \mintinline{javascript}{pipe} ja \mintinline{javascript}{compose}. Käytännössä ainoa ero on se, kummasta suunnasta funktiot suoritetaan. Compose on lähempänä yhdistettyjen funktioiden matemaattisia perusteita, kun taas pipe on usein helpomi lukea, sillä se suoritetaan yleisessä lukemissuunnassa, eli vasemmalta oikealle, tai ylhäältä alas. Tulevissa koodiesimerkeissä tullaan suosimaan funktioiden yhdistämistä käyttäen pipe-funktiota compose-funktion sijaan. \citep{whyprefercompose}
+Koodiesimerkissä on näytettynä kaksi eri tapaa yhdistää funktioita: \mintinline{javascript}{pipe} ja \mintinline{javascript}{compose}. Käytännössä ainoa ero on se, kummasta suunnasta funktiot suoritetaan. \mintinline{javascript}{compose} on lähempänä yhdistettyjen funktioiden matemaattisia perusteita, kun taas \mintinline{javascript}{pipe} on usein helpompi lukea, sillä se suoritetaan yleisessä lukemissuunnassa, eli vasemmalta oikealle, tai ylhäältä alas. Tulevissa koodiesimerkeissä tullaan suosimaan funktioiden yhdistämistä käyttäen \mintinline{javascript}{pipe}-funktiota \mintinline{javascript}{compose}-funktion sijaan. \citep{whyprefercompose}
 
 Esimerkin \mintinline{javascript}{pipe} ja \mintinline{javascript}{compose} toimivat vain kahdelle funktiolle kerrallaan. Tämä tapa seuraa lambda-kalkyyliä \cite{computerphile_lambda}. Eri ohjelmointikielestä riippuen on kuitenkin mieluisaa kirjoittaa funktiot niin, että ne tukevat suoraan mielivaltaista määrää funktioita.
 
-JavaScriptissä näin voi tehdä esimerkiksi hyödyntämällä array-tietorakennetta (Koodiesimerkki \ref{code:javascript_better_pipe}).
+JavaScriptissä näin voi tehdä esimerkiksi hyödyntämällä Array-tietorakennetta (Koodiesimerkki \ref{code:javascript_better_pipe}).
 
 \begin{code}
-	\begin{minted}{javascript}
+    \begin{minted}{javascript}
 const pipe    = fs => x => fs.reduce((acc, f) => f(acc), x)
 const compose = fs => x => fs.reduceRight((acc, f) => f(acc), x)
 
@@ -133,14 +133,14 @@ i(5) // (((5 + 1) * 2) - 3) = 9
 const i = compose([h, g, f])
 i(5) // (((5 + 1) * 2) - 3) = 9
 \end{minted}
-	\caption{JavaScript-esimerkki yhdistetystä funktiosta käyttäen reduce ja reduceRight funktioita}
-	\label{code:javascript_better_pipe}
+    \caption{JavaScript-esimerkki yhdistetystä funktiosta käyttäen reduce ja reduceRight funktioita}
+    \label{code:javascript_better_pipe}
 \end{code}
 
 Mikä tästä sitten tekee loistavaa? Se, että ohjelmointi on kerrankin oikeasti kuin LEGO palikoilla leikkimistä (Koodiesimerkki \ref{code:javascript_composition_example}).
 
 \begin{code}
-	\begin{minted}{javascript}
+    \begin{minted}{javascript}
 const pipe     = fs => x => fs.reduce((acc, func) => func(acc), x)
 const multiply = x => y => x * y
 const add      = x => y => x + y
@@ -156,8 +156,8 @@ const pipeline = pipe([rejectOdds, map(multiplyBy10)])
 pipeline([1, 2, 3, 4]) // [20, 40]
 
 \end{minted}
-	\caption{Käytännöllinen JavaScript-esimerkki funktioiden käyttämisestä koostamiseen}
-	\label{code:javascript_composition_example}
+    \caption{Käytännöllinen JavaScript-esimerkki funktioiden käyttämisestä koostamiseen}
+    \label{code:javascript_composition_example}
 \end{code}
 
 Esimerkissä näytetyt funktiot ovat hyvin yksinkertaisia. Kuitenkin ne ovat täysin uudelleenkäytettäviä. Jos totuttautuu käyttämään joitain funktioita kaikissa projekteissa, voi huomata koodin kirjoittamisen tehokkuuden ja johdonmukaisuuden kasvavan.
@@ -168,7 +168,7 @@ Ohjelmointi on aina ollut matemaattista.
 
 \subsection{Joukko-tietorakenne}
 
-Olio-ohjelmoinnissa, tai ylipäätään ohjelmoinnissa, joukko-oppi näkyy ohjelmoijalle yleensä joukko-tietorakenteen muodossa. Jopa JavaScriptissa on sisäänrakennettu joukko-tietorakenne \cite{mdn_set}.
+Olio-ohjelmoinnissa, tai ylipäätään ohjelmoinnissa, joukko-oppi näkyy ohjelmoijalle yleensä joukko-tietorakenteen muodossa. Jopa JavaScriptissä on sisäänrakennettu joukko-tietorakenne \cite{mdn_set}.
 
 Joukko-tietorakenne kuvaa joukko-opin joukkoa. Käytännössä joukko-tietorakenteessa säilytetään kokoelma uniikkeja alkioita. Joukko-tietorakenne on ohjelmoinnissa mieluinen työkalu sen tehokkuuden ansiosta \cite{ecma_spec}.
 
@@ -182,11 +182,11 @@ Jos joukko-oppia rupeaa miettimään ohjelmoinnissa siirtyminä joukoista toisii
 Tarkastellaan seuraavia tilanteita.
 
 \begin{code}
-	\begin{minted}{typescript}
+    \begin{minted}{typescript}
 const add10 = x => x + 10  
 \end{minted}
-	\caption{Funktio, joka ottaa numeron ja lisää siihen 10}
-	\label{code:ts_set_theory_1}
+    \caption{Funktio, joka ottaa numeron ja lisää siihen 10}
+    \label{code:ts_set_theory_1}
 \end{code}
 
 Funktio ottaa numeron ja lisää siihen 10 lisää. Toiminnon käyttökohteita voisi olla esimerkiksi jonkin pistemäärän päivittäminen tai ajan lisääminen. On hyvä näin. Ei mietitä joukko-oppia, vaikka ehkä kannattaisi.
@@ -195,49 +195,49 @@ Siirrytään askelta monimutkaisempaan toimintoon: jakamiseen.
 
 
 \begin{code}
-	\begin{minted}{typescript}
+    \begin{minted}{typescript}
 const divide = x => y => x / y
 \end{minted}
-	\caption{Funktio, joka jakaa numeron toisella}
-	\label{code:ts_set_theory_3}
+    \caption{Funktio, joka jakaa numeron toisella}
+    \label{code:ts_set_theory_3}
 \end{code}
 
-Funktio ottaa kaksi numeroa, ja jakaa ensimmäisen toisella. Mutta entä jos toinen annettu numero onkin nolla? Ohjelmointi ei vastaa tähän kysymykseen suoraan, ja se jättää ongalman ohjelmoijan ratkaistavaksi.
+Funktio ottaa kaksi numeroa, ja jakaa ensimmäisen toisella. Mutta entä jos toinen annettu numero onkin nolla? Ohjelmointi ei vastaa tähän kysymykseen suoraan, ja se jättää ongelman ohjelmoijan ratkaistavaksi.
 
-Ohjelmoijan toisin sanoen tulisi tietää, että nollalla ei voi jakaa, ja että jos niin kuitenkin tehdään, JavaScript palauttaa arvon \mintinline{javascript}|Infinity| (tai erikoistapauksessa \mintinline{javascript}|0|) (Koodiesimerkki \ref{code:ts_division}).
+Ohjelmoijan toisin sanoen tulisi tietää, että nollalla ei voi jakaa, ja että jos niin kuitenkin tehdään, JavaScript palauttaa arvon \mintinline{javascript}|Infinity| (tai erityisemmässä tapauksessa \mintinline{javascript}|NaN|) (Koodiesimerkki \ref{code:ts_division}).
 
 \begin{code}
-	\begin{minted}{typescript}
+    \begin{minted}{typescript}
 console.log(1/0)  // Infinity
 console.log(1/-0) // -Infinity
 console.log(0/0)  // NaN
 \end{minted}
-	\caption{Jakamisoperaattorin toiminta JavaScriptissä}
-	\label{code:ts_division}
+    \caption{Jakamisoperaattorin toiminta JavaScriptissä}
+    \label{code:ts_division}
 \end{code}
 
 Tehdään funktiosta turvallisempi lisäämällä siihen tarkistus.
 
 
 \begin{code}
-	\begin{minted}{typescript}
+    \begin{minted}{typescript}
 const divide = x => y => y !== 0 ? x / y : null
 \end{minted}
-	\caption{Turvallisempi funktio, joka jakaa numeron toisella}
-	\label{code:ts_set_theory_4}
+    \caption{Turvallisempi funktio, joka jakaa numeron toisella}
+    \label{code:ts_set_theory_4}
 \end{code}
 
 Tässä versiossa jakaminen suoritetaan vain, jos jakaja ei ole nolla. Jos jakaja on nolla, palauttaa funktio arvon \mintinline{JavaScript}|null|. Versio ratkaisee ongelman siitä, mitä tapahtuu, jos nollalla satutaan jakamaan. Toisaalta funktio ei kuitenkaan aina palauta numeroa.
 
-Mutta entäs sitten joukko-oppi? Miten se liittyy tähän? Jos sen sijaan, että mietitään reunatapauksia ja korjataan niitä koodissa ad hoc, siirrettäisiin reunatapaukset täysin mahdottomiksi heti kättelyssä \cite{impossiblebetter}.
+Mutta kuinka sitten joukko-oppi? Kuinka se liittyy tähän? Jos sen sijaan, että mietitään reunatapauksia ja korjataan niitä koodissa ad hoc, siirrettäisiin reunatapaukset täysin mahdottomiksi heti kättelyssä \cite{impossiblebetter}.
 
 Nyt mietitään joukko-oppia. Jakamisen voi ajatella siirtymisenä kahden joukon yhdisteestä number ja NonZeroNumber pelkästään joukkoon number.
 
 \begin{figure}[ht]
-	\centering
-	\AltText{Joukko NonZeroNumber sisältyy kokonaan joukkoon number}{\includegraphics[width=7.1cm]{set_esimerkki}}
-	\caption{Joukko NonZeroNumber on joukon number aito osajoukko}
-	\label{fig:set-esimerkki}
+    \centering
+    \AltText{Joukko NonZeroNumber sisältyy kokonaan joukkoon number}{\includegraphics[width=7.1cm]{set_esimerkki}}
+    \caption{Joukko NonZeroNumber on joukon number aito osajoukko}
+    \label{fig:set-esimerkki}
 \end{figure}
 
 Joukkojen käyttöä voi pakottaa staattisella tyypityksellä. Ilman tyypityksen staattisuutta ohjelmoija ei helposti pysy määrätyissä raameissa \cite[44]{cantarella_fp_haitat}. Tyypit ohjaavat koodia ja estävät vääriä tiloja ohjemakoodin kääntämisvaiheessa.
@@ -245,23 +245,23 @@ Joukkojen käyttöä voi pakottaa staattisella tyypityksellä. Ilman tyypityksen
 Jos jakamisesimerkkiin saa määritettyä joukot funktion oikeiksi rajoiksi, on funktion väärinkäyttö mahdotonta. Avuksi tarvitsee tuoda \gls{ts}, \glsdisp{js}{JavaScriptin} päälle rakennettu ohjelmointikieli joka on tyypitetty \cite{typsecript_website}.
 
 \begin{code}
-	\begin{minted}{typescript}
+    \begin{minted}{typescript}
 type NonZeroNumber = number & {__brand: "nonzero"}
 const isNonZeroNumber = (x:number): x is NonZeroNumber => x !== 0
 \end{minted}
-	\label{code:ts_set_theory_5}
-	\caption{Joukon NonZeroNumber määrittäminen ja alkion sisältymisen tarkistaminen TypeScriptissä}
+    \label{code:ts_set_theory_5}
+    \caption{Joukon NonZeroNumber määrittäminen ja alkion sisältymisen tarkistaminen TypeScriptissä}
 \end{code}
 
 Tyyppi NonZeroNumber edustaa kaikkien ei-nolla-numeroiden joukkoa. Jos tyypin sijoittaa alkuperäiseen divide funktioon, on funktion väärinkäyttö mahdotonta. Kääntäjä pitää siitä huolen.
 
 
 \begin{code}
-	\begin{minted}{typescript}
+    \begin{minted}{typescript}
 const divide = (x:number) => (y:NonZeroNumber): number => x / y
 \end{minted}
-	\caption{Korrekti versio}
-	\label{code:ts_set_theory_6}
+    \caption{Korrekti versio}
+    \label{code:ts_set_theory_6}
 \end{code}
 
 Joukko-opin yhdistäminen ohjelmointiin ei ole ajattelutapa, joka rinnastetaan suoraan funktionaaliseen ohjelmointiin. Puhtaat funktiot ovat kuitenkin fundamentaalisesti aina siirtymisiä joukoista joukkoihin, on joukko-opin ajattelu vähintäänkin tervetullutta.
@@ -405,11 +405,11 @@ Mikä on se lähestymistapa, jota tarvitaan käytännönläheiseen, pragmaattise
 
 \subsection{Monadi on monoidi endofunktorien kategoriassa}
 
-Monadi on monoidi endofunktorien kategoriassa on fraasi, jota käytetään humoristisesti yhteyksissä, missä pyritään selittämään funktionaalisen ohjelmoinnin matemaattisen osa-alueen kategoriateorian \gls{monad}-rakennetta \cite{bartosz_category_for_progamers_10}. Fraasi on surullisenkuuluisa, ja lienee yksi syy sille, miksei funktionaalinen ohjelmointi ole suositumpaa. Jos funktionaalisen ohjelmoinnin käsitteiden ymmärtämiseen tarvitsee useiden yliopistosasoisien kurssien taustatiedot, ei sopeutuminen ole helppoa.
+Monadi on monoidi endofunktorien kategoriassa on fraasi, jota käytetään humoristisesti yhteyksissä, missä pyritään selittämään funktionaalisen ohjelmoinnin matemaattisen osa-alueen kategoriateorian \gls{monad}-rakennetta \cite{bartosz_category_for_progamers_10}. Fraasi on surullisenkuuluisa, ja lienee yksi syy sille, miksei funktionaalinen ohjelmointi ole suositumpaa. Jos funktionaalisen ohjelmoinnin käsitteiden ymmärtämiseen tarvitsee useiden yliopistotasoisien kurssien taustatiedot, ei sopeutuminen ole helppoa.
 
-Myöskin ohjelmoijat, jotka ovat tehneet kauan olio-ohjelmointia tai proseduraalista ohjelmointia, tahtovat toimia niillä tavoilla, mitä ovat oppineet. Esimerkiksi perustellaan niin, että JavaScript ei ole funktionaalinen ohjelmointikieli, vaikka siinä periaatteessa funktionaalista ohjelmointia voi kirjoittaakkin. Tälläiset ongelmat tietysti ulottuvat pidemmälle kuin vain ohjelmointityyleihin. \citep{is_reduce_bad}
+Myöskin ohjelmoijat, jotka ovat tehneet kauan olio-ohjelmointia tai proseduraalista ohjelmointia, tahtovat toimia niillä tavoilla, mitä ovat oppineet. Esimerkiksi perustellaan niin, että JavaScript ei ole funktionaalinen ohjelmointikieli, vaikka siinä periaatteessa funktionaalista ohjelmointia voi kirjoittaakin. Tällaiset ongelmat tietysti ulottuvat pidemmälle kuin vain ohjelmointityyleihin. \citep{is_reduce_bad}
 
-On harmillista perustella asioita pelkästään historiallisista syistä. Silloin ohjelmointikieleet jäävät paikalleen \cite{promises-spec-94}.
+On harmillista perustella asioita pelkästään historiallisista syistä. Silloin ohjelmointikielet jäävät paikalleen \cite{promises-spec-94}.
 
 \subsection{Funktionaalisen ohjelmoinnin ripottelu}
 

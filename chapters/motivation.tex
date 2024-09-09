@@ -4,7 +4,7 @@
 
 Siitä mitä \glsdisp{functional_programming}{Funktionaalisen ohjelmoinnin} tulisi olla ja miten sitä tulisi käyttää, ei tunnu olevan yksimielisyyttä. Matemaatikot vannovat funktionaalisen ohjelmoinnin oikeellisuuden nimeen, ja pragmaatikot kauhistuvat. Kuuluisan ristiriitaiset ja mutkikkaat keskustelut hämärtävät pohjaa, minkä päälle funktionaalinen ohjelmointi on rakennettu. \citep{stackoverflow_what_monad,stackoverflow:why_monad,promises-spec-94}
 
-Funktionaalisen ohjelmoinnin hyötyjä on usein sanoittu havaittavan suurelti vain matemaattisissa tai datapainotteisissa ohjelmissa \cite[10]{cantarella_fp_haitat}. Ajatus on haastettavissa.
+Funktionaalisen ohjelmoinnin hyötyjä on usein sanottu löytyvän suurelta osin vain matemaattisissa tai datapainotteisissa ohjelmissa \cite[10]{cantarella_fp_haitat}. Ajatus on haastettavissa.
 
 Ensimmäisenä huomiona on se, että suuri osa ohjelmista on juurikin datapainoitteisia \cite{gartnerb2b}. Tietokannassa on dataa, jota näytetään käyttöliittymässä. Samaan aikaan kerätään lisää dataa, jota näytetään toisissa käyttöliittymissä. Toisin sanoen varsin datapainoitteista.
 
@@ -47,8 +47,8 @@ Tiukasti funktionaaliseen ohjelmointiin tarkoitetut kielet eivät tunnu saavan n
 \end{figure}
 
 
-Ripoittelun voi havaita esimerkiksi kun vahvasti olio-ohjelmointiin sovellettua Javaa on tuotu kohti funktionaalista pelikenttää erinäköisin kielen työkalujen, kuten kuten lambdafunktioiden ja Stream-API:n metodien putkittamisen avulla \cite{oracle_function_package,oracle_stream_api} .
-Javaa voikin nykyään jo kutsua hybdridiksi ohjelmointikieleksi funktionaalisen ja olio-ohjelmoinnin väliltä \cite[50]{sundstrom_java_fp}.
+Ripottelun voi havaita esimerkiksi kun vahvasti olio-ohjelmointiin sovellettua Javaa on tuotu kohti funktionaalista pelikenttää erinäköisin kielen työkalujen, kuten lambdafunktioiden ja Stream-API:n metodien putkittamisen avulla \cite{oracle_function_package,oracle_stream_api} .
+Javaa voikin nykyään jo kutsua hybridiksiohjelmointikieleksi funktionaalisen ja olio-ohjelmoinnin väliltä \cite[50]{sundstrom_java_fp}.
 
 Myös JavaScriptissä Array-metodit, kuten \mintinline{javascript}{Array.prototype.map} \cite{mdn_array_map}, \mintinline{javascript}{Array.prototype.filter} \cite{mdn_array_filter} ja \mintinline{javascript}{Array.prototype.reduce} \cite{mdn_array_reduce}, ovat vakiintuneet keskeisiksi työkaluiksi \cite{vakil2016,8_must_know_array_methods}. Kyseiset funktiot ovat laajalti käytössä funktionaalisessa ohjelmoinnissa. Myös \gls{js} Set-tietorakenne on juuri saamassa \glsdisp{set_theory}{joukko-opille} ja funktionaaliselle ohjelmoinnille olennaisia metodeja kuten \mintinline{javascript}{Set.prototype.union} \cite{mdn_set_union} ja \mintinline{javascript}{Set.prototype.difference} \cite{mdn_set_intersection}, jotka palauttavat uusia Set-tietorakenteita aiempien muokkaamisen sijaan funktionaaliselle ohjelmoinnille ominaisesti \cite{mdn_set_methods}.
 
@@ -75,7 +75,7 @@ Koostefunktiot, joissa funktioita suoritetaan toinen toisensa jälkeen, ja annet
     )
     
 \end{minted}
-    \caption{TypeScript-esimerkki yhdistefunktiosta käytännönnöllisessä projektissa. Valittu koodi on osa funktionaalisella tyylillä kirjoitettua Tetris-peliä.}
+    \caption{TypeScript-esimerkki yhdistefunktiosta. Valittu koodi on osa funktionaalisella tyylillä kirjoitettua Tetris-peliä.}
     \label{code:first_pipeline}
 \end{code}
 
