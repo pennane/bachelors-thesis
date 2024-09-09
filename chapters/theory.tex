@@ -132,6 +132,7 @@ i(5) // (((5 + 1) * 2) - 3) = 9
 // tai vaihtoehtoisesti 
 const i = compose([h, g, f])
 i(5) // (((5 + 1) * 2) - 3) = 9
+
 \end{minted}
     \caption{JavaScript-esimerkki yhdistetystä funktiosta käyttäen reduce ja reduceRight funktioita}
     \label{code:javascript_better_pipe}
@@ -242,7 +243,7 @@ Nyt mietitään joukko-oppia. Jakamisen voi ajatella siirtymisenä kahden joukon
 
 Joukkojen käyttöä voi pakottaa staattisella tyypityksellä. Ilman tyypityksen staattisuutta ohjelmoija ei helposti pysy määrätyissä raameissa \cite[44]{cantarella_fp_haitat}. Tyypit ohjaavat koodia ja estävät vääriä tiloja ohjemakoodin kääntämisvaiheessa.
 
-Jos jakamisesimerkkiin saa määritettyä joukot funktion oikeiksi rajoiksi, on funktion väärinkäyttö mahdotonta. Avuksi tarvitsee tuoda \gls{ts}, \glsdisp{js}{JavaScriptin} päälle rakennettu ohjelmointikieli joka on tyypitetty \cite{typsecript_website}.
+Jos jakamisesimerkkiin saa määritettyä joukot funktion oikeiksi rajoitteiksi, on funktion väärinkäyttö mahdotonta. Avuksi tarvitsee tuoda staattinen tyypitys \glsdisp{ts}{TypeScriptillä} \glsdisp{js}{JavaScriptin} \cite{typsecript_website}.
 
 \begin{code}
     \begin{minted}{typescript}
@@ -420,6 +421,8 @@ Robert C. Martinin mukaan pragmaattinen funktionaalinen ohjelmointi on sitä, et
 Myös Cantarella mainitsee opinnäytetyönsä loppupuolella ajatuksen, että mitä enemmän paradigmoihin liittyviin artikkeleihin perehtyy, sitä myötämielisemmäksi tulee ajatukselle, että paradigmoja tulisi yhdistellä vapaammin. \citep[45]{cantarella_fp_haitat}
 
 Pragmaattista funktionaalista ohjelmointia vaikuttaa siis olevan se, että otetaan vain mitä tarvitaan. Toisaalta se, mitä tarvitaan ei ole välittömästi selvää.
+
+TODO kirjota nyt vielä siitä, että mikä on se osa mikä kannattaa napata. Vaikka se yks codeasthetic video.
 
 \section{Funktionaalinen ohjelmointi \& Typescript}
 
