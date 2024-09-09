@@ -426,65 +426,67 @@ Pragmaattista funktionaalista ohjelmointia vaikuttaa siis olevan se, että oteta
 TODO
 
 
-\begin{code}
-	\begin{minted}{javascript}
-function rnd(min, max) { 
-	return Math.floor(Math.random() * max) + min;
-}
-const rnd2 = (min, max) => Math.floor(Math.random() * max) + min;
-const rnd3 = min => max => Math.floor(Math.random() * max) + min;
+% \begin{code}
+% 	\begin{minted}{javascript}
+% function rnd(min, max) { 
+% 	return Math.floor(Math.random() * max) + min;
+% }
+% const rnd2 = (min, max) => Math.floor(Math.random() * max) + min;
+% const rnd3 = min => max => Math.floor(Math.random() * max) + min;
 
 
 
-\end{minted}
-	\caption{Kolme eri tapaa kirjoittaa funktio JavaScriptissä \cite{okhravi-g-discussion}. Funktiomäärittely, funktioilmaus ja osittain sovellettava funktioilmaus}
-	\label{code:javascript_function_types}
-\end{code}
+% \end{minted}
+% 	\caption{Kolme eri tapaa kirjoittaa funktio JavaScriptissä \cite{okhravi-g-discussion}. Funktiomäärittely, funktioilmaus ja osittain sovellettava funktioilmaus}
+% 	\label{code:javascript_function_types}
+% \end{code}
 
 \subsection{Tyypitys \& joukko-oppi}
 
 TODO
 
-Typescriptiä tullaan käyttämään insinöörityön koodiesimerkeissä, niin on aiheellista näyttää miten Typescriptissä fp näkyy.
+% Typescriptiä tullaan käyttämään insinöörityön koodiesimerkeissä, niin on aiheellista näyttää miten Typescriptissä fp näkyy.
 
-TODO TypeScript tyypit HYVÄ! Rich Hickey tykkää myös, voi tehä "product type" tms
+% TODO TypeScript tyypit HYVÄ! Rich Hickey tykkää myös, voi tehä "product type" tms
 
-Toisaalta TS -> overhead, välillä joutuu kikkailemaan
+% Toisaalta TS -> overhead, välillä joutuu kikkailemaan
 
-On huomattu, että JavaScript koodia kirjoittaessa voi olla vaikeaa pysytellä puhtaan funktionaalisen ohjelmoinnin raameissa, ja että usein olisi mielletysti helpompaa toteuttaa imperatiivisia ratkaisuja \cite[44]{cantarella_fp_haitat}.  LOLOL :D tää on just miks fp good
+% On huomattu, että JavaScript koodia kirjoittaessa voi olla vaikeaa pysytellä puhtaan funktionaalisen ohjelmoinnin raameissa, ja että usein olisi mielletysti helpompaa toteuttaa imperatiivisia ratkaisuja \cite[44]{cantarella_fp_haitat}.  LOLOL :D tää on just miks fp good
 
 \subsection{Promise-tietorakenne ja osittaismonadisuus}
 
-Promise ei ole monadi :( \cite{read-it-later-11481,promises-spec-94}
+TODO
 
-Se ei ole monadi, koska \gls{js} spesifikaatiota määriteltäessä ei päästy yhteisymmärrykseen siitä, että Promise-tietorakenteen tulisi olla monadi. Syy on moniuloitteinen, mutta pääasiallisesti sivuaa sitä, että funktionaalinen ohjelmointi ja sen käsitteet ovat vaikeita selittää kohtuullisella tarkkuudella. \citep{promises-spec-94}
+% Promise ei ole monadi :( \cite{read-it-later-11481,promises-spec-94}
 
-Tämä kirjoitushetkellä jo yli kymmenen vuotta sitten tehty päätös heikensi merkittävästi \gls{js}:n mahdollisuuksia viedä funktionaalista ohjelmointia eteenpäin. \Gls{js} kielenä on laajuudeltaan ongelmallinen. Uusia ominaisuuksia ei voi lisätä, jos vastaavanlaisia ominaisuuksia on aiemmin ollut osana suosittuja \gls{js}-kirjastoja \cite{proposal-joint-iteration,prototype_library_trends}.
+% Se ei ole monadi, koska \gls{js} spesifikaatiota määriteltäessä ei päästy yhteisymmärrykseen siitä, että Promise-tietorakenteen tulisi olla monadi. Syy on moniuloitteinen, mutta pääasiallisesti sivuaa sitä, että funktionaalinen ohjelmointi ja sen käsitteet ovat vaikeita selittää kohtuullisella tarkkuudella. \citep{promises-spec-94}
 
-TODO lisää siitä että ei tulla ikinä saamaan "builtin" monadeja
-TODO myös että no mitä se tarkoittaa, onko juuri promisen kannalta mitään merkitystä
+% Tämä kirjoitushetkellä jo yli kymmenen vuotta sitten tehty päätös heikensi merkittävästi \gls{js}:n mahdollisuuksia viedä funktionaalista ohjelmointia eteenpäin. \Gls{js} kielenä on laajuudeltaan ongelmallinen. Uusia ominaisuuksia ei voi lisätä, jos vastaavanlaisia ominaisuuksia on aiemmin ollut osana suosittuja \gls{js}-kirjastoja \cite{proposal-joint-iteration,prototype_library_trends}.
+
+% TODO lisää siitä että ei tulla ikinä saamaan "builtin" monadeja
+% TODO myös että no mitä se tarkoittaa, onko juuri promisen kannalta mitään merkitystä
 
 \subsection{Ramda.js}
 
-Koska funktionaalisen ohjelmakoodin tuottaminen \gls{js} tai \gls{ts} ympäristössä enemmän tai vähemmän vaatii jotain kirjastoa, joko itse ohjelmoitua tai ulkoista, niin tähän insinöörityöhön on kirjastoksi valittu Ramda.js.
+% Koska funktionaalisen ohjelmakoodin tuottaminen \gls{js} tai \gls{ts} ympäristössä enemmän tai vähemmän vaatii jotain kirjastoa, joko itse ohjelmoitua tai ulkoista, niin tähän insinöörityöhön on kirjastoksi valittu Ramda.js.
 
-Ramda.js, ja kirjaston taustalla oleelinen Fantasy Land -algebrallinen spesifikaatio, ovat kirjastoja jotka pyrkivät johdonmukaiseen funktionaaliseen ohjelmointiin JavaScriptissä. Näiden kirjastojen kehittäjistöstä löytyy samoja henkilöitä jotka aikoinaan pyrkivät saamaan Promise-tietorakenteen virallisesti monadiseksi \cite{ramda:contributors,fantasy-land:contributors,promises-spec-94}. Näyttää siltä, että kun tähän tavoitteeseen ei päästy, päättivät kehittäjät tuoda funktionaalisen ohjelmoinnin JavaScriptiin omin keinoin.
+% Ramda.js, ja kirjaston taustalla oleelinen Fantasy Land -algebrallinen spesifikaatio, ovat kirjastoja jotka pyrkivät johdonmukaiseen funktionaaliseen ohjelmointiin JavaScriptissä. Näiden kirjastojen kehittäjistöstä löytyy samoja henkilöitä jotka aikoinaan pyrkivät saamaan Promise-tietorakenteen virallisesti monadiseksi \cite{ramda:contributors,fantasy-land:contributors,promises-spec-94}. Näyttää siltä, että kun tähän tavoitteeseen ei päästy, päättivät kehittäjät tuoda funktionaalisen ohjelmoinnin JavaScriptiin omin keinoin.
 
-TODO miten ramda toimii
+% TODO miten ramda toimii
 
-TODO miten ramda sopii omien funktioiden kanssa
+% TODO miten ramda sopii omien funktioiden kanssa
 
-TODO miten typescript? ei hyvä, tyypit ovat mitä sattuu (kokemuspohjaisesti)
+% TODO miten typescript? ei hyvä, tyypit ovat mitä sattuu (kokemuspohjaisesti)
 
 \subsection{Rajoitteet}
 
 TODO
 
-Mitkä asiat eivät ole mahdollisia, tai mitkä ovat erittäin hankalia / järjettömiä kun ohjelmoidaan fp koodia \gls{ts}-maailmassa.
+% Mitkä asiat eivät ole mahdollisia, tai mitkä ovat erittäin hankalia / järjettömiä kun ohjelmoidaan fp koodia \gls{ts}-maailmassa.
 
 
 \section{Vertailu yhteenvetona}
 
 TODO
 
-Ehkä nopea yhteenveto että mikä on täysin fp ominaista ja mikä ei. Mahdollisesti jokin kiva taulukko.
+% Ehkä nopea yhteenveto että mikä on täysin fp ominaista ja mikä ei. Mahdollisesti jokin kiva taulukko.
