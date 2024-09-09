@@ -1,6 +1,6 @@
 # Metropolia Bachelor's Thesis - Arttu Pennanen
 
-Drawbacks of Pragmatic Functional Programming in JavaScript
+Evaluating the Practical Application of Functional Programming
 
 ### Obtaining the compiled PDF
 
