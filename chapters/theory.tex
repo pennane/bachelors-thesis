@@ -3,11 +3,15 @@
 \vspace{21.5pt}
 \chapter{Teoreettinen tausta}
 
-Jotta voidaan tutkia sitä, miten funktionaalinen ohjelmointi vaikuttaa ohjelmointiin \gls{ts} ympäristössä, on kartoitettava mitä ylipäätään funktionaalinen ohjelmointi on.
+Jotta voidaan löytää pragmaattinen näkökulma funktionaaliseen ohjelmointiin, on käsiteltävä funktionaalisen ohjelmoinnin teoreettisia perusteita ja keskeisiä käsitteitä.
 
-Teoriaosuudessa pyritään avaamaan funktionaalisen ohjelmoinnin perusteet \glsdisp{language_agnostic}{kieliagnostisesti}, ja toisaalta myös JavaScript- sekä TypeScript-ekosysteemien kannalta.
+Tarkastellaan joukko-opin sovelluksia ohjelmoinnissa käytännön tasolla. Sivutaan kategoriateorian osuutta funktionaalisessa ohjelmoinnissa, ilman syvällistä paneutumista yksityiskohtiin.
 
-Teoriaosuuden lopussa pohjustuksen jälkeen voidaan vielä vertailla sitä, miten funktionaalinen ohjelmointi, olio-ohjelmointi, tai proseduraalinen ohjelmointi eroavat käytännössä.
+Tutkitaan, miten nämä käsitteet integroidaan moderniin ohjelmistokehitykseen, kuten TypeScriptin käyttöön.
+
+On tärkeää huomata, että tämän insinöörituön tavoitteena ei ole tarjota kattavaa opasta kaikkeen funktionaaliseen ohjelmointiin, vaan keskittyä valittuihin aihealueisiin, jotka tukevat työn pääteemoja ja osoittavat, miten teoreettiset käsitteet voidaan soveltaa käytännön ohjelmointihaasteisiin.
+
+Valitut aihealueet pyritään avaamaan \glsdisp{language_agnostic}{kieliagnostisesti}, ja myös JavaScript- sekä TypeScript-ekosysteemien kannalta.
 
 Lopulta näillä tiedoilla voidaan lähteä tutkimaan miten funktionaalisen ohjelmoinnin käytänteet näkyvät hyödyllisesti tai haitallisesti ohjelmistoprojekteissa.
 
@@ -15,7 +19,7 @@ Lopulta näillä tiedoilla voidaan lähteä tutkimaan miten funktionaalisen ohje
 
 Funktionaalinen ohjelmointi on ohjelmointiparadigma, jonka juuret ulottuvat 1930-luvulle ja lambda-kalkyylin kehitykseen. Lähestymistapa korostaa funktioiden käyttöä perusyksikköinä ja pyrkii välttämään muuttuvia tiloja sekä sivuvaikutuksia. Funktionaalisen ohjelmoinnin keskeisiä käsitteitä ovat \glsdisp{pure_function}{puhtaat funktiot}, \glsdisp{higher_order_function}{korkeamman asteen funktiot}, \gls{immutable_data} sekä \gls{declarative_programming}. \citep{Tan2004,computerphile_lambda}
 
-\subsection{Nimeämiskäytänteet}
+\subsection{Työn nimeämiskäytänteet}
 
 Ohjelmoidessa funktionaalista ohjelmakoodia nimeämiskäytänteet ovat yhtä vaikeita kuin aina. Tässä insinöörityössä käytetään Haskell-ohjelmoijien keskuudessa näkyviä nimeämiskäytänteitä, jossa käytetään lyhyitä ja \textquote{intuitiivisia} nimiä funktioille ja muuttujille. Esimerkiksi:
 
@@ -491,10 +495,3 @@ TODO
 TODO
 
 % Mitkä asiat eivät ole mahdollisia, tai mitkä ovat erittäin hankalia / järjettömiä kun ohjelmoidaan fp koodia \gls{ts}-maailmassa.
-
-
-\section{Vertailu yhteenvetona}
-
-TODO
-
-% Ehkä nopea yhteenveto että mikä on täysin fp ominaista ja mikä ei. Mahdollisesti jokin kiva taulukko.
