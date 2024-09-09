@@ -59,7 +59,6 @@ const duplication   = f => x => f (x) (x)
 const flip          = f => y => x => f (x) (y)
 const compose       = f => g => x => f (g (x)) 
 const substitution  = f => g => x => f (x) (g (x))
-
 \end{minted}
     \caption{Yleiset kombinaattorit esitettynä JavaScriptissä \cite{javascript_combinators}. Kombinaattoreilla voi esittää lambda-kalkyyliä, ja ohjelmoida Turing-vahvoja ohjelmia.}
     \label{code:javascript_combinators}
@@ -111,9 +110,9 @@ const h = compose(g)(f)
 
 Voi olla mielenkiinoista huomata, että Koodiesimerkin \mintinline{javascript}{compose} löytyy myös aiemmin mainituista tunnetuista kombinaattoreista (Koodiesimerkki \ref{code:javascript_combinators}).
 
-Koodiesimerkissä on näytettynä kaksi eri tapaa yhdistää funktioita: \mintinline{javascript}{pipe} ja \mintinline{javascript}{compose}. Käytännössä ainoa ero on se, kummasta suunnasta funktiot suoritetaan. \mintinline{javascript}{compose} on lähempänä yhdistettyjen funktioiden matemaattisia perusteita, kun taas \mintinline{javascript}{pipe} on usein helpompi lukea, sillä se suoritetaan yleisessä lukemissuunnassa, eli vasemmalta oikealle, tai ylhäältä alas. Tulevissa koodiesimerkeissä tullaan suosimaan funktioiden yhdistämistä käyttäen \mintinline{javascript}{pipe}-funktiota \mintinline{javascript}{compose}-funktion sijaan. \citep{whyprefercompose}
+Koodiesimerkissä \ref{code:javascript_pipe_composition} on näytettynä kaksi eri tapaa yhdistää funktioita: \mintinline{javascript}{pipe} ja \mintinline{javascript}{compose}. Käytännössä ainoa ero on se, kummasta suunnasta funktiot suoritetaan. \mintinline{javascript}{compose} on lähempänä yhdistettyjen funktioiden matemaattisia perusteita, kun taas \mintinline{javascript}{pipe} on usein helpompi lukea, sillä se suoritetaan yleisessä lukemissuunnassa, eli vasemmalta oikealle, tai ylhäältä alas. Tulevissa koodiesimerkeissä tullaan suosimaan funktioiden yhdistämistä käyttäen \mintinline{javascript}{pipe}-funktiota \mintinline{javascript}{compose}-funktion sijaan. \citep{whyprefercompose}
 
-Esimerkin \mintinline{javascript}{pipe} ja \mintinline{javascript}{compose} toimivat vain kahdelle funktiolle kerrallaan. Tämä tapa seuraa lambda-kalkyyliä \cite{computerphile_lambda}. Eri ohjelmointikielestä riippuen on kuitenkin mieluisaa kirjoittaa funktiot niin, että ne tukevat suoraan mielivaltaista määrää funktioita.
+Esimerkin \ref{code:javascript_pipe_composition} \mintinline{javascript}{pipe} ja \mintinline{javascript}{compose} toimivat vain kahdelle funktiolle kerrallaan. Tämä tapa seuraa lambda-kalkyyliä \cite{computerphile_lambda}. Eri ohjelmointikielestä riippuen on kuitenkin mieluisaa kirjoittaa funktiot niin, että ne tukevat suoraan mielivaltaista määrää funktioita.
 
 JavaScriptissä näin voi tehdä esimerkiksi hyödyntämällä Array-tietorakennetta (Koodiesimerkki \ref{code:javascript_better_pipe}).
 
@@ -247,8 +246,8 @@ Jos jakamisesimerkkiin saa määritettyä joukot funktion oikeiksi rajoitteiksi,
 type NonZeroNumber = number & {__brand: "nonzero"}
 const isNonZeroNumber = (x:number): x is NonZeroNumber => x !== 0
 \end{minted}
-    \label{code:ts_set_theory_5}
     \caption{Joukon NonZeroNumber määrittäminen ja alkion sisältymisen tarkistaminen TypeScriptissä}
+    \label{code:ts_set_theory_5}
 \end{code}
 
 Tyyppi NonZeroNumber edustaa kaikkien ei-nolla-numeroiden joukkoa. Jos tyypin sijoittaa alkuperäiseen divide funktioon, on funktion väärinkäyttö mahdotonta (Koodiesimerkki \ref{code:ts_set_theory_6}). Kääntäjä pitää siitä huolen.
