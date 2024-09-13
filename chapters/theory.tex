@@ -162,46 +162,61 @@ pipeline([1, 2, 3, 4]) // [20, 40]
 Esimerkissä näytetyt funktiot ovat hyvin yksinkertaisia. Kuitenkin ne ovat täysin uudelleenkäytettäviä. Jos totuttautuu käyttämään joitain funktioita kaikissa projekteissa, voi huomata koodin kirjoittamisen tehokkuuden ja johdonmukaisuuden kasvavan.
 
 \section{Joukko-oppi}
+Joukko-oppi on matematiikan haara, joka tutkii joukkojen ominaisuuksia ja niiden välisiä suhteita. Ohjelmoinnissa joukko-oppi ilmenee yksinkertaisimmin joukko-tietorakenteiden kautta, jotka mahdollistavat uniikkien alkioiden käsittelyn tehokkaasti ja ilmaisuvoimaisesti \cite{mdn_set,mdn_set_methods}. On myös luotu ohjelmointikieli, joka perustuu kokonaan joukko-oppiin \cite{SETL_SET_LANGUAGE}.
 
-Ohjelmoinnin ja matematiikan syvällinen yhteys on tunnettu tosiasia. Myös \gls{set_theory} muodostaa perustan monille ohjelmointirakenteille ja -abstraktioille. Joukko-oppi on matematiikan haara, joka tutkii joukkojen ominaisuuksia ja niiden välisiä suhteita. Ohjelmoinnissa tämä ilmenee selkeimmin joukko-tietorakenteiden kautta, jotka mahdollistavat uniikkien alkioiden kokoelmien käsittelyn tehokkaasti ja ilmaisuvoimaisesti \cite{mdn_set,mdn_set_methods}. Toisaalta joukko-oppi liittyy suoraan funktionaaliseen ohjelmointiin, sillä puhtaat funktiot voidaan ajatella olevan muutoksia joukoista toisiin \cite{bartosz_category_for_progamers}.
+
+Tämä osa pyrkii kirjoittamaan matemaattisista käsitteistä pragmaattisesti ja mahdollisesti suurelti yksinkertaistaen. Ajatuksena on, että ylemmän tason ajattelumalli välittyisi tekstissä tarkkojen määritelmien sijasta.
+
 
 \subsection{Joukko-tietorakenne}
 
 Ohjelmoinnissa joukko-tietorakennetta käytetään hyvin laajasti, ja sen merkitys on keskeinen monissa ohjelmointikielissä, kuten Pythonissa, Javassa ja JavaScriptissä. Joukko-tietorakenne mahdollistaa alkioiden tallentamisen ilman duplikaatteja. Sen operaatiot, kuten unioni, leikkaus ja erotus, ovat suoraan peräisin matemaattisesta joukko-opista. Joukko-tietorakenteen tehokkuus ja yksinkertaisuus tekevät siitä tehokkaan työkalun monenlaisissa sovelluksissa. \citep{mdn_set,ecma_spec}
 
-Joukko-tietorakenne kuvaa joukko-opin joukkoa. Käytännössä joukko-tietorakenteessa säilytetään kokoelma uniikkeja alkioita. Joukko-tietorakenne on ohjelmoinnissa mieluinen työkalu sen tehokkuuden ansiosta \cite{ecma_spec}.
+Joukko-tietorakenne kuvaa joukko-opin joukkoa. Joukko-tietorakenteessa säilytetään kokoelma uniikkeja alkioita. Joukko-tietorakenne on ohjelmoinnissa mieluinen työkalu sen tehokkuuden ansiosta \cite{ecma_spec}.
 
-Kokemusten mukaan ohjelmoija ei usein mieti joukko-tietorakennetta matemaattisista lähtökohdista. Tästä kuitenkin voisi olla hyötyä. Joukko-opin periaatteiden ymmärtäminen ja soveltaminen ohjelmoinnissa ei ainoastaan tehosta ohjelmointia, vaan myös laajentaa näkemystä siitä, miten abstraktit matemaattiset konseptit voidaan muuttaa konkreettisiksi työkaluiksi ohjelmistokehityksessä. Tämä yhdistelmä tarjoaa ohjelmoijille sekä teoreettisen että käytännöllisen perustan, joka on arvokas monissa erilaisissa sovelluksissa ja ongelmanratkaisutilanteissa \cite{bartosz_category_for_progamers}.
+Kokemusten mukaan ohjelmoija ei usein mieti joukko-tietorakennetta matemaattisista lähtökohdista. Tästä kuitenkin voisi olla hyötyä, sillä Joukko-opin periaatteiden ymmärtäminen ja soveltaminen ohjelmoinnissa ei ainoastaan tehostuskeino, vaan myös laajentaa näkemystä siitä, miten abstraktit matemaattiset konseptit voidaan muuttaa konkreettisiksi työkaluiksi. Tämä yhdistelmä tarjoaa ohjelmoijille sekä teoreettisen että käytännöllisen perustan, joka on arvokas monissa erilaisissa sovelluksissa ja ongelmanratkaisutilanteissa \cite{bartosz_category_for_progamers}.
 
-\subsection{Siirtyminen joukoista toisiin}
-Jos joukko-oppia rupeaa miettimään ohjelmoinnissa siirtyminä joukoista toisiin, kehittää kieliagnostista osaamista kirjoittaa koodia. Kun miettii, mitä ylipäätään voi laskea, pääsee ohjelmoinnissa omalle abstraktille tasolle. \citep{Tan2004,BlellochHarper2015}
+\subsection{Funktiot joukoista toisiin}
+Kun ohjelmoinnissa pohditaan joukko-opin hyödyntämistä, kehittyy kieliriippumaton kyky kirjoittaa koodia. Kun miettii, mitä ylipäätään voi laskea, pääsee ohjelmoinnissa omalle abstraktille tasolle. \citep{Tan2004,BlellochHarper2015}
 
-Tarkastellaan seuraavia tilanteita.
+
+Matemaattisesti joukkojen välille voidaan tehdä kuvauksia, tai toisin sanoen funktioita. Merkintä funktiosta, joka \textquote{muuttaa} joukon $A$ joukoksi $B$, on esimerkiksi yksinkertaisesti $A \to B$ \cite{mellin2005joukkooppi}. Funktio muuttaa minkä tahansa joukon $A$ alkion joksikin joukon $B$ alkioksi.
+
+Funktionaalisessa ohjelmoinnissa puhtaiden funktioiden voidaan ajatella aina olevan rinnastettaessa jonkin joukon muutokseksi johonkin toiseen joukkoon (Esimerkkikoodi \ref{code:ts_set_example}) \cite{bartosz_category_for_progamers}. (Toisaalta funkitoiden argumentit ja palautusarvot ovat aina joukkoja riippumatta siitä onko funktio puhdas vai ei. Ei-puhdas funktio ei kuitenkaan välttämättä luo yksikäsitteisiä muutoksia joukkojen alkioille.)
 
 \begin{code}
     \begin{minted}{typescript}
-const add10 = x => x + 10  
+type SetA = 'a' | 'b' | 'c'
+type SetB = 1 | 2 | 3
+const aToB = (a: SetA): SetB => {
+    switch (a) {
+        case 'a': return 1
+        case 'b': return 2
+        case 'c': return 3
+    }
+}  
 \end{minted}
-    \caption{Funktio, joka ottaa numeron ja lisää siihen 10}
-    \label{code:ts_set_theory_1}
+    \caption{Havainnollistava funktio, joka muutta joukon A, \{a,b,c\}, joukoksi B, \{1, 2, 3\}}
+    \label{code:ts_set_example}
 \end{code}
 
-Funktio ottaa numeron ja lisää siihen 10 lisää. Toiminnon käyttökohteita voisi olla esimerkiksi jonkin pistemäärän päivittäminen tai ajan lisääminen. On hyvä näin. Ei mietitä joukko-oppia, vaikka ehkä kannattaisi.
 
-Siirrytään askelta monimutkaisempaan toimintoon: jakamiseen.
 
+Tarkastellaan konkreettisempaa esimerkkiä lähtien koodiesimerkistä \ref{code:ts_set_theory_3}.
 
 \begin{code}
     \begin{minted}{typescript}
-const divide = x => y => x / y
+const divide = (x:number) => (y:number) => x / y
 \end{minted}
     \caption{Funktio, joka jakaa numeron toisella}
     \label{code:ts_set_theory_3}
 \end{code}
 
-Funktio ottaa kaksi numeroa, ja jakaa ensimmäisen toisella. Mutta entä jos toinen annettu numero onkin nolla? Ohjelmointi ei vastaa tähän kysymykseen suoraan, ja se jättää ongelman ohjelmoijan ratkaistavaksi.
 
-Ohjelmoijan toisin sanoen tulisi tietää, että nollalla ei voi jakaa, ja että jos niin kuitenkin tehdään, JavaScript palauttaa arvon \mintinline{javascript}|Infinity| (tai erityisemmässä tapauksessa \mintinline{javascript}|NaN|) (Koodiesimerkki \ref{code:ts_division}).
+
+Funktio ottaa kaksi numeroa, ja jakaa ensimmäisen toisella. Argumentit on tyypitetty JavaScript-numeroiksi. Jos kyseistä funktiota haluaa käyttää, ohjelmoijan tulisi tietää ensimmäisenä, että nollalla ei voi jakaa, ja että jos niin kuitenkin tehdään, JavaScript palauttaa arvon \mintinline{javascript}|Infinity| (tai erityisemmässä tapauksessa \mintinline{javascript}|NaN|) (Koodiesimerkki \ref{code:ts_division}).
+
+Jos kehitykseen halutaan soveltaa joukko-oppia, voi olla mieluista määritellä argumenteille spesifimmät joukot, sillä joukkona JavaScriptin \mintinline{javascript}|number| sisältää juurikin epämieluisia
 
 \begin{code}
     \begin{minted}{typescript}
@@ -212,6 +227,8 @@ console.log(0/0)  // NaN
     \caption{Jakamisoperaattorin toiminta JavaScriptissä}
     \label{code:ts_division}
 \end{code}
+
+
 
 Tehdään funktiosta turvallisempi lisäämällä siihen tarkistus.
 
@@ -226,7 +243,7 @@ const divide = x => y => y !== 0 ? x / y : null
 
 Tässä versiossa jakaminen suoritetaan vain, jos jakaja ei ole nolla. Jos jakaja on nolla, palauttaa funktio arvon \mintinline{JavaScript}|null|. Versio ratkaisee ongelman siitä, mitä tapahtuu, jos nollalla satutaan jakamaan. Toisaalta funktio ei kuitenkaan aina palauta numeroa.
 
-Mutta kuinka sitten joukko-oppi? Kuinka se liittyy tähän? Jos sen sijaan, että mietitään reunatapauksia ja korjataan niitä koodissa ad hoc, siirrettäisiin reunatapaukset täysin mahdottomiksi heti kättelyssä \cite{impossiblebetter}. Näin saataisiin ajonaikaisten virheiden määrää laskettua, eikä testejäkään tarvitsisi kirjoittaa yhtä paljon.
+Mutta kuinka sitten joukko-oppi? Jos sen sijaan, että mietitään reunatapauksia ja korjattaisiin niitä koodissa ad hoc, muutettaisiin reunatapaukset täysin mahdottomiksi heti kättelyssä \cite{impossiblebetter}. Näin saataisiin ajonaikaisten virheiden määrää laskettua, eikä testejäkään tarvitsisi kirjoittaa yhtä paljon.
 
 Matemaattisen jakamisen voi ajatella siirtymisenä kahden joukon yhdisteestä, number ja NonZeroNumber, yksittäiseen joukkoon number.
 
