@@ -47,7 +47,9 @@ const pipe   = fs => x => fs.reduce((acc, f) => f(acc), x)
 
 Funktionaalinen ohjelmointi mahdollistaa koodin uudelleenkäytettävyyden. Lambda-kalkyylin perustein joka ikisien ongelman voi purkaa pieniksi funktioiksi. \citep{BlellochHarper2015} Lambda-kalkyylin voi ajatella olevan esoteerinen ohjelmointikieli. Sen voi kuitenkin myös ottaa osaksi ohjelmoijan työkalupakkia missä tahansa ohjelmointikielessä, joka kohtelee funktioita ensiluokkaisina, eli siten, että niitä voi käyttää muuttujina (Koodiesimerkki \ref{code:javascript_combinators}).
 
-Kombinaattorit ovat omalla tavallaan sitä, mitä suunnittelumallit ovat olio-ohjelmoinnissa: tapa ratkaista ongelmia yleisesti ja siten, että siitä voidaan keskustella.
+Kombinaattoreiden käyttötarkoitus on mahdollistaa funktioide
+
+Jos kombinaattoreille haluaa etsiä vastaavanlaista määritelmää olio-ohjelmoinnin termeistä, voisi niitä ajatella olevan perustavanlaatuisia suunittelumalleja.
 
 \begin{code}
     \begin{minted}{javascript}
@@ -216,7 +218,6 @@ const divide = (x:number) => (y:number) => x / y
 
 Funktio ottaa kaksi numeroa, ja jakaa ensimmäisen toisella. Argumentit on tyypitetty JavaScript-numeroiksi. Jos kyseistä funktiota haluaa käyttää, ohjelmoijan tulisi tietää ensimmäisenä, että nollalla ei voi jakaa, ja että jos niin kuitenkin tehdään, JavaScript palauttaa arvon \mintinline{javascript}|Infinity| (tai erityisemmässä tapauksessa \mintinline{javascript}|NaN|) (Koodiesimerkki \ref{code:ts_division}).
 
-Jos kehitykseen halutaan soveltaa joukko-oppia, voi olla mieluista määritellä argumenteille spesifimmät joukot, sillä joukkona JavaScriptin \mintinline{javascript}|number| sisältää juurikin epämieluisia
 
 \begin{code}
     \begin{minted}{typescript}
@@ -229,56 +230,39 @@ console.log(0/0)  // NaN
 \end{code}
 
 
+Jos jakolaskufunktion (Koodiesimerkki \ref{code:ts_set_theory_3}) kehitykseen halutaan soveltaa joukko-oppia, voi olla mieluista määritellä argumenteille spesifimmät joukot, sillä joukkona JavaScriptin \mintinline{javascript}|number| sisältää epämieluisia arvoja laskujen kannalta (\mintinline{javascript}|[NaN, Infinity, -Infinity]|).
 
-Tehdään funktiosta turvallisempi lisäämällä siihen tarkistus.
-
+Voidaan luoda jakolaskua varten joukot \mintinline{javascript}|Rational| ja \mintinline{javascript}|NonZero| ja ohjelmoida ne TypeScript tyypeiksi (Koodiesimerkki \ref{code:ts_type_mayhem}). Ajatuksena on, että joukko \mintinline{javascript}|Rational| sisältää kaikki JavaScriptin tukemat rationaaliluvut, ja että joukko \mintinline{javascript}|NonZero| muuten sama paitsi ilman nollaa.
 
 \begin{code}
     \begin{minted}{typescript}
-const divide = x => y => y !== 0 ? x / y : null
+const RationalSymbol = Symbol('Rational')
+const NonZeroSymbol = Symbol('NonZero')
+
+type Rational = number & { __rational: typeof RationalSymbol }
+type NonZero = Rational & { __nonZero: typeof NonZeroSymbol }
+
+const isRational = (x: number): x is Rational => ![Infinity, -Infinity, NaN].includes(x)
+const isNonZero = (x: number): x is NonZero => isRational(x) && x !== 0
+        
 \end{minted}
-    \caption{Turvallisempi funktio, joka jakaa numeron toisella}
-    \label{code:ts_set_theory_4}
+    \caption{Rational ja NonZero joukkojen määritelmät TypeScriptissä}
+    \label{code:ts_type_mayhem}
 \end{code}
 
-Tässä versiossa jakaminen suoritetaan vain, jos jakaja ei ole nolla. Jos jakaja on nolla, palauttaa funktio arvon \mintinline{JavaScript}|null|. Versio ratkaisee ongelman siitä, mitä tapahtuu, jos nollalla satutaan jakamaan. Toisaalta funktio ei kuitenkaan aina palauta numeroa.
-
-Mutta kuinka sitten joukko-oppi? Jos sen sijaan, että mietitään reunatapauksia ja korjattaisiin niitä koodissa ad hoc, muutettaisiin reunatapaukset täysin mahdottomiksi heti kättelyssä \cite{impossiblebetter}. Näin saataisiin ajonaikaisten virheiden määrää laskettua, eikä testejäkään tarvitsisi kirjoittaa yhtä paljon.
-
-Matemaattisen jakamisen voi ajatella siirtymisenä kahden joukon yhdisteestä, number ja NonZeroNumber, yksittäiseen joukkoon number.
-
-\begin{figure}[ht]
-    \centering
-    \AltText{Joukko NonZeroNumber sisältyy kokonaan joukkoon number}{\includegraphics[width=7.1cm]{set_esimerkki}}
-    \caption{Joukko NonZeroNumber on joukon number aito osajoukko}
-    \label{fig:set-esimerkki}
-\end{figure}
-
-Joukkojen käyttöä voi pakottaa staattisella tyypityksellä. Ilman tyypityksen staattisuutta ohjelmoija ei helposti pysy määrätyissä raameissa \cite[44]{cantarella_fp_haitat}. Tyypit ohjaavat koodia ja estävät vääriä tiloja ohjemakoodin kääntämisvaiheessa.
-
-Jos jakamisesimerkkiin saa määritettyä joukot funktion oikeiksi rajoitteiksi, ei funktiota voi käyttää väärin. Avuksi tarvitsee tuoda staattinen tyypitys \glsdisp{ts}{TypeScriptillä} \glsdisp{js}{JavaScriptiin} (Koodiesimerkki \ref{code:ts_set_theory_5}) \cite{typsecript_website}.
+Jos jakamisesimerkkiin määritetään joukot oikeiksi rajoitteiksi, ei funktiota voi käyttää väärin. TypeScript ei anna ajaa koodia jos ei ole varmistettu arvojen kuuluvan oikeisiin joukkoihin (Koodiesimerkki \ref{code:ts_set_theory_6}) \cite{typsecript_website}.
 
 \begin{code}
     \begin{minted}{typescript}
-type NonZeroNumber = number & {__brand: "nonzero"}
-const isNonZeroNumber = (x:number): x is NonZeroNumber => x !== 0
+const divide = (x: Rational) => (y: NonZero): Rational => x / y
 \end{minted}
-    \caption{Joukon NonZeroNumber määrittäminen ja alkion sisältymisen tarkistaminen TypeScriptissä}
-    \label{code:ts_set_theory_5}
-\end{code}
-
-Tyyppi NonZeroNumber edustaa kaikkien ei-nolla-numeroiden joukkoa. Jos tyypin sijoittaa alkuperäiseen divide funktioon, on funktion väärinkäyttö mahdotonta (Koodiesimerkki \ref{code:ts_set_theory_6}). Kääntäjä pitää siitä huolen.
-
-
-\begin{code}
-    \begin{minted}{typescript}
-const divide = (x:number) => (y:NonZeroNumber): number => x / y
-\end{minted}
-    \caption{Korrekti versio}
+    \caption{Korrekti versio. Funktiolle annettavat arvot on varmistettava kuuluvan oikeisiin joukkoihin jossain vaiheessa ennen funktioon syöttöä käyttäen määriteltyjä \mintinline{javascript}|isRational| ja \mintinline{javascript}|isNonZero| funktioita }
     \label{code:ts_set_theory_6}
 \end{code}
 
-Joukko-opin yhdistäminen ohjelmointiin ei ole ajattelutapa, jota rinnastetaan ainosstaan funktionaaliseen ohjelmointiin. Puhtaat funktiot ovat kuitenkin fundamentaalisesti aina siirtymisiä joukoista joukkoihin (Kuva \ref{fig:function_composition_in_sets}). Siksi joukko-opin ajattelu on vähintäänkin tervetullutta.
+Aiempaan esimerkkiin voisi päätyä vaikkei olisi koskaan kuullut joukko-opista. Päälimmäisenä ajatuksena on kuitenkin se, että jos syötteitä ja palautusarvoja miettii joukkojen kannalta, syntyy luotettavampaa ohjelmakoodia.
+
+Tyypit voi toisaalta mieltää joukkoina myös \glsdisp{composed_function}{yhdistetyissä funktioissa} (Kuva \ref{fig:function_composition_in_sets}). Vaikka ohjelmoinnissa joukko-oppia ei rinnasteta ainoastaan funktionaaliseen ohjelmointiin,  joukko-opin ajattelu on siinä vähintäänkin tervetullutta.
 
 \begin{figure}[htbp]
     \centering
@@ -349,27 +333,25 @@ Joukko-opin yhdistäminen ohjelmointiin ei ole ajattelutapa, jota rinnastetaan a
         \draw[->] (A4b) -- (C4b);
     \end{tikzpicture}
     \vspace{10pt}
-    \caption{Funktioiden yhdistäminen joukko-opin näkökulmasta. Funktiot f : A$\,\to\,$B ja g : B$\,\to\,$C yhdistämällä saadaan g : A$\,\to\,$C.}
+    \caption{Funktioiden yhdistäminen joukko-opin näkökulmasta. Funktiot f : A$\,\to\,$B ja g : B$\,\to\,$C yhdistämällä saadaan g : A$\,\to\,$C. Älykkäällä kääntäjällä voi poistaa turhia laskutoimituksia. Kuvassa \ref{fig:function_composition_in_sets} näkyy, että keskimmäisen funktion evaluointi on käytännössä turhaa, kun funktiot ovat puhtaita ja toimivat johdonmukaisesti}
     \label{fig:function_composition_in_sets}
 \end{figure}
 
-Älykkäällä kääntäjällä voi poistaa turhia laskutoimituksia. Kuvassa \ref{fig:function_composition_in_sets} näkyy, että keskimmäisen funktion evaluointi on käytännössä turhaa, kun funktiot ovat puhtaita ja toimivat johdonmukaisesti.
+
 
 
 
 \subsection{Kategoriateoria}
 
 
-Joukko-oppi ei ole ainoa ohjelmointiin sovellettava matemaattinen osa-alue. Funktionaaliselle ohjelmoinnille oleellisin osa-alue on \gls{category_theory} \cite{bartosz_category_for_progamers,promises-spec-94}.
+Joukko-oppi ei ole ainoa ohjelmointiin sovellettava matemaattinen osa-alue. Funktionaaliselle ohjelmoinnille oleellisin osa-alue on \gls{category_theory} \cite{bartosz_category_for_progamers,promises-spec-94,dear_functional_bros}.
 
 Kategoriateoria tutkii matemaattisia rakenteita ja niiden välisiä suhteita erittäin abstraktilla tasolla. Se keskittyy objektien (kuten joukkojen tai tyyppien) ja niiden välillä olevien morfismien (funktioiden tai muunnosten) tutkimiseen. Kategoriateorian avulla voidaan ymmärtää ja formalisoida monimutkaisia matemaattisia ja ohjelmallisia rakenteita. \citep{bartosz_category_for_progamers,promises-spec-94,category_theory}
 
 Kategoriateoria näkyy osittain myös JavaScriptissä, jossa Promise-tietorakenne toimii lähes kuin \gls{monad}. Promise-tietorakenne mahdollistaa asynkronisten operaatioiden ketjuttamisen ja virheiden käsittelyn tavalla, joka on verrattavissa kategoriateorian monadien tarjoamaan rakenteeseen. \citep{promises-spec-94,stackoverflow:why_monad}
 
 
-Lähestytään maailmaa, missä abstraktin taso nousee hyvin korkealle, jossa syvälliseen ymmärtämiseen voidaan vaatia korkeamman asteen matematiikan opintoja. Modernit ohjelmointikielet eivät myöskään auta asiaa. Jo JavaScriptin ja konekielen välillä on monta abstraktiotasoa, joilla on pyritty saamaan kehittämiskokemus mukavaksi.
-
-Luettaessa kategoriateoriaan liittyvää materiaalia, tai katsottaessa monia tunteja kategoriateoriaan liittyviä videoita, alkaa saamaan käsityksen siitä mitä kategoriateoria todellisuudessa on. Sen konkreettisesta käyttämisestä voi olla kuitenkin silti vaikea löytää sopivia tilanteita.
+Lähestytään maailmaa, missä abstraktin taso nousee hyvin korkealle monella eri alueella. Modernit ohjelmointikielet eivät myöskään auta asiaa. Jo JavaScriptin ja konekielen välillä on monta abstraktiotasoa, joilla on pyritty parantamaan kehittämisnopeutta ja kehittäjäkokemusta.
 
 Ohjelmoinnin teoreettinen puoli on hyvä pitää mielessä, eikä sen opiskelusta missään nimessä ole haittaa. Kategoriateoria lienee mennä abstraktin tasollaan pidemmälle, kuin mitä JavaScript-kehittäjän tarvitsee tietää tavallisia ongelmia ratkaistaessa.
 
