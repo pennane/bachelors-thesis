@@ -6,13 +6,13 @@ Siitä mitä \glsdisp{functional_programming}{funktionaalisen ohjelmoinnin} tuli
 
 Funktionaalisen ohjelmoinnin hyötyjä on usein sanottu löytyvän suurelta osin vain matemaattisissa tai datapainotteisissa ohjelmissa \cite[10]{cantarella_fp_haitat}. Ajatus on haastettavissa.
 
-Ensimmäisenä huomiona on se, että suuri osa ohjelmista on juurikin datapainoitteisia \cite{gartnerb2b}. Tietokannassa on dataa, jota näytetään käyttöliittymässä. Samaan aikaan kerätään lisää dataa, jota näytetään toisissa käyttöliittymissä. Toisin sanoen varsin datapainoitteista.
+Ensimmäisenä huomiona on se, että suuri osa ohjelmista on juuri datapainoitteisia \cite{gartnerb2b}. Tietokannassa on dataa, jota näytetään käyttöliittymässä. Samaan aikaan kerätään lisää dataa, jota näytetään toisissa käyttöliittymissä. Toisin sanoen varsin datapainoitteista.
 
 Toisena huomiona on se, että kaikki ongelmat voidaan mallintaa matemaattisesti. Funktionaalisen ohjelmoinnin Turing-vahva lambda-kalkyyli-pohja määritelmällisesti mahdollistaa sen, että funktionaalisessa ohjelmoinnissa voi toteuttaa kaiken saman kuin olio-ohjelmoinnissa \cite{Tan2004,computerphile_lambda}.
 
 Ongelmien mallintaminen matemaattisesti ei kuitenkaan ole helppoa, ja tuntuu vaativan vahvoja tyyppijärjestelmiä mallinnuksen järkevästi todistamiseksi.
 
-Kuitenkin pikku hiljaa funktionaalista ohjelmointia aletaan kutsumaan ilmiselväksi reitiksi ohjelmoida, ja esimerkiksi olio-ohjelmointia ylivertaisemmaksi \cite[1]{the_oo_way}. Jopa Robert C. Martin, tunnettu ohjelmointikäytäntöjen asiantuntija ja olio-ohjelmoinnin puolestapuhuja, on siirtynyt merkittävästi funktionaalisen ohjelmoinnin suuntaan \cite{martin2019whyclojure,martin2017pragmaticfp}. Lienee olla tarvetta saada selville miten funktionaalisuutta saataisiin enemmän osaksi nykyohjelmoijan työkalupakkia.
+Kuitenkin pikkuhiljaa funktionaalista ohjelmointia aletaan kutsumaan ilmiselväksi reitiksi ohjelmoida, ja esimerkiksi olio-ohjelmointia ylivertaisemmaksi \cite[1]{the_oo_way}. Jopa Robert C. Martin, tunnettu ohjelmointikäytäntöjen asiantuntija ja olio-ohjelmoinnin puolestapuhuja, on siirtynyt merkittävästi funktionaalisen ohjelmoinnin suuntaan \cite{martin2019whyclojure,martin2017pragmaticfp}. Lienee olla tarvetta saada selville, miten funktionaalisuutta saataisiin enemmän osaksi nykyohjelmoijan työkalupakkia.
 
 Tiukasti funktionaaliseen ohjelmointiin tarkoitetut kielet eivät tunnu saavan nostetta päästäkseen yleiseen suosioon (Kuva \ref{fig:fplangpopularity}). Ero siirtyessä \glsdisp{object_oriented_programming}{olio-ohjelmoinnista} tai \glsdisp{imperative_programming}{imperatiivisesta ohjelmoinnista} funktionaaliseen ohjelmointiin voi olla kuin yöllä ja päivällä. Siksi funktionaalisen ohjelmoinnin keinoja ripotellaan osaksi suosittuja ohjelmointikieliä, että saataisiin vietyä todettuja parhaita funktionaalisen ohjelmoinnin paloja myös muihin paradigmoihin. Kenties ajatellaan niin, että varpaat on ensin kasteltava, ennen kuin voi hypätä syvään päätyyn.
 
@@ -42,7 +42,7 @@ Tiukasti funktionaaliseen ohjelmointiin tarkoitetut kielet eivät tunnu saavan n
             \legend{Erlang, Haskell, OCaml, Elixir, Scala}
         \end{axis}
     \end{tikzpicture}
-    \caption{Funktionaalisten ohjelmointikielien Erlangin, Haskelin, OCamlin, Elixirin ja Scalan suosiokehitys vuosina 2004-2024. Kielet eivät ole olleet suuressa nousussa. \cite{fplanggoogletrend}.}
+    \caption{Funktionaalisten ohjelmointikielien Erlangin, Haskelin, OCamlin, Elixirin ja Scalan suosiokehitys vuosina 2004\textendash2024. Kielet eivät ole olleet suuressa nousussa. \cite{fplanggoogletrend}.}
     \label{fig:fplangpopularity}
 \end{figure}
 
@@ -61,7 +61,7 @@ Tehtäessä työtä osana Hoxhunt Oy:n tuotekehitystiimiä on saatu kokemusta fu
 
 Funktionaalisen ohjelmoinnin kulmakivi on sen matemaattinen perusta \cite{computerphile_lambda,Tan2004}. Toisinaan funktionaalista ohjelmointia on mielletty vain älykkyyden todistamiseksi, ja jota humoristisesti ajatellaan vain matematiikan maisterin tutkinnon suorittaneiden taitavan. Voi olla vaikea nähdä funktionaalisen ohjelmoinnin hyötyjä, jos kokee sen vain ylimääräisenä monimutkaisuutena.
 
-Funktionaalisen koodin kääntöpuoli on sen selittävyys: deklaratiivisuus. Jos on nähty funktionaalisen ohjelmoinnin tuntemattomuuden tai havaitun monimutkaisuuden läpi, niin on huomattu että funktionaalista ohjelmakoodia voi parhaimmillaan lukea kuin selkeää Englannin kieltä. Tämä johtuu siitä, että funktionaalinen ohjelmakoodi on perusteiltaan (\glsdisp{declarative_programming}{deklaratiivista ohjelmakoodia}) suorien käskyjen sijaan (\glsdisp{imperative_programming}{imperatiivinen ohjelmakoodi}) \cite{ms:fp_vs_imperative}.
+Funktionaalisen koodin kääntöpuoli on sen selittävyys: deklaratiivisuus. Jos on nähty funktionaalisen ohjelmoinnin tuntemattomuuden tai havaitun monimutkaisuuden läpi, niin on huomattu, että funktionaalista ohjelmakoodia voi parhaimmillaan lukea kuin selkeää Englannin kieltä. Tämä johtuu siitä, että funktionaalinen ohjelmakoodi on perusteiltaan (\glsdisp{declarative_programming}{deklaratiivista ohjelmakoodia}) suorien käskyjen sijaan (\glsdisp{imperative_programming}{imperatiivinen ohjelmakoodi}) \cite{ms:fp_vs_imperative}.
 
 \glsdisp{composed_function}{Yhdistetyt funktiot}, joissa funktioita suoritetaan toinen toisensa jälkeen, ja annetaan aina edellisen tuloste seuraavan syötteeksi, kertoo suoraan mitä siinä tapahtuu. Koodi dokumentoi itse itseään, kun kaikki ohjelman vaiheet ovat selkeästi nimetyissä palikoissa; erillisiä kommentteja ei koodiin tarvitse edes lisätä  (Koodiesimerkki \ref{code:first_pipeline}).
 
@@ -88,9 +88,9 @@ Luettavuus, tehokkuus ja ylläpidettävyys ovat kolme keskeistä osa-aluetta, jo
 
 \section{Lähestymistapa}
 
-Tässä insinöörityössä tutkitaan mitä tapahtuu, kun funktionaalista ohjelmointia ripotellaan proseduraaliseen ohjelmakoodiin. Eritysesti keskitytään siihen, millaisia haasteita ja haittoja voi syntyä, kun funktionaalista ohjelmointia harjoitetaan \gls{ts}-ympäristössä. Tutkitaan mitä käy kun koodin abstraktio ei nosta \glsdisp{correctness}{koodin oikeellisuutta} tai vie mahdollisten väärien tilojen avaruutta pienemmäksi. Näiden on todettu olevan abstraktion ja funktionaalisen ohjelmoinnin tarkoituksia. \citep{dijkstra_humble_programmer,impossiblebetter}
+Tässä insinöörityössä tutkitaan mitä tapahtuu, kun funktionaalista ohjelmointia ripotellaan proseduraaliseen ohjelmakoodiin. Eritysesti keskitytään siihen, millaisia haasteita ja haittoja voi syntyä, kun funktionaalista ohjelmointia harjoitetaan \gls{ts}-ympäristössä. Tutkitaan mitä käy, kun koodin abstraktio ei nosta \glsdisp{correctness}{koodin oikeellisuutta} tai vie mahdollisten väärien tilojen avaruutta pienemmäksi. Näiden on todettu olevan abstraktion ja funktionaalisen ohjelmoinnin tarkoituksia. \citep{dijkstra_humble_programmer,impossiblebetter}
 
-Ongelmaa tarkastellaan sellaisen ohjelmointikielen näkökulmasta, jota ei ole suunniteltu erityisesti funktionaaliseen ohjelmointiin, mutta jossa se on mahdollista. Täksi ohjelmointikieleksi valikoitui \gls{js} (ja \gls{ts}). Ohjelmointikieli valittiin aiemman osaamisen ja kukemusten perusteella, ja toisaalta myös siksi, että kieli on yksi markkinoiden käytetyimpiä, ja siten myös yksi olennaisimmista \cite{pypl:lang}. \Gls{js} on myös kielenä siitä mielenkiintoinen, että se mahdollistaa koodiabstraktioiden luomisen ilman suurta vaivaa ohjelmoijalta. Hätiköidyt abstraktiot johtavat epäjohdonmukaisuuteen ja lopulta uudelleenkäyttämättömyyteen.
+Ongelmaa tarkastellaan sellaisen ohjelmointikielen näkökulmasta, jota ei ole suunniteltu erityisesti funktionaaliseen ohjelmointiin, mutta jossa se on mahdollista. Täksi ohjelmointikieleksi valikoitui \gls{js} (ja \gls{ts}). Ohjelmointikieli valittiin aiemman osaamisen ja kokemusten perusteella, ja toisaalta myös siksi, että kieli on yksi markkinoiden käytetyimpiä, ja siten myös yksi olennaisimmista \cite{pypl:lang}. \Gls{js} on myös kielenä siitä mielenkiintoinen, että se mahdollistaa koodiabstraktioiden luomisen ilman suurta vaivaa ohjelmoijalta. Hätiköidyt abstraktiot johtavat epäjohdonmukaisuuteen ja lopulta uudelleenkäyttämättömyyteen.
 
 Tarkoituksena on löytää tasapaino sille, miten funktionaalinen ohjelmointi kannattaa ottaa mukaan ohjelmistoprojektiin. Pohjalla on ajatus, että paras tapa olisi vain siirtyä kokonaan funktionaalisiin ohjelmointikieliin hybridikielten sijasta. Tätä ajatusta pyritään kumoamaan, sillä toivotaan, että funktionaalisuus voisi toimia myös kevyemmin osana ohjelmoijan arkea.
 
