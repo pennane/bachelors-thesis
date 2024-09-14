@@ -230,9 +230,9 @@ console.log(0/0)  // NaN
 \end{code}
 
 
-Jos jakolaskufunktion (Koodiesimerkki \ref{code:ts_set_theory_3}) kehitykseen halutaan soveltaa joukko-oppia, voi olla mieluista määritellä argumenteille spesifimmät joukot, sillä joukkona JavaScriptin \mintinline{javascript}|number| sisältää epämieluisia arvoja laskujen kannalta (\mintinline{javascript}|[NaN, Infinity, -Infinity]|).
+Jos jakolaskufunktion kehitykseen halutaan soveltaa joukko-oppia, voi olla mieluista määritellä argumenteille spesifimmät joukot, sillä joukkona JavaScriptin \mintinline{javascript}|number| sisältää epämieluisia arvoja laskujen kannalta (\mintinline{javascript}|[NaN, Infinity, -Infinity]|).
 
-Voidaan luoda jakolaskua varten joukot \mintinline{javascript}|Rational| ja \mintinline{javascript}|NonZero| ja ohjelmoida ne TypeScript tyypeiksi (Koodiesimerkki \ref{code:ts_type_mayhem}). Ajatuksena on, että joukko \mintinline{javascript}|Rational| sisältää kaikki JavaScriptin tukemat rationaaliluvut, ja että joukko \mintinline{javascript}|NonZero| muuten sama paitsi ilman nollaa.
+Voidaan luoda jakolaskua varten joukot \mintinline{javascript}|Rational| ja \mintinline{javascript}|NonZero|, ja ohjelmoida ne TypeScript tyypeiksi (Koodiesimerkki \ref{code:ts_type_mayhem}). Ajatuksena on, että joukko \mintinline{javascript}|Rational| sisältää kaikki JavaScriptin tukemat rationaaliluvut, ja että joukko \mintinline{javascript}|NonZero| muuten sama paitsi ilman nollaa.
 
 \begin{code}
     \begin{minted}{typescript}
@@ -260,9 +260,9 @@ const divide = (x: Rational) => (y: NonZero): Rational => x / y
     \label{code:ts_set_theory_6}
 \end{code}
 
-Aiempaan esimerkkiin voisi päätyä vaikkei olisi koskaan kuullut joukko-opista. Päälimmäisenä ajatuksena on kuitenkin se, että jos syötteitä ja palautusarvoja miettii joukkojen kannalta, syntyy luotettavampaa ohjelmakoodia.
+Aiempaan esimerkkiin voisi päätyä vaikkei olisi koskaan kuullut joukko-opista. Päälimmäisenä ajatuksena on kuitenkin se, että jos syötteitä ja palautusarvoja miettii joukkojen kannalta, syntyy luotettavampaa ohjelmakoodia. Tyypit ovat jo itsessään joukkoja, mutta niiden yksityiskohdat riippuvat käytössä olevasta, esimerkiksi ohjelmointikielen, tyyppijärjestelmästä \cite{type_theory}. Siksi ajatuksen tasolla joukkojen ajattelu on hyödyllistä.
 
-Tyypit voi toisaalta mieltää joukkoina myös \glsdisp{composed_function}{yhdistetyissä funktioissa} (Kuva \ref{fig:function_composition_in_sets}). Vaikka ohjelmoinnissa joukko-oppia ei rinnasteta ainoastaan funktionaaliseen ohjelmointiin,  joukko-opin ajattelu on siinä vähintäänkin tervetullutta.
+Argumentit ja palautusarvot (tyypit) voi tietysti mieltää joukkoina myös \glsdisp{composed_function}{yhdistetyissä funktioissa} (Kuva \ref{fig:function_composition_in_sets}). Vaikka ohjelmoinnissa joukko-oppia ei rinnasteta ainoastaan funktionaaliseen ohjelmointiin,  joukko-opin ajattelu on siinä vähintäänkin tervetullutta.
 
 \begin{figure}[htbp]
     \centering
@@ -333,12 +333,9 @@ Tyypit voi toisaalta mieltää joukkoina myös \glsdisp{composed_function}{yhdis
         \draw[->] (A4b) -- (C4b);
     \end{tikzpicture}
     \vspace{10pt}
-    \caption{Funktioiden yhdistäminen joukko-opin näkökulmasta. Funktiot f : A$\,\to\,$B ja g : B$\,\to\,$C yhdistämällä saadaan g : A$\,\to\,$C. Älykkäällä kääntäjällä voi poistaa turhia laskutoimituksia. Keskimmäisen funktion evaluointi on käytännössä turhaa, jos funktiot ovat puhtaita}
+    \caption{Funktioiden yhdistäminen joukko-opin näkökulmasta. Funktiot A$\,\to\,$B ja B$\,\to\,$C yhdistämällä saadaan A$\,\to\,$C. Älykkäällä kääntäjällä voi poistaa turhia laskutoimituksia. Keskimmäisen joukon evaluointi on käytännössä turhaa, jos funktiot ovat puhtaita}
     \label{fig:function_composition_in_sets}
 \end{figure}
-
-
-
 
 
 \subsection{Kategoriateoria}
