@@ -233,11 +233,13 @@
 \DeclareFieldFormat*{url}{%
 	\ifentrytype{online}{\IfLanguageName{finnish}{Verkkoaineisto}{Online}\addperiod\space}{}%
 	\ifentrytype{video}{Video\addperiod\space}{}%
+	\ifentrytype{podcast}{Podcast\addperiod\space}{}%
 	\textless\url{#1}\textgreater\addperiod
 } % you can modify how to url looks here
 
 \DeclareFieldFormat{urldate}{%
 	\ifentrytype{video}{\space Katsottu\space#1}{\space Luettu\space#1}%
+	\ifentrytype{podcast}{\space Kuunneltu\space#1}{\space Luettu\space#1}%
 }
 
 \DefineBibliographyStrings{finnish}{%
