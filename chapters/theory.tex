@@ -482,10 +482,41 @@ Funktionaalisen ohjelmoinnin piireissä TypeScriptin tyyppijärjestelmää arvos
 
 
 \subsection{Tyypitys}
-TODO:
--- tämä osa ehkä rajataan pois --
-TypeScriptin tyypitys on funktionaaliselle ohjelmoinnille hyvä, sillä siinä on mahdollista luoda summa-, ja tulotyyppejä (sum and product types) \cite{holvikari2021category,hickey_maybe_not}
--- --
+
+TypeScriptin tyypit ovat mieluisia funktionaaliselle ohjelmoinnille. TypeScript mahdollistaa funktionaaliselle ohjelmoinnille olennaisten algebrallisten datatyyppien määrittelemistä \cite{holvikari2021category}.
+
+Algebralliset datatyypit ovat osa funktionaalisen ohjelmoinnin maailmaa. Niiden käyttämisen on huomattu olevan järkevää ja luontevaa \cite{holvikari2021category,hickey_maybe_not,algebraic_data_types}
+
+Yksinkertaisesti algebralliset datatyypit ovat keino määritellä ja käsitellä monimutkaisia datastruktuureja, jotka koostuvat perustietotyypeistä yhdistämällä niitä eri tavoin. Tyypillisesti algebralliset datatyypit jaetaan kahteen päätyyppiin: tulo- ja summatyypit.
+
+\textbf{Tulotyyppi} (product type) kuvaa tietorakenteita, joissa yhdistetään useita arvoja yhdeksi kokonaisuudeksi, esimerkiksi luokkien tai tietueiden (records) avulla.
+TypeScriptissä tulotyyppejä voi määritellä käyttäen objekteja tai Record-tyyppejä (Koodiesimerkki \ref{code:ts_product_type}). \citep{algebraic_data_types,holvikari2021category}
+
+\begin{code}
+    \begin{minted}{typescript}
+// Tyypin mahdollisten erilaisten alkioiden määrä: värimahdollisuudet * istuinmahdollisuudet -> tulotyyppi
+type Car = {type: "car", color: string; seats: number;}
+\end{minted}
+    \caption{Tulotyyppi-esimerkki TypeScriptissä}
+    \label{code:ts_product_type}
+\end{code}
+
+\textbf{Summatyyppi} (sum type) mahdollistaa arvon, joka voi olla yksi useista ennalta määritellyistä tyypeistä.TypeScriptissä summatyyppejä voi määritellä käyttäen diskriminoituja unioneja (discriminated union) (Koodiesimerkki \ref{code:ts_sum_type}). \citep{algebraic_data_types,holvikari2021category}
+
+\begin{code}
+    \begin{minted}{typescript}
+type Car = {type: "car", color: string; seats: number;}
+type MotorBike = {type: "motorbike", top_speed: number; wheelieability:number;}
+// Tyypin mahdollisten erilaisten alkioiden määrä: autojen määrä + moottoripyörien määrä -> summatyyppi
+type Vehicle = Car | MotorBike
+\end{minted}
+    \caption{Summatyyppi-esimerkki TypeScriptissä}
+    \label{code:ts_sum_type}
+\end{code}
+
+
+Vaikka TypeScriptin tyyppijärjestelmä on vankkarakenteinen, ei se varmista kaikista monimutkaisimpien tyyppien oikeellisuutta. Sellaisiin tavitaan jokin pohjimmiltaan funktionaalinen ohjelmointikieli, kuten Haskell \cite{holvikari2021category}.
+
 \subsection{Kirjastot}
 
 Funktionaalista ohjelmointia on pyritty pitämään elossa erinäköisin kirjastoin, joissa hyväksikäytetään kielen ominaisuuksia, ja luodaan kirjastoja, joiden käyttäminen vaatii ohjelmoijalta täysin uuden syntaksin opettelemista JavaScript syntaksin lisäksi \cite{ramda,sanctuary,crocks,fpts}.
@@ -503,7 +534,7 @@ JavaScript on kielenä siitä erikoinen, että kaikki uusien versioiden ominaisu
 Selaimille on myös parempi olla rikkomatta näitä vanhoja sivuja selaimen suosion kannalta: jos vierailee lääkärin vastaanoton verkkosivulla selvittääksesi aukioloajat, kumpi selain on paras: se, joka näyttää vastaanoton aukioloajat, vai se, joka ei näytä mitään, koska on ottanut uuden JavaScript-version käyttöön? \citep{against_self_closing_tags,proposal-joint-iteration}
 
 Promise-tietorakenne mahdollistaa asynkronisten operaatioiden ketjuttamisen ja virheiden käsittelyn tavalla, joka on verrat-
-tavissa kategoriateorian monadien tarjoamaan rakenteeseen \cite{promises-spec-94,stackoverflow:why_monad,promise}.
+tavissa kategoriateorian monadien tarjoamaan rakenteeseen \cite{promises-spec-94,stackoverflow:why_monad}.
 
 Noin kymmenen vuotta sitten oli suuri keskustelu siitä, tulisiko JavaScriptin Promise-tietorakenteen noudattaa funktionaalisen ohjelmoinnin \glsdisp{monad}{monadirakennetta}. Tälle oli suuret perusteet, sillä rakenteen noudattaminen olisi vaatinut vain pieniä muutoksia ehdotettuun tietorakenteen toteutukseen \cite{promises-spec-94}. Perustelut monadin puolesta eivät kuitenkaan iskeneet lävitse muun muassa erinäisten väärinymmärrysten takia.
 
