@@ -16,26 +16,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y texlive-full texlive-latex-extra python3-pygments
-
-      - name: Compile PDF
-        run: |
-          xelatex -shell-escape -8bit main
-          biber main
-          makeglossaries main
-          xelatex -shell-escape -8bit main
-          xelatex -shell-escape -8bit main
-          mkdir -p pub
-          mv main.pdf pub/Pennanen_Arttu.pdf
-
-      - name: Upload PDF for download
-        uses: actions/upload-artifact@v4
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+      - uses: xu-cheng/latex-action@v3
         with:
-          name: compiled_thesis
-          path: pub
-          if-no-files-found: error
+          root_file: main.tex
+          latexmk_use_xelatex: true
+          latexmk_shell_escape: true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PDF
+          path: main.pdf
