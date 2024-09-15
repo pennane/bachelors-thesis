@@ -18,6 +18,8 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v4
+      - name: Install Liberation Sans font
+        run: sudo apt-get install -y fonts-liberation
       - uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
