@@ -122,7 +122,7 @@ Voi olla mielenkiinoista huomata, että koodiesimerkin \mintinline{javascript}{c
 
 Koodiesimerkissä \ref{code:javascript_pipe_composition} on näytettynä kaksi eri tapaa yhdistää funktioita: \mintinline{javascript}{pipe} ja \mintinline{javascript}{compose}. Käytännössä tapojen ainoa ero on se, kummasta suunnasta funktiot suoritetaan. \mintinline{javascript}{compose} on lähempänä yhdistettyjen funktioiden matemaattisia perusteita, kun taas \mintinline{javascript}{pipe} on usein helpompi lukea, sillä se suoritetaan yleisessä lukemissuunnassa, eli vasemmalta oikealle, tai ylhäältä alas. Tulevissa koodiesimerkeissä tullaan suosimaan funktioiden yhdistämistä käyttäen \mintinline{javascript}{pipe}-funktiota \mintinline{javascript}{compose}-funktion sijaan. \citep{whyprefercompose}
 
-Esimerkin \ref{code:javascript_pipe_composition} \mintinline{javascript}{pipe} ja \mintinline{javascript}{compose} toimivat vain kahdelle funktiolle kerrallaan. Tämä tapa seuraa lambda-kalkyyliä \cite{computerphile_lambda}. Ohjelmointikielestä riippuen voi kuitenkin olla mieluisaa kirjoittaa funktiot niin, että ne tukevat suoraan mielivaltaista määrää funktioita.
+Esimerkin \ref{code:javascript_pipe_composition} \mintinline{javascript}{pipe} ja \mintinline{javascript}{compose} toimivat vain kahdelle funktiolle kerrallaan. Tämä tapa seuraa lambda-kalkyyliä \cite{computerphile_lambda}. Ohjelmointikielen mukaan voi kuitenkin olla mieluisaa kirjoittaa funktiot niin, että ne tukevat suoraan mielivaltaista määrää funktioita.
 
 JavaScriptissä näin voi tehdä esimerkiksi hyödyntämällä Array-tietorakennetta (Koodiesimerkki \ref{code:javascript_better_pipe}).
 
@@ -176,7 +176,7 @@ Joukko-oppi on matematiikan haara, joka tutkii joukkojen ominaisuuksia ja niiden
 
 Tyyppiteoria puolestaan on matematiikan haara, joka tutkii arvojen luokittelua, ja miten niitä käsitellään ohjelmoinnissa ja logiikassa \cite{type_theory,algebraic_data_types}.
 
-Tyyppien ja joukkojen semanttinen ero on nyanssinen \cite{type_vs_set}. Ohjelmoinnissa puhutaan usein tyypeistä. Insinööriopintojen matematiikassa joukot ovat olleet vahvasti läsnä. Tässä osassa pääajatuksena on miettiä kuinka asiat voidaan muuttaa funktioilla toisiksi, asiat voi mieltää kuuluvan joukkoihin tai tyyppeihin, kumpaa nyt ymmärtää paremmin. Oikea määritelmä saattaa lähestyä \glsdisp{category_theory}{kategoriateoriaa}, mutta erottaminen ei liene olevan tällä tasolla relevanttia.
+Tyyppien ja joukkojen semanttinen ero on nyanssinen \cite{type_vs_set}. Ohjelmoinnissa puhutaan usein tyypeistä. Insinööriopintojen matematiikassa joukot ovat olleet vahvasti läsnä. Tässä osassa pääajatuksena on miettiä kuinka asiat muutetaan funktioilla toisiksi, asiat voi mieltää kuuluvan joukkoihin tai tyyppeihin, kumpaa nyt ymmärtää paremmin. Oikea määritelmä saattaa lähestyä \glsdisp{category_theory}{kategoriateoriaa}, mutta erottaminen ei liene olevan tällä tasolla relevanttia.
 
 Ihmisillä on kuitenkin kyky hahmottaa asioita joukkoina (tai tyyppeinä). Koko maailman voi mallintaa niillä (Kuva \ref{fig:fruit_set}) \cite{algebraic_data_types}.
 
@@ -426,7 +426,7 @@ Mikä on se lähestymistapa, jota tarvitaan käytännönläheiseen, pragmaattise
 
 Monadi on monoidi endofunktorien kategoriassa on fraasi, jota käytetään humoristisesti yhteyksissä, missä pyritään selittämään funktionaalisen ohjelmoinnin matemaattisen osa-alueen kategoriateorian \gls{monad}rakennetta \cite{bartosz_category_for_progamers_10}. Fraasi on surullisenkuuluisa, ja lienee yksi syy sille, miksei funktionaalinen ohjelmointi ole suositumpaa. Jos funktionaalisen ohjelmoinnin käsitteiden ymmärtämiseen tarvitsee useiden yliopistotasoisien kurssien taustatiedot, ei sopeutuminen ole helppoa.
 
-Myöskin ohjelmoijat, jotka ovat tehneet kauan olio-ohjelmointia tai proseduraalista ohjelmointia, tahtovat toimia niillä tavoilla, mitä ovat oppineet. Esimerkiksi perustellaan niin, että JavaScript ei ole funktionaalinen ohjelmointikieli, vaikka siinä periaatteessa funktionaalista ohjelmointia voi kirjoittaakin. Tällaiset ongelmat tietysti ulottuvat pidemmälle kuin vain ohjelmointityyleihin. \citep{is_reduce_bad}
+Myös ohjelmoijat, jotka ovat tehneet kauan olio-ohjelmointia tai proseduraalista ohjelmointia, tahtovat toimia niillä tavoilla, mitä ovat oppineet. Esimerkiksi perustellaan niin, että JavaScript ei ole funktionaalinen ohjelmointikieli, vaikka siinä periaatteessa funktionaalista ohjelmointia voi kirjoittaakin. Tällaiset ongelmat tietysti ulottuvat pidemmälle kuin vain ohjelmointityyleihin. \citep{is_reduce_bad}
 
 On harmillista perustella asioita pelkästään historiallisista syistä. Silloin ohjelmointikielet jäävät paikalleen \cite{promises-spec-94}.
 
@@ -475,7 +475,7 @@ B(A) // "moi"
     \label{code:js_first_class}
 \end{code}
 
-Funktionaalisen ohjelmoinnin piireissä TypeScriptin tyyppijärjestelmää arvostetaan myös, sillä sillä voidaan rakentaa ainakin osittain algebrallisia datatyyppejä, jotka ovat puhtaissa funktionaalisissa ohjelmointikielissä läsnä \cite{holvikari2021category}.
+Funktionaalisen ohjelmoinnin piireissä TypeScriptin tyyppijärjestelmää arvostetaan myös, koska sillä voidaan rakentaa algebrallisia datatyyppejä, jotka ovat puhtaissa funktionaalisissa ohjelmointikielissä läsnä \cite{holvikari2021category}.
 
 
 \subsection{Tyypitys}
@@ -512,7 +512,7 @@ type Vehicle = Car | MotorBike
 \end{code}
 
 
-Vaikka TypeScriptin tyyppijärjestelmä on vankkarakenteinen, ei se varmista kaikista monimutkaisimpien tyyppien oikeellisuutta. Sellaisiin tavitaan jokin pohjimmiltaan funktionaalinen ohjelmointikieli, kuten Haskell \cite{holvikari2021category}.
+Vaikka TypeScriptin tyyppijärjestelmä on vankkarakenteinen, ei se varmista kaikista monimutkaisimpien tyyppien oikeellisuutta. Sellaisiin tarvitaan jokin pohjimmiltaan funktionaalinen ohjelmointikieli, kuten Haskell \cite{holvikari2021category}.
 
 \subsection{Kirjastot}
 
