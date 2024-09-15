@@ -30,8 +30,6 @@ jobs:
           args: -xelatex -shell-escape -8bit
           latexmk_use_xelatex: true
           latexmk_shell_escape: true
-          extra_fonts: |
-            /usr/share/fonts/truetype/liberation/*.ttf
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
