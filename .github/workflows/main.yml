@@ -19,13 +19,18 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v4
       - name: Install Liberation Sans font
-        run: sudo apt-get install -y fonts-liberation
-      - uses: xu-cheng/latex-action@v3
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-liberation
+          fc-cache -f -v
+      - name: Compile PDF
+        uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
           latexmk_use_xelatex: true
           latexmk_shell_escape: true
-      - uses: actions/upload-artifact@v4
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
-          name: PDF
+          name: PDF-${{ github.sha }}
           path: main.pdf
