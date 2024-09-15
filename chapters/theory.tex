@@ -169,11 +169,28 @@ pipeline([1, 2, 3, 4]) // [20, 40]
 
 Esimerkissä näytetyt funktiot ovat hyvin yksinkertaisia. Kuitenkin ne ovat täysin uudelleenkäytettäviä. Jos totuttautuu käyttämään joitain funktioita kaikissa projekteissa, voi huomata koodin kirjoittamisen tehokkuuden ja johdonmukaisuuden kasvavan.
 
-\section{Joukko-oppi}
+\section{Tyyppiteoria ja joukko-oppi}
+Tämä osa pyrkii kirjoittamaan matemaattisista käsitteistä käytännönläheisesti ja mahdollisesti suurelti yksinkertaistaen. Ajatuksena on, että ylemmän tason ajattelumalli välittyisi tekstissä tarkkojen määritelmien sijasta.
+
 Joukko-oppi on matematiikan haara, joka tutkii joukkojen ominaisuuksia ja niiden välisiä suhteita. Ohjelmoinnissa joukko-oppi ilmenee yksinkertaisimmin joukko-tietorakenteiden kautta, jotka mahdollistavat uniikkien alkioiden käsittelyn tehokkaasti ja ilmaisuvoimaisesti \cite{mdn_set,mdn_set_methods}. On myös luotu ohjelmointikieli, joka perustuu kokonaan joukko-oppiin \cite{SETL_SET_LANGUAGE}.
 
+Tyyppiteoria puolestaan on matematiikan haara, joka tutkii arvojen luokittelua, ja miten niitä käsitellään ohjelmoinnissa ja logiikassa \cite{type_theory,algebraic_data_types}.
 
-Tämä osa pyrkii kirjoittamaan matemaattisista käsitteistä pragmaattisesti ja mahdollisesti suurelti yksinkertaistaen. Ajatuksena on, että ylemmän tason ajattelumalli välittyisi tekstissä tarkkojen määritelmien sijasta.
+Tyyppien ja joukkojen semanttinen ero on nyanssinen \cite{type_vs_set}. Ohjelmoinnissa puhutaan usein tyypeistä. Insinööriopintojen matematiikassa joukot ovat olleet vahvasti läsnä. Tässä osassa pääajatuksena on miettiä kuinka asiat voidaan muuttaa funktioilla toisiksi, asiat voi mieltää kuuluvan joukkoihin tai tyyppeihin, kumpaa nyt ymmärtää paremmin. Oikea määritelmä saattaa lähestyä \glsdisp{category_theory}{kategoriateoriaa}, mutta erottaminen ei liene olevan tällä tasolla relevanttia.
+
+Ihmisillä on kuitenkin kyky hahmottaa asioita joukkoina (tai tyyppeinä). Koko maailman voi mallintaa niillä (Kuva \ref{fig:fruit_set}) \cite{algebraic_data_types}.
+
+
+\begin{figure}[ht]
+    \centering
+    \AltText{Omena, päärynä ja banaani.}{\includegraphics[width=10cm]{HEDELMIA}}
+    \caption{Mihin joukkoon tai tyyppiin nämä saattaisivat kuulua \cite{viljofruits}?}
+    \label{fig:fruit_set}
+\end{figure}
+
+Koska koko maailman voi mallintaa joukkoina (tai tyyppeinä), voidaan niillä mallintaa myös ohjelmia.
+
+
 
 
 \subsection{Joukko-tietorakenne}
@@ -184,9 +201,8 @@ Joukko-tietorakenne kuvaa joukko-opin joukkoa. Joukko-tietorakenteessa säilytet
 
 Kokemusten mukaan ohjelmoija ei usein mieti joukko-tietorakennetta matemaattisista lähtökohdista. Tästä kuitenkin voisi olla hyötyä, sillä Joukko-opin periaatteiden ymmärtäminen ja soveltaminen ohjelmoinnissa ei ainoastaan tehostuskeino, vaan myös laajentaa näkemystä siitä, miten abstraktit matemaattiset konseptit voidaan muuttaa konkreettisiksi työkaluiksi. Tämä yhdistelmä tarjoaa ohjelmoijille sekä teoreettisen että käytännöllisen perustan, joka on arvokas monissa erilaisissa sovelluksissa ja ongelmanratkaisutilanteissa \cite{bartosz_category_for_progamers}.
 
-\subsection{Funktiot joukoista toisiin}
+\subsection{Funktioilla joukoista toisiin}
 Kun ohjelmoinnissa pohditaan joukko-opin hyödyntämistä, kehittyy \glsdisp{language_agnostic}{kieliriippumaton} kyky kirjoittaa koodia. Kun miettii, mitä ylipäätään voi laskea, pääsee ohjelmoinnissa omalle abstraktille tasolle. \citep{Tan2004,BlellochHarper2015}
-
 
 Matemaattisesti joukkojen välille voidaan tehdä kuvauksia, tai toisin sanoen funktioita. Merkintä funktiosta, joka \textquote{muuttaa} joukon $A$ joukoksi $B$, on esimerkiksi yksinkertaisesti $A \to B$ \cite{mellin2005joukkooppi}. Funktio muuttaa minkä tahansa joukon $A$ alkion joksikin joukon $B$ alkioksi.
 
@@ -207,8 +223,6 @@ const aToB = (a: SetA): SetB => {
     \caption{Havainnollistava funktio, joka muuttaa joukon A, \{a,b,c\}, joukoksi B, \{1, 2, 3\}}
     \label{code:ts_set_example}
 \end{code}
-
-
 
 Tarkastellaan konkreettisempaa esimerkkiä lähtien koodiesimerkistä \ref{code:ts_set_theory_3}.
 
@@ -375,7 +389,11 @@ TODO
 
 Tässä osassa voisi käydä läpi sitä, mitkä ovat ohjelmointikielen vaatimukset, että joukko-oppi-osan tyylistä koodia voi kirjoittaa. Tai missä roolissa tyyppijärjestelmät ovat funktionaalisessa ohjelmoinnissa (suuressa!).
 
-Algebralliset tietorakenteet, joita eri tyyppijärjestelmät tukevat, on tosi isossa roolissa funktionaalisessa ohjelmoinnissa. Toisaalta ehkei ole pragmaattista jauhaa niistä.
+Algebralliset tietorakenteet, joita eri tyyppijärjestelmät tukevat, on tosi isossa roolissa funktionaalisessa ohjelmoinnissa. Toisaalta ehkei ole asiaa edistävää jauhaa niistä.
+
+tyyppijärjestelmät, joukko-oppi, tyyppiteoria, kategoriateoria <- kaikki samaa kamaa, hirveetä kirjottaa kun ei tunne ymmärtävän relevantteja eroja. Johdonmukainen kirjoittaminen kärsii.
+
+
 
 
 % Tyypitys on todella tärkeää. Tyypit ohjaavat koodia ja estävät vääriä tiloja ohjemakoodin kääntämisvaiheessa. Tyypeillä pidetään ohjelmoija niissä raameissa, mitä funktionaalinen ohjelmointi usein vaatii \cite[44]{cantarella_fp_haitat}.
@@ -399,7 +417,7 @@ Algebralliset tietorakenteet, joita eri tyyppijärjestelmät tukevat, on tosi is
 % Parametrinen polymorfismi näkyy täs myös.
 
 
-\section{Pragmaattisuus}
+\section{Pragmaattisuus funktionaalisessa ohjelmoinnissa}
 
 Funktionaalisen ohjelmoinnin tärkein teoria alkaa olla käytynä. On aika tarkastella teoreettisella tasolla sitä, miten funktionaalinen ohjelmoinnin voi tuoda \gls{js} (ja \gls{ts}) arsenaaliin.
 
@@ -484,22 +502,25 @@ JavaScript on kielenä siitä erikoinen, että kaikki uusien versioiden ominaisu
 
 Selaimille on myös parempi olla rikkomatta näitä vanhoja sivuja selaimen suosion kannalta: jos vierailee lääkärin vastaanoton verkkosivulla selvittääksesi aukioloajat, kumpi selain on paras: se, joka näyttää vastaanoton aukioloajat, vai se, joka ei näytä mitään, koska on ottanut uuden JavaScript-version käyttöön? \citep{against_self_closing_tags,proposal-joint-iteration}
 
+Promise-tietorakenne mahdollistaa asynkronisten operaatioiden ketjuttamisen ja virheiden käsittelyn tavalla, joka on verrat-
+tavissa kategoriateorian monadien tarjoamaan rakenteeseen \cite{promises-spec-94,stackoverflow:why_monad,promise}.
+
 Noin kymmenen vuotta sitten oli suuri keskustelu siitä, tulisiko JavaScriptin Promise-tietorakenteen noudattaa funktionaalisen ohjelmoinnin \glsdisp{monad}{monadirakennetta}. Tälle oli suuret perusteet, sillä rakenteen noudattaminen olisi vaatinut vain pieniä muutoksia ehdotettuun tietorakenteen toteutukseen \cite{promises-spec-94}. Perustelut monadin puolesta eivät kuitenkaan iskeneet lävitse muun muassa erinäisten väärinymmärrysten takia.
 
 Monadin läsnäolo kielessä olisi mahdollistanut kielen viennin funktionaalisempaan suuntaan. Ja koska ohjelmointikielelle on tärkeää olla johdonmukainen, on erittäin epätodennäköistä, että kieli tulee saamaan enää koskaan toista mahdollisuutta tuoda monadia osaksi kielen ominaisuuksia \cite{proposal-joint-iteration,prototype_library_trends}.
 
 Promise-tietorakenne on nykypäivänä erittäin vahvassa roolissa ohjelmoitaessa JavaScriptiä. Jos maailmassa olisi seurattu vaihtoehtoista historiaa, kieli saattaisi tänä päivänä tukea monia vastaavanlaisia ja standardoidulla tavalla toimivia tietorakenteita \cite{promises-spec-94}.
-\section{Ramda.js}
+% \section{Ramda.js}
 
-TODO - Tätä tullaan käyttämään, mutta toisaalta ei ehkä relevanttia jauhaa turhaan. Muitakin kirjastoja saatetaan käyttää.
+% TODO - Tätä tullaan käyttämään, mutta toisaalta ei ehkä relevanttia jauhaa turhaan. Muitakin kirjastoja saatetaan käyttää.
 
 
-% Koska funktionaalisen ohjelmakoodin tuottaminen \gls{js} tai \gls{ts} ympäristössä enemmän tai vähemmän vaatii jotain kirjastoa, joko itse ohjelmoitua tai ulkoista, niin tähän insinöörityöhön on kirjastoksi valittu Ramda.js.
+% % Koska funktionaalisen ohjelmakoodin tuottaminen \gls{js} tai \gls{ts} ympäristössä enemmän tai vähemmän vaatii jotain kirjastoa, joko itse ohjelmoitua tai ulkoista, niin tähän insinöörityöhön on kirjastoksi valittu Ramda.js.
 
-% Ramda.js, ja kirjaston taustalla oleelinen Fantasy Land -algebrallinen spesifikaatio, ovat kirjastoja jotka pyrkivät johdonmukaiseen funktionaaliseen ohjelmointiin JavaScriptissä. Näiden kirjastojen kehittäjistöstä löytyy samoja henkilöitä jotka aikoinaan pyrkivät saamaan Promise-tietorakenteen virallisesti monadiseksi \cite{ramda:contributors,fantasy-land:contributors,promises-spec-94}. Näyttää siltä, että kun tähän tavoitteeseen ei päästy, päättivät kehittäjät tuoda funktionaalisen ohjelmoinnin JavaScriptiin omin keinoin.
+% % Ramda.js, ja kirjaston taustalla oleelinen Fantasy Land -algebrallinen spesifikaatio, ovat kirjastoja jotka pyrkivät johdonmukaiseen funktionaaliseen ohjelmointiin JavaScriptissä. Näiden kirjastojen kehittäjistöstä löytyy samoja henkilöitä jotka aikoinaan pyrkivät saamaan Promise-tietorakenteen virallisesti monadiseksi \cite{ramda:contributors,fantasy-land:contributors,promises-spec-94}. Näyttää siltä, että kun tähän tavoitteeseen ei päästy, päättivät kehittäjät tuoda funktionaalisen ohjelmoinnin JavaScriptiin omin keinoin.
 
-% miten ramda toimii
+% % miten ramda toimii
 
-% miten ramda sopii omien funktioiden kanssa
+% % miten ramda sopii omien funktioiden kanssa
 
-% miten typescript? ei hyvä, tyypit ovat mitä sattuu (kokemuspohjaisesti)
+% % miten typescript? ei hyvä, tyypit ovat mitä sattuu (kokemuspohjaisesti)
