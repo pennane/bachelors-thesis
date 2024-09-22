@@ -383,16 +383,12 @@ Kategoriateoriaan ei perehdytä työssä paljoa. Syynä on, ettei ole käytänn�
 
 Kategoriateoria on kuitenkin niin kytköksissä funktionaaliseen ohjelmointiin, ettei sitä ole kannattavaa jättää kokonaan mainitsematta. Kategoriateorialle on kaivattu käytännönläheisempää tapaa lähestyä sitä ohjelmoijan näkökulmasta \cite{holvikari2021category}. Toisaalta on myös huomattu, että ohjelmoitaessa funktionaalista ohjelmointia puhtaasti, kategoriateorian oppii automaattisesti työn ohessa ilman tiukkaa teorian opiskelua \cite{holvikari2021category}.
 
+\subsection{Monadi}
+Monadi on monoidi endofunktorien kategoriassa \cite{bartosz_category_for_progamers_10}. Siinä varsin epäselvä, uhkaava ja vaikeasti lähestyttävä lause.
 
-\section{Pragmaattisuus funktionaalisessa ohjelmoinnissa}
+blaa blaa blaa :DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
 
-Funktionaalisen ohjelmoinnin tärkein teoria alkaa olla käytynä. On aika tarkstella,  miten funktionaalinen ohjelmoinnin voi tuoda \gls{js} (ja \gls{ts}) arsenaaliin. Ja toisaalta, miksei näin ole jo tapahtunut laajemmassa muodossa.
 
-Kun funktionaalisen ohjelmoinnin kauneus on matemaattisissa kulmakivissä, joilla ei ole tapaa taipua, miten sen voi yhdistää säännöttömään JavaScriptiin tai muuhun vastaavanlaiseen kieleen?
-
-Mikä on se lähestymistapa, jota tarvitaan käytännönläheiseen, pragmaattiseen, funktionaaliseen ohjelmointiin?
-
-\subsection{Monadi on monoidi endofunktorien kategoriassa}
 
 Monadi on monoidi endofunktorien kategoriassa on fraasi, jota käytetään humoristisesti yhteyksissä, missä pyritään selittämään funktionaalisen ohjelmoinnin matemaattisen osa-alueen kategoriateorian \gls{monad}rakennetta \cite{bartosz_category_for_progamers_10}. Fraasi on surullisenkuuluisa, ja lienee yksi syy sille, miksei funktionaalinen ohjelmointi ole suositumpaa. Jos funktionaalisen ohjelmoinnin käsitteiden ymmärtämiseen tarvitsee useiden yliopistotasoisien kurssien taustatiedot, ei sopeutuminen ole helppoa.
 
@@ -400,15 +396,23 @@ Myös ohjelmoijat, jotka ovat tehneet kauan olio-ohjelmointia tai proseduraalist
 
 On harmillista perustella asioita pelkästään historiallisista syistä. Silloin ohjelmointikielet jäävät paikalleen \cite{promises-spec-94}.
 
-\subsection{Funktionaalisen ohjelmoinnin ripottelu}
+\section{Pragmaattisuus funktionaalisessa ohjelmoinnissa}
 
-Kokemusten perusteella työpaikalla on havaittu funktionaalisen ohjelmoinnin paikallisuuden toimivan kohtuullisen hyvin muuten proseduraalisen ohjelmakoodin ympäristössä.
+Funktionaalisen ohjelmoinnin tärkein teoria alkaa olla käytynä ja ehkä on selvää, että funktionaalinen ohjelmointi on pohjimmiltaan erittäin teoreettista. On hyvä aika tarkastella,  miten funktionaalinen ohjelmoinnin voisi tuoda ohjelmistokehittäjän arsenaaliin. Ja toisaalta, miksei tälläistä muuttoliikettä ole ohjelmoijaenemmistölle vielä tapahtunut.
+
+Kun funktionaalisen ohjelmoinnin kauneus on matemaattisissa kulmakivissä, joilla ei ole tapaa taipua, miten sen voi yhdistää säännöttömään JavaScriptiin, tai muuhun vastaavanlaiseen ohjelmointikieleen?
+
+Mikä on se lähestymistapa, jota tarvitaan käytännönläheiseen, pragmaattiseen, funktionaaliseen ohjelmointiin?
 
 Robert C. Martinin mukaan pragmaattinen funktionaalinen ohjelmointi on sitä, että käytetään esimerkiksi \glsdisp{immutable_data}{muuttumattomuutta} ja puhtaita funktioita silloin, kun ne parantavat ohjelman luettavuutta, ylläpidettävyyttä ja suorituskykyä, ja kuitenkin niin, ettei vaadita täydellistä sitoutumista funktionaalisen ohjelmoinnin paradigmaan. \citep{martin2017pragmaticfp}
 
 Myös Cantarella mainitsee opinnäytetyönsä loppupuolella ajatuksen, että mitä enemmän paradigmoihin liittyviin artikkeleihin perehtyy, sitä myötämielisemmäksi tulee ajatukselle, että paradigmoja tulisi yhdistellä vapaammin. \citep[45]{cantarella_fp_haitat}
 
+Myös kokemusten perusteella työpaikalla on havaittu funktionaalisen ohjelmoinnin toimivan kohtuullisen hyvin ripoteltuna proseduraalisen ohjelmakoodin.
+
 Pragmaattista funktionaalista ohjelmointia vaikuttaa siis olevan se, että otetaan vain mitä tarvitaan \cite{dear_functional_bros,martin2017pragmaticfp,cantarella_fp_haitat}. Toisaalta se, mitä tarvitaan ei ole välittömästi selvää. Toisille pragmaattista on jättää kaikki matemaattinen teoria pois ohjelmoinnista heti kättelyssä, toisille kategoriateorian rakenteiden käyttäminen, kun niiden käyttäminen sopii ongelmaan \cite{holvikari2021category,martin2017pragmaticfp}.
+
+Tässä insinöörityössä tarkempia käytäntöjä tutkitaan ja arvioidaan neljännessä osassa ja siitä eteenpäin.
 
 \section{Funktionaalinen ohjelmointi \& TypeScript}
 JavaScript ei ole funktionaalinen ohjelmointikieli, vaikka se funktionaalisuutta tukeekin \cite{is_reduce_bad}. TypeScriptin tyyppijärjestelmällä funktionaalinen ohjelmointi on jo mieluisampaa \cite{holvikari2021category}.
