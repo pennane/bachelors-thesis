@@ -82,6 +82,32 @@
 \DTMsetdatestyle{dMonthyyyy}
 \date{\today}
 
+
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{listingsutf8} % For including monospace font settings
+
+\newcommand{\key}[1]{%
+	\begin{tcolorbox}[
+			colback=gray!20, % Light gray background
+			colframe=gray!20, % Same as background, effectively invisible
+			boxrule=0pt, % No border
+			arc=4pt, % Rounded corners
+			left=2pt, % Left padding
+			right=2pt, % Right padding
+			top=2pt, % Top padding
+			bottom=2pt, % Bottom padding
+			boxsep=0pt, % No separation between text and frame, padding only
+			height=12pt,
+			valign=center,
+			nobeforeafter, % No additional space before and after the box
+			tcbox raise base, % Aligns the box with the baseline of the surrounding text
+			hbox % Ensures the box is only as wide as its contents
+		]
+		\texttt{\small #1} % Smaller monospaced font for the key text
+	\end{tcolorbox}
+}
+
 \newcommand\tn[1]{\textnormal{#1}} %use \tn instead of \textnormal
 \newcommand\reaction[1]{\begin{equation}\ce{#1}\end{equation}} %\reaction{} for chemical reactions
 
