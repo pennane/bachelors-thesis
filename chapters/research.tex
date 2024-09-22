@@ -25,29 +25,52 @@ TODO
 
 TODO
 
-\subsection{Kombinaattorit vai algebralliset tietorakenteet}
 
-TODO
-
-\subsection{Lista on monadi}
+\subsection{Yhdistefunktiot}
 
 TODO
 
 \subsection{Opi kerran, käytä kaikkialla}
 
-TODO
+\begin{figure}[ht]
+    \centering
+    \[
+        \begin{array}{rl}
+            \left.
+            \begin{array}{l}
+                filter, without, find, findIndex, findLast, findLastIndex \\
+                map, mapIndexed, mapIndexedRight, chain, concat, zip      \\
+                reduce, reduceRight, scan, partition, uniq, forEach       \\
+                slice, drop, take, dropWhile, takeWhile, zip, zipWith     \\
+                all, any, none
+            \end{array}
+            \right] \quad \text{for loop}
+            \\
+        \end{array}
+    \]
+    \caption{Ramda.js kirjaston funktioita listojen käsittelyyn ohjelmoinnissa \cite{ramda:docs}. Kaikki nämä voidaan korvata for-silmukoilla muissa ohjemointiparadigmoissa.}
+    \label{fig:ramdacmds}
+\end{figure}
 
-\subsection{Dogmaattisuus}
 
-TODO
+CONVERGE :D
+
+Liika on liikaa
+
+\subsection{Monadien käyttäminen huomaamatta}
+.then.then.then.then.then.then.then.then.then.then
+
+tai
+
+.flatmap.flatmap.flatmap.flatmap.flatmap.flatmap
+
+\subsection{Virhetilat mahdottomiksi}
+
+Ramda ja TypeScript ei toimi tähän. Ramdan funktioihin ei voi luottaa, koska tyypit eivät pysy perässä.
 
 \section{Kehittäjien kokemukset}
 
-TODO
-
-\section{Mielipiteet puolesta ja vastaan}
-
-TODO
+Mielipiteet puolesta ja vastaan
 
 \subsection{Edut}
 
