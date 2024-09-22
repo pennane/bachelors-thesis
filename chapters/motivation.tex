@@ -67,15 +67,16 @@ Funktionaalisen koodin kääntöpuoli on sen selittävyys: deklaratiivisuus. Jos
 
 \begin{code}
     \begin{minted}{typescript}
-    const nextState = R.pipe(
-        handleInput,
-        updateTimestamp,
-        decreaseMoveTimer,
-        handleFall
+    const congratulateUsers = pipe(
+        filter(isActiveUser),
+        filter(isBirthdayToday),
+        createCongratulationMessages,
+        sendCongratulations
     )
-    
+    // Onnitellaan kaikkia asiakkaita, joilla on tänään syntymäpäivä!
+    congratulateUsers(users)
 \end{minted}
-    \caption{TypeScript-esimerkki yhdistefunktiosta. Valittu koodi on osa funktionaalisella tyylillä kirjoitettua Tetris-peliä.}
+    \caption{JavaScript-esimerkki yhdistetystä funktiosta. Funktioiden yksityiskohtia ei tarvitse tietää, että voi ymmärtää kokonaiskuvan.}
     \label{code:first_pipeline}
 \end{code}
 
@@ -88,9 +89,10 @@ Luettavuus, tehokkuus ja ylläpidettävyys ovat kolme keskeistä osa-aluetta, jo
 
 \section{Lähestymistapa}
 
-Tässä insinöörityössä tutkitaan mitä tapahtuu, kun funktionaalista ohjelmointia ripotellaan proseduraaliseen ohjelmakoodiin. Eritysesti keskitytään siihen, millaisia haasteita ja haittoja voi syntyä, kun funktionaalista ohjelmointia harjoitetaan \gls{ts}-ympäristössä. Tutkitaan mitä käy, kun koodin abstraktio ei nosta \glsdisp{correctness}{koodin oikeellisuutta} tai vie mahdollisten väärien tilojen avaruutta pienemmäksi. Näiden on todettu olevan abstraktion ja funktionaalisen ohjelmoinnin tarkoituksia. \citep{dijkstra_humble_programmer,impossiblebetter}
+Tässä insinöörityössä tutkitaan mitä tapahtuu, kun funktionaalista ohjelmointia ripotellaan proseduraaliseen ohjelmakoodiin. Tätä tarkastellaan sellaisen ohjelmointikielen näkökulmasta, jota ei ole suunniteltu erityisesti funktionaaliseen ohjelmointiin, mutta jossa se on kuitenkin mahdollista. Täksi ohjelmointikieleksi valikoitui \gls{js} (ja \gls{ts}). Ohjelmointikieli valittiin aiemman osaamisen ja kokemusten perusteella, ja toisaalta myös siksi, että kieli on yksi markkinoiden käytetyimpiä, ja siten myös yksi olennaisimmista \cite{pypl:lang}. \Gls{js} on myös kielenä siitä mielenkiintoinen, että se mahdollistaa koodiabstraktioiden luomisen ilman suurta vaivaa ohjelmoijalta. Hätiköidyt abstraktiot johtavat epäjohdonmukaisuuteen ja lopulta uudelleenkäyttämättömyyteen.
 
-Ongelmaa tarkastellaan sellaisen ohjelmointikielen näkökulmasta, jota ei ole suunniteltu erityisesti funktionaaliseen ohjelmointiin, mutta jossa se on mahdollista. Täksi ohjelmointikieleksi valikoitui \gls{js} (ja \gls{ts}). Ohjelmointikieli valittiin aiemman osaamisen ja kokemusten perusteella, ja toisaalta myös siksi, että kieli on yksi markkinoiden käytetyimpiä, ja siten myös yksi olennaisimmista \cite{pypl:lang}. \Gls{js} on myös kielenä siitä mielenkiintoinen, että se mahdollistaa koodiabstraktioiden luomisen ilman suurta vaivaa ohjelmoijalta. Hätiköidyt abstraktiot johtavat epäjohdonmukaisuuteen ja lopulta uudelleenkäyttämättömyyteen.
+
+Käsiteltäviä asioita pyritään perkaamaan \glsdisp{language_agnostic}{kieliagnostisesti}, jolloin saadut tiedot ja taidot olisivat oleellisia myös kehittäjille, jotka eivät käytä TypeScriptiä tai JavaScriptiä.
 
 Tarkoituksena on löytää tasapaino sille, miten funktionaalinen ohjelmointi kannattaa ottaa mukaan ohjelmistoprojektiin. Pohjalla on ajatus, että paras tapa olisi vain siirtyä kokonaan funktionaalisiin ohjelmointikieliin hybridikielten sijasta. Tätä ajatusta pyritään kumoamaan, sillä toivotaan, että funktionaalisuus voisi toimia myös kevyemmin osana ohjelmoijan arkea.
 
