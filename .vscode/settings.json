@@ -85,5 +85,6 @@
     "**/*-SAVE-ERROR": true,
     "_minted*": true
   },
-  "editor.wordWrap": "on"
+  "editor.wordWrap": "on",
+  "latex-workshop.formatting.latex": "latexindent"
 }
