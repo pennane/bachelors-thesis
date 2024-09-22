@@ -70,7 +70,7 @@ Funktionaalisen koodin kääntöpuoli on sen selittävyys: deklaratiivisuus. Jos
     const congratulateUsers = pipe(
         filter(isActiveUser),
         filter(isBirthdayToday),
-        createCongratulationMessages,
+        map(createCongratulationMessage),
         sendCongratulations
     )
     // Onnitellaan kaikkia asiakkaita, joilla on tänään syntymäpäivä!
