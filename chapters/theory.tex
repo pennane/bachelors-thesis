@@ -76,13 +76,13 @@ const substitution  = f => g => x => f (x) (g (x))
 
 Kombinaattorit näyttävät uhkaavilta ja raa'assa muodossaan niiden hyötyarvoa voi olla hankala havaita. Niiden käyttämistä voi kuitenkin perustella niiden perustavanlaatuisten ja kieliagnostisien ominaisuuksien takia. Ohjelmoidessa funktionaalisesti ei kombinaattoreita kuitenkaan tarvitse paljoa ajatella. Niitä tulee kirjoittamaan varmasti vähintään vahingossa, sillä niitä vaaditaan funktioita pyörittäessä \cite{javascript_combinators}. Kuitenkin on hyvä tiedostaa käytössä olevat rakennuspalikat, ja millä nimellä etsiä niistä tietoa tarvittaessa.
 
-\subsection{Yhdistefunktiot ja niiden vahva merkitys}
+\subsection{Yhdistetyt funktiot ja niiden vahva merkitys}
 
 Usein funktionaalista ohjelmointia mainostaessa puhutaan funktioiden puhtauden ja datan muuttumattomuuden olevan paradigman oleellisinta. Kuitenkin samaan aikaan juuri datan muuttumattomuus ja tilattomuus koetaan paradigman suureksi kompastuskiveksi \cite{cantarella_fp_haitat,is_reduce_bad,vakil2016}.
 
 On tärkeää huomata, että kaiken ei tarvitse olla täysin puhdasta ja muuttumatonta, kunhan ne osat, joissa funktionaalista ohjelmointia hyödynnetään, pysyvät ennustettavina ja hallittavina.
 
-\Glspl{composed_function} ovat loistava tapa kirjoittaa selkeää ja modulaarista koodia. Parasta on, että kaiken ei tarvitse olla pelkkiä funktioita: voi hyvin kirjoittaa myös olio-ohjelmointityylillä ja silti hyödyntää yhdistefunktioita logiikan selkeyttämiseksi ja yksinkertaistamiseksi.
+\Glspl{composed_function} ovat loistava tapa kirjoittaa selkeää ja modulaarista koodia. Parasta on, että kaiken ei tarvitse olla pelkkiä funktioita: voi hyvin kirjoittaa myös olio-ohjelmointityylillä ja silti hyödyntää yhdistettyjä funktioita logiikan selkeyttämiseksi ja yksinkertaistamiseksi.
 
 Loppujen lopuksi funktionaalisen ohjelmoinnin perusta on funktioissa ja niiden yhdistämisessä. Datan muuttumattomuus ja sivuvaikutuksettomuus on vain esivaatimus funktioiden ennustettavuudelle.
 
@@ -261,8 +261,10 @@ const NonZeroSymbol = Symbol('NonZero')
 type Rational = number & { [RationalSymbol]: "brand" }
 type NonZero = Rational & { [NonZeroSymbol]: "brand" }
 
-const isRational = (x: number): x is Rational => ![Infinity, -Infinity, NaN].includes(x)
-const isNonZero = (x: number): x is NonZero => isRational(x) && x !== 0
+const isRational = (x: number): x is Rational => 
+    ![Infinity, -Infinity, NaN].includes(x)
+const isNonZero = (x: number): x is NonZero => 
+    isRational(x) && x !== 0
 \end{minted}
     \caption{Rational ja NonZero joukkojen määritelmät TypeScriptissä}
     \label{code:ts_type_mayhem}
@@ -377,24 +379,29 @@ Kategoriateoria tutkii matemaattisia rakenteita ja niiden välisiä suhteita eri
 
 Milewskin kokemusten mukaan vaikka algebra tai kalkyyli olisi ohjelmoijalle ajatuksena hirveää, kategoriateoria on kuitenkin ohjelmoijille erityisen mieluisaa sen laajasta teoreettisuudesta huolimatta. \cite[9]{milewski2017category}.
 
-Kategoriateoria näkyy jopa osittain myös nykypäivän JavaScriptissä, jossa Promise-tietorakenne toimii lähes kuin \gls{monad}. Promise-tietorakenne mahdollistaa asynkronisten operaatioiden ketjuttamisen ja virheiden käsittelyn tavalla, joka on verrattavissa kategoriateorian monadien tarjoamaan rakenteeseen. \citep{promises-spec-94,stackoverflow:why_monad}
-
-Kategoriateoriaan ei perehdytä työssä paljoa. Syynä on, ettei ole käytännönläheistä tuoda tavattoman teoreettisia käsitteitä työhön, jossa tavoitteena on konkreettiset asiat.
+Kategoriateoriaan ei perehdytä työssä paljoa Monadi-rakennetta lukuunottamatta. Syynä on, ettei ole käytännönläheistä tuoda tavattoman teoreettisia käsitteitä työhön, jossa tavoitteena on etsiä konkretiaa.
 
 Kategoriateoria on kuitenkin niin kytköksissä funktionaaliseen ohjelmointiin, ettei sitä ole kannattavaa jättää kokonaan mainitsematta. Kategoriateorialle on kaivattu käytännönläheisempää tapaa lähestyä sitä ohjelmoijan näkökulmasta \cite{holvikari2021category}. Toisaalta on myös huomattu, että ohjelmoitaessa funktionaalista ohjelmointia puhtaasti, kategoriateorian oppii automaattisesti työn ohessa ilman tiukkaa teorian opiskelua \cite{holvikari2021category}.
 
 \subsection{Monadi}
-Monadi on monoidi endofunktorien kategoriassa \cite{bartosz_category_for_progamers_10}. Siinä varsin epäselvä, uhkaava ja vaikeasti lähestyttävä lause.
 
-blaa blaa blaa :DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+Monadi on monoidi endofunktorien kategoriassa \cite{bartosz_category_for_progamers_10}. Näin kuvatataan \glsdisp{monad}{monadi-rakennetta}. Jotta voi ymmärtää kuvauksen, on opiskeltava kategoriateoriaa muutaman yliopistotasoisen kurssin verran ottamatta huomioon vaadittuja ennakkotietoja, mitä tarvitaan siihen, että kategoriateoriaa voi edes alkaa opiskelemaan.
+
+Monadi tulee kuitenkin esille funktionaalisessa ohjelmoinnissa erittäin usein. Se on erittäin hyödyllinen abstrakti tietotyyppi. Monadille on etsitty konkreettisempia tapoja selittää se. Näihin selityksiin kuuluu muunmuassa:
+
+\begin{itemize}
+    \item Monadi on asia, jolla on \mintinline{javascript}|flatMap|-metodi \cite{stackoverflow_flatmap_monad}.
+    \item Monadi on rakenne, joka yhdistää funktioita, ja käärii niiden palautusarvot uuteen tyyppiin \cite{monad_wikipedia}.
+    \item Monadi on laskennan rakentaja \cite{stackoverflow_what_monad}.
+    \item Monadi on monoidi endofunktorien kategoriassa \cite{bartosz_category_for_progamers_10,monad_wikipedia,stackoverflow_what_monad}
+\end{itemize}
 
 
+Viimeisimmän uskotaan olevan kuvaavin, vaikka tämä ei paljoa helpota \cite{stackoverflow_what_monad}. Fraasi on surullisenkuuluisa, ja lienee yksi syy sille, miksei funktionaalinen ohjelmointi ole suositumpaa. Jos käsitteiden ymmärtämiseen tarvitsee useiden yliopistotasoisien kurssien taustatiedot, ei lähtökohdat leviämiselle ole vahvat. Jos kuitenkin etsitään ohjelmoijalle käytännönläheisempää selitystä, se voisi olla jotenkin näin.
 
-Monadi on monoidi endofunktorien kategoriassa on fraasi, jota käytetään humoristisesti yhteyksissä, missä pyritään selittämään funktionaalisen ohjelmoinnin matemaattisen osa-alueen kategoriateorian \gls{monad}rakennetta \cite{bartosz_category_for_progamers_10}. Fraasi on surullisenkuuluisa, ja lienee yksi syy sille, miksei funktionaalinen ohjelmointi ole suositumpaa. Jos funktionaalisen ohjelmoinnin käsitteiden ymmärtämiseen tarvitsee useiden yliopistotasoisien kurssien taustatiedot, ei sopeutuminen ole helppoa.
+blaa chain ja pure, x laatikkoon, halutaan tehdä äksästä uusi, ja se laitetaan taas laatikkoon.
 
-Myös ohjelmoijat, jotka ovat tehneet kauan olio-ohjelmointia tai proseduraalista ohjelmointia, tahtovat toimia niillä tavoilla, mitä ovat oppineet. Esimerkiksi perustellaan niin, että JavaScript ei ole funktionaalinen ohjelmointikieli, vaikka siinä periaatteessa funktionaalista ohjelmointia voi kirjoittaakin. Tällaiset ongelmat tietysti ulottuvat pidemmälle kuin vain ohjelmointityyleihin. \citep{is_reduce_bad}
-
-On harmillista perustella asioita pelkästään historiallisista syistä. Silloin ohjelmointikielet jäävät paikalleen \cite{promises-spec-94}.
+Lista (Array), Promise, Maybe, Either, Result, State. Siinä muutama yleinen monadi.
 
 \section{Pragmaattisuus funktionaalisessa ohjelmoinnissa}
 
@@ -498,30 +505,20 @@ Funktionaalisen ohjelmoinnin kirjastoilla halutaan tuoda \gls{ts}-ekosysteemiin 
 
 
 
-\subsection{Promise-tietorakenne ja osittaismonadisuus}
+\subsection{Promise-tietorakenne on miltei monadi}
 
 JavaScript on kielenä siitä erikoinen, että kaikki uusien versioiden ominaisuudet tulee olla takaperin yhteensopivaa. Jos tästä poikettaisiin, suuret määrät vanhoja verkkosivuja lakkaisivat toimimasta, sillä ne käyttäjät JavaScriptiä, ja odottavat sen toimivan vanhalla tutulla tavalla \cite{prototype_library_trends}.
 
 Selaimille on myös parempi olla rikkomatta näitä vanhoja sivuja selaimen suosion kannalta: jos vierailee lääkärin vastaanoton verkkosivulla selvittääksesi aukioloajat, kumpi selain on paras: se, joka näyttää vastaanoton aukioloajat, vai se, joka ei näytä mitään, koska on ottanut uuden JavaScript-version käyttöön? \citep{against_self_closing_tags,proposal-joint-iteration}
 
-Promise-tietorakenne mahdollistaa asynkronisten operaatioiden ketjuttamisen ja virheiden käsittelyn tavalla, joka on verrattavissa kategoriateorian monadien tarjoamaan rakenteeseen \cite{promises-spec-94,stackoverflow:why_monad}.
+JavaScript kuitenkin kehittyy. Hitaasti. Vuodesta 2015 eteepäin kaikki merkittävät verkkoselaimet ovat tukeneet JavaScriptiin lisättyä Promise-tietorakennetta \cite{mdn_promise}. Promise-tietorakenteella korvattiin Callback Hell -nimellä tunnettu ongelma, joka ilmenee, kun monimutkaisissa asynkronisissa operaatioissa käytetään useita sisäkkäisiä callback-funktioita \cite{callbackhell}. Promise-mallin avulla voidaan kirjoittaa selkeämpää ja helpommin hallittavaa koodia, koska se mahdollistaa asynkronisten toimintojen ketjuttamisen ja virheiden käsittelyn keskitetysti.
 
-Noin kymmenen vuotta sitten oli suuri keskustelu siitä, tulisiko JavaScriptin Promise-tietorakenteen noudattaa funktionaalisen ohjelmoinnin \glsdisp{monad}{monadirakennetta}. Tälle oli suuret perusteet, sillä rakenteen noudattaminen olisi vaatinut vain pieniä muutoksia ehdotettuun tietorakenteen toteutukseen \cite{promises-spec-94}. Perustelut monadin puolesta eivät kuitenkaan iskeneet lävitse muun muassa erinäisten väärinymmärrysten takia.
+Tämä tapa ketjuttaa toimintoja on verrattavissa kategoriateorian monadien tarjoamaan rakenteeseen \cite{promises-spec-94,stackoverflow:why_monad}.
+
+Noin kymmenen vuotta sitten, kun Promise-tietorakennetta oltiin tuomassa JavaScriptiin, oli suuri keskustelu siitä, tulisiko JavaScriptin Promise-tietorakenteen noudattaa funktionaalisen ohjelmoinnin \glsdisp{monad}{monadirakennetta}. Tälle oli suuret perusteet, sillä rakenteen noudattaminen olisi vaatinut vain pieniä muutoksia ehdotettuun tietorakenteen toteutukseen \cite{promises-spec-94}. Promisen kaltainen käsite on osana monia eri ohjelmointikieliä eri nimillä, kuten future, delay tai deferred. Promisen juuret ovat funktionaalisessa ohjelmoinnissa.
+
+Perustelut monadin määritelmän täyttävän Promise-tietorakenteen puolesta eivät kuitenkaan iskeneet lävitse erinäisten väärinymmärryksien takia.
 
 Monadin läsnäolo kielessä olisi mahdollistanut kielen viennin funktionaalisempaan suuntaan. Ja koska ohjelmointikielelle on tärkeää olla johdonmukainen, on erittäin epätodennäköistä, että kieli tulee saamaan enää koskaan toista mahdollisuutta tuoda monadia osaksi kielen ominaisuuksia \cite{proposal-joint-iteration,prototype_library_trends}.
 
 Promise-tietorakenne on nykypäivänä erittäin vahvassa roolissa ohjelmoitaessa JavaScriptiä. Jos maailmassa olisi seurattu vaihtoehtoista historiaa, kieli saattaisi tänä päivänä tukea monia vastaavanlaisia ja standardoidulla tavalla toimivia tietorakenteita \cite{promises-spec-94}.
-% \section{Ramda.js}
-
-% TODO - Tätä tullaan käyttämään, mutta toisaalta ei ehkä relevanttia jauhaa turhaan. Muitakin kirjastoja saatetaan käyttää.
-
-
-% % Koska funktionaalisen ohjelmakoodin tuottaminen \gls{js} tai \gls{ts} ympäristössä enemmän tai vähemmän vaatii jotain kirjastoa, joko itse ohjelmoitua tai ulkoista, niin tähän insinöörityöhön on kirjastoksi valittu Ramda.js.
-
-% % Ramda.js, ja kirjaston taustalla oleelinen Fantasy Land -algebrallinen spesifikaatio, ovat kirjastoja jotka pyrkivät johdonmukaiseen funktionaaliseen ohjelmointiin JavaScriptissä. Näiden kirjastojen kehittäjistöstä löytyy samoja henkilöitä jotka aikoinaan pyrkivät saamaan Promise-tietorakenteen virallisesti monadiseksi \cite{ramda:contributors,fantasy-land:contributors,promises-spec-94}. Näyttää siltä, että kun tähän tavoitteeseen ei päästy, päättivät kehittäjät tuoda funktionaalisen ohjelmoinnin JavaScriptiin omin keinoin.
-
-% % miten ramda toimii
-
-% % miten ramda sopii omien funktioiden kanssa
-
-% % miten typescript? ei hyvä, tyypit ovat mitä sattuu (kokemuspohjaisesti)

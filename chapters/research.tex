@@ -19,18 +19,12 @@ TODO
 
 \subsection{Tutkimuksen rajoitukset}
 
-
-TODO
-\section{Havaintoja kehityskäytännöistä}
-
 TODO
 
 
-\subsection{Yhdistetyt funktiot}
+\section{Opi kerran, käytä kaikkialla}
 
-TODO
-
-\subsection{Opi kerran, käytä kaikkialla}
+Funktionaalisessa ohjelmoinnissa etsitään yleisiä teemoja, ja viedään toistuvia malleja funktioiksi, jotta voidaan syntaksin sijasta kirjoittaa funktioiden nimiä. Olio-ohjelmoinnissa, tai muuten imperatiivisessa ohjelmoinnissa, for-silmukalla toteutettavat algoritimit yleistetään funktioiksi (\ref{fig:ramdacmds}). Onko helpompaa opetella ääretön määrä funktioita, vai yksi kielirakenne: for-silmukka?
 
 \begin{figure}[ht]
     \centering
@@ -48,34 +42,106 @@ TODO
             \\
         \end{array}
     \]
-    \caption{Ramda.js kirjaston funktioita listojen käsittelyyn ohjelmoinnissa \cite{ramda:docs}. Kaikki nämä voidaan korvata for-silmukoilla muissa ohjemointiparadigmoissa.}
+    \caption{Ramda.js kirjaston funktioita listojen käsittelyyn ohjelmoinnissa \cite{ramda:docs}. Kaikki nämä voidaan korvata for-silmukoilla imperatiivisessa paradigmassa.}
     \label{fig:ramdacmds}
 \end{figure}
 
+Nimet ovat syntaksiriippumattomia. Samoja nimiä voi käyttää ohjelmointikielestä riippumatta. Nimillä voi kuvata oikean maailman asioita. Siksi voi perustella, että kun tietyn logiikan aina laittaa tietyn nimen taakse funktioksi, ymmärtää sen aina vaikka ohjelmointikieli vaihtuisi. Jos muistaa idean, ei implementaation yksityiskohdilla ole merkitystä.
 
-CONVERGE :D
+Jos asia on tarpeeksi monimutkainen ja sen piilottaa nimen taakse, hyötyarvon määrittäminen voi olla haastavaa. Mitä monimutkaisempaa asiaa yritetään enkoodata yksittäiseen nimeen, sitä vaikeampaa se on lukijan ymmärtää, ja myöskin sitä vaikeampaa sille on löytää uudelleenkäyttötilanteita. Pienikin nyanssiero funktion implementaatiossa totuttuun implementaatioon voi mitätöidä opitun hyödyn eri ympäristöissä.
 
-Liika on liikaa
+Yksinkertaisiakin funktioita voi olla vaikea hahmottaa koodista. Mikään ei pakota ohjelmoijaa nimeämään funktiota samalla tavalla kuin miten sama funktio on nimetty jossain toissessa projektissa tai ohjelmointikielessä. Vaikka ohjelmoija tahtoisi noudattaa aiempia nimeämiskäytänteitä, niin aiempia nimeämiskäytänteitä voi olla vaikea löytää, tai ylipäätään jo useita.
 
-\subsection{Monadien käyttäminen huomaamatta}
-.then.then.then.then.then.then.then.then.then.then
+Kannattanee käyttää ohjelmointikielen sisäänrakennettuja funktioita, ja metodeja aina kun mahdollista. Näin voi maksimoida sen, että koodi ymmärretään. Jos kyse on jostakin projektin sisäisestä kirjastosta, voi olla hyödyllistä lisätä funktiolle kommentti, jos se tunnetaan muissa ohjelmointiympäristöissä jollain toisella nimellä.
 
-tai
+Jos on kyse jostain toimintaympäristökohaisesta funktiosta, eikä perustavanlaatuisesta yleispätevästä funktiosta, on tärkeää että funktio nimetään mahdollisimman kuvaavasti. Esimerkiksi sen sijaan, että nimeää funktion nimellä \textcite{processUsers}, voi miettiä tarvitseeko funktion kutsupaikoissa ymmärtää enemmän siitä mitä funktio tekee? Jos kontekstista on selvää, mitä funktio tekee, nimen voi jättää sellaiseksi kuin on. Jos konteksti ei avaa toimitaa enemmän, \textcite{processUsers} on erittäin ympäripyöreä nimi.
 
+\section{Yhdistetyt funktiot}
+
+Nimiä voi täydentää toisilla nimillä. :DDDDDDDDDDDDDDDDDDDD JEAA BOII
+
+
+\section{Puhtaiden funktioiden hinta}
+
+Pitää pitää mielessä ohjelmointikieli, jossa toimitaan. Säännöt tulee sopeuttaa ympäristöön. Vaikka funktionaalisessa ohjelmoinnissa pyritään olla mutatoimatta dataa, tästä ei missään nimessä ole pakko pitää kiinni kynsin hampain.
+
+Joissain ohjelmointikielissä, tai ohjelmointikielien kirjastoissa, muuttumattomien tietorakenteiden käyttäminen on saatu varsin tehokkaaksi. Näin ei kuitenkaan ole asian laita JavaScriptissä, tai ohjelmointikielissä yleisesti. Yleisesti ottaen tiedon mutatointi on nopeaa ja kopiointi hidasta. Näin ollen, jos kirjoitetaan funktioita, jotka palauttavat aina uusia kopioita, vanhojen mutatoimisen sijasta, saadaan usein hidasta ja tehotonta ohjelmakoodia.
+
+Jossain vaiheessa ohjelman suoritusta tietokoneen bitit kääntyilevät nollista ykkösiin. Näin tietokoneet toimivat. Tämän vuoksi mutaatiota ei tarvitse pelätä, kunhan sen hoitaa asianmukaisesti.
+
+Jos funktio mutatoi ainoastaan muuttujia, jotka se on itse luonut, ei sillä ole lopputuloksen kannalta toiminnallista merkitystä. Kuitenkin tehokkuusvoitot voivat olla huomattavat versioihin, joissa mutatointia ei harrasteta millään tasolla.
+
+Esimerkkinä funktio, joka ottaa sisään listan avain-arvo pareja, ja luo niistä olion. Näytetään kaksi (funktionaalista) tapaa totettaa funktio.
+Versio, joka ei mutatoi muuttujia missään vaiheessa (\ref{code:js_just_mutate_immutable}), ja versio, joka mutatoi vain itse luomiaan muuttujia (\ref{code:js_just_mutate_mutable}).
+
+Tarkkailijan näkökulmasta molemmat funktiot ovat kuitenkin puhtaita.
+
+\begin{code}
+    \begin{minted}[highlightlines={8,14}]{javascript}
+const entries = Array.from({ length: 1000 }, (_, i) => [
+    `key-${i}`,
+    `value-${i}`
+])
+
+const objectFromEntries = (entries) =>
+    entries.reduce((acc, entry) => {
+        return { ...acc, [entry[0]]: entry[1] }
+    }, {})
+
+console.time('Immutable')
+objectFromEntries(entries)
+console.timeEnd('Immutable')
+// Immutable: 112.718017578125 ms
+\end{minted}
+    \caption{Funktio, joka ottaa listan avain-arvo -pareja ja luo niistä olion. Olion luonnissa ei käytetä ollenkaan mutatointia.}
+    \label{code:js_just_mutate_immutable}
+\end{code}
+
+Täysin mutatoimattomalla versiolla kesti luoda tuhannesta avaimesta olio yli 300 kertaa kauemmin, kuin versiolla, joka mutatoi kohtuudella.
+
+
+\begin{code}
+    \begin{minted}[highlightlines={8,15}]{javascript}
+const entries = Array.from({ length: 1000 }, (_, i) => [
+    `key-${i}`,
+    `value-${i}`
+])
+
+const objectFromEntries = (entries) =>
+    entries.reduce((acc, entry) => {
+        acc[entry[0]] = entry[1]
+        return acc
+    }, {})
+          
+console.time('Mutable')
+objectFromEntries(entries)
+console.timeEnd('Mutable')
+// Mutable: 0.35693359375 ms
+\end{minted}
+    \caption{Sama funktio kuin aiempi. Ainoa ero, että pareja iteroidessa luotavaa oliota mutatoidaan.}
+    \label{code:js_just_mutate_mutable}
+\end{code}
+
+Useimmiten ohjelman tehokkuudella ei ole paljoa merkitystä, ja luotettavuus ja luettavuus ovat edellä. Kuitenkin tässä tilanteessa tehokkuuserot ovat niin merkittävät, että jos 1 000 avain-arvo -parin sijasta, oltaisiin käytetty 100 000, tai 1 vaikka 000 000 avain-arvo -paria, mutatoimaton versio ei välttämättä olisi suoriutunut tehtävästä koskaan. Näitä määriä yritettiin, mutta suoritukset lopetettiin kesken, kun näytti, etteivät tehtävät mene ikinä läpi.
+
+
+\section{Monadien käyttäminen huomaamatta}
+
+
+\subsection{Lista on monadi}
 .flatmap.flatmap.flatmap.flatmap.flatmap.flatmap
 
-\subsection{Virhetilat mahdottomiksi}
+\subsection{Promise on monadi}
 
-Ramda ja TypeScript ei toimi tähän. Ramdan funktioihin ei voi luottaa, koska tyypit eivät pysy perässä.
+.then.then.then.then.then.then.then.then.then.then
+\subsection{Maybe-monadi}
 
-\section{Kehittäjien kokemukset}
 
-Mielipiteet puolesta ja vastaan
 
-\subsection{Edut}
+\section{Ongelmien mallintaminen}
 
-TODO
 
-\subsection{Haitat}
+\section{Virheet mukaan mallintamiseen}
 
-TODO
+\subsection{Result-monadi}
+RESULT MONAD!!!!!!!!!!!!! THIS IS GOLDEN
