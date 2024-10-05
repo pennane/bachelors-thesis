@@ -300,14 +300,14 @@ const mightWorkMightNot = (): Maybe<string> => {
     return "hello world"
 }
     \end{minted}
-    \caption{Mahdollisesti epäonnistuvan paluuarvon malli}
+    \caption{Mahdollisesti puuttuvan paluuarvon malli}
     \label{code:ts_null_sum}
 \end{code}
 
 Deklaratiivisesti funktio kertoo, että se saattaa palauttaa merkkijonon, tai saattaa olla palauttamatta. Ehkä merkkijono, ehkä ei.
-Tyypin käyttäminen on hieman tönkköä, sillä jos funktion oikea palautusarvo on null, on mahdotonta sanoa toimiko funktiokutsu vai ei.
+Tyypin käyttäminen on hieman tönkköä, sillä jos funktion oikea palautusarvo on null, on mahdotonta sanoa oliko funktiokutsu onnistunut vai ei.
 
-Tyypin voi viedä pidemmälle, jos arvot kääritään objekteihin. Vaihdetaan nimi myös Result-tyypiksi, että tyyppi voi kapseloida myös virheitä. (Koodiesimerkki \ref{code:ts_better_result_sum}.)
+Tyypin voi viedä pidemmälle, jos arvot kääritään objekteihin. Vaihdetaan nimi Result-tyypiksi, että tyyppi voi kapseloida myös virheitä. (Koodiesimerkki \ref{code:ts_better_result_sum}.)
 
 \begin{code}
     \begin{minted}{typescript}
@@ -329,7 +329,7 @@ const mightWorkMightNot = (): Result<string> => {
 
 Result-tyyppi on objekti, jossa on joko kenttä \mintinline{typescript}|value| tai \mintinline{typescript}|error|.
 
-Näin Result-tyyppi voi sisältää myös arvon null. Näin rakennettuna tyypille on myös helppo rakentaa apufunktioita, joilla selvitetään, onko paluuarvo onnistunut, vai ei. Voi myös luoda apufunktiot, joilla luoda Result-objekteja. (Koodiesimerkki \ref{code:result_helpers}).
+Näin Result-tyyppi voi sisältää myös arvon \mintinline{typescript}|null|, sillä se Result-objektin tarkan tyypin voi päätellä ilman sitä (joko value tai error kentän läsnäolosta). Näin rakennettuna tyypille on myös helppo rakentaa apufunktioita, joilla selvitetään, onko paluuarvo onnistunut, vai ei. Voi myös luoda apufunktiot, joilla luoda Result-objekteja. (Koodiesimerkki \ref{code:result_helpers}).
 
 \begin{code}
     \begin{minted}{typescript}
@@ -385,6 +385,8 @@ Result-tyypillä on kuitenkin jotain, jolla sen voi viedä vielä askelta pidemm
 
 
 \subsection{Result-monadi}
+
+TODO
 
 \begin{code}
     \begin{minted}{typescript}
