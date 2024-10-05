@@ -1,30 +1,22 @@
 % Material and Methods
 %\clearpage%if the chapter heading starts close to bottom of the page, force a line break and remove the vertical vspace
 \vspace{21.5pt}
-\chapter{Empiirinen tutkimus}
+\chapter{Empiirinen näkemys}
 
-TODO
+Tässä osassa pyritään esittämään kaikista oleellisin, mitä funktionaalisella ohjelmoinnilla voidaan saada aikaan. Teoreettisen perustan ja kokemusten avulla tuodaan esille mitä funktionaalinen ohjelmointi on koetusti parhaimmillaan.
 
-\section{Tutkimuksen lähtökohdat}
+Ajatuksena on, että kun ohjelma on mallinnettu oikein, ei ole suurta merkitystä ohjelmoidaanko olio-ohjelmointia, vai funktionaalista ohjelmointia. Olio-ohjelmoinnissa mallinnus saatettaisiin hoitaa rajapinnoilla (interface). Funktionaalisen ohjelmoinnin tapa mallintaa on käyttää tyyppejä ja abstrakteja tietorakenteita.
 
-TODO
+Käydään myös miten funktionaalinen ohjelmointi näkyy konkreettisesti. Tämä on erinäköisten funktioiden muodossa.
 
-\subsection{Tutkimusympäristö}
-
-TODO
-
-\subsection{Tutkimusmenetelmät}
-
-TODO
-
-\subsection{Tutkimuksen rajoitukset}
-
-TODO
+// TÄSSÄ OLI VÄLIOTSIKOT "Tutkimuksen lähtökohdat", "Tutkimusympäristö", "Tutkimusmenetelmät", ja "Tutkimuksen rajoitukset"
+// NE ON POISTETTU TURHAN TOISTON VÄLTTÄMISEKSI
+// AJATUKSENA ON KIRJOITTAA ENEMMÄN "RETROSPEKTIIVISESTI", MISTÄ NÄKÖKULMASTA "Empriirinen tutkimus" -OSA TEHTIIN SEURAAVASSA OSASSA "Tulosten analyysi"
 
 
 \section{Opi kerran, käytä kaikkialla}
 
-Funktionaalisessa ohjelmoinnissa etsitään yleisiä teemoja, ja viedään toistuvia malleja funktioiksi, jotta voidaan syntaksin sijasta kirjoittaa funktioiden nimiä. Olio-ohjelmoinnissa, tai muuten imperatiivisessa ohjelmoinnissa, for-silmukalla toteutettavat algoritmit yleistetään funktioiksi (\ref{fig:ramdacmds}). Onko helpompaa opetella ääretön määrä funktioita, vai yksi kielirakenne: for-silmukka?
+Funktionaalisessa ohjelmoinnissa etsitään yleisiä teemoja, ja viedään toistuvia malleja funktioiksi, jotta voidaan syntaksin sijasta kirjoittaa funktioiden nimiä. Olio-ohjelmoinnissa, tai muuten imperatiivisessa ohjelmoinnissa, for-silmukalla toteutettavat algoritmit yleistetään funktioiksi (Kuva \ref{fig:ramdacmds}). Onko helpompaa opetella ääretön määrä funktioita, vai yksi kielirakenne: for-silmukka?
 
 \begin{figure}[ht]
     \centering
@@ -71,7 +63,7 @@ Jossain vaiheessa ohjelman suoritusta tietokoneen bitit kääntyilevät nollista
 Jos funktio mutatoi ainoastaan muuttujia, joita se itse luo funktion ajon ajaksi, ei sillä ole lopputuloksen kannalta toiminnallista merkitystä. Kuitenkin tehokkuusvoitot voivat olla huomattavat versioihin, joissa mutatointia ei harjoiteta.
 
 Esimerkkinä funktio, joka ottaa sisään listan avain-arvo-pareja, ja luo niistä olion. Näytetään kaksi (funktionaalista) tapaa totettaa funktio.
-Versio, joka ei mutatoi muuttujia missään vaiheessa (\ref{code:js_just_mutate_immutable}), ja versio, joka mutatoi vain itse luomiaan muuttujia (\ref{code:js_just_mutate_mutable}).
+Versio, joka ei mutatoi muuttujia missään vaiheessa (Koodiesimerkki \ref{code:js_just_mutate_immutable}), ja versio, joka mutatoi vain itse luomiaan muuttujia (Koodiesimerkki \ref{code:js_just_mutate_mutable}).
 
 Tarkkailijan näkökulmasta molemmat funktiot ovat kuitenkin puhtaita.
 
@@ -122,25 +114,6 @@ console.timeEnd('Mutable')
 \end{code}
 
 Useimmiten ohjelman tehokkuudella ei ole paljoa merkitystä, ja luotettavuus ja luettavuus ovat edellä. Kuitenkin tässä tilanteessa tehokkuuserot ovat niin merkittävät, että jos 1 000 avain-arvo -parin sijasta, oltaisiin käytetty 100 000, tai vaikka 1 000 000 avain-arvo -paria, mutatoimaton versio ei välttämättä olisi suoriutunut tehtävästä koskaan. Näitä määriä yritettiin, mutta suoritukset lopetettiin kesken, kun alkoi näyttämään, ettei tehtävä suoriudu koskaan.
-
-
-\section{Monadien käyttäminen huomaamatta}
-
-TODO - ehkä poistoon koko osa
-
-\subsection{Lista on monadi}
-.flatMap.flatMap.flatMap.flatMap.flatMap.flatMap
-
-\subsection{Promise on monadi}
-
-.then.then.then.then.then.then.then.then.then.then
-\subsection{Maybe-monadi}
-
-Lopetataan laskenta jos vastaus on null.
-
-\subsection{Map, filter, reduce}
-
-Monadit ei pakollisia. "funktori" on yleensä tarpeeksi ?
 
 \section{Ongelmien mallintaminen}
 
@@ -213,9 +186,9 @@ Tämä on selkeästi parannus. Tyyppijärjestelmä pitää huolen, että mallia 
 
 \textbf{Kenttien arvot voivat olla mitä tahansa.} Mikään ei pidä huolta, että esimerkiksi kentän \mintinline{typescript}|correctAnswerIncides| indeksit ovat oikeellisia. Myös kaikki, joissa tyyppinä on \mintinline{typescript}|string| voivat ottaa vastaan mitä tahansa merkkijonoja. Myös tyhjiä merkkijonoja.
 
-Merkkijonojen validointi TypeScriptin tyyppijärjestelmässä on kuitenkin hieman vaivalloista, eikä välttämättä tarpeellista. Kenttä \mintinline{typescript}|correctAnswerIncides| on kuitenkin huono, ja on korjattavissa. Korjauskeinona olkoon paras keino: kentän poistaminen.
+Merkkijonojen validointi TypeScriptin tyyppijärjestelmässä on kuitenkin hieman vaivalloista, eikä välttämättä tarpeellista. Kenttä \mintinline{typescript}|correctAnswerIncides| on kuitenkin ajatuksena erittäin huono, sillä malli ei millään tavalla määrittele miten se liittyy kysymykseen tarkemmin. Mikään ei estä laittamasta täysin päättömiä numeroita \textcite{oikeiksi} indekseiksi. Korjauskeinona olkoon paras keino: kentän poistaminen.
 
-Kentän voi poistaa kokonaan, jos mallinnusta viedään pidemmälle. Voidaan sopia, että on olemassa kahdenlaisia vastauksia. Oikeita tai vääriä. Tämän voi myös mallintaa (Koodiesimerkki \ref{code:ts_answer_types})
+Kentän voi poistaa kokonaan, jos mallinnusta viedään pidemmälle. Voidaan sopia, että on olemassa kahdenlaisia vastauksia. Oikeita tai vääriä. Tämä on varsin helppo mallintaa (Koodiesimerkki \ref{code:ts_answer_types})
 
 \begin{code}
     \begin{minted}{typescript}
@@ -248,10 +221,10 @@ type Question = {
 
 Malli ei enää valehtele. Voi kuitenkin olla, että tulevaisuudessa on tarve luoda enemmän vaatimuksia. Voidaan haluta rajoittaa, että kysymyksessä voi valita vain yhden vaihtoehdon, tai usean. Voidaan haluta antaa mahdollisuus antaa vastauksena vapaata tekstiä. Tai mitä ikinä.
 
-Tämänkaltaisessatapauksessakaan ei kannata unohtaa, että ei ole hyvä jos malli valehtelee. \textbf{Voidaan käyttää hyväksi summatyyppejä.} Sen sijasta, että lisätään tyyppeihin uusia pakollisia kenttiä kuten \mintinline{javascript}|isMultipleAnswerQuestion| tai \mintinline{javascript}|isFreeForm|, voidaankin luoda jokaiselle fundamentaalisesti erilaiselle asialle oma tyyppinsä, ja yhdistää ne yhdeksi summatyypiksi.
+Tämänkään kaltaisessa tapauksessakaan ei kannata unohtaa, että hyvä malli ei valehtelee. \textbf{Voidaan käyttää hyväksi summatyyppejä.} Sen sijasta, että lisättäisiin tyyppeihin uusia kenttiä kuten \mintinline{javascript}|isMultipleAnswerQuestion| tai \mintinline{javascript}|isFreeForm|, voidaan puolestaan luoda jokaiselle fundamentaalisesti erilaiselle asialle yksinkertaisesti kokonaan oma tyyppinsä, ja yhdistää ne yhdeksi summatyypiksi.
 
 \begin{code}
-    \begin{minted}{typescript}
+    \begin{minted}[highlightlines={20}]{typescript}
 type MultipleAnswerQuestion = {
     type: "multipleAnswerQuestion"
     question: string
@@ -286,7 +259,7 @@ Ohjelmissa tapahtuu virheitä. Vaikka pyrittäisiin malleihin, joista on poistet
 Miten on hyvä mallintaa tilanteita, kun virheitä tapahtuu?
 
 Yleisesti imperatiivisissa paradigmoissa virhetilanteissa metodit ja funktiot palauttavat null-arvoja, virheitä tai poikkeuksia.
-Funktionaalisessa ohjelmoinnissa voidaan käyttää samoja keinoja, mutta useimmin funktioiden suorituksen räjäyttämisen sijasta funktiot palauttavat summatyyppejä, tai monadeja, joissa voi olla sisällä joko oikea palautusarvo tai virhetyyppi.
+Funktionaalisessa ohjelmoinnissa voidaan käyttää samoja keinoja, mutta useimmin funktioiden suorituksen räjäyttämisen sijasta funktiot palauttavat summatyyppejä, tai monadeja, joissa voi olla sisällä joko oikea palautus- tai virhetyyppi.
 
 TypeScriptissä yksinkertaisimmillaan tämän voi toteuttaa yhdellä omalla tyypillä (Koodiesimerkki \ref{code:ts_null_sum}).
 
@@ -304,7 +277,7 @@ const mightWorkMightNot = (): Maybe<string> => {
     \label{code:ts_null_sum}
 \end{code}
 
-Deklaratiivisesti funktio kertoo, että se saattaa palauttaa merkkijonon, tai saattaa olla palauttamatta. Ehkä merkkijono, ehkä ei.
+Deklaratiivisesti funktio kertoo, että se saattaa palauttaa merkkijonon, tai saattaa olla palauttamatta. Ehkä se on merkkijono, ehkä se ei ole.
 Tyypin käyttäminen on hieman tönkköä, sillä jos funktion oikea palautusarvo on null, on mahdotonta sanoa oliko funktiokutsu onnistunut vai ei.
 
 Tyypin voi viedä pidemmälle, jos arvot kääritään objekteihin. Vaihdetaan nimi Result-tyypiksi, että tyyppi voi kapseloida myös virheitä. (Koodiesimerkki \ref{code:ts_better_result_sum}.)
@@ -327,9 +300,9 @@ const mightWorkMightNot = (): Result<string> => {
 \end{code}
 
 
-Result-tyyppi on objekti, jossa on joko kenttä \mintinline{typescript}|value| tai \mintinline{typescript}|error|.
+Result-tyyppi on objekti, jolla on joko kenttä \mintinline{typescript}|value| tai \mintinline{typescript}|error|.
 
-Näin Result-tyyppi voi sisältää myös arvon \mintinline{typescript}|null|, sillä se Result-objektin tarkan tyypin voi päätellä ilman sitä (joko value tai error kentän läsnäolosta). Näin rakennettuna tyypille on myös helppo rakentaa apufunktioita, joilla selvitetään, onko paluuarvo onnistunut, vai ei. Voi myös luoda apufunktiot, joilla luoda Result-objekteja. (Koodiesimerkki \ref{code:result_helpers}).
+Näin Result-tyyppi voi sisältää myös arvon \mintinline{typescript}|null|, sillä Result-objektin tarkan tyypin voi nyt päätellä ilman sitä. Nyt tarkan tyypin voi määrittää \mintinline{typescript}|value| tai \mintinline{typescript}|error| kentän läsnäolosta tai puutteesta. Näin rakennettuna tyypille on myös helppo rakentaa apufunktioita, joilla selvitetään, onko paluuarvo onnistunut, vai ei. Voi myös luoda apufunktiot, joilla luoda Result-objekteja. (Koodiesimerkki \ref{code:result_helpers}).
 
 \begin{code}
     \begin{minted}{typescript}
@@ -409,3 +382,7 @@ helloMaybe()
     \caption{Miltä aiemman esimerkin koodi voi näyttää, jos Result toimii kuin monadi.}
     \label{code:result_monad_example}
 \end{code}
+
+\subsection{Map, filter, reduce}
+
+Monadit eivät ole pakollisia. Funktori on usein tarpeeksi. Funktori on rakenne, jolla on map-metodi.
