@@ -186,7 +186,7 @@ Tämä on selkeästi parannus. Tyyppijärjestelmä pitää huolen, että mallia 
 
 \textbf{Kenttien arvot voivat olla mitä tahansa.} Mikään ei pidä huolta, että esimerkiksi kentän \mintinline{typescript}|correctAnswerIncides| indeksit ovat oikeellisia. Myös kaikki, joissa tyyppinä on \mintinline{typescript}|string| voivat ottaa vastaan mitä tahansa merkkijonoja. Myös tyhjiä merkkijonoja.
 
-Merkkijonojen validointi TypeScriptin tyyppijärjestelmässä on kuitenkin hieman vaivalloista, eikä välttämättä tarpeellista. Kenttä \mintinline{typescript}|correctAnswerIncides| on kuitenkin ajatuksena erittäin huono, sillä malli ei millään tavalla määrittele miten se liittyy kysymykseen tarkemmin. Mikään ei estä laittamasta täysin päättömiä numeroita \textcite{oikeiksi} indekseiksi. Korjauskeinona olkoon paras keino: kentän poistaminen.
+Merkkijonojen validointi TypeScriptin tyyppijärjestelmässä on kuitenkin hieman vaivalloista, eikä välttämättä tarpeellista. Kenttä \mintinline{typescript}|correctAnswerIncides| on kuitenkin ajatuksena erittäin huono, sillä malli ei millään tavalla määrittele miten se liittyy kysymykseen tarkemmin. Mikään ei estä laittamasta täysin päättömiä numeroita \textcite{oikeiksi} indekseiksi. Korjauskeinona on paras keino: kentän poistaminen.
 
 Kentän voi poistaa kokonaan, jos mallinnusta viedään pidemmälle. Voidaan sopia, että on olemassa kahdenlaisia vastauksia. Oikeita tai vääriä. Tämä on varsin helppo mallintaa (Koodiesimerkki \ref{code:ts_answer_types})
 
