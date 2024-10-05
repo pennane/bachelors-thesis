@@ -186,7 +186,7 @@ Nyt tietovisassa on oltava vähintään yksi kysymys, ja jokaisella vähintään
 
 Tämä on selkeästi parannus. Tyyppijärjestelmä pitää huolen, että mallia seurataan. Tarkastuksia tyhjyydestä ei tarvitse tehdä if-lauseilla. Malli ei kuitenkaan ole vieläkään täydellinen.
 
-\textbf{Kenttien arvot voivat olla mitä tahansa.} Mikään ei pidä huolta, että esimerkiksi kentän \mintinline{typescript}|correctAnswerIncides| indeksit ovat oikeellisia. Myös kaikki, joissa tyyppinä on \mintinline{typescript}|string| voivat ottaa vastaan mitä tahansa merkkijonoja. Myös tyhjiä merkkijonoja.
+\textbf{Kenttien arvot voivat olla mitä tahansa.} Mikään ei pidä huolta, että esimerkiksi kentän \mintinline{typescript}|correctAnswerIncides| indeksit ovat \glsdisp{correctness}{oikeellisia}. Myös kaikki, joissa tyyppinä on \mintinline{typescript}|string| voivat ottaa vastaan mitä tahansa merkkijonoja. Myös tyhjiä merkkijonoja.
 
 Merkkijonojen validointi TypeScriptin tyyppijärjestelmässä on kuitenkin hieman vaivalloista, eikä välttämättä tarpeellista. Kenttä \mintinline{typescript}|correctAnswerIncides| on kuitenkin ajatuksena erittäin huono, sillä malli ei millään tavalla määrittele miten se liittyy kysymykseen tarkemmin. Mikään ei estä laittamasta täysin päättömiä numeroita \textcite{oikeiksi} indekseiksi. Korjauskeinona on paras keino: kentän poistaminen.
 
@@ -207,7 +207,7 @@ type IncorrectAnswer = {
     \label{code:ts_answer_types}
 \end{code}
 
-Uusilla tyypeillä voidaan mallintaa kysymyksiä oikeellisemmin. Voidaan myös määrittää, että kysymyksellä on oltava vähintään yksi oikea vastaus, ja nolla tai useampi väärä vastaus (Koodiesimerkki \ref{code:ts_question_with_explicit_answer_types}).
+Uusilla tyypeillä voidaan mallintaa kysymyksiä \glsdisp{correctness}{oikeellisemmin}. Voidaan myös määrittää, että kysymyksellä on oltava vähintään yksi oikea vastaus, ja nolla tai useampi väärä vastaus (Koodiesimerkki \ref{code:ts_question_with_explicit_answer_types}).
 
 \begin{code}
     \begin{minted}[highlightlines={3,4}]{typescript}
