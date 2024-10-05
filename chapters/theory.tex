@@ -383,11 +383,9 @@ Kategoriateoriaan ei perehdytä työssä paljoa Monadi-rakennetta lukuunottamatt
 
 Kategoriateoria on kuitenkin niin kytköksissä funktionaaliseen ohjelmointiin, ettei sitä ole kannattavaa jättää kokonaan mainitsematta. Kategoriateorialle on kaivattu käytännönläheisempää tapaa lähestyä sitä ohjelmoijan näkökulmasta \cite{holvikari2021category}. Toisaalta on myös huomattu, että ohjelmoitaessa funktionaalista ohjelmointia puhtaasti, kategoriateorian oppii automaattisesti työn ohessa ilman tiukkaa teorian opiskelua \cite{holvikari2021category}.
 
-\subsection{Monadi}
+\section{Monadi}
 
-Monadi on monoidi endofunktorien kategoriassa \cite{bartosz_category_for_progamers_10}. Näin kuvatataan \glsdisp{monad}{monadi-rakennetta}. Jotta voi ymmärtää kuvauksen, on opiskeltava kategoriateoriaa muutaman yliopistotasoisen kurssin verran ottamatta huomioon vaadittuja ennakkotietoja, mitä tarvitaan siihen, että kategoriateoriaa voi edes alkaa opiskelemaan.
-
-Monadi tulee kuitenkin esille funktionaalisessa ohjelmoinnissa erittäin usein. Se on erittäin hyödyllinen abstrakti tietotyyppi. Monadille on etsitty konkreettisempia tapoja selittää se. Näihin selityksiin kuuluu muunmuassa:
+Monadi tulee kuitenkin esille funktionaalisessa ohjelmoinnissa erittäin usein. Se on hyödyllinen abstrakti tietotyyppi. Ohjelmoijalle monadia on kuvattu eri tavoin. Näihin selityksiin on kuulunut muunmuassa:
 
 \begin{itemize}
     \item Monadi on asia, jolla on \mintinline{javascript}|flatMap|-metodi \cite{stackoverflow_flatmap_monad}.
@@ -397,15 +395,125 @@ Monadi tulee kuitenkin esille funktionaalisessa ohjelmoinnissa erittäin usein. 
 \end{itemize}
 
 
-Viimeisimmän uskotaan olevan kuvaavin, vaikka tämä ei paljoa helpota \cite{stackoverflow_what_monad}. Fraasi on surullisenkuuluisa, ja lienee yksi syy sille, miksei funktionaalinen ohjelmointi ole suositumpaa. Jos käsitteiden ymmärtämiseen tarvitsee useiden yliopistotasoisien kurssien taustatiedot, ei lähtökohdat leviämiselle ole vahvat. Jos kuitenkin etsitään ohjelmoijalle käytännönläheisempää selitystä, se voisi olla jotenkin näin.
+Viimeisimmän uskotaan olevan kuvaavin, vaikka tämäkään ei paljoa helpota useimpaa lukijaa \cite{stackoverflow_what_monad}. \textit{Monadi on monoidi endofunktoreiden kategoriassa} on fraasina surullisenkuuluisa, menee lähes poikkeuksetta ohi korvien, ja lienee yksi syy sille, miksei funktionaalinen ohjelmointi ole suositumpaa. Jotta kuvauksen voi ymmärtää, olisi opiskeltava kategoriateoriaa yliopistotasoisesta materiaalista suhteellisen paljon. Ottamatta huomioon myös kategoriateoriaan vaadittuja ennakkotietoja.
+Kun käsitteiden ymmärtämiseen tarvitsee useiden yliopistotasoisien kurssien taustatiedot, ei lähtökohdat leviämiselle ole vahvat.
 
-blaa chain ja pure, x laatikkoon, halutaan tehdä äksästä uusi, ja se laitetaan taas laatikkoon.
+Kategoriateoriaa opiskeltaessa monadi ei tule ilmi pitkään aikaan, ensin on ymmärrettävä muunmuassa mikä on kategoria (category), mitä ovat funktorit (functor), luonnolliset muutokset (natural transformation), sun muut monet käsitteet. Monadi ei siis ole kategoriateorian välitön kulmakivi; miten siitä saadaan ohjelmoijalle toimiva työkalu?
 
-Lista (Array), Promise, Maybe, Either, Result, State. Siinä muutama yleinen monadi.
+Jos etsitään ohjelmoijalle käytännönläheisempää ja kuvaavaa selitystä, se voisi kuulua seuraavasti:
+
+\textit{\Gls{monad} on abstrakti tietorakenne, joka mahdollistaa ohjelman kontrollin virtaamisen läpinäkyvämmin ilman, että sivuvaikutuksia tarvitsee käsitellä suoraan suoraan.}
+
+Lyhyemmin monadia ei kannata selittää, sillä muuten kuvaus alkaa kuulostamaan jo liian yleiseltä ja vaikemmalta hahmottaa. Määritelmästä on karsittu funktorit, kategoriat ja monoidit. Suunta lienee oikea. Seuraavaksi avataan määritelmän osia tarkemmin.
+
+\textbf{Abstrakti tietotyyppi}
+
+Monadi on suunnittelumalli, joka tarjoaa tavan käsitellä operaatioiden ketjuttamista (\glsdisp{composed_function}{yhdistetyt funktiot}) ilman, että täytyy huolehtia suoraan siitä, miten data kulkee funktiosta toiseen. Monadi voi kääriä jonkin arvon tiettyyn \textquote*{laatikkoon}, tai kontekstiin, ja pitää sisällään abstraktion, joka mahdollistaa lisätoimenpiteiden suorittamisen, vaikka sisällä oleva arvo voi vaihdella.
+
+\textbf{Ohjelman kontrollin virtaaminen}
+
+Ohjelman kontrollin virtaaminen tarkoittaa sitä, että operaatioita voi suorittaa ilman, että arvoja käärittyjä arvoja käsitellään suoraan (esim. Maybe-monadi käärii arvon tai tyhjyyden). Kontrolli virtaa funktion kautta seuraavalle funktiolle, jolloin ohjelmointivirheitä (esim. null-poikkeuksia) voidaan käsitellä läpinäkyvästi.
+
+Monadin avulla voi hallita kontrollin virtaamista operaatioiden välillä ja varmistaa, että ohjelma toimii oikein erilaisissa skenaarioissa (esim. virheiden, tyhjien arvojen tai asynkronisten operaatioiden kanssa).
+
+\textbf{Sivuvaikutusten käsittely}
+
+Monadit ovat erityisen hyödyllisiä sivuvaikutusten hallinnassa. Monadeilla voi eristää sivuvaikutukset kuten tiedostojärjestelmän tai tietokantayhteyden. Eristäminen mahdollistaa sen, että voi kirjoittaa koodia, joka näyttää sivuvaikutuksettomalta, vaikka taustalla niitä kuitenkin tapahtuisikin. Monadit kääntävät näitä toimenpiteitä helposti hallittaviin rakenteisiin, jolloin ohjelmoija voi keskittyä ohjelman loogiseen etenemiseen.
+
+\subsection{Monadin implementointi}
+
+Loppujen lopuksi monadin implementointi on varsin yksinkertaista, vaikka taustalla on monimutkaista matematiikkaa ja ajatusmalleja.
+
+Monadilla on oltava kaksi toimintoa: \mintinline{javascript}|unit| ja \mintinline{javascript}|bind|. Nämä on johdettu kategoriateorian monadin määritteestä. \citep{bartosz_category_for_progamers_10}
+
+\mintinline{python3}|of|-toiminnolla kääritään arvoja monadiin. \mintinline{python3}|of|-toiminnon voidaan ajatella olevan vain monadin konstruktori.
+
+\mintinline{javascript}|bind|-toiminnolla muutetaan monadiin käärittyä arvoa antamalla toiminnolle funktio, joka palauttaa toisen saman tyypin monadin. \mintinline{javascript}|bind|-toiminto on käytännössä sama kuin tunnetumpi \mintinline{javascript}|map|-funktio. Erona on se, että \mintinline{javascript}|map| palauttaa arvon, joka on kääritty uuteen monadiin, mutta \mintinline{javascript}|bind| mahdollistaa arvojen ketjuttamisen ja säilyttää monadin rakenteen, jolloin saadaan lisätoimintoja, kuten virheiden käsittely tai asynkroninen suoritus.
+
+Jos monadille on implementoitu \mintinline{javascript}|map| metodi, se ei välttämättä muokkaa monadin rakennetta, kun taas \mintinline{javascript}|bind| yhdistää useita operaatioita, jotka riippuvat edellisen operaation tuloksista. Tämä tekee \mintinline{javascript}|bind|-toiminnosta erityisen voimakkaan työkalun monadien käytössä, sillä sen avulla voidaan rakentaa monimutkaisempia operaatioita hallitusti ja ennakoitavasti.
+
+
+
+\subsection{Yleiset monadit}
+
+Lista (Array), Promise, Maybe, Either, Result, State. Nämä ovat esimerkkejä yleisesti käytetyistä monadeista.
+
+JavaScriptissa Array ja Promise tietotyyppejä voidaan käyttää monadeina.
+
+
+\subsubsection{Lista (Array)}
+
+Array käyttää \mintinline{javascript}|flatMap|-metodia bindina ja staattista \mintinline{javascript}|Array.of|-metodia unitina.
+
+\textit{bind}: \mintinline{javascript}|Array.prototype.flatMap(f)|
+\textit{unit}: \mintinline{javascript}|Array.of(x)|
+
+Esimerkki Arrayn käyttämisestä monadisin periaattein JavaScriptissa:
+
+\begin{code}
+    \begin{minted}{typescript}
+[1, 2, 3, 4].flatMap((x) => {
+    if (x % 2 === 0) {
+        return Array.of(x * 2) // tai "return [x * 2]"
+    }
+        return Array.of() // tai "return []"
+})
+// palautuu [2, 6]
+\end{minted}
+    \caption{Array-tietorakenteella monadinen bind-operaatio, jossa poistetaan parittomat luvut ja parilliset kerrotaan kahdella.}
+    \label{code:array_monad_fr}
+\end{code}
+
+
+\subsubsection{Promise}
+
+Promise sitoutuu asynkronisiin arvoihin. JavaScriptissa monadiset operaatiot Promiselle ovat:
+
+\textit{bind}: \mintinline{javascript}|Promise.prototype.then(f)|
+
+\textit{unit}: \mintinline{javascript}|Promise.resolve(x)| ja \mintinline{javascript}|Promise.reject(x)|
+
+Esimerkki Promisen käytöstä JavaScriptissa:
+
+\begin{code}
+    \begin{minted}{typescript}
+// fetch palauttaa Promisen automaattisesti.
+// "unit"-operaatiota ei tarvitse kutsua itse.
+fetch("https://some.imaginary.api.com/v1") 
+// Palautetaan JSON-data, mikä on myös Promise.
+.then(result => result.json()) 
+// JavaScriptissa "then"-operaatioon on yhdistetty myös "unit"-operaatio,
+// ja siksei uuteen monadiin (promiseen) kääriminen ole pakollista
+.then(data => data.users) // tai ".then(data => Promise.resolve(data.users))"
+.then(users => users.map(user => user.id))
+// Jos jokin Promise epäonnistuu, koodi virtaa "catch"-osaan. Virheet voi käsitellä yhdessä paikassa.
+.catch(error => Array.of()) 
+\end{minted}
+    \caption{Promise-tietorakenteella bind-operaatioden ketjutus, jossa haetaan käyttäjätietoja kuvitteellisesta ulkoisesta rajapinnasta}
+    \label{code:promise_monad_fr}
+\end{code}
+
+Ilman kommentteja monadisen ketjutuksen näppäryyden huomaa vielä selkeämmin.
+
+\begin{code}
+    \begin{minted}{typescript}
+fetch("https://some.imaginary.api.com/v1") 
+.then(result => result.json()) 
+.then(data => data.users)
+.then(users => users.map(user => user.id))
+.catch(error => Array.of()) 
+    \end{minted}
+    \caption{Koodiesimerkki \cite{code:promise_monad_fr} ilman kommentteja näyttäen ketjutuksen kulun selkeämmin}
+    \label{code:promise_monad_concise}
+\end{code}
+
+
+Tiivistettynä monadeilla voidaan ketjuttaa operaatioita itsemäärittelemällä tavalla mahdollisesti eroten tavallisista yhdistetyistä funktioista.
+
 
 \section{Pragmaattisuus funktionaalisessa ohjelmoinnissa}
 
-Funktionaalisen ohjelmoinnin tärkein teoria alkaa olla käytynä ja ehkä on selvää, että funktionaalinen ohjelmointi on pohjimmiltaan erittäin teoreettista. On hyvä aika tarkastella,  miten funktionaalinen ohjelmoinnin voisi tuoda ohjelmistokehittäjän arsenaaliin. Ja toisaalta, miksei tälläistä muuttoliikettä ole ohjelmoijaenemmistölle vielä tapahtunut.
+Funktionaalisen ohjelmoinnin tärkein teoria alkaa olla käytynä ja ehkä on selvää, että funktionaalinen ohjelmointi on pohjimmiltaan erittäin teoreettista. On hyvä aika tarkastella, miten funktionaalinen ohjelmoinnin voisi tuoda ohjelmistokehittäjän arsenaaliin. Ja toisaalta, miksei tälläistä muuttoliikettä ole ohjelmoijaenemmistölle vielä tapahtunut.
 
 Kun funktionaalisen ohjelmoinnin kauneus on matemaattisissa kulmakivissä, joilla ei ole tapaa taipua, miten sen voi yhdistää säännöttömään JavaScriptiin, tai muuhun vastaavanlaiseen ohjelmointikieleen?
 
