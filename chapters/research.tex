@@ -159,7 +159,7 @@ type NonEmptyArray<T> = {
 
 Tyypissä on käytetty tyyppimuuttujaa T. Jos geneeriset tyypit eivät ole tuttuja, tyyppimuuttuja tarkoittaa sitä että sen sijalle voi laittaa mitä tahansa. Kyse on myös parametrisestä polymorfista (parametric polymorphism).
 
-Pääasia on, että tyyppi kuvaa listaa, joka ei voi olla tyhjä. Tyypillä on kenttä \mintinline{javascript}|first|, jonka on oltava olemassa. Ja kenttä \mintinline{javascript}|rest|, jossa säilytetään listan loput alkiot. Kentän lista on taas tavallinen \mintinline{javascript}|Array|, ja se voi, ja saa olla, taas olla tyhjä.
+Pääasia on, että tyyppi kuvaa listaa, joka ei voi olla tyhjä. Tyypillä on kenttä \mintinline{javascript}|first|, jonka on oltava olemassa. Ja kenttä \mintinline{javascript}|rest|, jossa säilytetään listan loput alkiot. Kentän lista on taas tavallinen \mintinline{javascript}|Array|, ja se voi, ja saa olla, taas tyhjä (Esimerkkikoodi \ref{code:ts_non_empty_quiz}).
 
 
 \begin{code}
