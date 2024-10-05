@@ -24,7 +24,7 @@ TODO
 
 \section{Opi kerran, käytä kaikkialla}
 
-Funktionaalisessa ohjelmoinnissa etsitään yleisiä teemoja, ja viedään toistuvia malleja funktioiksi, jotta voidaan syntaksin sijasta kirjoittaa funktioiden nimiä. Olio-ohjelmoinnissa, tai muuten imperatiivisessa ohjelmoinnissa, for-silmukalla toteutettavat algoritimit yleistetään funktioiksi (\ref{fig:ramdacmds}). Onko helpompaa opetella ääretön määrä funktioita, vai yksi kielirakenne: for-silmukka?
+Funktionaalisessa ohjelmoinnissa etsitään yleisiä teemoja, ja viedään toistuvia malleja funktioiksi, jotta voidaan syntaksin sijasta kirjoittaa funktioiden nimiä. Olio-ohjelmoinnissa, tai muuten imperatiivisessa ohjelmoinnissa, for-silmukalla toteutettavat algoritmit yleistetään funktioiksi (\ref{fig:ramdacmds}). Onko helpompaa opetella ääretön määrä funktioita, vai yksi kielirakenne: for-silmukka?
 
 \begin{figure}[ht]
     \centering
@@ -48,13 +48,13 @@ Funktionaalisessa ohjelmoinnissa etsitään yleisiä teemoja, ja viedään toist
 
 Nimet ovat syntaksiriippumattomia. Samoja nimiä voi käyttää ohjelmointikielestä riippumatta. Nimillä voi kuvata oikean maailman asioita. Siksi voi perustella, että kun tietyn logiikan aina laittaa tietyn nimen taakse funktioksi, ymmärtää sen aina vaikka ohjelmointikieli vaihtuisi. Jos muistaa idean, ei implementaation yksityiskohdilla ole merkitystä.
 
-Jos asia on tarpeeksi monimutkainen ja sen piilottaa nimen taakse, hyötyarvon määrittäminen voi olla haastavaa. Mitä monimutkaisempaa asiaa yritetään enkoodata yksittäiseen nimeen, sitä vaikeampaa se on lukijan ymmärtää, ja myöskin sitä vaikeampaa sille on löytää uudelleenkäyttötilanteita. Pienikin nyanssiero funktion implementaatiossa totuttuun implementaatioon voi mitätöidä opitun hyödyn eri ympäristöissä.
+Jos asia on tarpeeksi monimutkainen ja sen piilottaa nimen taakse, hyötyarvon määrittäminen voi olla haastavaa. Mitä monimutkaisempaa asiaa yritetään enkoodata yksittäiseen nimeen, sitä vaikeampaa se on lukijan ymmärtää, ja myös sitä vaikeampaa sille on löytää uudelleenkäyttötilanteita. Pienikin nyanssiero funktion implementaatiossa totuttuun implementaatioon voi mitätöidä opitun hyödyn eri ympäristöissä.
 
-Yksinkertaisiakin funktioita voi olla vaikea hahmottaa koodista. Mikään ei pakota ohjelmoijaa nimeämään funktiota samalla tavalla kuin miten sama funktio on nimetty jossain toissessa projektissa tai ohjelmointikielessä. Vaikka ohjelmoija tahtoisi noudattaa aiempia nimeämiskäytänteitä, niin aiempia nimeämiskäytänteitä voi olla vaikea löytää, tai ylipäätään jo useita.
+Yksinkertaisiakin funktioita voi olla vaikea hahmottaa koodista. Mikään ei pakota ohjelmoijaa nimeämään funktiota samalla tavalla kuin miten sama funktio on nimetty jossain toisessa projektissa tai ohjelmointikielessä. Vaikka ohjelmoija tahtoisi noudattaa aiempia nimeämiskäytänteitä, niin aiempia nimeämiskäytänteitä voi olla vaikea löytää, tai ylipäätään jo useita.
 
 Kannattanee käyttää ohjelmointikielen sisäänrakennettuja funktioita, ja metodeja aina kun mahdollista. Näin voi maksimoida sen, että koodi ymmärretään. Jos kyse on jostakin projektin sisäisestä kirjastosta, voi olla hyödyllistä lisätä funktiolle kommentti, jos se tunnetaan muissa ohjelmointiympäristöissä jollain toisella nimellä.
 
-Jos on kyse jostain toimintaympäristökohaisesta funktiosta, eikä perustavanlaatuisesta yleispätevästä funktiosta, on tärkeää että funktio nimetään mahdollisimman kuvaavasti. Esimerkiksi sen sijaan, että nimeää funktion nimellä \textcite{processUsers}, voi miettiä tarvitseeko funktion kutsupaikoissa ymmärtää enemmän siitä mitä funktio tekee? Jos kontekstista on selvää, mitä funktio tekee, nimen voi jättää sellaiseksi kuin on. Jos konteksti ei avaa toimitaa enemmän, \textcite{processUsers} on erittäin ympäripyöreä nimi.
+Jos on kyse jostain toimintaympäristökohtaisesta funktiosta, eikä perustavanlaatuisesta yleispätevästä funktiosta, on tärkeää, että funktio nimetään mahdollisimman kuvaavasti. Esimerkiksi sen sijaan, että nimeää funktion nimellä \textcite{processUsers}, voi miettiä tarvitseeko funktion kutsupaikoissa ymmärtää enemmän siitä mitä funktio tekee? Jos kontekstista on selvää, mitä funktio tekee, nimen voi jättää sellaiseksi kuin on. Jos konteksti ei avaa toimitaa enemmän, \textcite{processUsers} on erittäin ympäripyöreä nimi.
 
 \section{Yhdistetyt funktiot}
 
@@ -70,7 +70,7 @@ Jossain vaiheessa ohjelman suoritusta tietokoneen bitit kääntyilevät nollista
 
 Jos funktio mutatoi ainoastaan muuttujia, joita se itse luo funktion ajon ajaksi, ei sillä ole lopputuloksen kannalta toiminnallista merkitystä. Kuitenkin tehokkuusvoitot voivat olla huomattavat versioihin, joissa mutatointia ei harjoiteta.
 
-Esimerkkinä funktio, joka ottaa sisään listan avain-arvo pareja, ja luo niistä olion. Näytetään kaksi (funktionaalista) tapaa totettaa funktio.
+Esimerkkinä funktio, joka ottaa sisään listan avain-arvo-pareja, ja luo niistä olion. Näytetään kaksi (funktionaalista) tapaa totettaa funktio.
 Versio, joka ei mutatoi muuttujia missään vaiheessa (\ref{code:js_just_mutate_immutable}), ja versio, joka mutatoi vain itse luomiaan muuttujia (\ref{code:js_just_mutate_mutable}).
 
 Tarkkailijan näkökulmasta molemmat funktiot ovat kuitenkin puhtaita.
@@ -121,11 +121,12 @@ console.timeEnd('Mutable')
     \label{code:js_just_mutate_mutable}
 \end{code}
 
-Useimmiten ohjelman tehokkuudella ei ole paljoa merkitystä, ja luotettavuus ja luettavuus ovat edellä. Kuitenkin tässä tilanteessa tehokkuuserot ovat niin merkittävät, että jos 1 000 avain-arvo -parin sijasta, oltaisiin käytetty 100 000, tai vaikka 1 000 000 avain-arvo -paria, mutatoimaton versio ei välttämättä olisi suoriutunut tehtävästä koskaan. Näitä määriä yritettiin, mutta suoritukset lopetettiin kesken, kun alkoi näyttämään ettei tehtävä suoriudu koskaan.
+Useimmiten ohjelman tehokkuudella ei ole paljoa merkitystä, ja luotettavuus ja luettavuus ovat edellä. Kuitenkin tässä tilanteessa tehokkuuserot ovat niin merkittävät, että jos 1 000 avain-arvo -parin sijasta, oltaisiin käytetty 100 000, tai vaikka 1 000 000 avain-arvo -paria, mutatoimaton versio ei välttämättä olisi suoriutunut tehtävästä koskaan. Näitä määriä yritettiin, mutta suoritukset lopetettiin kesken, kun alkoi näyttämään, ettei tehtävä suoriudu koskaan.
 
 
 \section{Monadien käyttäminen huomaamatta}
 
+TODO - ehkä poistoon koko osa
 
 \subsection{Lista on monadi}
 .flatMap.flatMap.flatMap.flatMap.flatMap.flatMap
@@ -170,7 +171,7 @@ Mallintamisessa on kuitenkin ongelma. Se valehtelee. Sillä voidaan kuvata tiloj
 
 \textbf{Listat voivat olla tyhjiä.} Malli ei pidä huolta, että tietovisassa on yhtäkään kysymystä. Malli ei pidä huolta, että kysymyksessä on yhtään vastausta, eikä että on olemassa yhtään oikeaa vastausta. Tämä johtuu siitä, että \mintinline{typescript}|Array|-tietorakenne voi olla tyhjä.
 
-Vastauksena on luodaan tyyppi listalle, joka ei voi olla tyhjä (Koodiesimerkki \ref{code:ts_non_empty}).
+Vastauksena on luoda tyyppi listalle, joka ei voi olla tyhjä (Koodiesimerkki \ref{code:ts_non_empty}).
 
 \begin{code}
     \begin{minted}{typescript}
@@ -183,7 +184,7 @@ type NonEmptyArray<T> = {
     \label{code:ts_non_empty}
 \end{code}
 
-Tyypissä on käytetty tyyppimuuttujaa T. Jos geneeriset tyypit eivät ole tuttuja, tyyppimuuttuja tarkoittaa sitä että sen sijalle voi laittaa mitä tahansa. Kyse on myös parametrisestä polyformista (parametric polymorphism).
+Tyypissä on käytetty tyyppimuuttujaa T. Jos geneeriset tyypit eivät ole tuttuja, tyyppimuuttuja tarkoittaa sitä että sen sijalle voi laittaa mitä tahansa. Kyse on myös parametrisestä polymorfista (parametric polymorphism).
 
 Pääasia on, että tyyppi kuvaa listaa, joka ei voi olla tyhjä. Tyypillä on kenttä \mintinline{javascript}|first|, jonka on oltava olemassa. Ja kenttä \mintinline{javascript}|rest|, jossa säilytetään listan loput alkiot. Kentän lista on taas tavallinen \mintinline{javascript}|Array|, ja se voi, ja saa olla, taas olla tyhjä.
 
@@ -245,9 +246,9 @@ type Question = {
     \label{code:ts_question_with_explicit_answer_types}
 \end{code}
 
-Malli ei enää valehtele. Voi kuitenkin olla, että tulevaisuudessa on tarve luoda enemmän vaatimuksia. Voidaan haluta rajoittaa, että kysymsessä voi valita vain yhden vaihtoehdon, tai usean. Voidaan haluta antaa mahdollisuus antaa vastauksena vapaata tekstiä. Tai mitä ikinä.
+Malli ei enää valehtele. Voi kuitenkin olla, että tulevaisuudessa on tarve luoda enemmän vaatimuksia. Voidaan haluta rajoittaa, että kysymyksessä voi valita vain yhden vaihtoehdon, tai usean. Voidaan haluta antaa mahdollisuus antaa vastauksena vapaata tekstiä. Tai mitä ikinä.
 
-Tälläisessä tapauksessakaan ei kannata unohtaa, että ei ole hyvä jos malli valehtelee. \textbf{Voidaan käyttää hyväksi summatyyppejä.} Sen sijasta, että lisätään tyyppeihin uusia pakollisia kenttiä kuten \mintinline{javascript}|isMultipleAnswerQuestion| tai \mintinline{javascript}|isFreeForm|, voidaankin luoda jokaiselle fundamentaalisesti erilaiselle asialle oma tyyppinsä, ja yhdistää ne yhdeksi summatyypiksi.
+Tämänkaltaisessatapauksessakaan ei kannata unohtaa, että ei ole hyvä jos malli valehtelee. \textbf{Voidaan käyttää hyväksi summatyyppejä.} Sen sijasta, että lisätään tyyppeihin uusia pakollisia kenttiä kuten \mintinline{javascript}|isMultipleAnswerQuestion| tai \mintinline{javascript}|isFreeForm|, voidaankin luoda jokaiselle fundamentaalisesti erilaiselle asialle oma tyyppinsä, ja yhdistää ne yhdeksi summatyypiksi.
 
 \begin{code}
     \begin{minted}{typescript}
@@ -276,7 +277,7 @@ type Question = MultipleAnswerQuestion | SingleAnswerQuestion | FreeFormQuestion
     \label{code:ts_sum_type_nice}
 \end{code}
 
-Malli ei enää valehtele. Todellisuutta mallintavilla malleilla saadaan luotettavampaa koodia, ja poistetaan turhia if-lauseita. Myöskin jos mallista poistetaan mahdottomat tilat, niitä ei tarvitse edes testata.
+Malli ei enää valehtele. Todellisuutta mallintavilla malleilla saadaan luotettavampaa koodia, ja poistetaan turhia if-lauseita. Myös jos mallista poistetaan mahdottomat tilat, niitä ei tarvitse edes testata.
 
 \subsection{Virheet mukaan mallintamiseen}
 
@@ -306,7 +307,7 @@ const mightWorkMightNot = (): Maybe<string> => {
 Deklaratiivisesti funktio kertoo, että se saattaa palauttaa merkkijonon, tai saattaa olla palauttamatta. Ehkä merkkijono, ehkä ei.
 Tyypin käyttäminen on hieman tönkköä, sillä jos funktion oikea palautusarvo on null, on mahdotonta sanoa toimiko funktiokutsu vai ei.
 
-Tyypin voi viedä pidemmälle, jos arvot kääritään objekteihin. Vaihdetaan nimi myös Result-tyypiksi, että tyyppi voi kapsuloida myös virheitä. (Koodiesimerkki \ref{code:ts_better_result_sum}.)
+Tyypin voi viedä pidemmälle, jos arvot kääritään objekteihin. Vaihdetaan nimi myös Result-tyypiksi, että tyyppi voi kapseloida myös virheitä. (Koodiesimerkki \ref{code:ts_better_result_sum}.)
 
 \begin{code}
     \begin{minted}{typescript}
@@ -374,11 +375,11 @@ pipe([
     \label{code:result_pipe_example}
 \end{code}
 
-Result-tyypin käyttö on selkeää, ja TypeScriptillä on pakko tarkistaa onko arvo \mintinline{typescript}|Success| vai \mintinline{typescript}|Failure|, ennen kuin sen käärittyä arvoa voi tarkastella tai muokata.
+Result-tyypin käyttö on selkeää, ja TypeScriptillä on pakko tarkistaa, onko arvo \mintinline{typescript}|Success| vai \mintinline{typescript}|Failure|, ennen kuin sen käärittyä arvoa voi tarkastella tai muokata.
 
 Jos yksikin funktio palauttaa Result-objektin, jossa on virhe, objekti kulkee muuttumattomana loppujen funktioiden lävitse.
 
-Kuitenkin ongelma on, että tälläisenaan Result-tyypin käyttäminen on loppujen lopuksi vain syntaksisokeroitu null-arvon tarkistus. Ne if-lauseet, joita aiemmin poistettiin todenmukaisella tyyppimallinnuksella, ovat tulleet takaisin aina pakollisen tarkistamisen muodossa.
+Kuitenkin ongelma on, että tämänkaltaisena Result-tyypin käyttäminen on loppujen lopuksi vain syntaksisokeroitu null-arvon tarkistus. Ne if-lauseet, joita aiemmin poistettiin todenmukaisella tyyppimallinnuksella, ovat tulleet takaisin aina pakollisen tarkistamisen muodossa.
 
 Result-tyypillä on kuitenkin jotain, jolla sen voi viedä vielä askelta pidemmälle. Result-tyypin voi toteuttaa monadina.
 
@@ -406,5 +407,3 @@ helloMaybe()
     \caption{Miltä aiemman esimerkin koodi voi näyttää, jos Result toimii kuin monadi.}
     \label{code:result_monad_example}
 \end{code}
-
-

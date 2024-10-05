@@ -82,11 +82,11 @@ Usein funktionaalista ohjelmointia mainostaessa puhutaan funktioiden puhtauden j
 
 On tärkeää huomata, että kaiken ei tarvitse olla täysin puhdasta ja muuttumatonta, kunhan ne osat, joissa funktionaalista ohjelmointia hyödynnetään, pysyvät ennustettavina ja hallittavina.
 
-\Glspl{composed_function} ovat loistava tapa kirjoittaa selkeää ja modulaarista koodia. Parasta on, että kaiken ei tarvitse olla pelkkiä funktioita: voi hyvin kirjoittaa myös olio-ohjelmointityylillä ja silti hyödyntää yhdistettyjä funktioita logiikan selkeyttämiseksi ja yksinkertaistamiseksi.
+\glsdisp{composed_function}{Yhdistetyt funktiot} ovat loistava tapa kirjoittaa selkeää ja modulaarista koodia. Parasta on, että kaiken ei tarvitse olla pelkkiä funktioita: voi hyvin kirjoittaa myös olio-ohjelmointityylillä ja silti hyödyntää yhdistettyjä funktioita logiikan selkeyttämiseksi ja yksinkertaistamiseksi.
 
 Loppujen lopuksi funktionaalisen ohjelmoinnin perusta on funktioissa ja niiden yhdistämisessä. Datan muuttumattomuus ja sivuvaikutuksettomuus on vain esivaatimus funktioiden ennustettavuudelle.
 
-\Gls{composed_function} tarkoittaa yksinkertaisesti kahden, tai useamman, funktion yhdistämistä siten, että yhden funktion tulos syötetään seuraavalle. Esimerkiksi koodiesimerkin \ref{code:javascript_manual_composition} funktio $h$ on funktioiden $f$ ja $g$ yhdiste. Ajaessa funktio $h$, suoritetaan ensin $g$, jonka palautusarvo annetaan funktiolle $f$. Kaksi funktiota yhdistämällä on saatu yksi uusi funktio.
+\glsdisp{composed_function}{Yhdistetty funktio} tarkoittaa yksinkertaisesti kahden, tai useamman, funktion yhdistämistä siten, että yhden funktion tulos syötetään seuraavalle. Esimerkiksi koodiesimerkin \ref{code:javascript_manual_composition} funktio $h$ on funktioiden $f$ ja $g$ yhdiste. Ajaessa funktio $h$, suoritetaan ensin $g$, jonka palautusarvo annetaan funktiolle $f$. Kaksi funktiota yhdistämällä on saatu yksi uusi funktio.
 
 \begin{code}
     \begin{minted}{javascript}
@@ -385,7 +385,7 @@ Kategoriateoria on kuitenkin niin kytköksissä funktionaaliseen ohjelmointiin, 
 
 \section{Monadi}
 
-Monadi tulee kuitenkin esille funktionaalisessa ohjelmoinnissa erittäin usein. Se on hyödyllinen abstrakti tietotyyppi. Ohjelmoijalle monadia on kuvattu eri tavoin. Näihin selityksiin on kuulunut muunmuassa:
+Monadi tulee kuitenkin esille funktionaalisessa ohjelmoinnissa erittäin usein. Se on hyödyllinen abstrakti tietotyyppi. Ohjelmoijalle monadia on kuvattu eri tavoin. Näihin selityksiin on kuulunut muun muassa:
 
 \begin{itemize}
     \item Monadi on asia, jolla on \mintinline{javascript}|flatMap|-metodi \cite{stackoverflow_flatmap_monad}.
@@ -395,16 +395,16 @@ Monadi tulee kuitenkin esille funktionaalisessa ohjelmoinnissa erittäin usein. 
 \end{itemize}
 
 
-Viimeisimmän uskotaan olevan kuvaavin, vaikka tämäkään ei paljoa helpota useimpaa lukijaa \cite{stackoverflow_what_monad}. \textit{Monadi on monoidi endofunktoreiden kategoriassa} on fraasina surullisenkuuluisa, menee lähes poikkeuksetta ohi korvien, ja lienee yksi syy sille, miksei funktionaalinen ohjelmointi ole suositumpaa. Jotta kuvauksen voi ymmärtää, olisi opiskeltava kategoriateoriaa yliopistotasoisesta materiaalista suhteellisen paljon. Ottamatta huomioon myös kategoriateoriaan vaadittuja ennakkotietoja.
+Viimeisimmän uskotaan olevan kuvaavin, vaikka tämäkään ei paljoa helpota useimpia ohjelmoijia \cite{stackoverflow_what_monad}. \textit{Monadi on monoidi endofunktoreiden kategoriassa} on fraasina surullisenkuuluisa, menee lähes poikkeuksetta ohi korvien, ja lienee yksi syy sille, miksei funktionaalinen ohjelmointi ole suositumpaa. Jotta kuvauksen voi ymmärtää, olisi opiskeltava kategoriateoriaa yliopistotasoisesta materiaalista suhteellisen paljon. Ottamatta huomioon myös kategoriateoriaan vaadittuja ennakkotietoja.
 Kun käsitteiden ymmärtämiseen tarvitsee useiden yliopistotasoisien kurssien taustatiedot, ei lähtökohdat leviämiselle ole vahvat.
 
-Kategoriateoriaa opiskeltaessa monadi ei tule ilmi pitkään aikaan, ensin on ymmärrettävä muunmuassa mikä on kategoria (category), mitä ovat funktorit (functor), luonnolliset muutokset (natural transformation), sun muut monet käsitteet. Monadi ei siis ole kategoriateorian välitön kulmakivi; miten siitä saadaan ohjelmoijalle toimiva työkalu?
+Kategoriateoriaa opiskeltaessa monadi ei tule ilmi pitkään aikaan, ensin on ymmärrettävä muun muassa mikä on kategoria (category), mitä ovat funktorit (functor), luonnolliset muutokset (natural transformation), ja monet muut käsitteet. Monadi ei siis ole kategoriateorian välitön kulmakivi; miten siitä saadaan ohjelmoijalle toimiva työkalu?
 
 Jos etsitään ohjelmoijalle käytännönläheisempää ja kuvaavaa selitystä, se voisi kuulua seuraavasti:
 
 \textit{\Gls{monad} on abstrakti tietorakenne, joka mahdollistaa ohjelman kontrollin virtaamisen läpinäkyvämmin ilman, että sivuvaikutuksia tarvitsee käsitellä suoraan.}
 
-Lyhyemmin monadia ei kannata selittää, sillä muuten kuvaus alkaa kuulostamaan jo liian yleiseltä ja vaikemmalta hahmottaa. Määritelmästä on karsittu funktorit, kategoriat ja monoidit. Suunta lienee oikea. Seuraavaksi avataan määritelmän osia tarkemmin.
+Lyhyemmin monadia ei kannata selittää, sillä muuten kuvaus alkaa kuulostamaan jo liian yleiseltä ja vaikeammalta hahmottaa. Määritelmästä on karsittu funktorit, kategoriat ja monoidit. Suunta lienee oikea. Seuraavaksi avataan määritelmän osia tarkemmin.
 
 \textbf{Abstrakti tietotyyppi}
 
@@ -468,7 +468,7 @@ Esimerkki Arrayn käyttämisestä monadisin periaattein JavaScriptissa:
 
 \subsubsection{Promise}
 
-Promise sitoutuu asynkronisiin arvoihin. JavaScriptissa monadiset operaatiot Promiselle ovat:
+Promise sitoutuu asynkronisiin arvoihin. JavaScriptissa monadiset operaatiot Promise:lle ovat:
 
 \textit{bind}: \mintinline{javascript}|Promise.prototype.then(f)|
 
@@ -514,7 +514,7 @@ Tiivistettynä monadeilla voidaan ketjuttaa operaatioita itsemäärittelemällä
 
 \section{Pragmaattisuus funktionaalisessa ohjelmoinnissa}
 
-Funktionaalisen ohjelmoinnin tärkein teoria alkaa olla käytynä ja ehkä on selvää, että funktionaalinen ohjelmointi on pohjimmiltaan erittäin teoreettista. On hyvä aika tarkastella, miten funktionaalinen ohjelmoinnin voisi tuoda ohjelmistokehittäjän arsenaaliin. Ja toisaalta, miksei tälläistä muuttoliikettä ole ohjelmoijaenemmistölle vielä tapahtunut.
+Funktionaalisen ohjelmoinnin tärkein teoria alkaa olla käytynä ja ehkä on selvää, että funktionaalinen ohjelmointi on pohjimmiltaan erittäin teoreettista. On hyvä aika tarkastella, miten funktionaalinen ohjelmoinnin voisi tuoda ohjelmistokehittäjän arsenaaliin. Ja toisaalta, miksei tällaista muuttoliikettä ole ohjelmoijaenemmistölle vielä tapahtunut.
 
 Kun funktionaalisen ohjelmoinnin kauneus on matemaattisissa kulmakivissä, joilla ei ole tapaa taipua, miten sen voi yhdistää säännöttömään JavaScriptiin, tai muuhun vastaavanlaiseen ohjelmointikieleen?
 
@@ -620,7 +620,7 @@ JavaScript on kielenä siitä erikoinen, että kaikki uusien versioiden ominaisu
 
 Selaimille on myös parempi olla rikkomatta näitä vanhoja sivuja selaimen suosion kannalta: jos vierailee lääkärin vastaanoton verkkosivulla selvittääksesi aukioloajat, kumpi selain on paras: se, joka näyttää vastaanoton aukioloajat, vai se, joka ei näytä mitään, koska on ottanut uuden JavaScript-version käyttöön? \citep{against_self_closing_tags,proposal-joint-iteration}
 
-JavaScript kuitenkin kehittyy. Hitaasti. Vuodesta 2015 eteepäin kaikki merkittävät verkkoselaimet ovat tukeneet JavaScriptiin lisättyä Promise-tietorakennetta \cite{mdn_promise}. Promise-tietorakenteella korvattiin Callback Hell -nimellä tunnettu ongelma, joka ilmenee, kun monimutkaisissa asynkronisissa operaatioissa käytetään useita sisäkkäisiä callback-funktioita \cite{callbackhell}. Promise-mallin avulla voidaan kirjoittaa selkeämpää ja helpommin hallittavaa koodia, koska se mahdollistaa asynkronisten toimintojen ketjuttamisen ja virheiden käsittelyn keskitetysti.
+JavaScript kuitenkin kehittyy. Hitaasti. Vuodesta 2015 eteenpäin kaikki merkittävät verkkoselaimet ovat tukeneet JavaScriptiin lisättyä Promise-tietorakennetta \cite{mdn_promise}. Promise-tietorakenteella korvattiin Callback Hell -nimellä tunnettu ongelma, joka ilmenee, kun monimutkaisissa asynkronisissa operaatioissa käytetään useita sisäkkäisiä callback-funktioita \cite{callbackhell}. Promise-mallin avulla voidaan kirjoittaa selkeämpää ja helpommin hallittavaa koodia, koska se mahdollistaa asynkronisten toimintojen ketjuttamisen ja virheiden käsittelyn keskitetysti.
 
 Tämä tapa ketjuttaa toimintoja on verrattavissa kategoriateorian monadien tarjoamaan rakenteeseen \cite{promises-spec-94,stackoverflow:why_monad}.
 
