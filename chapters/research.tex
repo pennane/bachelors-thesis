@@ -1,7 +1,7 @@
 % Material and Methods
 %\clearpage%if the chapter heading starts close to bottom of the page, force a line break and remove the vertical vspace
 \vspace{21.5pt}
-\chapter{Empiirinen näkemys}
+\chapter{Empiirinen tutkimus}
 
 Tässä osassa pyritään esittämään kaikista oleellisin, mitä funktionaalisella ohjelmoinnilla voidaan saada aikaan. Teoreettisen perustan ja kokemusten avulla tuodaan esille mitä funktionaalinen ohjelmointi on koetusti parhaimmillaan.
 
@@ -84,7 +84,7 @@ objectFromEntries(entries)
 console.timeEnd('Immutable')
 // Immutable: 112.718017578125 ms
 \end{minted}
-    \caption{Funktio, joka ottaa listan avain-arvo -pareja ja luo niistä olion. Olion luonnissa ei käytetä ollenkaan mutatointia.}
+    \caption{Funktio, joka ottaa listan avain-arvo-pareja ja luo niistä olion. Olion luonnissa ei käytetä ollenkaan mutatointia.}
     \label{code:js_just_mutate_immutable}
 \end{code}
 
@@ -113,7 +113,7 @@ console.timeEnd('Mutable')
     \label{code:js_just_mutate_mutable}
 \end{code}
 
-Useimmiten ohjelman tehokkuudella ei ole paljoa merkitystä, ja luotettavuus ja luettavuus ovat edellä. Kuitenkin tässä tilanteessa tehokkuuserot ovat niin merkittävät, että jos 1 000 avain-arvo -parin sijasta, oltaisiin käytetty 100 000, tai vaikka 1 000 000 avain-arvo -paria, mutatoimaton versio ei välttämättä olisi suoriutunut tehtävästä koskaan. Näitä määriä yritettiin, mutta suoritukset lopetettiin kesken, kun alkoi näyttämään, ettei tehtävä suoriudu koskaan.
+Useimmiten ohjelman tehokkuudella ei ole paljoa merkitystä, ja luotettavuus ja luettavuus ovat edellä. Kuitenkin tässä tilanteessa tehokkuuserot ovat niin merkittävät, että jos 1 000 avain-arvo-parin sijasta, oltaisiin käytetty 100 000, tai vaikka 1 000 000 avain-arvo-paria, mutatoimaton versio ei välttämättä olisi suoriutunut tehtävästä koskaan. Näitä määriä yritettiin, mutta suoritukset lopetettiin kesken, kun alkoi näyttämään, ettei tehtävä tosiaan ollut suoriutumassa koskaan.
 
 \section{Ongelmien mallintaminen}
 
