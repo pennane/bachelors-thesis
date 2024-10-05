@@ -402,7 +402,7 @@ Kategoriateoriaa opiskeltaessa monadi ei tule ilmi pitkään aikaan, ensin on ym
 
 Jos etsitään ohjelmoijalle käytännönläheisempää ja kuvaavaa selitystä, se voisi kuulua seuraavasti:
 
-\textit{\Gls{monad} on abstrakti tietorakenne, joka mahdollistaa ohjelman kontrollin virtaamisen läpinäkyvämmin ilman, että sivuvaikutuksia tarvitsee käsitellä suoraan suoraan.}
+\textit{\Gls{monad} on abstrakti tietorakenne, joka mahdollistaa ohjelman kontrollin virtaamisen läpinäkyvämmin ilman, että sivuvaikutuksia tarvitsee käsitellä suoraan.}
 
 Lyhyemmin monadia ei kannata selittää, sillä muuten kuvaus alkaa kuulostamaan jo liian yleiseltä ja vaikemmalta hahmottaa. Määritelmästä on karsittu funktorit, kategoriat ja monoidit. Suunta lienee oikea. Seuraavaksi avataan määritelmän osia tarkemmin.
 
@@ -426,7 +426,7 @@ Loppujen lopuksi monadin implementointi on varsin yksinkertaista, vaikka taustal
 
 Monadilla on oltava kaksi toimintoa: \mintinline{javascript}|unit| ja \mintinline{javascript}|bind|. Nämä on johdettu kategoriateorian monadin määritteestä. \citep{bartosz_category_for_progamers_10}
 
-\mintinline{python3}|of|-toiminnolla kääritään arvoja monadiin. \mintinline{python3}|of|-toiminnon voidaan ajatella olevan vain monadin konstruktori.
+\mintinline{python3}|of|-toiminnolla kääritään arvoja monadiin. \mintinline{python3}|of|-toiminnon voidaan ajatella olevan monadin konstruktori.
 
 \mintinline{javascript}|bind|-toiminnolla muutetaan monadiin käärittyä arvoa antamalla toiminnolle funktio, joka palauttaa toisen saman tyypin monadin. \mintinline{javascript}|bind|-toiminto on käytännössä sama kuin tunnetumpi \mintinline{javascript}|map|-funktio. Erona on se, että \mintinline{javascript}|map| palauttaa arvon, joka on kääritty uuteen monadiin, mutta \mintinline{javascript}|bind| mahdollistaa arvojen ketjuttamisen ja säilyttää monadin rakenteen, jolloin saadaan lisätoimintoja, kuten virheiden käsittely tai asynkroninen suoritus.
 
@@ -446,6 +446,7 @@ JavaScriptissa Array ja Promise tietotyyppejä voidaan käyttää monadeina.
 Array käyttää \mintinline{javascript}|flatMap|-metodia bindina ja staattista \mintinline{javascript}|Array.of|-metodia unitina.
 
 \textit{bind}: \mintinline{javascript}|Array.prototype.flatMap(f)|
+
 \textit{unit}: \mintinline{javascript}|Array.of(x)|
 
 Esimerkki Arrayn käyttämisestä monadisin periaattein JavaScriptissa:
