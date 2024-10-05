@@ -1,6 +1,6 @@
 # Metropolia Bachelor's Thesis - Arttu Pennanen
 
-Evaluating the Practical Application of Functional Programming
+Evaluating the Pragmatic Application of Functional Programming
 
 ### Obtaining the compiled PDF
 
