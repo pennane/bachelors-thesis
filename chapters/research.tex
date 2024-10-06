@@ -19,23 +19,23 @@ Käydään myös miten funktionaalinen ohjelmointi näkyy konkreettisesti. Täm�
 Funktionaalisessa ohjelmoinnissa etsitään yleisiä teemoja, ja viedään toistuvia malleja funktioiksi, jotta voidaan syntaksin sijasta kirjoittaa funktioiden nimiä. Olio-ohjelmoinnissa, tai muuten imperatiivisessa ohjelmoinnissa, for-silmukalla toteutettavat algoritmit yleistetään funktioiksi (Kuva \ref{fig:ramdacmds}). Onko helpompaa opetella ääretön määrä funktioita, vai yksi kielirakenne: for-silmukka?
 
 \begin{figure}[ht]
-    \centering
-    \[
-        \begin{array}{rl}
-            \left.
-            \begin{array}{l}
-                filter, without, find, findIndex, findLast, findLastIndex \\
-                map, mapIndexed, mapIndexedRight, chain, concat, zip      \\
-                reduce, reduceRight, scan, partition, uniq, forEach       \\
-                slice, drop, take, dropWhile, takeWhile, zip, zipWith     \\
-                all, any, none
-            \end{array}
-            \right] \quad \text{for loop}
-            \\
-        \end{array}
-    \]
-    \caption{Ramda.js kirjaston funktioita listojen käsittelyyn ohjelmoinnissa \cite{ramda:docs}. Kaikki nämä voidaan korvata for-silmukoilla imperatiivisessa paradigmassa.}
-    \label{fig:ramdacmds}
+  \centering
+  \[
+    \begin{array}{rl}
+      \left.
+      \begin{array}{l}
+        filter, without, find, findIndex, findLast, findLastIndex \\
+        map, mapIndexed, mapIndexedRight, chain, concat, zip      \\
+        reduce, reduceRight, scan, partition, uniq, forEach       \\
+        slice, drop, take, dropWhile, takeWhile, zip, zipWith     \\
+        all, any, none
+      \end{array}
+      \right] \quad \text{for loop}
+      \\
+    \end{array}
+  \]
+  \caption{Ramda.js kirjaston funktioita listojen käsittelyyn ohjelmoinnissa \cite{ramda:docs}. Kaikki nämä voidaan korvata for-silmukoilla imperatiivisessa paradigmassa.}
+  \label{fig:ramdacmds}
 \end{figure}
 
 Nimet ovat syntaksiriippumattomia. Samoja nimiä voi käyttää ohjelmointikielestä riippumatta. Nimillä voi kuvata oikean maailman asioita. Siksi voi perustella, että kun tietyn logiikan aina laittaa tietyn nimen taakse funktioksi, ymmärtää sen aina vaikka ohjelmointikieli vaihtuisi. Jos muistaa idean, ei implementaation yksityiskohdilla ole merkitystä.
@@ -56,12 +56,12 @@ Yhdistettyjen funktioiden avulla voidaan saavuttaa korkea taso ohjelmoinnin jous
 
 Yhdistetyt funktiot eivät kuitenkaan automaattisesti takaa koodin luettavuutta. Liiallinen abstraktio voi tehdä koodista vaikeasti seurattavaa, erityisesti jos funktion yhdisteleminen tuo mukanaan monimutkaisia käsitteitä, jotka eivät ole suoraan yhteydessä ratkaistavaan ongelmaan. Turha abstraktio voi johtaa tilanteeseen, jossa koodin toiminnan ymmärtämiseksi täytyy perehtyä moniin välivaiheisiin ja ylimääräisiin konsepteihin, vaikka ongelma itsessään olisi yksinkertainen.
 
-On tärkeää, että abstrahoinnin taso pysyy hallittuna, eikä yhdistetty funktio tuo mukanaan lisämonimutkaisuutta. Myös tässä on vahvana ajatus siitä, että kannattaa käyttää kielen omia ominaisuuksia turhan kirjastokoodin sijasta. Tai jos kirjastokoodiakäyttää, on sen oltava johdonmukaista. Koodikannoissa, joissa työskentelevät monet ohjelmoijat, teippiratkaisut ovat erittäin haitallisia.
+On tärkeää, että abstrahoinnin taso pysyy hallittuna, eikä yhdistetty funktio tuo mukanaan lisämonimutkaisuutta. Myös tässä on vahvana ajatus siitä, että kannattaa käyttää kielen omia ominaisuuksia turhan kirjastokoodin sijasta. Tai jos kirjastokoodia käyttää, on sen oltava johdonmukaista. Koodikannoissa, joissa työskentelevät monet ohjelmoijat, teippiratkaisut ovat erittäin haitallisia.
 
 Esimerkkikoodi \ref{code:js_garbage_pipe} näyttää tilanteen, jossa Ramda.js-kirjastoa on käytetty yhdistetyn funktion rakentamiseen. Vaikka funktio toimii, sen ymmärtämiseen tarvitsee paljon ylimääräistä tietoa.
 
 \begin{code}
-    \begin{minted}{typescript}
+  \begin{minted}{typescript}
 const convertUsersToLeaderboardUsers = (users: Array<User>, anonymizeUsers: boolean) => R.pipe(
     R.pick(["userName", "score", "id"]),
     R.ifElse(R.always(anonymizeUsers), R.map(R.omit(["userName"])), R.identity),
@@ -69,14 +69,14 @@ const convertUsersToLeaderboardUsers = (users: Array<User>, anonymizeUsers: bool
     R.sortWith([R.descend(R.prop("score"))])
 )(users)
 \end{minted}
-    \caption{Funktio, muuttaa listan käyttäjiä sellaisiksi, että niitä voidaan käyttää tuloslistoilla. Funktio on yhdistetty monesta funktiosta käyttämällä Ramda.js kirjaston funktioita}
-    \label{code:js_garbage_pipe}
+  \caption{Funktio, muuttaa listan käyttäjiä sellaisiksi, että niitä voidaan käyttää tuloslistoilla. Funktio on yhdistetty monesta funktiosta käyttämällä Ramda.js kirjaston funktioita}
+  \label{code:js_garbage_pipe}
 \end{code}
 
 Sen sijaan esimerkkikoodissa \ref{code:js_legit_pipe} käytetään vain JavaScriptin sisäänrakennettuja työkaluja. Funktio on yleisemmin helppo lukea. Vaikka luettavuus on subjektiivista, ja perustuu pitkälti ohjemointityylin tuttavuuteen, on todennäköisempää, että ohjelmoija ymmärtää JavaScriptin omia Array-metodeja, kuin minkäkin kirjaston funktioita, vaikka kirjaston funktiot oltaisiinkin pyritty kirjoittamaan noudattaen yleisiä käytänteitä.
 
 \begin{code}
-    \begin{minted}{typescript}
+  \begin{minted}{typescript}
 const convertUsersToLeaderboardUsers = (users: Array<User>, anonymizeUsers: boolean) => users
 .map(user => ({
     type: "leaderboardUser",
@@ -85,8 +85,8 @@ const convertUsersToLeaderboardUsers = (users: Array<User>, anonymizeUsers: bool
 }))
 .sort((userA, userB) => userB.score - userA.score)
     \end{minted}
-    \caption{Toiminnaltaan sama funktio, mutta käytettynä on vain JavaScriptin sisäänrakennettuja palikoita}
-    \label{code:js_legit_pipe}
+  \caption{Toiminnaltaan sama funktio, mutta käytettynä on vain JavaScriptin sisäänrakennettuja palikoita}
+  \label{code:js_legit_pipe}
 \end{code}
 
 
@@ -106,13 +106,13 @@ Jossain vaiheessa ohjelman suoritusta tietokoneen bitit kääntyilevät nollista
 
 Jos funktio mutatoi ainoastaan muuttujia, joita se itse luo funktion ajon ajaksi, ei sillä ole lopputuloksen kannalta toiminnallista merkitystä. Kuitenkin tehokkuusvoitot voivat olla huomattavat versioihin, joissa mutatointia ei harjoiteta.
 
-Esimerkkinä funktio, joka ottaa sisään listan avain-arvo-pareja, ja luo niistä olion. Näytetään kaksi (funktionaalista) tapaa totettaa funktio.
+Esimerkkinä funktio, joka ottaa sisään listan avain-arvo-pareja, ja luo niistä olion. Näytetään kaksi (funktionaalista) tapaa toteuttaa funktio.
 Versio, joka ei mutatoi muuttujia missään vaiheessa (Koodiesimerkki \ref{code:js_just_mutate_immutable}), ja versio, joka mutatoi vain itse luomiaan muuttujia (Koodiesimerkki \ref{code:js_just_mutate_mutable}).
 
 Tarkkailijan näkökulmasta molemmat funktiot ovat kuitenkin puhtaita.
 
 \begin{code}
-    \begin{minted}[highlightlines={8,14}]{javascript}
+  \begin{minted}[highlightlines={8,14}]{javascript}
 const entries = Array.from({ length: 1000 }, (_, i) => [
     `key-${i}`,
     `value-${i}`
@@ -128,15 +128,15 @@ objectFromEntries(entries)
 console.timeEnd('Immutable')
 // Immutable: 112.718017578125 ms
 \end{minted}
-    \caption{Funktio, joka ottaa listan avain-arvo-pareja ja luo niistä olion. Olion luonnissa ei käytetä ollenkaan mutatointia.}
-    \label{code:js_just_mutate_immutable}
+  \caption{Funktio, joka ottaa listan avain-arvo-pareja ja luo niistä olion. Olion luonnissa ei käytetä ollenkaan mutatointia.}
+  \label{code:js_just_mutate_immutable}
 \end{code}
 
 Täysin mutatoimattomalla versiolla kesti luoda tuhannesta avaimesta olio yli 300 kertaa kauemmin, kuin versiolla, joka mutatoi kohtuudella.
 
 
 \begin{code}
-    \begin{minted}[highlightlines={8,15}]{javascript}
+  \begin{minted}[highlightlines={8,15}]{javascript}
 const entries = Array.from({ length: 1000 }, (_, i) => [
     `key-${i}`,
     `value-${i}`
@@ -153,11 +153,11 @@ objectFromEntries(entries)
 console.timeEnd('Mutable')
 // Mutable: 0.35693359375 ms
 \end{minted}
-    \caption{Sama funktio kuin aiempi. Ainoa ero, että pareja iteroidessa luotavaa oliota mutatoidaan.}
-    \label{code:js_just_mutate_mutable}
+  \caption{Sama funktio kuin aiempi. Ainoa ero, että pareja iteroidessa luotavaa oliota mutatoidaan.}
+  \label{code:js_just_mutate_mutable}
 \end{code}
 
-Useimmiten ohjelman tehokkuudella ei ole paljoa merkitystä, ja luotettavuus ja luettavuus ovat edellä. Kuitenkin tässä tilanteessa tehokkuuserot ovat niin merkittävät, että jos 1 000 avain-arvo-parin sijasta, oltaisiin käytetty 100 000, tai vaikka 1 000 000 avain-arvo-paria, mutatoimaton versio ei välttämättä olisi suoriutunut tehtävästä koskaan. Näitä määriä yritettiin, mutta suoritukset lopetettiin kesken, kun alkoi näyttämään, ettei tehtävä tosiaan ollut suoriutumassa koskaan.
+Useimmiten ohjelman tehokkuudella ei ole paljoa merkitystä, ja luotettavuus ja luettavuus ovat edellä. Kuitenkin tässä tilanteessa tehokkuuserot ovat niin merkittävät, että jos 1 000 avain-arvo-parin sijasta, olisi käytetty 100 000, tai vaikka 1 000 000 avain-arvo-paria, mutatoimaton versio ei välttämättä olisi suoriutunut tehtävästä koskaan. Näitä määriä yritettiin, mutta suoritukset lopetettiin kesken, kun alkoi näyttämään, ettei tehtävä tosiaan ollut suoriutumassa koskaan.
 
 \section{Ongelmien mallintaminen}
 
@@ -168,7 +168,7 @@ Kuvitellaan, että ollaan rakentamassa rajapintaa verkossa toimivalle tietovisa 
 Yksi tietovisa koostuu useasta monivalintakysymyksestä. Tietovisaa voisi lähteä mallintamaan seuraavasti.
 
 \begin{code}
-    \begin{minted}{typescript}
+  \begin{minted}{typescript}
 type Question = {
   question: string
   answers: Array<string>
@@ -181,8 +181,8 @@ type Quiz = {
 }
          
 \end{minted}
-    \caption{Mahdollinen lähestymistapa yksinkertaiselle tietovisan mallinnukselle}
-    \label{code:ts_first_quiz}
+  \caption{Mahdollinen lähestymistapa yksinkertaiselle tietovisan mallinnukselle}
+  \label{code:ts_first_quiz}
 \end{code}
 
 Yksinkertaisen tietovisan saisi toimimaan kyseisellä mallilla. Yksi kysymys tukee jopa montaa oikeaa vastausta.
@@ -193,14 +193,14 @@ Mallintamisessa on kuitenkin ongelma. Se valehtelee. Sillä voidaan kuvata tiloj
 Vastauksena on luoda tyyppi listalle, joka ei voi olla tyhjä (Koodiesimerkki \ref{code:ts_non_empty}).
 
 \begin{code}
-    \begin{minted}{typescript}
+  \begin{minted}{typescript}
 type NonEmptyArray<T> = {
     first: T
     rest: Array<T>
 }
     \end{minted}
-    \caption{Mahdollinen lähestymistapa yksinkertaiselle tietovisan mallinnukselle}
-    \label{code:ts_non_empty}
+  \caption{Mahdollinen lähestymistapa yksinkertaiselle tietovisan mallinnukselle}
+  \label{code:ts_non_empty}
 \end{code}
 
 Tyypissä on käytetty tyyppimuuttujaa T. Jos geneeriset tyypit eivät ole tuttuja, tyyppimuuttuja tarkoittaa sitä että sen sijalle voi laittaa mitä tahansa. Kyse on myös parametrisestä polymorfista (parametric polymorphism).
@@ -209,7 +209,7 @@ Pääasia on, että tyyppi kuvaa listaa, joka ei voi olla tyhjä. Tyypillä on k
 
 
 \begin{code}
-    \begin{minted}[highlightlines={3,4,9}]{typescript}
+  \begin{minted}[highlightlines={3,4,9}]{typescript}
     type Question = {
       question: string
       answers: NonEmptyArray<string> 
@@ -222,8 +222,8 @@ Pääasia on, että tyyppi kuvaa listaa, joka ei voi olla tyhjä. Tyypillä on k
     }
              
     \end{minted}
-    \caption{Toinen lähestymistapa tietovisan mallintamiselle, jossa käytetään itsemääritettyä NonEmptyArray-tyyppiä}
-    \label{code:ts_non_empty_quiz}
+  \caption{Toinen lähestymistapa tietovisan mallintamiselle, jossa käytetään itsemääritettyä NonEmptyArray-tyyppiä}
+  \label{code:ts_non_empty_quiz}
 \end{code}
 
 Nyt tietovisassa on oltava vähintään yksi kysymys, ja jokaisella vähintään yksi mahdollinen vastaus. Kuitenkin oikeita vastauksia ei ole välttämättä ainuttakaan, sillä kenttä \mintinline{typescript}|correctAnswerIncides| on edelleen tyypiltään \mintinline{typescript}|Array<number>|.
@@ -237,7 +237,7 @@ Merkkijonojen validointi TypeScriptin tyyppijärjestelmässä on kuitenkin hiema
 Kentän voi poistaa kokonaan, jos mallinnusta viedään pidemmälle. Voidaan sopia, että on olemassa kahdenlaisia vastauksia. Oikeita tai vääriä. Tämä on varsin helppo mallintaa (Koodiesimerkki \ref{code:ts_answer_types})
 
 \begin{code}
-    \begin{minted}{typescript}
+  \begin{minted}{typescript}
 type CorrectAnswer = {
     type: "correct"
     answer: string
@@ -247,22 +247,22 @@ type IncorrectAnswer = {
     answer: string
 }
     \end{minted}
-    \caption{Oikeille ja väärille vastauksille omat tyypit}
-    \label{code:ts_answer_types}
+  \caption{Oikeille ja väärille vastauksille omat tyypit}
+  \label{code:ts_answer_types}
 \end{code}
 
 Uusilla tyypeillä voidaan mallintaa kysymyksiä \glsdisp{correctness}{oikeellisemmin}. Voidaan myös määrittää, että kysymyksellä on oltava vähintään yksi oikea vastaus, ja nolla tai useampi väärä vastaus (Koodiesimerkki \ref{code:ts_question_with_explicit_answer_types}).
 
 \begin{code}
-    \begin{minted}[highlightlines={3,4}]{typescript}
+  \begin{minted}[highlightlines={3,4}]{typescript}
 type Question = {
     question: string
     correctAnswers: NonEmptyArray<CorrectAnswer>
     incorrectAnswers: Array<IncorrectAnswer>
 }
     \end{minted}
-    \caption{Kysymykseen voi tarkentaa millaisia vastauksia hyväksytään}
-    \label{code:ts_question_with_explicit_answer_types}
+  \caption{Kysymykseen voi tarkentaa millaisia vastauksia hyväksytään}
+  \label{code:ts_question_with_explicit_answer_types}
 \end{code}
 
 Malli ei enää valehtele. Voi kuitenkin olla, että tulevaisuudessa on tarve luoda enemmän vaatimuksia. Voidaan haluta rajoittaa, että kysymyksessä voi valita vain yhden vaihtoehdon, tai usean. Voidaan haluta antaa mahdollisuus antaa vastauksena vapaata tekstiä. Tai mitä ikinä.
@@ -270,7 +270,7 @@ Malli ei enää valehtele. Voi kuitenkin olla, että tulevaisuudessa on tarve lu
 Tämänkään kaltaisessa tapauksessakaan ei kannata unohtaa, että hyvä malli ei valehtelee. \textbf{Voidaan käyttää hyväksi summatyyppejä.} Sen sijasta, että lisättäisiin tyyppeihin uusia kenttiä kuten \mintinline{javascript}|isMultipleAnswerQuestion| tai \mintinline{javascript}|isFreeForm|, voidaan puolestaan luoda jokaiselle fundamentaalisesti erilaiselle asialle yksinkertaisesti kokonaan oma tyyppinsä, ja yhdistää ne yhdeksi summatyypiksi.
 
 \begin{code}
-    \begin{minted}[highlightlines={20}]{typescript}
+  \begin{minted}[highlightlines={20}]{typescript}
 type MultipleAnswerQuestion = {
     type: "multipleAnswerQuestion"
     question: string
@@ -292,8 +292,8 @@ type FreeFormQuestion = {
 
 type Question = MultipleAnswerQuestion | SingleAnswerQuestion | FreeFormQuestion
     \end{minted}
-    \caption{Kysymysten mallintaminen summatyypillä}
-    \label{code:ts_sum_type_nice}
+  \caption{Kysymysten mallintaminen summatyypillä}
+  \label{code:ts_sum_type_nice}
 \end{code}
 
 Malli ei enää valehtele. Todellisuutta mallintavilla malleilla saadaan luotettavampaa koodia, ja poistetaan turhia if-lauseita. Myös jos mallista poistetaan mahdottomat tilat, niitä ei tarvitse edes testata.
@@ -310,7 +310,7 @@ Funktionaalisessa ohjelmoinnissa voidaan käyttää samoja keinoja, mutta useimm
 TypeScriptissä yksinkertaisimmillaan tämän voi toteuttaa yhdellä omalla tyypillä (Koodiesimerkki \ref{code:ts_null_sum}).
 
 \begin{code}
-    \begin{minted}{typescript}
+  \begin{minted}{typescript}
 type Maybe<T> = T | null
 const mightWorkMightNot = (): Maybe<string> => {
     if (Math.random() > 0.5) {
@@ -319,8 +319,8 @@ const mightWorkMightNot = (): Maybe<string> => {
     return "hello world"
 }
     \end{minted}
-    \caption{Mahdollisesti puuttuvan paluuarvon malli}
-    \label{code:ts_null_sum}
+  \caption{Mahdollisesti puuttuvan paluuarvon malli}
+  \label{code:ts_null_sum}
 \end{code}
 
 Deklaratiivisesti funktio kertoo, että se saattaa palauttaa merkkijonon, tai saattaa olla palauttamatta. Ehkä se on merkkijono, ehkä se ei ole.
@@ -329,7 +329,7 @@ Tyypin käyttäminen on hieman tönkköä, sillä jos funktion oikea palautusarv
 Tyypin voi viedä pidemmälle, jos arvot kääritään objekteihin. Vaihdetaan nimi Result-tyypiksi, että tyyppi voi kapseloida myös virheitä. (Koodiesimerkki \ref{code:ts_better_result_sum}.)
 
 \begin{code}
-    \begin{minted}{typescript}
+  \begin{minted}{typescript}
 type Success<T> = { value: T }
 type Failure = { error: Error }
 type Result<T> = Success<T> | Failure 
@@ -341,8 +341,8 @@ const mightWorkMightNot = (): Result<string> => {
     return { value: "hello world" }
 }
     \end{minted}
-    \caption{Vaihtoehtoinen malli mahdollisesti epäonnistuvalle paluuarvolle}
-    \label{code:ts_better_result_sum}
+  \caption{Vaihtoehtoinen malli mahdollisesti epäonnistuvalle paluuarvolle}
+  \label{code:ts_better_result_sum}
 \end{code}
 
 
@@ -351,20 +351,20 @@ Result-tyyppi on objekti, jolla on joko kenttä \mintinline{typescript}|value| t
 Näin Result-tyyppi voi sisältää myös arvon \mintinline{typescript}|null|, sillä Result-objektin tarkan tyypin voi nyt päätellä ilman sitä. Nyt tarkan tyypin voi määrittää \mintinline{typescript}|value| tai \mintinline{typescript}|error| kentän läsnäolosta tai puutteesta. Näin rakennettuna tyypille on myös helppo rakentaa apufunktioita, joilla selvitetään, onko paluuarvo onnistunut, vai ei. Voi myös luoda apufunktiot, joilla luoda Result-objekteja. (Koodiesimerkki \ref{code:result_helpers}).
 
 \begin{code}
-    \begin{minted}{typescript}
+  \begin{minted}{typescript}
 const isFailure = <T>(x: Result<T>): x is Failure => "error" in x
 const isSuccess = <T>(x: Result<T>): x is Success<T> => !isFailure(x)
 const failureUnit = (error: string): Failure => ({ error: new Error(error) })
 const successUnit = <T>(value: T): Success<T> => ({ value })
     \end{minted}
-    \caption{Apufunktioita Result-tyypin käyttöön TypeScriptissä}
-    \label{code:result_helpers}
+  \caption{Apufunktioita Result-tyypin käyttöön TypeScriptissä}
+  \label{code:result_helpers}
 \end{code}
 
 Näillä voidaan rakentaa yhdistettyjä funktioita, joissa paluuarvon luonti ja palauttaminen on eksplisiittistä ja selkeää. Koodiesimerkissä \ref{code:result_pipe_example} käsitellään Result-objekteja yhdistetyssä funktiossa.
 
 \begin{code}
-    \begin{minted}{typescript}
+  \begin{minted}{typescript}
 const helloMaybe = (): Result<string> => {
     if (Math.random() > 0.5) {
         return failureUnit("Sorry, bad failure.")
@@ -390,8 +390,8 @@ pipe([
 // Palauttaa { value : "HELLO WORLD!}
 // tai { error: Error("Sorry, bad failure.") }
     \end{minted}
-    \caption{Esimerkki yhdistetystä funktiosta Result-tyypin kanssa.}
-    \label{code:result_pipe_example}
+  \caption{Esimerkki yhdistetystä funktiosta Result-tyypin kanssa.}
+  \label{code:result_pipe_example}
 \end{code}
 
 Result-tyypin käyttö on selkeää, ja TypeScriptillä on pakko tarkistaa, onko arvo \mintinline{typescript}|Success| vai \mintinline{typescript}|Failure|, ennen kuin sen käärittyä arvoa voi tarkastella tai muokata.
@@ -408,7 +408,7 @@ Result-tyypillä on kuitenkin jotain, jolla sen voi viedä vielä askelta pidemm
 TODO - toistaseksi pari koodiesimerkkiä miltä koodi voi näyttää, jos Result koodataan monadiksi.
 
 \begin{code}
-    \begin{minted}{typescript}
+  \begin{minted}{typescript}
 const helloMaybe = (): Result<string> => {
     if (Math.random() > 0.5) {
         return failureUnit("Sorry, bad failure.")
@@ -425,14 +425,14 @@ helloMaybe()
  .bind(addExclamation)
  .bind(toUpperCase)
 \end{minted}
-    \caption{Miltä aiemman esimerkin koodi voi näyttää, jos Result toimii kuin monadi.}
-    \label{code:result_monad_example}
+  \caption{Miltä aiemman esimerkin koodi voi näyttää, jos Result toimii kuin monadi.}
+  \label{code:result_monad_example}
 \end{code}
 
 Aikas cool.
 
 \begin{code}
-    \begin{minted}{typescript}
+  \begin{minted}{typescript}
 const helloMaybe = (): string | Error => {
     if (Math.random() > 0.5) {
         return new Error("Sorry, bad failure.")
@@ -447,8 +447,8 @@ Result.unit(helloMaybe())
  .bind(addExclamation)
  .bind(toUpperCase)
 \end{minted}
-    \caption{Jos monadin ketjuttamiseen piilotetaan lisälogiikkaa, voidaan syntaksi sokeroida vielä tiiviimmäksi}
-    \label{code:result_monad_example_2}
+  \caption{Jos monadin ketjuttamiseen piilotetaan lisälogiikkaa, voidaan syntaksi sokeroida vielä tiiviimmäksi}
+  \label{code:result_monad_example_2}
 \end{code}
 
 Oikein kaunista, tiivistä ja kivaa.

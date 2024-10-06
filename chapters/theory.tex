@@ -170,7 +170,7 @@ pipeline([1, 2, 3, 4]) // [20, 40]
 Esimerkissä näytetyt funktiot ovat hyvin yksinkertaisia. Kuitenkin ne ovat täysin uudelleenkäytettäviä. Jos totuttautuu käyttämään joitain funktioita kaikissa projekteissa, voi huomata koodin kirjoittamisen tehokkuuden ja johdonmukaisuuden kasvavan.
 
 \section{Tyyppiteoria ja joukko-oppi}
-Tämä osa pyrkii kirjoittamaan matemaattisista käsitteistä käytännönläheisesti ja mahdollisesti suurelti yksinkertaistaen. Ajatuksena on, että ylemmän tason ajattelumalli välittyisi tekstissä tarkkojen määritelmien sijasta.
+Tämä osa pyrkii kirjoittamaan matemaattisista käsitteistä käytännönläheisesti ja mahdollisesti suuresti yksinkertaistaen. Ajatuksena on, että ylemmän tason ajattelumalli välittyisi tekstissä tarkkojen määritelmien sijasta.
 
 Joukko-oppi on matematiikan haara, joka tutkii joukkojen ominaisuuksia ja niiden välisiä suhteita. Ohjelmoinnissa joukko-oppi ilmenee yksinkertaisimmin joukko-tietorakenteiden kautta, jotka mahdollistavat uniikkien alkioiden käsittelyn tehokkaasti ja ilmaisuvoimaisesti \cite{mdn_set,mdn_set_methods}. On myös luotu ohjelmointikieli, joka perustuu kokonaan joukko-oppiin \cite{SETL_SET_LANGUAGE}.
 
@@ -377,9 +377,9 @@ Joukko-oppi ei ole ainoa ohjelmointiin sovellettava matemaattinen osa-alue. Funk
 
 Kategoriateoria tutkii matemaattisia rakenteita ja niiden välisiä suhteita erittäin abstraktilla tasolla. Se keskittyy objektien (kuten joukkojen tai tyyppien) ja niiden välillä olevien morfismien (funktioiden tai muunnosten) tutkimiseen. Kategoriateorian avulla voidaan ymmärtää ja formalisoida monimutkaisia matemaattisia ja ohjelmallisia rakenteita. \citep{bartosz_category_for_progamers,promises-spec-94,category_theory}
 
-Milewskin kokemusten mukaan vaikka algebra tai kalkyyli olisi ohjelmoijalle ajatuksena hirveää, kategoriateoria on kuitenkin ohjelmoijille erityisen mieluisaa sen laajasta teoreettisuudesta huolimatta. \cite[9]{milewski2017category}.
+Milewskin kokemusten mukaan, vaikka algebra tai kalkyyli olisi ohjelmoijalle ajatuksena hirveää, kategoriateoria on kuitenkin erityisen mieluisaa sen laajasta teoreettisuudesta huolimatta. \cite[9]{milewski2017category}.
 
-Kategoriateoriaan ei perehdytä työssä paljoa Monadi-rakennetta lukuunottamatta. Syynä on, ettei ole käytännönläheistä tuoda tavattoman teoreettisia käsitteitä työhön, jossa tavoitteena on etsiä konkretiaa.
+Kategoriateoriaan ei perehdytä tarkemmin tässä työssä Monadi-rakennetta lukuun ottamatta. Ei ole käytännönläheistä tuoda tavattoman teoreettisia käsitteitä työhön, jossa tavoitteena on etsiä konkretiaa.
 
 Kategoriateoria on kuitenkin niin kytköksissä funktionaaliseen ohjelmointiin, ettei sitä ole kannattavaa jättää kokonaan mainitsematta. Kategoriateorialle on kaivattu käytännönläheisempää tapaa lähestyä sitä ohjelmoijan näkökulmasta \cite{holvikari2021category}. Toisaalta on myös huomattu, että ohjelmoitaessa funktionaalista ohjelmointia puhtaasti, kategoriateorian oppii automaattisesti työn ohessa ilman tiukkaa teorian opiskelua \cite{holvikari2021category}.
 
@@ -395,7 +395,7 @@ Monadi tulee kuitenkin esille funktionaalisessa ohjelmoinnissa erittäin usein. 
 \end{itemize}
 
 
-Viimeisimmän uskotaan olevan kuvaavin, vaikka tämäkään ei paljoa helpota useimpia ohjelmoijia \cite{stackoverflow_what_monad}. \textit{Monadi on monoidi endofunktoreiden kategoriassa} on fraasina surullisenkuuluisa, menee lähes poikkeuksetta ohi korvien, ja lienee yksi syy sille, miksei funktionaalinen ohjelmointi ole suositumpaa. Jotta kuvauksen voi ymmärtää, olisi opiskeltava kategoriateoriaa yliopistotasoisesta materiaalista suhteellisen paljon. Ottamatta huomioon myös kategoriateoriaan vaadittuja ennakkotietoja.
+Viimeisimmän uskotaan olevan kuvaavin, vaikka tämäkään ei paljoa helpota useimpia ohjelmoijia \cite{stackoverflow_what_monad}. \textit{Monadi on monoidi endofunktorien kategoriassa} on fraasina surullisenkuuluisa, menee lähes poikkeuksetta ohi korvien, ja lienee yksi syy sille, miksei funktionaalinen ohjelmointi ole suositumpaa. Jotta kuvauksen voi ymmärtää, olisi opiskeltava kategoriateoriaa yliopistotasoisesta materiaalista suhteellisen paljon. Ottamatta huomioon myös kategoriateoriaan vaadittuja ennakkotietoja.
 Kun käsitteiden ymmärtämiseen tarvitsee useiden yliopistotasoisien kurssien taustatiedot, ei lähtökohdat leviämiselle ole vahvat.
 
 Kategoriateoriaa opiskeltaessa monadi ei tule ilmi pitkään aikaan, ensin on ymmärrettävä muun muassa mikä on kategoria (category), mitä ovat funktorit (functor), luonnolliset muutokset (natural transformation), ja monet muut käsitteet. Monadi ei siis ole kategoriateorian välitön kulmakivi; miten siitä saadaan ohjelmoijalle toimiva työkalu?
