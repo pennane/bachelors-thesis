@@ -50,11 +50,55 @@ Jos on kyse jostain toimintaympäristökohtaisesta funktiosta, eikä perustavanl
 
 \section{Yhdistetyt funktiot}
 
-TODO
+Kun funktioita on saatu kasattua työkalupakkiin, niitä on voi yhdistellä erilaisten tarpeiden mukaan. Funktionaalisen ohjelmoinnin on operaatioiden koostamisessa: kerran kirjoitetut funktiot ovat monikäyttöisiä ja niitä voidaan ketjuttaa keskenään, jolloin monimutkaisemmat operaatiot rakentuvat valikoiduista palikoista.
+
+Yhdistettyjen funktioiden avulla voidaan saavuttaa korkea taso ohjelmoinnin joustavuudessa. Ad hoc -funktioiden, eli tilanteeseen nopeasti mukautettujen funktioiden, kirjoittaminen on vaivatonta, ja niiden lisääminen osaksi olemassa olevia ketjuja onnistuu helposti. Tämä mahdollistaa nopean iteroinnin ja mukautumisen uusiin tarpeisiin ilman merkittäviä muutoksia alkuperäiseen koodiin.
+
+Yhdistetyt funktiot eivät kuitenkaan automaattisesti takaa koodin luettavuutta. Liiallinen abstraktio voi tehdä koodista vaikeasti seurattavaa, erityisesti jos funktion yhdisteleminen tuo mukanaan monimutkaisia käsitteitä, jotka eivät ole suoraan yhteydessä ratkaistavaan ongelmaan. Turha abstraktio voi johtaa tilanteeseen, jossa koodin toiminnan ymmärtämiseksi täytyy perehtyä moniin välivaiheisiin ja ylimääräisiin konsepteihin, vaikka ongelma itsessään olisi yksinkertainen.
+
+On tärkeää, että abstrahoinnin taso pysyy hallittuna, eikä yhdistetty funktio tuo mukanaan lisämonimutkaisuutta. Myös tässä on vahvana ajatus siitä, että kannattaa käyttää kielen omia ominaisuuksia turhan kirjastokoodin sijasta. Tai jos kirjastokoodiakäyttää, on sen oltava johdonmukaista. Koodikannoissa, joissa työskentelevät monet ohjelmoijat, teippiratkaisut ovat erittäin haitallisia.
+
+Esimerkkikoodi \ref{code:js_garbage_pipe} näyttää tilanteen, jossa Ramda.js-kirjastoa on käytetty yhdistetyn funktion rakentamiseen. Vaikka funktio toimii, sen ymmärtämiseen tarvitsee paljon ylimääräistä tietoa.
+
+\begin{code}
+    \begin{minted}{typescript}
+const convertUsersToLeaderboardUsers = (users: Array<User>, anonymizeUsers: boolean) => R.pipe(
+    R.pick(["userName", "score", "id"]),
+    R.ifElse(R.always(anonymizeUsers), R.map(R.omit(["userName"])), R.identity),
+    R.map(R.assoc("type", "leaderboardUser")),
+    R.sortWith([R.descend(R.prop("score"))])
+)(users)
+\end{minted}
+    \caption{Funktio, muuttaa listan käyttäjiä sellaisiksi, että niitä voidaan käyttää tuloslistoilla. Funktio on yhdistetty monesta funktiosta käyttämällä Ramda.js kirjaston funktioita}
+    \label{code:js_garbage_pipe}
+\end{code}
+
+Sen sijaan esimerkkikoodissa \ref{code:js_legit_pipe} käytetään vain JavaScriptin sisäänrakennettuja työkaluja. Funktio on yleisemmin helppo lukea. Vaikka luettavuus on subjektiivista, ja perustuu pitkälti ohjemointityylin tuttavuuteen, on todennäköisempää, että ohjelmoija ymmärtää JavaScriptin omia Array-metodeja, kuin minkäkin kirjaston funktioita, vaikka kirjaston funktiot oltaisiinkin pyritty kirjoittamaan noudattaen yleisiä käytänteitä.
+
+\begin{code}
+    \begin{minted}{typescript}
+const convertUsersToLeaderboardUsers = (users: Array<User>, anonymizeUsers: boolean) => users
+.map(user => ({
+    type: "leaderboardUser",
+    userName: anonymizeUsers ? undefined : user.userName,
+    score: 
+}))
+.sort((userA, userB) => userB.score - userA.score)
+    \end{minted}
+    \caption{Toiminnaltaan sama funktio, mutta käytettynä on vain JavaScriptin sisäänrakennettuja palikoita}
+    \label{code:js_legit_pipe}
+\end{code}
+
+
+On tärkeää, että abstrahoinnin taso pysyy hallittuna, eikä yhdistetty funktio tuo mukanaan lisämonimutkaisuutta. Abstraktioiden on oltava perusteltuja ja niiden tulee aidosti parantaa koodin ylläpidettävyyttä ja uudelleenkäytettävyyttä, eikä vain noudattaa jotain häilyviä teoreettisia malleja ilman konkreettisia hyötyjä.
+
+Funktioilla on kiva kikkailla, mutta kikkailu ei nopeasti toteutettuna kanna kauas.
+
+
 
 \section{Puhtaiden funktioiden hinta}
 
-Pitää pitää mielessä ohjelmointikieli, jossa toimitaan. Säännöt tulee sopeuttaa ympäristöön. Vaikka funktionaalisessa ohjelmoinnissa pyritään olla mutatoimatta dataa, tästä ei missään nimessä ole pakko pitää kiinni kynsin hampain.
+Pitää siis pitää mielessä ohjelmointikieli, jossa toimitaan. Säännöt tulee sopeuttaa ympäristöön. Vaikka funktionaalisessa ohjelmoinnissa pyritään olla mutatoimatta dataa, tästä ei missään nimessä ole pakko pitää kiinni kynsin hampain.
 
 Joissain ohjelmointikielissä, tai ohjelmointikielien kirjastoissa, muuttumattomien tietorakenteiden käyttäminen on saatu varsin tehokkaaksi. Näin ei kuitenkaan ole asian laita JavaScriptissä, tai ohjelmointikielissä yleisesti. Yleisesti ottaen tiedon mutatointi on nopeaa ja kopiointi hidasta. Näin ollen, jos kirjoitetaan funktioita, jotka palauttavat aina uusia kopioita, vanhojen mutatoimisen sijasta, saadaan usein hidasta ja tehotonta ohjelmakoodia.
 
@@ -361,7 +405,7 @@ Result-tyypillä on kuitenkin jotain, jolla sen voi viedä vielä askelta pidemm
 
 \subsection{Result-monadi}
 
-TODO
+TODO - toistaseksi pari koodiesimerkkiä miltä koodi voi näyttää, jos Result koodataan monadiksi.
 
 \begin{code}
     \begin{minted}{typescript}
@@ -385,7 +429,26 @@ helloMaybe()
     \label{code:result_monad_example}
 \end{code}
 
-\subsection{Map, filter, reduce}
-TODO
+Aikas cool.
 
-Monadit eivät ole pakollisia. Funktori on usein tarpeeksi. Funktori on rakenne, jolla on map-metodi.
+\begin{code}
+    \begin{minted}{typescript}
+const helloMaybe = (): string | Error => {
+    if (Math.random() > 0.5) {
+        return new Error("Sorry, bad failure.")
+    }
+    return "hello world"
+}
+
+const addExclamation = (x: string) => x + "!"
+const toUpperCase = (x: string) => x.toUpperCase()
+
+Result.unit(helloMaybe())
+ .bind(addExclamation)
+ .bind(toUpperCase)
+\end{minted}
+    \caption{Jos monadin ketjuttamiseen piilotetaan lisälogiikkaa, voidaan syntaksi sokeroida vielä tiiviimmäksi}
+    \label{code:result_monad_example_2}
+\end{code}
+
+Oikein kaunista, tiivistä ja kivaa.
