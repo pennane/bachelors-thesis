@@ -394,7 +394,7 @@ Monadi tulee kuitenkin esille funktionaalisessa ohjelmoinnissa erittäin usein. 
 \end{itemize}
 
 
-Viimeisimmän uskotaan olevan kuvaavin, vaikka tämäkään ei paljoa helpota useimpia ohjelmoijia \cite{stackoverflow_what_monad}. \textit{Monadi on monoidi endofunktorien kategoriassa} on fraasina surullisenkuuluisa, menee lähes poikkeuksetta ohi korvien, ja lienee yksi syy sille, miksei funktionaalinen ohjelmointi ole suositumpaa. Jotta kuvauksen voi ymmärtää, olisi opiskeltava kategoriateoriaa yliopistotasoisesta materiaalista suhteellisen paljon. Ottamatta huomioon myös kategoriateoriaan vaadittuja ennakkotietoja.
+Viimeisimmän uskotaan olevan kuvaavin, vaikka tämäkään ei paljoa helpota useimpia ohjelmoijia \cite{stackoverflow_what_monad}. \textit{Monadi on monoidi endofunktorien kategoriassa} on fraasina surullisenkuuluisa, menee lähes poikkeuksetta ohi korvien, ja lienee yksi syy sille, miksei funktionaalinen ohjelmointi ole nykyistä suositumpaa. Jotta kuvauksen voi ymmärtää, olisi opiskeltava kategoriateoriaa yliopistotasoisesta materiaalista suhteellisen paljon. Mainitsemattakaan kategoriateoriaan vaadittuja ennakkotietoja.
 Kun käsitteiden ymmärtämiseen tarvitsee useiden yliopistotasoisien kurssien taustatiedot, ei lähtökohdat leviämiselle ole vahvat.
 
 Kategoriateoriaa opiskeltaessa monadi ei tule ilmi pitkään aikaan, ensin on ymmärrettävä muun muassa mikä on kategoria (category), mitä ovat funktorit (functor), luonnolliset muutokset (natural transformation), ja monet muut käsitteet. Monadi ei siis ole kategoriateorian välitön kulmakivi; miten siitä saadaan ohjelmoijalle toimiva työkalu?
@@ -513,7 +513,7 @@ Tiivistettynä monadeilla voidaan ketjuttaa operaatioita itsemäärittelemällä
 
 \section{Pragmaattisuus funktionaalisessa ohjelmoinnissa}
 
-Funktionaalisen ohjelmoinnin tärkein teoria alkaa olla käytynä ja ehkä on selvää, että funktionaalinen ohjelmointi on pohjimmiltaan erittäin teoreettista. On hyvä aika tarkastella, miten funktionaalinen ohjelmoinnin voisi tuoda ohjelmistokehittäjän arsenaaliin. Ja toisaalta, miksei tällaista muuttoliikettä ole ohjelmoijaenemmistölle vielä tapahtunut.
+Funktionaalisen ohjelmoinnin iskevin teoria on pitkälti käytynä, ja on ehkä selvää, että funktionaalinen ohjelmointi on pohjimmiltaan erittäin teoreettista. Voi pohtia, miten funktionaalinen ohjelmoinnin voi tuoda ohjelmistokehittäjän arsenaaliin käytännönläheisesti.
 
 Kun funktionaalisen ohjelmoinnin kauneus on matemaattisissa kulmakivissä, joilla ei ole tapaa taipua, miten sen voi yhdistää säännöttömään JavaScriptiin, tai muuhun vastaavanlaiseen ohjelmointikieleen?
 
@@ -527,10 +527,12 @@ Myös kokemusten perusteella työpaikalla on havaittu funktionaalisen ohjelmoinn
 
 Pragmaattista funktionaalista ohjelmointia vaikuttaa siis olevan se, että otetaan vain mitä tarvitaan \cite{dear_functional_bros,martin2017pragmaticfp,cantarella_fp_haitat}. Toisaalta se, mitä tarvitaan ei ole välittömästi selvää. Toisille pragmaattista on jättää kaikki matemaattinen teoria pois ohjelmoinnista heti kättelyssä, toisille kategoriateorian rakenteiden käyttäminen, kun niiden käyttäminen sopii ongelmaan \cite{holvikari2021category,martin2017pragmaticfp}.
 
-Tässä insinöörityössä tarkempia pragmaattisia käytäntöjä pyritään löytämään ja arvioidaan neljännessä osassa, ja siitä eteenpäin.
+Tässä insinöörityössä tarkempia pragmaattisia käytäntöjä pyritään löytämään ja arvioidaan neljännessä osassa \textcite{Empiirinen tutkimus}, ja siitä eteenpäin.
 
 \section{Funktionaalinen ohjelmointi \& TypeScript}
 JavaScript ei ole funktionaalinen ohjelmointikieli, vaikka se funktionaalisuutta tukeekin \cite{is_reduce_bad}. TypeScriptin tyyppijärjestelmällä funktionaalinen ohjelmointi on jo mieluisampaa \cite{holvikari2021category}.
+
+JavaScriptia halutaan käyttää kaikkeen ohjelmointiin, vaikka usein erinäköisiin tehtäviin olisi parempiakin ohjelmointikieliä tarjolla. Voi itse päättää, onko pragmaattista käyttää kaikkeen samaa työkalua, ja säästää opiskelussa, vai käyttää aikaa uuden sopivamman työkalun löytämiseen, ja säästää toteuttamisessa.
 
 
 \subsection{Kielen sopivuus funktionaaliseen ohjelmointiin}
