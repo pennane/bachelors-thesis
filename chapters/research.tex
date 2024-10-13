@@ -413,50 +413,86 @@ Result-tyypillä on kuitenkin jotain, jolla sen voi viedä vielä askelta pidemm
 
 \subsection{Result-monadi}
 
-TODO - toistaseksi pari koodiesimerkkiä miltä koodi voi näyttää, jos Result koodataan monadiksi.
+Monadi oli suuressa osassa aiemmassa teoriaosuudessa. Jatketaan mahdollisesti epäonnistuvan ohjelman toteuttamista siten, että siinä on mukana monadisia periaatteita.
+
 
 \begin{code}
     \begin{minted}{typescript}
-const helloMaybe = (): Result<string> => {
-    if (Math.random() > 0.5) {
-        return failureUnit("Sorry, bad failure.")
+class Result {
+    constructor(x) {
+        this.value = x
     }
-    return successUnit("hello world")
+    static of(x) {
+        return new Result(x)
+    }
+    bind(f) {
+        if (this.value instanceof Error) {
+            return this
+        }
+
+        const result = f(this.value)
+
+        if (!(result instanceof Result)) {
+            return Result.of(result)
+        }
+
+        return x
+    }
 }
-
-const addExclamation = 
-    (x: string): Result<string> => successUnit(x + "!")
-const toUpperCase = 
-    (x: string): Result<string> => successUnit(x.toUpperCase())
-
-helloMaybe()
- .bind(addExclamation)
- .bind(toUpperCase)
 \end{minted}
-    \caption{Miltä aiemman esimerkin koodi voi näyttää, jos Result toimii kuin monadi.}
-    \label{code:result_monad_example}
+    \caption{Result implementoituna monadiksi. Result monadeja voi luoda staattisella \mintinline{js}|Result.of|-metodilla, ja monadiin voi ketjuttaa operaatioita \mintinline{js}|Result.prototype.bind|-metodilla. Jos ketjutuksessa monadin arvo on Error, niin ketjutus lopetetaan, ja saatu virhearvo kuljetetaan suoraan lävitse}
+    \label{code:result_monad_impl}
 \end{code}
 
-Aikas cool.
+EBINN
 
 \begin{code}
     \begin{minted}{typescript}
-const helloMaybe = (): string | Error => {
-    if (Math.random() > 0.5) {
-        return new Error("Sorry, bad failure.")
-    }
-    return "hello world"
-}
+const helloMaybe = (): string | Error => 
+    Math.random() > 0.5 
+        ? "hello world" 
+        : new Error("Sorry, bad failure.")
 
 const addExclamation = (x: string) => x + "!"
 const toUpperCase = (x: string) => x.toUpperCase()
 
-Result.unit(helloMaybe())
+Result.of(helloMaybe())
  .bind(addExclamation)
  .bind(toUpperCase)
 \end{minted}
-    \caption{Jos monadin ketjuttamiseen piilotetaan lisälogiikkaa, voidaan syntaksi sokeroida vielä tiiviimmäksi}
+    \caption{Monadisia operaatioita ketjutettuna Result-monadiin. Annettavat funktiot voivat palauttaa käärimättömiä arvoja johtuen Result-monadin implementaatiosta}
     \label{code:result_monad_example_2}
 \end{code}
 
-Oikein kaunista, tiivistä ja kivaa.
+
+\begin{code}
+    \begin{minted}{typescript}
+const helloMaybe = (): string | Error => 
+    Math.random() > 0.5 
+        ? "hello world" 
+        : new Error("Sorry, bad failure.")
+
+const addExclamation = (x: string) => x + "!"
+const toUpperCase = (x: string) => x.toUpperCase()
+
+Result.of(helloMaybe())
+ .bind(addExclamation)
+ .bind(toUpperCase)
+\end{minted}
+    \caption{Monadisia operaatioita ketjutettuna Result-monadiin. Annettavat funktiot voivat palauttaa käärimättömiä arvoja johtuen Result-monadin implementaatiosta}
+    \label{code:result_monad_example_2}
+\end{code}
+
+
+
+\begin{code}
+    \begin{minted}{typescript}
+const monad = Result.of(helloMaybe())
+ .bind(addExclamation)
+ .bind(toUpperCase)
+ const value = monad.value
+ // value on joko "HELLO WORLD!" tai Error("Sorry, bad failure")
+\end{minted}
+    \caption{Arvon voi poistaa monadin kontekstista yksinkertaisesti hakemalla \mintinline{js}|value|-kenttää }
+    \label{code:result_monad_example_3}
+\end{code}
