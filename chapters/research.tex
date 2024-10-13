@@ -90,7 +90,7 @@ const convertUsersToLeaderboardUsers = (users: Array<User>, anonymizeUsers: bool
         userName: anonymizeUsers 
             ? undefined 
             : user.userName,
-        score: 
+        score: user.score
     }))
     .sort((userA, userB) => userB.score - userA.score)
     \end{minted}
