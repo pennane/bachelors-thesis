@@ -5,25 +5,25 @@
 
 Jotta voidaan löytää pragmaattinen näkökulma funktionaaliseen ohjelmointiin, on käsiteltävä funktionaalisen ohjelmoinnin teoreettisia perusteita ja keskeisiä käsitteitä.
 
-Tarkastellaan joukko-opin sovelluksia ohjelmoinnissa käytännön tasolla. Sivutaan kategoriateorian osuutta funktionaalisessa ohjelmoinnissa ilman syvällistä paneutumista yksityiskohtiin.
+Tarkastellaan joukko-opin sovelluksia ohjelmoinnissa käytännön tasolla. Sivutaan kategoriateorian osuutta funktionaalisessa ohjelmoinnissa ilman syvällistä paneutumista yksityiskohtiin. Sivutaan myös \glsdisp{category_theory}{kategoriateoriaa}, joka on funktionaalisen ohjelmoinnin teoreettisen taustan kulmakivi. Tarkemmin käydään läpi kategoriateorian \glsdisp{monad}{monadi}-rakennetta, ja sen toimintaa.
 
 Tutkitaan, miten nämä käsitteet integroituvat moderniin ohjelmistokehitykseen, kuten TypeScriptin käyttöön.
 
 On tärkeää huomata, että tämän insinöörityön tavoitteena ei ole tarjota kattavaa opasta kaikkeen funktionaaliseen ohjelmointiin, vaan keskittyä valittuihin aihealueisiin, jotka tukevat työn pääteemoja ja osoittavat, miten teoreettiset käsitteet voidaan soveltaa käytännön ohjelmointihaasteisiin.
 
-Valitut aihealueet pyritään avaamaan \glsdisp{language_agnostic}{kieliagnostisesti}, ja myös JavaScript- sekä TypeScript-ekosysteemien näkökulmista.
+Valitut aihealueet pyritään avaamaan \glsdisp{language_agnostic}{kieliagnostisesti}, mutta kuitenkin JavaScript- sekä TypeScript-ekosysteemien näkökulmasta.
 
-Lopulta näillä tiedoilla voidaan lähteä tutkimaan, miten funktionaalisen ohjelmoinnin käytänteet näkyvät hyödyllisesti (tai haitallisesti) ohjelmistoprojekteissa.
+Lopulta näillä tiedoilla voidaan näyttää, miten funktionaalisen ohjelmoinnin käytänteet näkyvät hyödyllisesti (tai haitallisesti) ei-funktionaalisissa ohjelmistoprojekteissa.
 
 Teoriaosuudessa pyritään pitämään sisältö mielenkiintoisena liimaamalla käsitteet yhdeksi kokonaisuudeksi. Teoriaan pyritään tuomaan konkretiaa erilaisilla esimerkeillä ja anekdooteilla.
 
 \section{Funktionaalinen ohjelmointi}
 
-Funktionaalinen ohjelmointi on ohjelmointiparadigma, jonka juuret ulottuvat 1930-luvulle ja lambda-kalkyylin kehitykseen. Lähestymistapa korostaa funktioiden käyttöä perusyksikköinä ja pyrkii välttämään muuttuvia tiloja sekä sivuvaikutuksia. Funktionaalisen ohjelmoinnin keskeisiä käsitteitä ovat \glsdisp{pure_function}{puhtaat funktiot}, \glsdisp{higher_order_function}{korkeamman asteen funktiot}, \glsdisp{composed_function}{yhdistetyt funktiot}, sekä \gls{declarative_programming}. Funktiot ovat funktionaalisessa ohjelmoinnissa tosiaankin keskiössä. \citep{Tan2004,computerphile_lambda}
+Funktionaalinen ohjelmointi on ohjelmointiparadigma, jonka juuret ulottuvat 1930-luvulle ja lambda-kalkyylin kehitykseen. Lähestymistapa korostaa funktioiden käyttöä perusyksikköinä ja pyrkii välttämään \glsdisp{immutable_data}{muuttuvia tiloja} (mutability) sekä \glsdisp{side_effects}{sivuvaikutuksia} (side-effects). Funktionaalisen ohjelmoinnin keskeisiä käsitteitä ovat \glsdisp{pure_function}{puhtaat funktiot}, \glsdisp{higher_order_function}{korkeamman asteen funktiot}, \glsdisp{composed_function}{yhdistetyt funktiot}, sekä \gls{declarative_programming}. Funktiot ovat funktionaalisessa ohjelmoinnissa tosiaankin keskiössä. \citep{Tan2004,computerphile_lambda}
 
 \subsection{Työn nimeämiskäytänteet}
 
-Ohjelmoidessa funktionaalista ohjelmakoodia nimeämiskäytänteet ovat yhtä vaikeita kuin aina. Tässä insinöörityössä käytetään Haskell-ohjelmoijien keskuudessa näkyviä nimeämiskäytänteitä, jossa käytetään lyhyitä ja \textquote{intuitiivisia} nimiä funktioille ja muuttujille. Esimerkiksi:
+Ohjelmoidessa funktionaalista ohjelmakoodia nimeämiskäytänteet ovat yhtä vaikeita kuin aina ennenkin. Tässä insinöörityössä käytetään Haskell-ohjelmoijien keskuudessa näkyviä nimeämiskäytänteitä, joissa käytetään lyhyitä ja \textquote{intuitiivisia} nimiä funktioille ja muuttujille. Esimerkiksi:
 
 \begin{itemize}
     \item x: Yleisesti käytetty muuttuja tai parametri, joka edustaa arvoa, jota funktiot käsittelevät. Jos näkyvyysalalla on muita muuttujia, niitä nimetään usein aakkosjärjestyksessä x:stä eteenpäin (x, y, z).
@@ -41,7 +41,7 @@ const either = f => g => x => f(x) || g(x)
 const max    = x => y => x > y ? x : y
 const pipe   = fs => x => fs.reduce((acc, f) => f(acc), x)
 \end{minted}
-    \caption{Esimerkkejä insinöörityössä käytettävistä nimeämiskäytänteistä. Muunmuassa funktio map ottaa ensin yhden funktion (f), ja tämän jälkeen monta arvoa (xs). Pipe ottaa ensin monta funktiota (fs), ja tämän jälkeen yhden arvon (x)}
+    \caption{Esimerkkejä insinöörityössä käytettävistä nimeämiskäytänteistä. Muunmuassa funktio \texttt{map} ottaa ensin yhden funktion (f), ja tämän jälkeen monta arvoa (xs). \texttt{Pipe} ottaa ensin monta funktiota (fs), ja tämän jälkeen yhden arvon (x)}
     \label{code:javascript_naming_convention_example}
 \end{code}
 
@@ -104,8 +104,8 @@ const h = x => f(g(x))
 
 Funktionaalisissa ohjelmointikielissä yhdistettyjä funktioita pystyy usein kirjoittamaan käyttäen kieleen sisäänrakennettuja operaattoreja, joilla funktioiden yhdistäminen on helppoa ja suoraan osana ohjelmointikieltä \cite{fsharpcomposition,haskellcomposition}.
 JavaScriptissä ei ole vastaavanlaista sisäänrakennettua operaattoria.
-(Vaikkakin sellainen on kehitteillä \cite{tc39_pipeline_operator}.)
-Operaattorin voi kuitenkin kirjoittaa funktiona helposti osaksi mitä vain koodikantaa (Koodiesimerkki \ref{code:javascript_pipe_composition}).
+(Vaikkakin sellainen on ollut kehitteillä \cite{tc39_pipeline_operator}.)
+Operaattorin voi kuitenkin kirjoittaa funktiona helposti osaksi mitä tahansa koodikantaa (Koodiesimerkki \ref{code:javascript_pipe_composition}).
 
 \begin{code}
     \begin{minted}{javascript}
@@ -122,9 +122,11 @@ const h = compose(g)(f)
 
 Voi olla mielenkiinoista huomata, että koodiesimerkin \mintinline{javascript}{compose} löytyy myös koodiesimerkin \ref{code:javascript_combinators} tunnetuista yleisistä kombinaattoreista.
 
-Koodiesimerkissä \ref{code:javascript_pipe_composition} on näytettynä kaksi eri tapaa yhdistää funktioita: \mintinline{javascript}{pipe} ja \mintinline{javascript}{compose}. Käytännössä tapojen ainoa ero on se, kummasta suunnasta funktiot suoritetaan. \mintinline{javascript}{compose} on lähempänä yhdistettyjen funktioiden matemaattisia perusteita, kun taas \mintinline{javascript}{pipe} on usein helpompi lukea, sillä se suoritetaan yleisessä lukemissuunnassa, eli vasemmalta oikealle, tai ylhäältä alas. Tulevissa koodiesimerkeissä tullaan suosimaan funktioiden yhdistämistä käyttäen \mintinline{javascript}{pipe}-funktiota \mintinline{javascript}{compose}-funktion sijaan. \citep{whyprefercompose}
+Koodiesimerkissä \ref{code:javascript_pipe_composition} on näytettynä kaksi eri tapaa yhdistää funktioita: \texttt{pipe} ja \texttt{compose}. Käytännössä tapojen ainoa ero on se, kummasta suunnasta funktiot suoritetaan.\texttt{compose} on lähempänä yhdistettyjen funktioiden matemaattisia perusteita, kun taas \texttt{pipe} on usein helpompi lukea, sillä se suoritetaan yleisessä lukemissuunnassa, eli vasemmalta oikealle, tai ylhäältä alas. \citep{whyprefercompose}
 
-Esimerkin \ref{code:javascript_pipe_composition} \mintinline{javascript}{pipe} ja \mintinline{javascript}{compose} toimivat vain kahdelle funktiolle kerrallaan. Tämä tapa seuraa lambda-kalkyyliä \cite{computerphile_lambda}. Ohjelmointikielen mukaan voi kuitenkin olla mieluisaa kirjoittaa funktiot niin, että ne tukevat suoraan mielivaltaista määrää funktioita.
+Tulevissa koodiesimerkeissä tullaan suosimaan funktioiden yhdistämistä käyttäen \texttt{pipe}-funktiota \texttt{compose}-funktion sijasta.
+
+Esimerkin \ref{code:javascript_pipe_composition} \texttt{pipe} ja \texttt{compose} toimivat vain kahdelle funktiolle kerrallaan. Tämä tapa seuraa lambda-kalkyyliä \cite{computerphile_lambda}. Ohjelmointikielen mukaan voi kuitenkin olla mieluisaa kirjoittaa funktiot niin, että ne tukevat suoraan mielivaltaista määrää funktioita.
 
 JavaScriptissä näin voi tehdä esimerkiksi hyödyntämällä Array-tietorakennetta (Koodiesimerkki \ref{code:javascript_better_pipe}).
 
@@ -139,11 +141,11 @@ const h = x => x - 3
 
 const i = pipe([f, g, h])
 i(5) // (((5 + 1) * 2) - 3) = 9
-// tai vaihtoehtoisesti 
+// tai vaihtoehtoisesti x§
 const i = compose([h, g, f])
 i(5) // (((5 + 1) * 2) - 3) = 9
 \end{minted}
-    \caption{JavaScript-esimerkki yhdistettyjen funktioiden luomisesta käyttäen \mintinline{javascript}{reduce} ja \mintinline{javascript}{reduceRight} funktioita}
+    \caption{JavaScript-esimerkki yhdistettyjen funktioiden luomisesta käyttäen \texttt{reduce} ja \texttt{reduceRight} funktioita. Nämä versiot voivat ottaa mielivaltaisen määrän funktioita argumenttina}
     \label{code:javascript_better_pipe}
 \end{code}
 
@@ -165,7 +167,7 @@ const pipeline = pipe([rejectOdds, map(multiplyBy10)])
 
 pipeline([1, 2, 3, 4]) // [20, 40]
 \end{minted}
-    \caption{Käytännöllinen JavaScript-esimerkki yhdistettyjen funktioiden käyttämisestä laskutoimituksiin}
+    \caption{Käytännöllinen JavaScript-esimerkki yhdistettyjen funktioiden käyttämisestä laskutoimituksiin. Erilaiset operaatiot on pilkottu uudelleenkäytettäviksi funktioiksi}
     \label{code:javascript_composition_example}
 \end{code}
 
@@ -182,7 +184,6 @@ Tyyppien ja joukkojen semanttinen ero on nyanssinen \cite{type_vs_set}. Ohjelmoi
 
 Ihmisillä on kuitenkin kyky hahmottaa asioita joukkoina (tai tyyppeinä). Koko maailman voi mallintaa niillä (Kuva \ref{fig:fruit_set}) \cite{algebraic_data_types}.
 
-
 \begin{figure}[ht]
     \centering
     \AltText{Omena, päärynä ja banaani.}{\includegraphics[width=10cm]{HEDELMIA}}
@@ -191,8 +192,6 @@ Ihmisillä on kuitenkin kyky hahmottaa asioita joukkoina (tai tyyppeinä). Koko 
 \end{figure}
 
 Koska koko maailman voi mallintaa joukkoina (tai tyyppeinä), voidaan niillä mallintaa myös ohjelmia.
-
-
 
 
 \subsection{Joukko-tietorakenne}
@@ -398,12 +397,12 @@ Tässä osassa käydään läpi, mitä ovat yleiset monadit, miten implementoida
 
 Pintapuolisesti tarkasteltuna esitetyt käsitteet vaikuttavat hyvin erilaisilta, sillä niiden käyttötarkoitukset ja rakenteet vaihtelevat merkittävästi. Esimerkiksi \texttt{Promise} käsittelee asynkronisia operaatioita, kun taas \texttt{Maybe} kuvastaa mahdollisia arvoja, jotka voivat olla olemassa tai olla olematta. \texttt{Either} ja \texttt{Result} tarjoavat mekanismin virheiden käsittelyyn, ja \texttt{State} mahdollistaa tila-arvojen kantamisen funktioiden läpi. \texttt{IO} käsittelee sivuvaikutuksia, ja \texttt{Lista (Array)} tarjoaa toistuvien arvojen käsittelyn.
 
-Kuitenkin näitä monadeja yhdistää yhteinen abstraktio. Ne kaikki toteuttavat tietyt perustoiminnot \texttt{bind} (\texttt{flatMap/chain}) ja \texttt{of} (\texttt{unit/pure}). Näiden operaatioiden avulla monadit voivat kapseloida laskennan tilan tai sivuvaikutuksen, tarjoten yhdenmukaisen tavan yhdistää operaatioita ja siirtää tietoa laskentaketjujen läpi.
+Kuitenkin näitä kaikkia yhdistää yhteinen abstraktio. Ne kaikki toteuttavat tietyt perustoiminnot \texttt{bind} (\texttt{flatMap/chain}) ja \texttt{of} (\texttt{unit/pure}). Näiden operaatioiden avulla monadit voivat kapseloida laskennan tilan tai sivuvaikutuksen, tarjoten yhdenmukaisen tavan yhdistää operaatioita ja siirtää tietoa laskentaketjujen läpi.
 
 JavaScriptissä \mintinline{js}|Array| toteuttaa toiminnon \texttt{bind} \mintinline{js}|Array.prototype.flatMap|-metodilla, ja \texttt{of} toiminnon staattisella \mintinline{js}|Array.of|-metodilla \cite{stackoverflow_flatmap_monad,stackoverflow_js_array_monad}.
 
 
-JavaScriptin \mintinline{js}|Promise| toteuttaa toiminnon \texttt{bind} \mintinline{javascript}|Promise.prototype.then|-metodilla, ja \texttt{of} toiminnon staattisilla \mintinline{javascript}|Promise.resolve| ja \mintinline{javascript}|Promise.reject| metodeilla \cite{read-it-later-11481,stackoverflow:why_monad,promises-spec-94}.
+JavaScriptin \mintinline{js}|Promise| toteuttaa toiminnon \texttt{bind} \mintinline{javascript}|Promise.prototype.then|-metodilla, ja \texttt{of} toiminnon staattisella \mintinline{javascript}|Promise.resolve| ja \mintinline{javascript}|Promise.reject| metodeilla \cite{read-it-later-11481,stackoverflow:why_monad,promises-spec-94}.
 
 Vaikka JavaScriptin \mintinline{js}|Promise| ja \mintinline{js}|Array| toteuttavatkin monadin \texttt{bind} ja \texttt{of} toiminnot, se ei tee niistä automaattisesti monadeja kategoriateorian tai funktionaalisen ohjelmoinnin sääntöjen mukaan \cite{promises-spec-94,stackoverflow:why_monad,stackoverflow_js_array_monad}.
 
@@ -412,18 +411,18 @@ Vaikka JavaScriptin \mintinline{js}|Promise| ja \mintinline{js}|Array| toteuttav
 
 Konkreettisesti monadilla tulee siis olla kaksi toimintoa: \texttt{of} ja \texttt{bind}. Toiminto \texttt{of} käärii arvoja monadiin. Toiminnon voidaan ajatella olevan monadin konstruktori. \citep{stackoverflow_what_monad}
 
-\texttt{bind}-toiminnolla muutetaan monadiin käärittyä arvoa antamalla toiminnolle funktio, joka palauttaa toisen saman tyypin monadin. \cite{stackoverflow_what_monad} \texttt{bind}-toiminto on käytännössä sama kuin tunnetumpi \texttt{map}-toiminto. Erona on, että \texttt{map} palauttaa muokatun arvon, joka on kääritty samaan monadiin, kun taas \texttt{bind} mahdollistaa monadin sisällä olevan arvon muuttamisen ja sen ketjuttamisen muihin monadisiin operaatioihin.
+\texttt{Bind}-toiminnolla muutetaan monadiin käärittyä arvoa antamalla toiminnolle funktio, joka palauttaa toisen saman tyypin monadin. \cite{stackoverflow_what_monad} \texttt{Bind}-toiminto on käytännössä sama kuin tunnetumpi \texttt{map}-toiminto. Erona on, että \texttt{map} palauttaa muokatun arvon, joka on kääritty samaan monadiin, kun taas \texttt{bind} mahdollistaa monadin sisällä olevan arvon muuttamisen ja sen ketjuttamisen muihin monadisiin operaatioihin.
 
 Näillä kahdella toiminnolla voidaan luoda rakenteita, jotka käyttäytyvät kuin monadi. Monadin täydet hyödyt eivät kuitenkaan ilmene, jos rakenne ei myös täytä monadien kolmea sääntöä: vasen identiteetti (left identity), oikea identiteetti (right identity), ja liitännäisyys (associativity) \cite{haskellmonadlaws}. Jos kaikki kolme sääntöä toteutuu, voidaan luoda työkaluja, joissa voidaan käyttää mitä tahansa monadia, ja silloin monadi on määritelmän mukaisesti monadi.
 
-Osassa \textquote{Promise-tietorakenne on miltei monadi} puidaan sitä, miksei JavaScriptin \mintinline{js}|Promise| ole määritelmällisesti täydellisesti monadi, ja miksei ilman ulkoisia kirjastoja JavaScriptiin voida enää tuoda määritelmän täyttäviä monadeja. Kuitenkin rakenne, joka on kuin monadi, voi myös olla erittäin hyödyllinen. Siksi ei tarkemmin käsitellä, miten monadin määritelmän voi oikeellisesti täyttää.
+Osassa \textquote{Promise-tietorakenne on miltei monadi} puidaan sitä, miksei JavaScriptin \texttt{Promise} ole määritelmällisesti täydellisesti monadi, ja miksei ilman ulkoisia kirjastoja JavaScriptiin voida enää tuoda määritelmän täyttäviä monadeja. Kuitenkin rakenne, joka on kuin monadi, voi myös olla erittäin hyödyllinen. Siksi ei tarkemmin käsitellä, miten monadin määritelmän voi oikeellisesti täyttää.
 
 
 \subsection{Monadin käyttäminen}
 
 Monadeja käytetään operaatioiden ketjuttamiseen. Monadeilla voi käytännössä tehdä yhdistettyjä funktioita, joissa on mukautettu tapa hallita mitä yhdisteen funktiokutsujen välissä tapahtuu.
 
-Käydään esimerkkinä JavaScriptin \mintinline{js}|Promise| (joka toimii kuin monadi) (Koodiesimerkki \ref{code:promise_monad_concise}).
+Käydään esimerkkinä JavaScriptin \texttt{Promise}-tietorakennetta (joka toimii kuin monadi) (Koodiesimerkki \ref{code:promise_monad_concise}).
 
 \begin{code}
     \begin{minted}{typescript}
@@ -437,7 +436,7 @@ fetch("https://some.imaginary.api.com/v1")
     \label{code:promise_monad_concise}
 \end{code}
 
-Koodiesimerkissä nähdään operaatioiden monadinen ketjutus. Jokainen \mintinline{js}|Promise.then|-kutsu palauttaa aina uuden Promise-monadin. Jos jokin yksittäinen Promise päätyy virhetilaan, ei enää seuraavia then-kutusja ajaeta, vaan ketju päätyy automaattisesti catch-osioon.
+Koodiesimerkissä nähdään operaatioiden monadinen ketjutus. Jokainen \mintinline{js}|Promise.then|-kutsu palauttaa aina uuden Promise-monadin. Jos jokin yksittäinen Promise päätyy virhetilaan, ei enää seuraavia then-kutusja ajeta, vaan ketju päätyy automaattisesti \texttt{catch}-osioon.
 
 Käytännössä koko ohjelma on siis vain yhdistetty funktio, jossa ollaan määritelty räätälöityä logiikkaa siihen, miten funktiokutsut käsitellään. Kuitenkaan \mintinline{js}|Promise.catch| ei liity suoraan monadisuuteen, eikä käytännössä oikeellisesti implementoidun monadin tarvitsisi käyttää sellaista \cite{promises-spec-94}.
 
@@ -460,12 +459,12 @@ Myös Cantarella mainitsee opinnäytetyönsä loppupuolella ajatuksen, että mit
 
 Myös kokemusten perusteella työpaikalla on havaittu funktionaalisen ohjelmoinnin toimivan kohtuullisen hyvin ripoteltuna proseduraalisen ohjelmakoodin.
 
-Pragmaattista funktionaalista ohjelmointia vaikuttaa siis olevan se, että otetaan vain mitä tarvitaan \cite{dear_functional_bros,martin2017pragmaticfp,cantarella_fp_haitat}. Toisaalta se, mitä tarvitaan ei ole välittömästi selvää. Toisille pragmaattista on jättää kaikki matemaattinen teoria pois ohjelmoinnista heti kättelyssä, toisille kategoriateorian rakenteiden käyttäminen, kun niiden käyttäminen sopii ongelmaan \cite{holvikari2021category,martin2017pragmaticfp}.
+Pragmaattista funktionaalista ohjelmointia vaikuttaa siis olevan se, että otetaan vain mitä tarvitaan \cite{dear_functional_bros,martin2017pragmaticfp,cantarella_fp_haitat}. Toisaalta se, mitä tarvitaan ei ole välittömästi selvää. Toisille pragmaattista on jättää kaikki matemaattinen teoria pois ohjelmoinnista heti kättelyssä, toisille kategoriateorian rakenteiden käyttäminen, kun ne oikeasti sopivat mallintamaan ongelmaa \cite{holvikari2021category,martin2017pragmaticfp}.
 
-Tässä insinöörityössä tarkempia pragmaattisia funktionaalisen ohjelmoinnin käytäntöjä pyritään tuomaan esille neljännessä osassa \textquote{Empiirinen tutkimus}, ja siitä eteenpäin.
+Tässä insinöörityössä tarkempia pragmaattisia funktionaalisen ohjelmoinnin käytäntöjä pyritään tuomaan esille neljännessä osassa \textquote{Funktionaalisia käytänteitä ei-funktionaalisissa ohjelmointikielissä}, ja siitä eteenpäin.
 
 \section{Funktionaalinen ohjelmointi \& TypeScript}
-JavaScript ei ole funktionaalinen ohjelmointikieli, vaikka se funktionaalisuutta tukeekin \cite{is_reduce_bad}. TypeScriptin tyyppijärjestelmällä funktionaalinen ohjelmointi on jo mieluisampaa \cite{holvikari2021category}.
+JavaScript ei ole funktionaalinen ohjelmointikieli, vaikka se funktionaalisuutta tukeekin \cite{is_reduce_bad}. TypeScriptin tyyppijärjestelmällä funktionaalisesta ohjelmoinnista saa jo mieluisampaa \cite{holvikari2021category}.
 
 JavaScriptia halutaan käyttää kaikkeen ohjelmointiin, vaikka usein erinäköisiin tehtäviin olisi parempiakin ohjelmointikieliä tarjolla. Voi itse päättää, onko pragmaattista käyttää kaikkeen samaa työkalua, ja säästää opiskelussa, vai käyttää aikaa uuden sopivamman työkalun löytämiseen, ja säästää toteuttamisessa.
 
@@ -497,14 +496,14 @@ function A()  { return "moi"; }
 function B(f) { return f(); }
 B(A) // "moi"
 \end{minted}
-    \caption{Funktioiden ensiluokkaisuus JavaScriptissä}
+    \caption{Funktioiden ensiluokkaisuus JavaScriptissä. Funktiolle B voidaan antaa funktio argumenttina}
     \label{code:js_first_class}
 \end{code}
 
-Funktionaalisen ohjelmoinnin piireissä TypeScriptin tyyppijärjestelmää arvostetaan myös, koska sillä voidaan rakentaa algebrallisia datatyyppejä, jotka ovat puhtaissa funktionaalisissa ohjelmointikielissä läsnä \cite{holvikari2021category}.
+Funktionaalisen ohjelmoinnin piireissä TypeScriptin tyyppijärjestelmää arvostetaan myös, koska sillä voidaan rakentaa algebrallisia datatyyppejä, jotka ovat yleisesti puhtaissa funktionaalisissa ohjelmointikielissä läsnä ja suuressa roolissa \cite{holvikari2021category}.
 
 
-\subsection{Tyypitys}
+\subsection{Algebralliset datatyypit}
 
 TypeScriptin tyypit ovat mieluisia funktionaaliselle ohjelmoinnille. TypeScript mahdollistaa funktionaaliselle ohjelmoinnille olennaisten algebrallisten datatyyppien määrittelemistä \cite{holvikari2021category}.
 
@@ -542,7 +541,7 @@ Vaikka TypeScriptin tyyppijärjestelmä on vankkarakenteinen, ei se varmista kai
 
 \subsection{Kirjastot}
 
-Funktionaalista ohjelmointia on pyritty pitämään elossa erinäköisin kirjastoin, joissa hyväksikäytetään kielen ominaisuuksia, ja luodaan kirjastoja, joiden käyttäminen vaatii ohjelmoijalta täysin uuden syntaksin opettelemista JavaScript syntaksin lisäksi \cite{ramda,sanctuary,crocks,fpts}.
+Funktionaalista ohjelmointia on pyritty pitämään elossa erinäköisin kirjastoin, joissa hyväksikäytetään kielen ominaisuuksia, ja luodaan kirjastoja, joiden käyttäminen vaatii ohjelmoijalta täysin uuden syntaksin opettelemista JavaScript syntaksin lisäksi \cite{ramda,sanctuary,crocks,fpts,holvikari2021category}.
 
 Kokemusten perusteella syntaksierot ovat todella hidastava tekijä. Ohjelmoijat olettavat ohjelmoivansa TypeScript-projektissa TypeScriptiä. Tai yleisemmin sanottuna: ohjelmoijat olettavat ohjelmoivansa sitä ohjelmointikieltä mitä ohjelmoivat.
 
@@ -550,7 +549,7 @@ Funktionaalisen ohjelmoinnin kirjastoilla halutaan tuoda \gls{ts}-ekosysteemiin 
 
 \subsection{Promise-tietorakenne on miltei monadi}
 
-JavaScriptissa oleva Promise-tietorakenne toimii miltei kuin monadi, muttei ole sitä määritelmällisesti matematiikan kategoriateorian mukaan \cite{stackoverflow:why_monad,promises-spec-94}. Tässä osassa puidaan miksi se on merkittävää, miksi se pääsi tapahtumaan, ja mitä merkitystä sillä edes on, että JavaScriptissa ei ole standardoitua tapaa luoda monadeja.
+JavaScriptissä oleva Promise-tietorakenne toimii miltei kuin monadi, muttei ole sitä määritelmällisesti matematiikan kategoriateorian mukaan \cite{stackoverflow:why_monad,promises-spec-94}. Tässä osassa puidaan miksi se on merkittävää, miksi se pääsi tapahtumaan, ja mitä merkitystä sillä edes on, että JavaScriptissä ei ole standardoitua tapaa luoda monadeja.
 
 JavaScriptin kehitys perustuu vahvasti takaperin yhteensopivuuteen, mikä estää merkittäviä muutoksia kielen rakenteisiin ilman riskiä rikkoa olemassa olevia verkkosivuja \cite{prototype_library_trends}. Selaimet eivät voi myöskään tehdä omin päin rikkovia muutoksia \cite{against_self_closing_tags,proposal-joint-iteration}. Jos vierailee lääkärin vastaanoton verkkosivulla selvittääkseen aukioloajat, kumpi selain on paras: se, joka näyttää vastaanoton aukioloajat, vai se, joka ei näytä mitään, koska on ottanut uuden JavaScript-version käyttöön?
 
@@ -560,4 +559,4 @@ Kun Promise-tietorakennetta oltiin tuomassa osaksi JavaScriptia, keskusteltiin t
 
 Yksityiskohdat eivät liene merkittäviä, mutta lopputulos on se, ettei JavaScriptin Promise-tietorakennetta saatu täyttämään kaikkia monadien sääntöjä.
 
-Mahdollisuus tuoda monadit osaksi JavaScript standardia on todennäköisesti menetetty \cite{proposal-joint-iteration,prototype_library_trends}. Ohjelmoijat joutuvat itse valitsemaan, miten luoda ja käyttää monadeja JavaScriptissa. Jos sekä Array että Promise olisivat yhtenäisesti monadeja, niiden yhteiskäyttö olisi suoraviivaisempaa, ja uusien monadien implementointi olisi johdonmukaisempaa. Suoraan JavaScriptissä kielen tasolla. Nykytilanne pakottaa ohjelmoijat improvisoimaan.
+Mahdollisuus tuoda monadit osaksi JavaScript standardia on todennäköisesti menetetty \cite{proposal-joint-iteration,prototype_library_trends}. Ohjelmoijat joutuvat itse valitsemaan, miten luoda ja käyttää monadeja JavaScriptissä. Jos sekä Array että Promise olisivat yhtenäisesti monadeja, niiden yhteiskäyttö olisi suoraviivaisempaa, ja uusien monadien implementointi olisi johdonmukaisempaa suoraan JavaScriptissä kielen tasolla. Nykytilanne pakottaa ohjelmoijat improvisoimaan.
