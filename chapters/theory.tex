@@ -122,7 +122,7 @@ const h = compose(g)(f)
 
 Voi olla mielenkiinoista huomata, että koodiesimerkin \mintinline{javascript}{compose} löytyy myös koodiesimerkin \ref{code:javascript_combinators} tunnetuista yleisistä kombinaattoreista.
 
-Koodiesimerkissä \ref{code:javascript_pipe_composition} on näytettynä kaksi eri tapaa yhdistää funktioita: \texttt{pipe} ja \texttt{compose}. Käytännössä tapojen ainoa ero on se, kummasta suunnasta funktiot suoritetaan.\texttt{compose} on lähempänä yhdistettyjen funktioiden matemaattisia perusteita, kun taas \texttt{pipe} on usein helpompi lukea, sillä se suoritetaan yleisessä lukemissuunnassa, eli vasemmalta oikealle, tai ylhäältä alas. \citep{whyprefercompose}
+Koodiesimerkissä \ref{code:javascript_pipe_composition} on näytettynä kaksi eri tapaa yhdistää funktioita: \texttt{pipe} ja \texttt{compose}. Käytännössä tapojen ainoa ero on se, kummasta suunnasta funktiot suoritetaan. \texttt{compose} on lähempänä yhdistettyjen funktioiden matemaattisia perusteita, kun taas \texttt{pipe} on usein helpompi lukea, sillä se suoritetaan yleisessä lukemissuunnassa, eli vasemmalta oikealle, tai ylhäältä alas. \citep{whyprefercompose}
 
 Tulevissa koodiesimerkeissä tullaan suosimaan funktioiden yhdistämistä käyttäen \texttt{pipe}-funktiota \texttt{compose}-funktion sijasta.
 
@@ -440,7 +440,7 @@ Koodiesimerkissä nähdään operaatioiden monadinen ketjutus. Jokainen \mintinl
 
 Käytännössä koko ohjelma on siis vain yhdistetty funktio, jossa ollaan määritelty räätälöityä logiikkaa siihen, miten funktiokutsut käsitellään. Kuitenkaan \mintinline{js}|Promise.catch| ei liity suoraan monadisuuteen, eikä käytännössä oikeellisesti implementoidun monadin tarvitsisi käyttää sellaista \cite{promises-spec-94}.
 
-Raja on häilyvä. Onko JavaScriptin Promise monadi vai ei? Matemaatikkojen mielestä monadi on \textquote{yksinkertaisesti} monoidi endofunktoteiden kategoriassa \cite{bartosz_category_for_progamers_10,monad_wikipedia,stackoverflow_what_monad}. Toisten mielestä monadi on asia, jolla on \texttt{flatMap}-metodi \cite{stackoverflow_flatmap_monad}.
+Raja on häilyvä. Onko JavaScriptin Promise monadi vai ei? Matemaatikkojen mielestä monadi on \textquote{yksinkertaisesti} monoidi endofunktoreiden kategoriassa \cite{bartosz_category_for_progamers_10,monad_wikipedia,stackoverflow_what_monad}. Toisten mielestä monadi on asia, jolla on \texttt{flatMap}-metodi \cite{stackoverflow_flatmap_monad}.
 
 Pragmaattisuuden nimissä monadi saa tässä työssä olla rakenne, jolla voidaan ketjuttaa operaatioita itsemäärittelemällä tavalla, joka mahdollisesti eroaa tavallisesta funktioiden yhdistämisestä.
 

@@ -49,7 +49,7 @@ Yksinkertaisiakin funktioita voi olla vaikea hahmottaa koodista. Mikään ei pak
 
 Kannattanee käyttää ohjelmointikielen sisäänrakennettuja funktioita, ja metodeja aina kun mahdollista. Näin voi maksimoida sen, että koodi ymmärretään. Jos kyse on jostakin projektin sisäisestä kirjastosta, voi olla hyödyllistä lisätä funktiolle kommentti, jos se tunnetaan muissa ohjelmointiympäristöissä jollain toisella nimellä.
 
-Jos on kyse jostain toimintaympäristökohtaisesta funktiosta, eikä perustavanlaatuisesta yleispätevästä funktiosta, on tärkeää, että funktio nimetään mahdollisimman kuvaavasti. Esimerkiksi sen sijaan, että nimeää funktion nimellä \textquote{processUsers}, voi miettiä tarvitseeko funktion kutsupaikoissa ymmärtää enemmän siitä mitä funktio tekee? Jos kontekstista on selvää, mitä funktio tekee, nimen voi jättää sellaiseksi kuin on. Jos konteksti ei avaa toimitaa enemmän, \textquote{processUsers} on erittäin ympäripyöreä nimi.
+Jos on kyse jostain toimintaympäristökohtaisesta funktiosta, eikä perustavanlaatuisesta yleispätevästä funktiosta, on tärkeää, että funktio nimetään mahdollisimman kuvaavasti. Esimerkiksi sen sijaan, että nimeää funktion nimellä \textquote{processUsers}, voi miettiä tarvitseeko funktion kutsupaikoissa ymmärtää enemmän siitä mitä funktio tekee? Jos kontekstista on selvää, mitä funktio tekee, nimen voi jättää sellaiseksi kuin on. Jos konteksti ei avaa toimintaa enemmän, \textquote{processUsers} on erittäin ympäripyöreä nimi.
 
 \section{Yhdistetyt funktiot}
 
@@ -483,4 +483,4 @@ const monad = Result.of(helloMaybe())
     \label{code:result_monad_example_3}
 \end{code}
 
-Eri ohjelmontikielissä tai kirjastoissa monadeista arvon ulos saaminen voi poiketa. Matemaattisessa määritelmässä arvoa ei ole tarkoitus koskaan saada pois monadista. Esimerkiksi Haskellissa lähtökohtaisesti arvo kuuluu aina jättää monadinsa kontekstiin, eikä sitä tulisi käsitellä suoraan \cite{haskellallmonad}.
+Eri ohjelmointikielissä tai kirjastoissa monadeista arvon ulos saaminen voi poiketa. Matemaattisessa määritelmässä arvoa ei ole tarkoitus koskaan saada pois monadista. Esimerkiksi Haskellissa lähtökohtaisesti arvo kuuluu aina jättää monadinsa kontekstiin, eikä sitä tulisi käsitellä suoraan \cite{haskellallmonad}.
