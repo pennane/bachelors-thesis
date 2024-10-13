@@ -67,7 +67,11 @@ Esimerkkikoodi \ref{code:js_garbage_pipe} näyttää tilanteen, jossa Ramda.js-k
     \begin{minted}{typescript}
 const convertUsersToLeaderboardUsers = (users: Array<User>, anonymizeUsers: boolean) => R.pipe(
     R.pick(["userName", "score", "id"]),
-    R.ifElse(R.always(anonymizeUsers), R.map(R.omit(["userName"])), R.identity),
+    R.ifElse(
+        R.always(anonymizeUsers), 
+        R.map(R.omit(["userName"])), 
+        R.identity
+    ),
     R.map(R.assoc("type", "leaderboardUser")),
     R.sortWith([R.descend(R.prop("score"))])
 )(users)
@@ -81,12 +85,14 @@ Sen sijaan esimerkkikoodissa \ref{code:js_legit_pipe} käytetään vain JavaScri
 \begin{code}
     \begin{minted}{typescript}
 const convertUsersToLeaderboardUsers = (users: Array<User>, anonymizeUsers: boolean) => users
-.map(user => ({
-    type: "leaderboardUser",
-    userName: anonymizeUsers ? undefined : user.userName,
-    score: 
-}))
-.sort((userA, userB) => userB.score - userA.score)
+    .map(user => ({
+        type: "leaderboardUser",
+        userName: anonymizeUsers 
+            ? undefined 
+            : user.userName,
+        score: 
+    }))
+    .sort((userA, userB) => userB.score - userA.score)
     \end{minted}
     \caption{Toiminnaltaan sama funktio, mutta käytettynä on vain JavaScriptin sisäänrakennettuja palikoita. Useampi lukija ymmärtää funktion, sillä se ei käytä ulkoisia kirjastoja}
     \label{code:js_legit_pipe}
@@ -467,29 +473,9 @@ Result.of(helloMaybe())
 
 \begin{code}
     \begin{minted}{typescript}
-const helloMaybe = (): string | Error => 
-    Math.random() > 0.5 
-        ? "hello world" 
-        : new Error("Sorry, bad failure.")
-
-const addExclamation = (x: string) => x + "!"
-const toUpperCase = (x: string) => x.toUpperCase()
-
-Result.of(helloMaybe())
- .bind(addExclamation)
- .bind(toUpperCase)
-\end{minted}
-    \caption{Monadisia operaatioita ketjutettuna Result-monadiin. Annettavat funktiot voivat palauttaa käärimättömiä arvoja johtuen Result-monadin implementaatiosta}
-    \label{code:result_monad_example_2}
-\end{code}
-
-
-
-\begin{code}
-    \begin{minted}{typescript}
 const monad = Result.of(helloMaybe())
- .bind(addExclamation)
- .bind(toUpperCase)
+    .bind(addExclamation)
+    .bind(toUpperCase)
  const value = monad.value
  // value on joko "HELLO WORLD!" tai Error("Sorry, bad failure")
 \end{minted}
