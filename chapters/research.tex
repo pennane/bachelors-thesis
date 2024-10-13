@@ -1,22 +1,25 @@
 % Material and Methods
 %\clearpage%if the chapter heading starts close to bottom of the page, force a line break and remove the vertical vspace
 \vspace{21.5pt}
-\chapter{Empiirinen tutkimus}
+\chapter{Funktionaalisia käytänteitä ei-funktionaalisissa ohjelmointikielissä }
 
 Tässä osassa pyritään esittämään kaikista oleellisin, mitä funktionaalisella ohjelmoinnilla voidaan saada aikaan. Teoreettisen perustan ja kokemusten avulla tuodaan esille mitä funktionaalinen ohjelmointi on koetusti parhaimmillaan.
 
-Ajatuksena on, että kun ohjelma on mallinnettu oikein, ei ole suurta merkitystä ohjelmoidaanko olio-ohjelmointia, vai funktionaalista ohjelmointia. Olio-ohjelmoinnissa mallinnus saatettaisiin hoitaa rajapinnoilla (interface). Funktionaalisen ohjelmoinnin tapa mallintaa on käyttää tyyppejä ja abstrakteja tietorakenteita.
+Ajatuksena on, että kun ohjelma on mallinnettu oikein, ei ole suurta merkitystä ohjelmoidaanko olio-ohjelmointia, vai funktionaalista ohjelmointia. Olio-ohjelmoinnissa mallinnus saatettaisiin hoitaa rajapinnoilla (interface). Funktionaalisen ohjelmoinnin tapa mallintaa on käyttää tyyppejä ja abstrakteja (algebrallisia) tietorakenteita.
 
-Käydään myös miten funktionaalinen ohjelmointi näkyy konkreettisesti. Tämä on erinäköisten funktioiden muodossa.
 
-// TÄSSÄ OLI VÄLIOTSIKOT "Tutkimuksen lähtökohdat", "Tutkimusympäristö", "Tutkimusmenetelmät", ja "Tutkimuksen rajoitukset"
-// NE ON POISTETTU TURHAN TOISTON VÄLTTÄMISEKSI
-// AJATUKSENA ON KIRJOITTAA ENEMMÄN "RETROSPEKTIIVISESTI", MISTÄ NÄKÖKULMASTA "Empriirinen tutkimus" -OSA TEHTIIN SEURAAVASSA OSASSA "Tulosten analyysi"
+Tuodaan siis ilmi millaisia käytänteitä voidaan ripotella ohjelmointiin, vaikka ohjelmointikieli ei varsinaisesti olisi funktionaalinen.
+
+Pyritään herättämään ajatuksia milloin ja miten funktioita kannattaa käyttää. Esitetään myös kuinka suuressa roolissa ongelmien mallintaminen on. Kun ongelmien mallit pureskellaan oikeisiin joukkoihin, saadaan turvallisempaa ohjelmakoodia. Silloin on myös helpompi kirjoittaa deklaratiivista koodia, joka on funktionaalisen ohjelmoinnin ominaista.
+
 
 
 \section{Opi kerran, käytä kaikkialla}
 
-Funktionaalisessa ohjelmoinnissa etsitään yleisiä teemoja, ja viedään toistuvia malleja funktioiksi, jotta voidaan syntaksin sijasta kirjoittaa funktioiden nimiä. Olio-ohjelmoinnissa, tai muuten imperatiivisessa ohjelmoinnissa, for-silmukalla toteutettavat algoritmit yleistetään funktioiksi (Kuva \ref{fig:ramdacmds}). Onko helpompaa opetella ääretön määrä funktioita, vai yksi kielirakenne: for-silmukka?
+Funktionaalinen ohjelmointi kannustaa asioiden uudelleenkäytettävyyteen. Funktionaalisessa ohjelmoinnissa etsitään yleisiä teemoja, ja viedään toistuvia malleja funktioiksi, jotta voidaan kirjoittaa funktioiden nimiä syntaksin sijasta.
+
+
+Esimerkiksi olio-ohjelmoinnissa, tai muuten imperatiivisessa ohjelmoinnissa, for-silmukalla toteutettavat algoritmit voidaan yleistää funktioiksi (Kuva \ref{fig:ramdacmds}). Onko helpompaa opetella ääretön määrä funktioita, vai yksi kielirakenne: for-silmukka?
 
 \begin{figure}[ht]
     \centering
@@ -34,7 +37,7 @@ Funktionaalisessa ohjelmoinnissa etsitään yleisiä teemoja, ja viedään toist
             \\
         \end{array}
     \]
-    \caption{Ramda.js kirjaston funktioita listojen käsittelyyn ohjelmoinnissa \cite{ramda:docs}. Kaikki nämä voidaan korvata for-silmukoilla imperatiivisessa paradigmassa.}
+    \caption{Ramda.js-kirjaston funktioita listojen käsittelyyn ohjelmoinnissa \cite{ramda:docs}. Kaikki nämä voitaisiin korvata for-silmukoilla imperatiivisessa paradigmassa.}
     \label{fig:ramdacmds}
 \end{figure}
 
@@ -42,15 +45,15 @@ Nimet ovat syntaksiriippumattomia. Samoja nimiä voi käyttää ohjelmointikiele
 
 Jos asia on tarpeeksi monimutkainen ja sen piilottaa nimen taakse, hyötyarvon määrittäminen voi olla haastavaa. Mitä monimutkaisempaa asiaa yritetään enkoodata yksittäiseen nimeen, sitä vaikeampaa se on lukijan ymmärtää, ja myös sitä vaikeampaa sille on löytää uudelleenkäyttötilanteita. Pienikin nyanssiero funktion implementaatiossa totuttuun implementaatioon voi mitätöidä opitun hyödyn eri ympäristöissä.
 
-Yksinkertaisiakin funktioita voi olla vaikea hahmottaa koodista. Mikään ei pakota ohjelmoijaa nimeämään funktiota samalla tavalla kuin miten sama funktio on nimetty jossain toisessa projektissa tai ohjelmointikielessä. Vaikka ohjelmoija tahtoisi noudattaa aiempia nimeämiskäytänteitä, niin aiempia nimeämiskäytänteitä voi olla vaikea löytää, tai ylipäätään jo useita.
+Yksinkertaisiakin funktioita voi olla vaikea hahmottaa koodista. Mikään ei pakota ohjelmoijaa nimeämään funktiota samalla tavalla kuin miten sama funktio on nimetty jossain toisessa projektissa tai ohjelmointikielessä. Nimeämiskäytänteiden noudattaminen ei kuitenkaan ole helppoa. Käytänteitä voi olla vaikea löytää, tai niitä voi olla useita.
 
 Kannattanee käyttää ohjelmointikielen sisäänrakennettuja funktioita, ja metodeja aina kun mahdollista. Näin voi maksimoida sen, että koodi ymmärretään. Jos kyse on jostakin projektin sisäisestä kirjastosta, voi olla hyödyllistä lisätä funktiolle kommentti, jos se tunnetaan muissa ohjelmointiympäristöissä jollain toisella nimellä.
 
-Jos on kyse jostain toimintaympäristökohtaisesta funktiosta, eikä perustavanlaatuisesta yleispätevästä funktiosta, on tärkeää, että funktio nimetään mahdollisimman kuvaavasti. Esimerkiksi sen sijaan, että nimeää funktion nimellä \textcite{processUsers}, voi miettiä tarvitseeko funktion kutsupaikoissa ymmärtää enemmän siitä mitä funktio tekee? Jos kontekstista on selvää, mitä funktio tekee, nimen voi jättää sellaiseksi kuin on. Jos konteksti ei avaa toimitaa enemmän, \textcite{processUsers} on erittäin ympäripyöreä nimi.
+Jos on kyse jostain toimintaympäristökohtaisesta funktiosta, eikä perustavanlaatuisesta yleispätevästä funktiosta, on tärkeää, että funktio nimetään mahdollisimman kuvaavasti. Esimerkiksi sen sijaan, että nimeää funktion nimellä \textquote{processUsers}, voi miettiä tarvitseeko funktion kutsupaikoissa ymmärtää enemmän siitä mitä funktio tekee? Jos kontekstista on selvää, mitä funktio tekee, nimen voi jättää sellaiseksi kuin on. Jos konteksti ei avaa toimitaa enemmän, \textquote{processUsers} on erittäin ympäripyöreä nimi.
 
 \section{Yhdistetyt funktiot}
 
-Kun funktioita on saatu kasattua työkalupakkiin, niitä on voi yhdistellä erilaisten tarpeiden mukaan. Funktionaalisen ohjelmoinnin on operaatioiden koostamisessa: kerran kirjoitetut funktiot ovat monikäyttöisiä ja niitä voidaan ketjuttaa keskenään, jolloin monimutkaisemmat operaatiot rakentuvat valikoiduista palikoista.
+Kun funktioita on saatu kasattua työkalupakkiin, niitä voi yhdistellä erilaisten tarpeiden mukaan. Funktionaalisen ohjelmoinnin on operaatioiden koostamisessa: kerran kirjoitetut funktiot ovat monikäyttöisiä ja niitä voidaan ketjuttaa keskenään, jolloin monimutkaisemmat operaatiot rakentuvat valikoiduista palikoista.
 
 Yhdistettyjen funktioiden avulla voidaan saavuttaa korkea taso ohjelmoinnin joustavuudessa. Ad hoc -funktioiden, eli tilanteeseen nopeasti mukautettujen funktioiden, kirjoittaminen on vaivatonta, ja niiden lisääminen osaksi olemassa olevia ketjuja onnistuu helposti. Tämä mahdollistaa nopean iteroinnin ja mukautumisen uusiin tarpeisiin ilman merkittäviä muutoksia alkuperäiseen koodiin.
 
@@ -69,7 +72,7 @@ const convertUsersToLeaderboardUsers = (users: Array<User>, anonymizeUsers: bool
     R.sortWith([R.descend(R.prop("score"))])
 )(users)
 \end{minted}
-    \caption{Funktio, muuttaa listan käyttäjiä sellaisiksi, että niitä voidaan käyttää tuloslistoilla. Funktio on yhdistetty monesta funktiosta käyttämällä Ramda.js kirjaston funktioita}
+    \caption{Funktio, muuttaa listan käyttäjiä sellaisiksi, että niitä voidaan käyttää tuloslistoilla. Funktio on yhdistetty monesta funktiosta käyttämällä Ramda.js-kirjaston funktioita. Funktiossa käytetään useita muita funktioita, joiden toiminnan lukijan on tiedettävä tai arvattava}
     \label{code:js_garbage_pipe}
 \end{code}
 
@@ -85,28 +88,29 @@ const convertUsersToLeaderboardUsers = (users: Array<User>, anonymizeUsers: bool
 }))
 .sort((userA, userB) => userB.score - userA.score)
     \end{minted}
-    \caption{Toiminnaltaan sama funktio, mutta käytettynä on vain JavaScriptin sisäänrakennettuja palikoita}
+    \caption{Toiminnaltaan sama funktio, mutta käytettynä on vain JavaScriptin sisäänrakennettuja palikoita. Useampi lukija ymmärtää funktion, sillä se ei käytä ulkoisia kirjastoja}
     \label{code:js_legit_pipe}
 \end{code}
 
 
 On tärkeää, että abstrahoinnin taso pysyy hallittuna, eikä yhdistetty funktio tuo mukanaan lisämonimutkaisuutta. Abstraktioiden on oltava perusteltuja ja niiden tulee aidosti parantaa koodin ylläpidettävyyttä ja uudelleenkäytettävyyttä, eikä vain noudattaa jotain häilyviä teoreettisia malleja ilman konkreettisia hyötyjä.
 
-Funktioilla on kiva kikkailla, mutta kikkailu ei nopeasti toteutettuna kanna kauas.
-
-
-
-\section{Puhtaiden funktioiden hinta}
 
 Pitää siis pitää mielessä ohjelmointikieli, jossa toimitaan. Säännöt tulee sopeuttaa ympäristöön. Vaikka funktionaalisessa ohjelmoinnissa pyritään olla mutatoimatta dataa, tästä ei missään nimessä ole pakko pitää kiinni kynsin hampain.
 
-Joissain ohjelmointikielissä, tai ohjelmointikielien kirjastoissa, muuttumattomien tietorakenteiden käyttäminen on saatu varsin tehokkaaksi. Näin ei kuitenkaan ole asian laita JavaScriptissä, tai ohjelmointikielissä yleisesti. Yleisesti ottaen tiedon mutatointi on nopeaa ja kopiointi hidasta. Näin ollen, jos kirjoitetaan funktioita, jotka palauttavat aina uusia kopioita, vanhojen mutatoimisen sijasta, saadaan usein hidasta ja tehotonta ohjelmakoodia.
 
-Jossain vaiheessa ohjelman suoritusta tietokoneen bitit kääntyilevät nollista ykkösiin. Näin tietokoneet toimivat \cite{is_reduce_bad}. Tämän vuoksi mutaatiota ei kannata pelätä, kunhan sen hoitaa asianmukaisesti.
 
-Jos funktio mutatoi ainoastaan muuttujia, joita se itse luo funktion ajon ajaksi, ei sillä ole lopputuloksen kannalta toiminnallista merkitystä. Kuitenkin tehokkuusvoitot voivat olla huomattavat versioihin, joissa mutatointia ei harjoiteta.
+\section{Puhdas funktio ei ole aina paras ratkaisu}
 
-Esimerkkinä funktio, joka ottaa sisään listan avain-arvo-pareja, ja luo niistä olion. Näytetään kaksi (funktionaalista) tapaa toteuttaa funktio.
+Funktionaalisessa ohjelmoinnissa pyritään välttämään mutatointia, eli ajonaikaisten muuttujien arvojen muuttamista. Tietorakenteiden muuttamisen sijasta pyritään luomaan tietorakenteista uusia kopioita, ja jättämään vanhat ennalleen \cite{immutablejs_immutable}.
+
+Joissain ohjelmointikielissä, tai ohjelmointikielien kirjastoissa, muuttumattomien tietorakenteiden käyttäminen on saatu varsin tehokkaaksi \cite{hickey_persistent_2009,immutablejs_immutable}. Näin ei kuitenkaan ole asian laita JavaScriptissä, tai ohjelmointikielissä yleisesti. Tiedon mutatointi on nopeaa ja kopiointi hidasta \cite{turner_trauring_copying_2020}. Näin ollen, jos kirjoitetaan funktioita, jotka palauttavat aina uusia kopioita, vanhojen mutatoimisen sijasta, saadaan usein hidasta ja tehotonta ohjelmakoodia.
+
+Jossain vaiheessa ohjelman suoritusta tietokoneen bitit kääntyvät nollista ykkösiin, tai toisin sanoen mutatoituvat \cite{is_reduce_bad}. Niin tietokoneet toimivat. Tämän vuoksi mutaatiota ei saa pelätä, kunhan sen hoitaa asianmukaisesti.
+
+Jos funktio mutatoi ainoastaan muuttujia, joita se itse luo funktion ajon ajaksi, ei ole koodin turvallisuuden kannalta toiminnallista merkitystä mitä funktion sisällä tapahtuu. Kuitenkin tehokkuusvoitot voivat olla huomattavat versioihin, joissa mutatointia ei harjoiteta kuten seuraavat esimerkit osoittavat.
+
+Esimerkkinä funktio, joka ottaa sisään listan avain-arvo-pareja, ja luo niistä olion, josta voi hakea arvoja avainten perusteella. Näytetään kaksi (funktionaalista) tapaa toteuttaa tämä mielivaltainen funktio.
 Versio, joka ei mutatoi muuttujia missään vaiheessa (Koodiesimerkki \ref{code:js_just_mutate_immutable}), ja versio, joka mutatoi vain itse luomiaan muuttujia (Koodiesimerkki \ref{code:js_just_mutate_mutable}).
 
 Tarkkailijan näkökulmasta molemmat funktiot ovat kuitenkin puhtaita.
@@ -128,11 +132,11 @@ objectFromEntries(entries)
 console.timeEnd('Immutable')
 // Immutable: 112.718017578125 ms
 \end{minted}
-    \caption{Funktio, joka ottaa listan avain-arvo-pareja ja luo niistä olion. Olion luonnissa ei käytetä ollenkaan mutatointia.}
+    \caption{Funktio, joka ottaa listan avain-arvo-pareja ja luo niistä olion. Olion luonnissa ei käytetä ollenkaan mutatointia Funktion suorittaminen 1000:lle avain-arvo-parille kesti n. 113 millisekuntia}
     \label{code:js_just_mutate_immutable}
 \end{code}
 
-Täysin mutatoimattomalla versiolla kesti luoda tuhannesta avaimesta olio yli 300 kertaa kauemmin, kuin versiolla, joka mutatoi kohtuudella.
+Täysin mutatoimattomalla versiolla kesti luoda tuhannesta avaimesta olio yli 300 kertaa kauemmin, kuin versiolla, joka mutatoi käyttämiään muuttujia (113 ms ja 0.4 ms).
 
 
 \begin{code}
@@ -153,19 +157,21 @@ objectFromEntries(entries)
 console.timeEnd('Mutable')
 // Mutable: 0.35693359375 ms
 \end{minted}
-    \caption{Sama funktio kuin aiempi. Ainoa ero, että pareja iteroidessa luotavaa oliota mutatoidaan.}
+    \caption{Sama funktio kuin aiempi. Ainoa ero, että pareja iteroidessa luotavaa oliota mutatoidaan. Funktion suorittaminen 1000:lle avain-arvo-parille kesti vain n. 0.4 millisekuntia}
     \label{code:js_just_mutate_mutable}
 \end{code}
 
 Useimmiten ohjelman tehokkuudella ei ole paljoa merkitystä, ja luotettavuus ja luettavuus ovat edellä. Kuitenkin tässä tilanteessa tehokkuuserot ovat niin merkittävät, että jos 1 000 avain-arvo-parin sijasta, olisi käytetty 100 000, tai vaikka 1 000 000 avain-arvo-paria, mutatoimaton versio ei välttämättä olisi suoriutunut tehtävästä koskaan. Näitä määriä yritettiin, mutta suoritukset lopetettiin kesken, kun alkoi näyttämään, ettei tehtävä tosiaan ollut suoriutumassa koskaan.
 
-\section{Ongelmien mallintaminen}
+\section{Ongelmien mallintaminen lisää turvallisuutta}
 
-Funktionaalinen ohjelmointi mahdollistaa deklaratiivisen, itsensä selittävän ohjelmakoodin kirjoittamisen. On vaikea nimetä funktioita, tai muita ohjelmiston palikoita oikein, jos koko ongelma on mallinnettu väärin. Tässä osassa pyritään käymään miten ongelmia voi mallintaa pragmaattisesti. Ohjelman ympäristön malli rakennetaan pala palalta kuvitteelliselle alustalle.
+Funktionaalinen ohjelmointi mahdollistaa deklaratiivisen ja itsensä selittävän koodin kirjoittamisen. Oikeiden nimien löytäminen funktioille tai muille ohjelmiston osille on vaikeaa, jos ongelma on mallinnettu väärin. Tässä osiossa käsitellään pragmaattista mallinnusta pala palalta kuvitteelliselle alustalle.
 
-Kuvitellaan, että ollaan rakentamassa rajapintaa verkossa toimivalle tietovisa / koe -alustalle.
+Käydään läpi valheellisen mallin haitat ja oikean mallin hyödyt. Staattisen tyyppijärjestelmän avulla oikea malli poistaa ohjelmavirheitä jo käännösvaiheessa ja vähentää testaustarpeita.
 
-Yksi tietovisa koostuu useasta monivalintakysymyksestä. Tietovisaa voisi lähteä mallintamaan seuraavasti.
+Oikeellisen mallin avulla koodi on luotettavampaa, ja sen avulla voidaan poistaa tarpeettomia if-lauseita. Jos mallista poistetaan mahdottomat tilat, niitä ei tarvitse edes testata \cite{impossiblebetter}. Seuraavaksi muutetaan virheellinen malli oikeaksi.
+
+Kuvitellaan, että ollaan rakentamassa rajapintaa verkossa toimivalle tietovisa-alustalle, jossa tietovisa koostuu useasta monivalintakysymyksestä. Mallinnus voisi alkaa näin.
 
 \begin{code}
     \begin{minted}{typescript}
@@ -181,16 +187,20 @@ type Quiz = {
 }
          
 \end{minted}
-    \caption{Mahdollinen lähestymistapa yksinkertaiselle tietovisan mallinnukselle}
+    \caption{Mahdollinen lähestymistapa yksinkertaiselle tietovisan mallinnukselle. Malli koostuu visasta (Quiz) ja se kysymyksistä (Question)}
     \label{code:ts_first_quiz}
 \end{code}
 
 Yksinkertaisen tietovisan saisi toimimaan kyseisellä mallilla. Yksi kysymys tukee jopa montaa oikeaa vastausta.
 Mallintamisessa on kuitenkin ongelma. Se valehtelee. Sillä voidaan kuvata tiloja, joiden pitäisi olla mahdottomia.
 
-\textbf{Listat voivat olla tyhjiä.} Malli ei pidä huolta, että tietovisassa on yhtäkään kysymystä. Malli ei pidä huolta, että kysymyksessä on yhtään vastausta, eikä että on olemassa yhtään oikeaa vastausta. Tämä johtuu siitä, että \mintinline{typescript}|Array|-tietorakenne voi olla tyhjä.
+Koska sillä voidaan kuvata mahdottomia tiloja, se voi päätyä niihin. Ja koska se voi päätyä niihin, on pidettävä huolta että nämä tilanteet käsitellään oikein.
 
-Vastauksena on luoda tyyppi listalle, joka ei voi olla tyhjä (Koodiesimerkki \ref{code:ts_non_empty}).
+\textbf{Listat voivat olla tyhjiä.} Malli ei pidä huolta, että tietovisassa on oltava vähintään yksi kysymys. Malli ei pidä myöskään huolta siitä, että kysymyksillä tulisi olla vähintään yksi vastaus. Tämä johtuu siitä, että \mintinline{typescript}|Array|-tietorakenne voi olla tyhjä.
+
+Jos lista voi olla mallin mukaan tyhjä, on testattava miten ohjelma suoriutuu siitä. Jos mallissa käytetään listaa, mutta se ei kuitenkaan saisi olla tyhjä, niin ohjelmoijan on tarkistettava koodissa manuaalisesti, että listan sisältö on läsnä.
+
+Vastauksena ongelmaan on luoda tyyppi listalle, joka yksiselitteisesti ei voi olla tyhjä (Koodiesimerkki \ref{code:ts_non_empty}).
 
 \begin{code}
     \begin{minted}{typescript}
@@ -199,14 +209,11 @@ type NonEmptyArray<T> = {
     rest: Array<T>
 }
     \end{minted}
-    \caption{Mahdollinen lähestymistapa yksinkertaiselle tietovisan mallinnukselle}
+    \caption{Mahdollinen lähestymistapa yksinkertaiselle tietovisan mallinnukselle. Tyypissä on käytetty tyyppimuuttujaa T. Jos geneeriset tyypit eivät ole tuttuja, tyyppimuuttuja tarkoittaa sitä että sen sijalle voi laittaa mitä tahansa. Kyse on myös parametrisestä polymorfista (parametric polymorphism).}
     \label{code:ts_non_empty}
 \end{code}
 
-Tyypissä on käytetty tyyppimuuttujaa T. Jos geneeriset tyypit eivät ole tuttuja, tyyppimuuttuja tarkoittaa sitä että sen sijalle voi laittaa mitä tahansa. Kyse on myös parametrisestä polymorfista (parametric polymorphism).
-
-Pääasia on, että tyyppi kuvaa listaa, joka ei voi olla tyhjä. Tyypillä on kenttä \mintinline{javascript}|first|, jonka arvon on oltava olemassa. Ja kenttä \mintinline{javascript}|rest|, jossa säilytetään listan loput alkiot. Tuon kentän lista taas on tavallinen \mintinline{javascript}|Array|. Ja se saa olla tyhjä. (Esimerkkikoodi \ref{code:ts_non_empty_quiz}).
-
+Tyypillä on kenttä \mintinline{javascript}|first|, jonka arvon on oltava olemassa. Ja kenttä \mintinline{javascript}|rest|, jossa säilytetään listan loput alkiot. Tuon kentän lista taas on tavallinen \mintinline{javascript}|Array|. Pelkällä tyypin muutoksella voidaan pitää huolta että listassa on 0..n sijasta 1..n alkiota.
 
 \begin{code}
     \begin{minted}[highlightlines={3,4,9}]{typescript}
@@ -221,17 +228,17 @@ type Quiz = {
     questions: NonEmptyArray<Question> 
 }       
     \end{minted}
-    \caption{Toinen lähestymistapa tietovisan mallintamiselle, jossa käytetään itsemääritettyä NonEmptyArray-tyyppiä}
+    \caption{Vaihtoehtoinen lähestymistapa tietovisan mallintamiselle, jossa käytetään itsemääritettyä NonEmptyArray-tyyppiä}
     \label{code:ts_non_empty_quiz}
 \end{code}
 
-Nyt tietovisassa on oltava vähintään yksi kysymys, ja jokaisella vähintään yksi mahdollinen vastaus. Kuitenkin oikeita vastauksia ei ole välttämättä ainuttakaan, sillä kenttä \mintinline{typescript}|correctAnswerIncides| on edelleen tyypiltään \mintinline{typescript}|Array<number>|.
+Nyt tietovisassa on oltava vähintään yksi kysymys (Koodiesimerkki \ref{code:ts_non_empty_quiz}), ja jokaisella kysymyksellä vähintään yksi vastaus. Kuitenkin oikeita vastauksia ei ole välttämättä ainuttakaan, sillä kenttä \mintinline{typescript}|correctAnswerIncides| on edelleen tyypiltään \mintinline{typescript}|Array<number>|.
 
-Tämä on selkeästi parannus. Tyyppijärjestelmä pitää huolen, että mallia seurataan. Tarkastuksia tyhjyydestä ei tarvitse tehdä if-lauseilla. Malli ei kuitenkaan ole vieläkään täydellinen.
+Staattisella tyyppijärjestelmällä voi pitää huolen, että mallia seurataan. Tarkastuksia tyhjyydestä ei tarvitse tehdä if-lauseilla. Malli ei kuitenkaan ole vieläkään täydellinen.
 
 \textbf{Kenttien arvot voivat olla mitä tahansa.} Mikään ei pidä huolta, että esimerkiksi kentän \mintinline{typescript}|correctAnswerIncides| indeksit ovat \glsdisp{correctness}{oikeellisia}. Myös kaikki, joissa tyyppinä on \mintinline{typescript}|string| voivat ottaa vastaan mitä tahansa merkkijonoja. Myös tyhjiä merkkijonoja.
 
-Merkkijonojen validointi TypeScriptin tyyppijärjestelmässä on kuitenkin hieman vaivalloista, eikä välttämättä tarpeellista. Kenttä \mintinline{typescript}|correctAnswerIncides| on kuitenkin ajatuksena erittäin huono, sillä malli ei millään tavalla määrittele miten se liittyy kysymykseen tarkemmin. Mikään ei estä laittamasta täysin päättömiä numeroita \textcite{oikeiksi} indekseiksi. Korjauskeinona on paras keino: kentän poistaminen.
+Merkkijonojen validointi TypeScriptin tyyppijärjestelmässä on kuitenkin hieman vaivalloista, eikä välttämättä tarpeellista. Kenttä \mintinline{typescript}|correctAnswerIncides| on kuitenkin ajatuksena erittäin huono, sillä malli ei millään tavalla määrittele miten se liittyy kysymykseen tarkemmin. Mikään ei estä laittamasta täysin päättömiä numeroita \textquote{oikeiksi} indekseiksi. Korjauskeinona on paras keino: kentän poistaminen.
 
 Kentän voi poistaa kokonaan, jos mallinnusta viedään pidemmälle. Voidaan sopia, että on olemassa kahdenlaisia vastauksia. Oikeita tai vääriä. Tämä on varsin helppo mallintaa (Koodiesimerkki \ref{code:ts_answer_types})
 
@@ -264,9 +271,9 @@ type Question = {
     \label{code:ts_question_with_explicit_answer_types}
 \end{code}
 
-Malli ei enää valehtele. Voi kuitenkin olla, että tulevaisuudessa on tarve luoda enemmän vaatimuksia. Voidaan haluta rajoittaa, että kysymyksessä voi valita vain yhden vaihtoehdon, tai usean. Voidaan haluta antaa mahdollisuus antaa vastauksena vapaata tekstiä. Tai mitä ikinä.
+Malli ei enää valehtele. Voi kuitenkin olla, että tulevaisuudessa on tarve luoda enemmän vaatimuksia. Voidaan haluta rajoittaa, että kysymyksessä voi valita vain yhden vaihtoehdon, tai usean. Voidaan esimerkiksi haluta antaa mahdollisuus antaa vastauksena vapaata tekstiä. Tulevaisuuden tarpeista ei tietoakaan.
 
-Tämänkään kaltaisessa tapauksessakaan ei kannata unohtaa, että hyvä malli ei valehtelee. \textbf{Voidaan käyttää hyväksi summatyyppejä.} Sen sijasta, että lisättäisiin tyyppeihin uusia kenttiä kuten \mintinline{javascript}|isMultipleAnswerQuestion| tai \mintinline{javascript}|isFreeForm|, voidaan puolestaan luoda jokaiselle fundamentaalisesti erilaiselle asialle yksinkertaisesti kokonaan oma tyyppinsä, ja yhdistää ne yhdeksi summatyypiksi.
+\textbf{Voidaan ottaa käyttöön summatyyppejä.} Sen sijasta, että lisättäisiin tyyppeihin uusia kenttiä kuten \mintinline{javascript}|isMultipleAnswerQuestion| tai \mintinline{javascript}|isFreeForm|, voidaan puolestaan luoda jokaiselle fundamentaalisesti erilaiselle asialle kokonaan oma tyyppinsä, ja yhdistää ne yhdeksi summatyypiksi. Näin pidetään huolta, että jokaisella asialla voi olla vain kenttiä, jotka kuuluvat sille.
 
 \begin{code}
     \begin{minted}[highlightlines={20}]{typescript}
@@ -291,15 +298,17 @@ type FreeFormQuestion = {
 
 type Question = MultipleAnswerQuestion | SingleAnswerQuestion | FreeFormQuestion
     \end{minted}
-    \caption{Kysymysten mallintaminen summatyypillä}
+    \caption{Kysymysten mallintaminen summatyypillä. Monivalintakysymykselle, yksinkertaiselle kysymykselle ja vapaatekstikentälliselle kysymykselle on jokaiselle oma tyyppi. Tyypit on nostettu yhteen summatyyppiin (Question)}
     \label{code:ts_sum_type_nice}
 \end{code}
+
+Kysymysten \mintinline{javascript}|type|-kentän perusteella voidaan koodissa tarkistaa millaisesta kysymyksestä on todella kyse, jonka jälkeen voidaan suorittaa koodia, joka liittyy vain kyseisen kysymyksen toimintaan.
 
 Malli ei enää valehtele. Todellisuutta mallintavilla malleilla saadaan luotettavampaa koodia, ja poistetaan turhia if-lauseita. Myös jos mallista poistetaan mahdottomat tilat, niitä ei tarvitse edes testata.
 
 \subsection{Virheet mukaan mallintamiseen}
 
-Ohjelmissa tapahtuu virheitä. Vaikka pyrittäisiin malleihin, joista on poistettu mahdottomat tilat, niin ohjelmia ajaessa voidaan silti törmätä virheisiin.
+Ohjelmissa tapahtuu virheitä. Vaikka pyrittäisiin malleihin, joista on poistettu mahdottomat tilat, niin ohjelmia ajaessa tullaan silti törmäämään virheisiin.
 
 Miten on hyvä mallintaa tilanteita, kun virheitä tapahtuu?
 
