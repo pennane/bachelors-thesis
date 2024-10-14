@@ -18,19 +18,20 @@ In actual FP languages, reducing and folding are super nice and powerful due to 
 
 Here are some broad-ish questions. Feel free to answer briefly or dive as deep as you want.
 
-1. Is there any hope for FP in the mainstream?
+### 1. Is there any hope for FP in the mainstream?
 
 FP is thriving in some languages (Elixir, OCaml), but what about bringing FP concepts to mainstream, non-FP languages? Should we look for other ways to abstract code instead of FP when it's not a natural fit?
 
-2. Thoughts on function composition?
+### 2. Thoughts on function composition?
 
 I’m a bit conflicted. I love FP purism, but have seen it not be so nice and forced (with Ramda.js :D)
 
 Do you think composition is the way to go, or are there some other pragmatic alternatives?
 
-3. Thoughts on algebraic data types (ADTs)?
+### 3. Thoughts on algebraic data types (ADTs)?
 
 (basically, in ts-land, records and discriminated unions)
+(mainly, in ts-land, the usage of discriminated unions)
 
 ```ts
 // Example: product type
@@ -45,7 +46,7 @@ type MotorBike = {
 type Vehicle = Car | MotorBike // Possible members: possible cars + possible motorcycles -> sum type
 ```
 
-4. Opinions on Maybe and Result types?
+### 4. Opinions on Maybe and Result types?
 
 Here’s how I’ve been modeling Maybe and Result types in TypeScript. Have you used similar types, or do you have any opinions on them?
 
@@ -66,7 +67,7 @@ const mightSayHello = (): Result<string> => {
 }
 ```
 
-5. Implementing Maybe/Result as monads — too much?
+### 5. Implementing Maybe/Result as monads — too much?
 
 What about turning types like Maybe and Result into full-fledged monads? For example:
 
@@ -86,7 +87,7 @@ The **main** thing I'm interested in is if you see any hope in fp for the mainst
 
 I've sensed that big chiefs in the field enjoy the idea of declarative and functional code. As an anecdote, a long standing oop advocate, Christopher Okhravi, was writing a book about OOP but had to start over once realizing that "fp is the obvious way to go"
 
-6. The evolution of programming styles?
+### 6. The evolution of programming styles?
 
 In the HTTP 203 episode, "Is .reduce() bad?", you mentioned three stages of a programmer’s journey:
 
@@ -96,9 +97,9 @@ c. Writing code like in a beginner’s book.
 
 Has your perspective shifted since then, or have you found more nuances to how you write code now?
 
-## My opinion
+## My opinion ish or something
 
 I think that the main thing to bring from fp ideas in non-fp languages is to be actually declarative. So for example w
-hen modeling problems with ts types it should be cared after that the model never lies! ADTS are super nice.
+hen modeling problems with ts types it should be cared after that the model never lies! ADTS are super nice for that.
 
-Also custom function composition (like in the monad example) are super nice. I just hate how much it modifies what the syntax and ideas of the actual non-fp language at hand.
+Also custom function composition (like in the monad example) is super nice. I just hate how much it can modify the syntax and ideas of the actual non-fp language being used.
