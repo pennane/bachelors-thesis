@@ -3,36 +3,36 @@
 \vspace{21.5pt}
 \chapter{Kokemukset}
 
-% Vähä kokemusperäsiä juttuja siitä, et miten nelososan jutut kokemusten perusteella toimii.
+Tässä kappaleessa käsitellään ohjelmointikokemuksia erityisesti funktionaalisen ja oliopohjaisen ohjelmoinnin näkökulmista. Pohditaan, miten kokemukset, ohjelmointiparadigmat ja käytetyn kielen ominaisuudet vaikuttavat luettavuuteen, uudelleenkäytettävyyteen ja tehokkuuteen.
 
-% On helppo kirjoittaa näennäisesti oikeista tavoista toimia. On huomattavasti vaikeampaa seurata jotain blaa blaa.
-
-% Seuraavaksi pyritään perustelemaan sitä miten blaa blaa blaa.
+Kokemuksella on suuri rooli siinä, miten ohjelmoija lähestyy näitä teemoja. Vastaavasti eri ohjelmointiparadigmat — kuten funktionaalinen ja olio-ohjelmointi — tarjoavat erilaisia työkaluja ja periaatteita, jotka voivat joko helpottaa tai hankaloittaa näiden tavoitteiden saavuttamista. Ohjelmointikielen ominaisuudet, kuten Pythonin yksinkertaisuus tai JavaScriptin toiminnalliset työkalut, voivat myös muokata koodikäytäntöjä ja vaikuttaa siihen, mikä on optimaalista kussakin tilanteessa.
 
 \section{Luettavuus}
 
-Yli 20 vuotta JavaScriptia ohjelmoinut Archibald kuvaa ohjelmoijan ajattelun muuttumista uran aikana kolmen vaiheen kautta. Aluksi hän kirjoitti yksinkertaista koodia, välttäen monimutkaisempia työkaluja, kuten säännöllisiä lausekkeita (regexp), listametodeja kuten \texttt{reduce} ja rekursiota, sillä ne tuntuivat uhkaavilta. \citep{is_reduce_bad}
+Puidaan luettavuutta hieman eri näkökulmista. X-alustalla keskusteltiin entisen Google kehittäjän Jake Archibaldin kanssa, joka suostui vastaamaan funktionaaliseen ohjelmointiin liittyviin kysymyksiin \cite{pennane_x_convo}.
 
-Kehittyessään ohjelmoijana hän alkoi aktiivisesti hyödyntää näitä työkaluja. Ajatuksena oli osoittaa kollegoille omaa osaamistaan käyttämällä koodissa monimutkaisempia rakenteita. Tällöin hän uskoi, että koodin tulisi heijastaa taitavuutta ohjelmoijana. \citep{is_reduce_bad}
+Yli 20 vuotta JavaScriptia ohjelmoinut Archibald pyrkii ohjelmoimaan koodia, joka on kuin suoraan ohjelmoinnin alkeita käsittelevästä oppikirjasta \cite{is_reduce_bad,pennane_fp_gist}. Hän pyrkii olemaan käyttämättä monimutkaisempia ohjelmoinnin työkaluja \cite{is_reduce_bad}, kuten esimerkiksi \texttt{Array.prototype.reduce}, osittaissoveltaminen (partial application) tai säännölliset lausekkeet (regular expressions) \cite{is_reduce_bad,pennane_x_convo}.
 
-Nyt hän keskittyy kirjoittamaan koodia, joka muistuttaa ohjelmoinnin perusteiden oppikirjaesimerkkejä: selkeää, yksinkertaista ja helposti ymmärrettävää. \citep{is_reduce_bad}
+Hän suosii for-silmukoiden käyttämistä funktionaalisen \texttt{reduce}-funktion sijasta, ja perustelee valintaa luettavuudella \cite{is_reduce_bad,pennane_x_convo,pennane_fp_gist}. Yleisesti Archibald kuitenkin kokee funktionaalisen ohjelmoinnin olevan tuonut positiivisa vaikutteita JavaScriptiin \cite{pennane_x_convo}. Luettavuuden kannalta merkittävimpiä tekijöitä ovat keskimääräinen rivin pituus, tunnisteiden määrä per rivi ja keskimääräinen sulkeiden määrä \cite[8]{busereadability}. Edsger Dijkstran mukaan ohjelman luettavuus riippuu suurelta osin sen \glsdisp{ohjausrakenne}{ohjausrakenteiden} yksinkertaisuudesta \cite{dijkstra1976discipline}. Ohjelmoijat oppivat ensin for-silmukoita, ennen kuin ymmärtävät, mitä \texttt{reduce} (tai \texttt{fold}) tarkoittaa. Kuitenkin tunnisteet ja rakenteet, jotka ohjelmoija tuntee, ovat henkilökohtaisia ja perustuvat kokemuksiin sekä opiskelutaustaan.
 
-Hän suosii for-silmukoiden käyttämistä funktionaalisen \texttt{reduce}-funktion sijasta, ja perustelee valintaa luettavuudella \cite{is_reduce_bad}. Luettavuuden kannalta merkittävimpiä tekijöitä ovat keskimääräinen rivin pituus, tunnisteiden määrä per rivi ja keskimääräinen sulkeiden määrä \cite[8]{busereadability}. Dijkstran mukaan ohjelman luettavuus riippuu suurelta osin sen \glsdisp{ohjausrakenne}{ohjausrakenteiden} yksinkertaisuudesta \cite{dijkstra1976discipline}. Ohjelmoijat oppivat ensin for-silmukoita, ennen kuin ymmärtävät, mitä \texttt{reduce} (tai \texttt{fold}) tarkoittaa. Kuitenkin tunnisteet ja rakenteet, jotka ohjelmoija tuntee, ovat henkilökohtaisia ja perustuvat kokemuksiin sekä opiskelutaustaan.
+Myös Python ohjelmointikielen luojana tunnettu Guido van Rossum halusi poistatti Python 3 versiosta \texttt{reduce}-funktion, ja perusteli sitä luettavuudella, ja kielen yksinkertaistamisella \cite{vanrossum2008reduce}.
 
 Voi siis ajatella, että luettavuus on tarpeellista suhteuttaa työympäristöön. Jos koodikannassa suositaan funktioiden yhdistelemistä, tätä käytäntöä kannattaa noudattaa. Jos taas for-silmukoita käytetään mieluummin \texttt{reduce}-funktion sijasta, ne ovat parempi valinta.
 
+Kokemuksien mukaan voi olla vaikeaa olla käyttämättä työkaluja, joiden näkee sopivan tilanteeseen. Kuitenkin kannattanee ottaa askel taaksepäin ja pitää huolta, että ohjelmakoodi on aina luettavaa tilanteeseen sopien.
+
 \section{Uudelleenkäytettävyys}
 
-% DRY malli. hyvät ja pahat !
-% Tee kolmesti, sitten vasta abstraktio.
-% löydettävyys big thing
+Työpaikalla keskusteluissa on näkynyt käytänteitä, että ennen kuin jotakin tarvitaan kolmesti, ei sille ole kannattavaa kirjoittaa uudelleenkäytettävää abastraktiota.
 
-\section{Ylläpidettävyys}
+Toisaalta kun kehitetään ulkoisia rajapintoja on tilanne eri, sillä on pidettävä huolta taaksepäin suuntautuvasta yhteensopivuudesta.
 
+Uudelleenkäytettävien palikoiden löytäminen ei myöskään ole itsetäänselvyys. On keskusteltu siitä, että kannattaisi välttää logiikan koostamista, ja toisinaan suosia yksinkertaisuuksia ja kovakoodattua tietoa, jotta sen etsiminen olisi koodikannasta helpompaa (esimerkiksi käyttämällä grep-komentorivikomentoa).
+
+Uudelleenkäytettävyyttä voidaan harjoittaa erinäköisillä koodikäytänteillä, kuten erinäköisin funktionaalisen ohjelmoinnin periaattein, tai olio-ohjelmoinnin periaattein. Archibaldin mukaan koodikäytänteet usein epäonnistuvat tehtävässään, kun niissä yritetään liikaa pysytellä niiden puhtaissa akateemisissa raameissa \cite{pennane_fp_gist}.
 
 \section{Tehokkuus}
-% Ellei blaa blaa koodata c-koodia tai pelimoottoreita tai kuka ties mitä, niin tehokkuutta ei parane miettiä liikaa. Varsinkin systeemeissä jotka käyttävät aikaa kaikkialla muualla kuin jossain yhdessä algoritmissa. Pullonkaulana on paljon muita asioita.
+Tehokkuutta ei ole suotavaa miettiä liikaa enen kuin ohjelmoidaan systeemejä, jotka todella riippuvat siitä. Monet ovat tätä mieltä \cite{pennane_fp_gist,prematureoptimization}. Kun tehokkuusongelmat alkavat näkyä, on kokemusten mukaan todennäköisempää, että yhden ohjelman kriisipesäkkeen (hot spot) korjaamisella tilanne voidaan korjata, eikä tuhannen sivalluksen kuolema ole todennäköisin.
 
-% Tiedostaminen on kuitenkin tärkeää. Jos tietää millaiset asiat vaikuttavat tehokkuuteen, voi jo alitajunnallisesti taltuttaa. Tiedon turha kopiointi voi yksinkertaisessa react appissakin aiheuttaa paljon pahaa.
+Ohjelman tehokkuuteen vaikuttavien asioiden tiedostaminen kuitenkin ennaltaehkäisee ongelmatilanteita. Esimerkiksi tiedon kopioinnin välttämisellä voidaan, tai \texttt{reduce}-funktion välttämisellä voidaan ajaa proaktiivisesti ohjelmaa toimivampaan suuntaan.
 
-\section{Paradigmaerot ja niiden ristiriidat}
