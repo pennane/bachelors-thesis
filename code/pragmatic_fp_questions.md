@@ -1,10 +1,12 @@
 ## Background
 
-I'm working on my bachelor's thesis at Metropolia UAS in Helsinki, Finland, for a degree in ICT. I love fp, but have faced so much backlash and claims of being too clever. I'm trying to find ways to incorporate fp into non-fp worlds without making people angry!
+I'm working on my bachelor's thesis at Metropolia UAS in Helsinki, Finland, for a degree in ICT. I love fp, but have faced much backlash and claims of being too clever. I'm trying to find ways to incorporate fp into non-fp worlds without making people angry!
 
-The working name for the thesis "Evaluating the Pragmatic Application of Functional Programming", which will be released in Finnish only.
+The working name for the thesis is "Evaluating the Pragmatic Application of Functional Programming", which will be released in Finnish only.
 
 Any way, my main interest lies in language-agnostic FP principles that can be blended into non-FP code without relying on heavyweight FP libraries that conflict with the language’s native syntax (mainly js/ts in this case)
+
+(I've sensed that big chiefs in the field enjoy the idea of declarative and functional code. As an anecdote, a long standing oop advocate, Christopher Okhravi, was writing a book about OOP but had to start over once realizing that "fp is the obvious way to go")
 
 #### About reduce
 
@@ -12,7 +14,7 @@ I agree that reduce is not super pleasant. I do also think reduce is a really ni
 
 Of course devs without said experience will not agree. And thats fair.
 
-In actual FP languages, reducing and folding are super nice and powerful due to generalizations with algebraic data structures, but, yeah, that's not the case in JavaScript.
+In actual FP languages, reducing and folding are super nice and powerful due to generalizations with algebraic data structures, but, yeah, that's not the case in JavaScript. For loops are fine if they are in a function :D
 
 ## Questions
 
@@ -83,10 +85,6 @@ const value = monad.value
 
 I find this super elegant. There's no need for if-checks in the bound functions as long as the monad handles errors gracefully. What’s your take on this? Too much abstraction?
 
-The **main** thing I'm interested in is if you see any hope in fp for the mainstream programmer. There are of course great popular languages that do fp and and are loved (such as Elixir or even Ocaml), but what about bringing fp into non-fp languages? Should programmers maybe look for other ways to abstract their code?
-
-I've sensed that big chiefs in the field enjoy the idea of declarative and functional code. As an anecdote, a long standing oop advocate, Christopher Okhravi, was writing a book about OOP but had to start over once realizing that "fp is the obvious way to go"
-
 ### 6. The evolution of programming styles?
 
 In the HTTP 203 episode, "Is .reduce() bad?", you mentioned three stages of a programmer’s journey:
@@ -99,7 +97,6 @@ Has your perspective shifted since then, or have you found more nuances to how y
 
 ## My opinion ish or something
 
-I think that the main thing to bring from fp ideas in non-fp languages is to be actually declarative. So for example w
-hen modeling problems with ts types it should be cared after that the model never lies! ADTS are super nice for that.
+I think that the main thing to bring from fp ideas in non-fp languages is to be actually declarative. So for example when modeling problems with ts types it should be cared after that the model never lies! ADTS are super nice for that.
 
 Also custom function composition (like in the monad example) is super nice. I just hate how much it can modify the syntax and ideas of the actual non-fp language being used.
