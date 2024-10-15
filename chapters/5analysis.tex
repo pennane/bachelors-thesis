@@ -1,0 +1,38 @@
+% Material and Methods
+%\clearpage%if the chapter heading starts close to bottom of the page, force a line break and remove the vertical vspace
+\vspace{21.5pt}
+\chapter{Kokemukset}
+
+% Vähä kokemusperäsiä juttuja siitä, et miten nelososan jutut kokemusten perusteella toimii.
+
+% On helppo kirjoittaa näennäisesti oikeista tavoista toimia. On huomattavasti vaikeampaa seurata jotain blaa blaa.
+
+% Seuraavaksi pyritään perustelemaan sitä miten blaa blaa blaa.
+
+\section{Luettavuus}
+
+Yli 20 vuotta JavaScriptia ohjelmoinut Archibald kuvaa ohjelmoijan ajattelun muuttumista uran aikana kolmen vaiheen kautta. Aluksi hän kirjoitti yksinkertaista koodia, välttäen monimutkaisempia työkaluja, kuten säännöllisiä lausekkeita (regexp), listametodeja kuten \texttt{reduce} ja rekursiota, sillä ne tuntuivat uhkaavilta. \citep{is_reduce_bad}
+
+Kehittyessään ohjelmoijana hän alkoi aktiivisesti hyödyntää näitä työkaluja. Ajatuksena oli osoittaa kollegoille omaa osaamistaan käyttämällä koodissa monimutkaisempia rakenteita. Tällöin hän uskoi, että koodin tulisi heijastaa taitavuutta ohjelmoijana. \citep{is_reduce_bad}
+
+Nyt hän keskittyy kirjoittamaan koodia, joka muistuttaa ohjelmoinnin perusteiden oppikirjaesimerkkejä: selkeää, yksinkertaista ja helposti ymmärrettävää. \citep{is_reduce_bad}
+
+Hän suosii for-silmukoiden käyttämistä funktionaalisen \texttt{reduce}-funktion sijasta, ja perustelee valintaa luettavuudella \cite{is_reduce_bad}. Luettavuuden kannalta merkittävimpiä tekijöitä ovat keskimääräinen rivin pituus, tunnisteiden määrä per rivi ja keskimääräinen sulkeiden määrä \cite[8]{busereadability}. Dijkstran mukaan ohjelman luettavuus riippuu suurelta osin sen \glsdisp{ohjausrakenne}{ohjausrakenteiden} yksinkertaisuudesta \cite{dijkstra1976discipline}. Ohjelmoijat oppivat ensin for-silmukoita, ennen kuin ymmärtävät, mitä \texttt{reduce} (tai \texttt{fold}) tarkoittaa. Kuitenkin tunnisteet ja rakenteet, jotka ohjelmoija tuntee, ovat henkilökohtaisia ja perustuvat kokemuksiin sekä opiskelutaustaan.
+
+Voi siis ajatella, että luettavuus on tarpeellista suhteuttaa työympäristöön. Jos koodikannassa suositaan funktioiden yhdistelemistä, tätä käytäntöä kannattaa noudattaa. Jos taas for-silmukoita käytetään mieluummin \texttt{reduce}-funktion sijasta, ne ovat parempi valinta.
+
+\section{Uudelleenkäytettävyys}
+
+% DRY malli. hyvät ja pahat !
+% Tee kolmesti, sitten vasta abstraktio.
+% löydettävyys big thing
+
+\section{Ylläpidettävyys}
+
+
+\section{Tehokkuus}
+% Ellei blaa blaa koodata c-koodia tai pelimoottoreita tai kuka ties mitä, niin tehokkuutta ei parane miettiä liikaa. Varsinkin systeemeissä jotka käyttävät aikaa kaikkialla muualla kuin jossain yhdessä algoritmissa. Pullonkaulana on paljon muita asioita.
+
+% Tiedostaminen on kuitenkin tärkeää. Jos tietää millaiset asiat vaikuttavat tehokkuuteen, voi jo alitajunnallisesti taltuttaa. Tiedon turha kopiointi voi yksinkertaisessa react appissakin aiheuttaa paljon pahaa.
+
+\section{Paradigmaerot ja niiden ristiriidat}
