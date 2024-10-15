@@ -404,7 +404,7 @@ JavaScriptissä \mintinline{js}|Array| toteuttaa toiminnon \texttt{bind} \mintin
 
 JavaScriptin \mintinline{js}|Promise| toteuttaa toiminnon \texttt{bind} \mintinline{javascript}|Promise.prototype.then|-metodilla, ja \texttt{of} toiminnon staattisella \mintinline{javascript}|Promise.resolve| ja \mintinline{javascript}|Promise.reject| metodeilla \cite{read-it-later-11481,stackoverflow:why_monad,promises-spec-94}.
 
-Vaikka JavaScriptin \mintinline{js}|Promise| ja \mintinline{js}|Array| toteuttavatkin monadin \texttt{bind} ja \texttt{of} toiminnot, se ei tee niistä automaattisesti monadeja kategoriateorian tai funktionaalisen ohjelmoinnin sääntöjen mukaan \cite{promises-spec-94,stackoverflow:why_monad,stackoverflow_js_array_monad}.
+Vaikka JavaScriptin \mintinline{js}|Promise| ja \mintinline{js}|Array| toteuttavatkin monadin \texttt{bind} ja \texttt{of} toiminnot, se ei tee niistä automaattisesti monadeja kategoriateorian tai funktionaalisen ohjelmoinnin sääntöjen mukaan \cite{promises-spec-94,stackoverflow:why_monad,stackoverflow_js_array_monad}. Kehittäjä Jake Archibaldin mukaan akateemisten käsitteiden seuraaminen puhtaasti ei kuitenkaan usein johda käytännölisiin ratkaisuihin \cite{pennane_fp_gist}. Tästä syystä on kohtuullista puhua näistä rakenteista monadeina, vaikkeivat ne sitä puhtaasti olisikaan.
 
 
 \subsection{Monadin implementointi}
