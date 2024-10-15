@@ -141,7 +141,7 @@ const h = x => x - 3
 
 const i = pipe([f, g, h])
 i(5) // (((5 + 1) * 2) - 3) = 9
-// tai vaihtoehtoisesti x§
+// tai vaihtoehtoisesti
 const i = compose([h, g, f])
 i(5) // (((5 + 1) * 2) - 3) = 9
 \end{minted}
