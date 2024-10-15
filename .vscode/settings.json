@@ -57,6 +57,7 @@
   "latex-workshop.view.pdf.viewer": "tab",
   "files.exclude": {
     "**/*.aux": true,
+    "**/*.pyg": true,
     "**/*.bbl": true,
     "**/*.blg": true,
     "**/*.log": true,

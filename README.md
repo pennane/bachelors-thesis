@@ -20,3 +20,17 @@ Evaluating the Pragmatic Application of Functional Programming
 
 2. Run the `compile.sh` script found in the project root
 3. Compiled PDF should appear in generated `dist` folder
+
+### Known problems
+
+If biber fails to co-operate
+
+```
+biber main --debug
+```
+
+grab the cache and dl it
+
+```
+ rm -rf /var/folders/6v/zrgy7lyd6xxd5y_3pq6gd60h0000gn/T/par-*
+```
