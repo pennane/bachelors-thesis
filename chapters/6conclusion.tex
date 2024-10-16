@@ -2,30 +2,62 @@
 %\clearpage%if the chapter heading starts close to bottom of the page, force a line break and remove the vertical vspace
 \vspace{21.5pt}
 \chapter{Johtopäätökset}
-TODO
 
-Älä valehtele koodissa. Minimoi toisto nostamalla null-tarkistukset omaan tietorakenteeseen.
-Mallinna oikein ja \glsdisp{correctness}{oikeellisesti}.
+Funktionaalista ohjelmoinnin periaatteita voi ottaa mukaan perinteisempään ohjelmointiin. On kyseessä sitten funktionaalinen ohjelmointi tai olio-ohjelmointi, liiallinen pedanttisuus käsitteitä kohtaan johtaa ohjelman ylläpidettävyyden ongelmiin, kun tarkoituksena on tuottaa muuttuvaa koodia asiakaskäyttöön.
 
-Ohjelmointikieli on huomioitava, missä työskennellään. Ei sokeaa sääntöjen noudattamista ilman oikeaa perusteltua syytä. Kaikki käsitteet ovat sellaisia, että ne on opittava. Mitä enemmän käsitteitä käytetään, sitä vaikeampaa uuden ohjelmoijan on saavuttaa syvällinen ymmärrys koodikannasta.
+Asia jossa pedanttisuus on paikallaan on ongelmien mallintaminen. Kun ongelmat mallinnetaan oikein, säästytään turhalta työltä testauksen ja liiallisten if-lauseiden parissa. Oikein mallinnettuna ohjelmakoodin määrä pienenee, ja samalla ylläpidettävyys kasvaa.
 
-Abstraktioita on hyvä tehdä kerralla kunnolla, eikä pitkin poikin vain fiiliksen mukaan. Esimerkki keskitettynä Result-monadi koodikannassa voi selkeyttää ja vähentää koodin määrää. Toisaalta mitä vähemmän tämänkaltaisia abstraktioita on, todennäköisesti sitä parempi. Jos ohjelmointikieli on oikeasti puhtaasti funktionaalinen, voi erinäköisiä kategoriateorian algebrallisia tietorakenteita käyttää vapaammin. Jos ohjelmointikieli ei tue niitä puhtaasti, niiden käyttämistä kannattaa harkita tarkemmin.
-
-\section{Suositukset}
-
-Lähtökohtaisesti mitä vähemmän koodia, sen parempi. Kollegat vaikuttavat. Pitää haastaa ja olla haastettavana. Oikeellisuus on a \& o. Ei taikaa.
-
+Funktionaalisen ohjelmoinnin akateemiset käsitteet ovat tiukasti määriteltyjä. Mikään ei pakota seuraamaan määritelmiä pilkuntarkasti. Ei suosita sokeaa sääntöjen noudattamista ilman oikeaa perusteltua syytä. Yhdistetyt funktiot, funktioiden puhtaus ja tiedon muuttumattomuus, algebralliset tietotyypit ja rakenteet ovat toimivia työkaluja rakentaa ohjelmia, ja niitä voi hyödyntää mallin implemenointiin. Jos ohjelmointikieli ei tue niitä natiivisti, niiden mukaan tuominen kuitenkin sumuttaa koodin luettavuutta. Tärkeää on, että koodikannassa kunnioitetaan määritettyjä käytänteitä. Kokemusten mukaan keskinkertaisetkin käytänteet ovat parempia kuin se, ettei käytänteitä olisi lainkaan.
 
 \section{Jatkotutkimus}
 
-- Kategoriateoria.
-- fantasyland spec
-- Elixir, Haskell, Go
-- Rich Hickey \& Richard Feldman
-- fp.ts
+Funktionaalinen ohjelmointi on laaja ja monimuotoinen alue, joka kattaa teoreettisia käsitteitä ja käytännön sovelluksia. Jatkotutkimuksena voitaisiin tutkia useita eri näkökulmia, ohjelmontikieliä ja tunnettujen ohjelmoijien julkaisuja. Jatkotutkimus kannattaa pitää moniulotteisena, eikä pelkästään funktionaalisen ohjelmoinnin periaatteiden tutkiminen tuo välttämättä kykyä luoda pragmaattista ohjelmointitaitoa.
+
+
+\subsection{Kategoriateoria}
+
+Kategoriateorian jatkotutkiminen voi tarjota syvällisempää ymmärrystä funktionaalisen ohjelmoinnin periaatteista ja rakenteista. Kategoriateoria auttaa ymmärtämään funktioiden ja rakenteiden suhteita, mikä on keskeistä funktionaalisessa ohjelmoinnissa. Tämä voi johtaa tehokkaampiin ja elegantimpiin koodiratkaisuihin, joissa turha toisto poistuu.
+
+Kun teoriaa ymmärtää, sitä ei ole silti pakko ottaa käytäntöön, kuitenkin kokemusten perusteella teorian läsnäolon tunnistaminen vahvistaa omia näkemyksiä siitä, miten toimia ja olla toimimatta.
+
+\subsection{Fantasyland-spesifikaatio}
+
+Fantasyland-spesifikaatio on määritelty joukko vaatimuksia ja sääntöjä, jotka koskevat funktioiden yhdistämistä ja algebrallisten rakenteiden käyttöä JavaScriptissä. Fantasyland tarjoaa mallin, joka perustuu kategoriateorian perusperiaatteisiin, erityisesti algebrallisiin rakenteisiin, kuten monadeihin ja funktioihin.
+
+Fantasyland-spesifikaatio määrittelee, miten eri funktiot ja rakenteet voivat vuorovaikuttaa toistensa kanssa, tarjoten siten kehittäjille selkeät säännöt ja odotukset toiminnallisuuden implementoinnille. Tämä voi helpottaa erilaisten funktioiden ja datarakenteiden yhdistämistä siten, että niiden käytön johdonmukaisuus ja yhteensopivuus paranee.
+
+Esimerkiksi, spesifikaatiossa määritellään monadeille ja niiden yhdistämiselle liittyvät säännöt, kuten \texttt{of} ja \texttt{bind} -operaatiot, jotka ovat keskeisiä funktioiden yhdistämisessä. Nämä säännöt perustuvat kategoriateorian käsitteisiin, mikä mahdollistaa funktioiden ja rakenteiden välisen yhteensopivuuden.
+
+Fantasylandin periaatteiden ymmärtäminen voi auttaa kehittäjiä rakentamaan ohjelmia, joissa käytetään funktionaalisen ohjelmoinnin parhaita käytäntöjä. Tämä ei ainoastaan paranna koodin luettavuutta ja ylläpidettävyyttä, vaan myös mahdollistaa tehokkaamman koodin kehittämisen, joka hyödyntää algebrallisten rakenteiden tarjoamia etuja.
+
+\subsection{Fp-ts-kirjasto}
+
+Fp-ts-kirjaston tutkiminen auttaa puhtaan funktionaalisen ohjelmoinnin ymmärtämiseen TypeScript ympäristössä. Fp-ts-kirjasto on
+
+
+\subsection{Eri ohjelmointikielet}
+
+Eri ohjelmontikielien tutkiminen avaisi uusia näkökulmia funktionaalisen ohjelmoinnin käytäntöihin eri konteksteissa. Kielillä on omat erityispiirteensä, jotka rikastuttavat funktionaalisen ohjelmoinnin ymmärtämistä.
+
+Esimerkiksi Haskell on yksi puhtaimmista funktionaalisista ohjelmointikielistä, ja sen tiukka tyyppijärjestelmä pakottaa kehittäjät ajattomaan ajatteluun ja puhtaiden funktioiden käyttöön \cite{haskellallmonad,haskellcomposition,haskellmonadlaws}. Haskellin kautta voisi vahvistaa ajatusta keskeisistä funktionaalisen ohjelmoinnin käsitteistä. Haskellin akateeminen luonne antaa syvällistä ymmärrystä funktionaalisen ohjelmoinnin teoreettisista perusteista.
+
+Toisena Elixir on moderni kieli, joka yhdistää funktionaalisen ohjelmoinnin periaatteet ja ohjelmistojen rinnakkaisuuden \cite{elixir}. Se perustuu Erlangin ekosysteemiin, ja sen kyky käsitellä rinnakkaisia prosesseja auttaa opiskelijoita ymmärtämään, miten funktionaaliset ohjelmat voivat toimia tehokkaasti ja luotettavasti moniydinympäristöissä. Elixir korostaa myös ohjelmien luettavuutta ja ylläpidettävyyttä, mikä on tärkeä oppimistavoite funktionaalisessa ohjelmoinnissa.
+
+Myös Go-ohjelmointikielen opiskelu voisi muuttaa merkittävästi ajatuksia miten ohjelmoida \cite{golang}. Go ei ole funktionaalinen ohjelmointikieli, vaikka se tukee funktionaalisia ohjelmointiperiaatteita, kuten korkeampia funktioita. Go:n käytännönläheinen lähestymistapa voi auttaa ymmärtämään, miten funktionaalisia periaatteita voidaan soveltaa (ja olla soveltamatta) ohjelmoinnissa.
+\subsection{Tunnetut ohjelmistokehittäjät}
+
+Funktionaalisen ohjelmoinnin ymmärtäminen vaatii monipuolista näkökulmaa eri lähteistä, sillä se on laaja ja monimuotoinen alue, joka ulottuu teoreettisista käsitteistä käytännön sovelluksiin. Eri ohjelmistokehittäjien työ tarjoaa arvokkaita esimerkkejä ja oivalluksia, jotka rikastuttavat ymmärrystä siitä, miten funktionaalisia periaatteita voidaan soveltaa ohjelmistokehityksessä.
+
+Esimerkiksi Rich Hickeyn, Jake Archibaldin ja Richard Feldmanin töiden tarkastelu voisi avartaa näkemystä eri ohjelmointikielten erityispiirteitä ja niiden vaikutusta ohjelmistokehitykseen.
+
+Rich Hickey on Clojure-ohjelmointikielen kehittäjä, ja hänen työnsä korostaa ohjelmoinnin yksinkertaisuutta ja tehokkuutta \cite{hickey_maybe_not,hickey_persistent_2009}. Hickeyn filosofia, joka perustuu datan muuttumattomuuteen ja puhtaisiin funktioihin, tarjoaa opiskelijoille syvällisen ymmärryksen siitä, miten ohjelmoinnin rakenteet voivat tukea luettavuutta ja ylläpidettävyyttä.
+
+Jake Archibald on tunnettu erityisesti web-teknologioiden parissa työskentelevänä kehittäjänä \cite{against_self_closing_tags,is_reduce_bad}. Hänen näkemyksensä funktionaalisesta ohjelmoinnista, erityisesti JavaScriptin kontekstissa, auttaa opiskelijoita ymmärtämään, kuinka funktionaalisia periaatteita voidaan soveltaa käytännön projekteissa. Archibaldin työ tarjoaa käytännön esimerkkejä siitä, miten parantaa koodin laatua ja tehokkuutta web-kehityksessä.
+
+Richard Feldman on tunnettu Elm-ohjelmointikielen puolestapuhuja, ja hänen työnsä keskittyy käyttöliittymäkehitykseen \cite{feldman_fp_pragmatists,impossiblebetter}. Feldmanin näkökulma korostaa funktionaalisen ohjelmoinnin etuja, kuten ennustettavuutta ja virheiden vähentämistä, mikä on erityisen hyödyllistä suurissa ohjelmistoprojekteissa. Hänen esimerkit auttavat opiskelijoita ymmärtämään, kuinka funktionaaliset periaatteet voivat parantaa sovellusten laatua ja käyttäjäkokemusta.
+
+Yhteenvetona näiden kehittäjien työn tutkiminen tarjoaa käytännön esimerkkejä ja syvällisiä oivalluksia, jotka kasvattavat ymmärrystä  ohjelmoinnista.
 
 \section{Loppusanat}
 
-% Miten onnistua kirjoittamaan sitä kuuluisaa funktionaalista koodia sitten loppujen lopuksi?
-
-% Varmaan siten, että yrittää miettiä kategoriateoriaa. Kategoriateoria on kovin teoreettista, mutta teoreettinen = hyvä pohja, jos teoria on oikeasti totta eikä harhaunta.
+Työn alkuvaiheilla olin sitä mieltä että funktionaalinen ohjelmointi is epic big win. Nyt sitä mieltä, että funktionaalinen ohjelmointi on epäsuora voitto, eikä sitä kannata pakottaa jokaiseen tilanteeseen.
