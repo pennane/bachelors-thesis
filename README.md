@@ -2,6 +2,8 @@
 
 Evaluating the Pragmatic Application of Functional Programming
 
+Thanks to panunu et al. for the [TeX template](https://github.com/panunu/metropolia-thesis-latex).
+
 ### Obtaining the compiled PDF
 
 #### In github
