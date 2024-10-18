@@ -7,10 +7,9 @@ Tässä osassa pyritään esittämään kaikista oleellisin, mitä funktionaalis
 
 Ajatuksena on, että kun ohjelma on mallinnettu oikein, ei ole suurta merkitystä ohjelmoidaanko olio-ohjelmointia, imperatiivista ohjelmointia, vai funktionaalista ohjelmointia. Olio-ohjelmoinnissa mallinnus saatettaisiin hoitaa rajapinnoilla (interface). Funktionaalisen ohjelmoinnin tapa mallintaa on käyttää tyyppejä ja abstrakteja (algebrallisia) tietorakenteita.
 
+Tuodaan ilmi millaisia käytänteitä voidaan ripotella ohjelmointiin, vaikka ohjelmointikieli ei varsinaisesti olisi funktionaalinen.
 
-Tuodaan siis ilmi millaisia käytänteitä voidaan ripotella ohjelmointiin, vaikka ohjelmointikieli ei varsinaisesti olisi funktionaalinen.
-
-Pyritään herättämään ajatuksia milloin ja miten funktioita kannattaa käyttää. Esitetään myös kuinka suuressa roolissa ongelmien mallintaminen on. Kun ongelmien mallit pureskellaan oikeisiin joukkoihin, saadaan turvallisempaa ohjelmakoodia. Silloin on myös helpompi kirjoittaa deklaratiivista koodia, joka on funktionaaliselle ohjelmoinnin ominaista.
+Pyritään herättämään ajatuksia milloin ja miten funktioita kannattaa käyttää. Esitetään kuinka suuressa roolissa ongelmien mallintaminen on. Kun ongelmien mallit pureskellaan oikeisiin joukkoihin, saadaan turvallisempaa ohjelmakoodia. Silloin on myös helpompi kirjoittaa deklaratiivista koodia, joka on funktionaaliselle ohjelmoinnin ominaista.
 
 
 
@@ -78,7 +77,7 @@ const convertUsersToLeaderboardUsers = (users: Array<User>, anonymizeUsers: bool
     \label{code:js_garbage_pipe}
 \end{code}
 
-Sen sijaan esimerkkikoodissa \ref{code:js_legit_pipe} käytetään vain JavaScriptin sisäänrakennettuja työkaluja. Funktio on yleisemmin helppo lukea. Vaikka luettavuus on subjektiivista, ja perustuu pitkälti ohjemointityylin tuttavuuteen, on todennäköisempää, että ohjelmoija ymmärtää JavaScriptin omia Array-metodeja, kuin minkäkin kirjaston funktioita, vaikka kirjaston funktiot oltaisiinkin pyritty kirjoittamaan noudattaen yleisiä käytänteitä.
+Sen sijaan esimerkkikoodissa \ref{code:js_legit_pipe} käytetään vain JavaScriptin sisäänrakennettuja työkaluja. Funktio on yleisemmin helppo lukea. Vaikka luettavuus on subjektiivista, ja perustuu pitkälti ohjelmointityylin tuttavuuteen, on todennäköisempää, että ohjelmoija ymmärtää JavaScriptin omia Array-metodeja, kuin minkäkin kirjaston funktioita, vaikka kirjaston funktiot olisikin pyritty kirjoittamaan noudattaen yleisiä käytänteitä.
 
 \begin{code}
     \begin{minted}{typescript}
@@ -302,7 +301,7 @@ type Question = MultipleAnswerQuestion | SingleAnswerQuestion | FreeFormQuestion
     \label{code:ts_sum_type_nice}
 \end{code}
 
-Kysymysten \mintinline{javascript}|type|-kentän perusteella voidaan koodissa tarkistaa millaisesta kysymyksestä on todella kyse, jonka jälkeen voidaan suorittaa koodia, joka liittyy vain kyseisen kysymyksen toimintaan.
+Kysymysten \mintinline{javascript}|type|-kentän perusteella voidaan tarkistaa millaisesta kysymyksestä on todella kyse, jonka jälkeen voidaan suorittaa koodia, joka liittyy vain kyseisen kysymystyypin toimintaan.
 
 Todellisuutta mallintavilla malleilla saadaan luotettavampaa koodia, ja poistetaan turhia if-lauseita. Myös jos mallista poistetaan mahdottomat tilat, niitä ei tarvitse edes testata.
 
@@ -371,7 +370,7 @@ const successOf = <T>(value: T): Success<T> =>
     \label{code:result_helpers}
 \end{code}
 
-Näillä voidaan rakentaa yhdistettyjä funktioita, joissa paluuarvon luonti ja palauttaminen on eksplisiittistä ja selkeää. Koodiesimerkissä \ref{code:result_pipe_example} käsitellään Result-objekteja yhdistetyssä funktiossa. Jokaisessa yhdisteen funktiossa tarkistetaan onko aiempi tulos epäonnistunut. Epäonnistumisen sattuessa virhearvo päästetään suoraan putken läpi.
+Näillä voidaan rakentaa yhdistettyjä funktioita, joissa paluuarvon luonti ja palauttaminen on eksplisiittistä ja selkeää. Koodiesimerkissä \ref{code:result_pipe_example} käsitellään Result-objekteja yhdistetyssä funktiossa. Jokaisessa yhdisteen funktiossa tarkistetaan, onko aiempi tulos epäonnistunut. Epäonnistumisen sattuessa virhearvo päästetään suoraan putken läpi.
 
 \begin{code}
     \begin{minted}{typescript}
@@ -488,7 +487,7 @@ const monad = Result.of(helloMaybe())
 
 Eri ohjelmointikielissä tai kirjastoissa monadeista arvon ulos saaminen voi poiketa. Matemaattisessa määritelmässä arvoa ei ole tarkoitus koskaan saada pois monadista. Esimerkiksi Haskellissa lähtökohtaisesti arvo kuuluu aina jättää monadinsa kontekstiin, eikä sitä tulisi käsitellä suoraan \cite{haskellallmonad}.
 
-Result-monadin luominen ja käyttäminen vaatii ohjelmiston kehittäjiltä ylimääräistä kontekstiä funktionaalisista käsitteistä. Kontekstin poistamiseksi voidaan käyttää räätälöidyn monadin sijasta JavaScriptin \texttt{Promise}-tietorakennetta (Koodiesimerkki \ref{code:result_monad_example_4}).
+Result-monadin luominen ja käyttäminen vaatii ohjelmiston kehittäjiltä ylimääräistä kontekstia funktionaalisista käsitteistä. Kontekstin poistamiseksi voidaan käyttää räätälöidyn monadin sijasta JavaScriptin \texttt{Promise}-tietorakennetta (Koodiesimerkki \ref{code:result_monad_example_4}).
 
 \begin{code}
     \begin{minted}{typescript}
@@ -505,7 +504,7 @@ const promise = Promise.resolve(mightSayHello())
     .then(x => x.split("").reverse().join(""))
 //  .catch(x => x)
 \end{minted}
-    \caption{Result-monadi-esimerkki käytten JavaScriptin sisäänrakennettua Promise-tietorakennetta. Toimintaperiaate vastaa aiempaa koodiesimerkkiä, eikä vaadi erillisiä kirjastoja}
+    \caption{Result-monadi-esimerkki käyttäen JavaScriptin sisäänrakennettua Promise-tietorakennetta. Toimintaperiaate vastaa aiempaa koodiesimerkkiä, eikä vaadi erillisiä kirjastoja}
     \label{code:result_monad_example_4}
 \end{code}
 

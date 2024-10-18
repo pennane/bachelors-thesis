@@ -41,7 +41,7 @@ const either = f => g => x => f(x) || g(x)
 const max    = x => y => x > y ? x : y
 const pipe   = fs => x => fs.reduce((acc, f) => f(acc), x)
 \end{minted}
-    \caption{Esimerkkejä insinöörityössä käytettävistä nimeämiskäytänteistä. Muunmuassa funktio \texttt{map} ottaa ensin yhden funktion (f), ja tämän jälkeen monta arvoa (xs). \texttt{Pipe} ottaa ensin monta funktiota (fs), ja tämän jälkeen yhden arvon (x)}
+    \caption{Esimerkkejä insinöörityössä käytettävistä nimeämiskäytänteistä. Muun muassafunktio \texttt{map} ottaa ensin yhden funktion (f), ja tämän jälkeen monta arvoa (xs). \texttt{Pipe} ottaa ensin monta funktiota (fs), ja tämän jälkeen yhden arvon (x)}
     \label{code:javascript_naming_convention_example}
 \end{code}
 
@@ -380,7 +380,7 @@ Joukko-oppi ei ole ainoa ohjelmointiin sovellettava matemaattinen osa-alue. Funk
 Kategoriateoria tutkii matemaattisia rakenteita ja niiden välisiä suhteita erittäin abstraktilla tasolla. Se keskittyy objektien (kuten joukkojen tai tyyppien) ja niiden välillä olevien morfismien (funktioiden tai muunnosten) tutkimiseen \cite{bartosz_category_for_progamers}. Kategoriateorian avulla voidaan ymmärtää ja formalisoida monimutkaisia matemaattisia ja ohjelmallisia rakenteita. \cite{bartosz_category_for_progamers,promises-spec-94,category_theory}
 Kategoriateoriaa ohjelmoijille opettavan Bartosz Milewskin kokemusten mukaan, vaikka algebra tai kalkyyli olisi ohjelmoijalle ajatuksena hirveää, kategoriateoria on kuitenkin erityisen mieluisaa sen suuresta teoreettisuudesta huolimatta. \cite[9]{milewski2017category}.
 
-Kategoriateoriassa peruspalikat ovat kategoriat \cite[9]{milewski2017category}. Kategoria on rakenne, joka koostuu morfismeista. Esimerkiksi joukot ja funktiot koostavat kategorian, jossa joukot ovat kategorian objektit, ja funktiot kategorian morfismit \cite{category_theory}. Kategoriateoriaan ei perehdytä tarkemmin tässä työssä Monadi-rakennetta lukuun ottamatta. Ei ole käytännönläheistä tuoda tavattoman teoreettisia käsitteitä työhön, jossa tavoitteena on etsiä jonkin kaltaista konkretiaa.
+Kategoriateoriassa peruspalikat ovat kategoriat \cite[9]{milewski2017category}. Kategoria on rakenne, joka koostuu morfismeista. Esimerkiksi joukot ja funktiot koostavat kategorian, jossa joukot ovat kategorian objektit, ja funktiot kategorian morfismit \cite{category_theory}. Kategoriateoriaan ei perehdytä tarkemmin tässä työssä monadirakennetta lukuun ottamatta. Ei ole käytännönläheistä tuoda tavattoman teoreettisia käsitteitä työhön, jossa tavoitteena on etsiä jonkin kaltaista konkretiaa.
 
 
 \section{Monadi}
@@ -404,7 +404,7 @@ JavaScriptissä \mintinline{js}|Array| toteuttaa toiminnon \texttt{bind} \mintin
 
 JavaScriptin \mintinline{js}|Promise| toteuttaa toiminnon \texttt{bind} \mintinline{javascript}|Promise.prototype.then|-metodilla, ja \texttt{of} toiminnon staattisella \mintinline{javascript}|Promise.resolve| ja \mintinline{javascript}|Promise.reject| metodeilla \cite{read-it-later-11481,stackoverflow:why_monad,promises-spec-94}.
 
-Vaikka JavaScriptin \mintinline{js}|Promise| ja \mintinline{js}|Array| toteuttavatkin monadin \texttt{bind} ja \texttt{of} toiminnot, se ei tee niistä automaattisesti monadeja kategoriateorian tai funktionaalisen ohjelmoinnin sääntöjen mukaan \cite{promises-spec-94,stackoverflow:why_monad,stackoverflow_js_array_monad}. Kehittäjä Jake Archibaldin mukaan akateemisten käsitteiden seuraaminen puhtaasti ei kuitenkaan usein johda käytännölisiin ratkaisuihin \cite{pennane_fp_gist}. Tästä syystä on kohtuullista puhua näistä rakenteista monadeina, vaikkeivat ne sitä puhtaasti olisikaan.
+Vaikka JavaScriptin \mintinline{js}|Promise| ja \mintinline{js}|Array| toteuttavatkin monadin \texttt{bind} ja \texttt{of} toiminnot, se ei tee niistä automaattisesti monadeja kategoriateorian tai funktionaalisen ohjelmoinnin sääntöjen mukaan \cite{promises-spec-94,stackoverflow:why_monad,stackoverflow_js_array_monad}. Kehittäjä Jake Archibaldin mukaan akateemisten käsitteiden seuraaminen puhtaasti ei kuitenkaan usein johda käytännöllisiin ratkaisuihin \cite{pennane_fp_gist}. Tästä syystä on kohtuullista puhua näistä rakenteista monadeina, vaikkeivat ne sitä puhtaasti olisikaan.
 
 
 \subsection{Monadin implementointi}
@@ -432,13 +432,13 @@ fetch("https://some.imaginary.api.com/v1")
     .then(users => users.map(user => user.id))
     .catch(error => Array.of()) 
     \end{minted}
-    \caption{Promise-tietorakenteella bind-operaatioden ketjutus, jossa haetaan käyttäjätietoja kuvitteellisesta ulkoisesta rajapinnasta. Jos mikään yksittäinen askel päätyy virhetilaan, palauttaa ohjelma tyhjän listan kutsumalla \mintinline{js}|Array.of|-metodia}
+    \caption{Promise-tietorakenteella bind-operaatioiden ketjutus, jossa haetaan käyttäjätietoja kuvitteellisesta ulkoisesta rajapinnasta. Jos mikään yksittäinen askel päätyy virhetilaan, palauttaa ohjelma tyhjän listan kutsumalla \mintinline{js}|Array.of|-metodia}
     \label{code:promise_monad_concise}
 \end{code}
 
-Koodiesimerkissä nähdään operaatioiden monadinen ketjutus. Jokainen \mintinline{js}|Promise.then|-kutsu palauttaa aina uuden Promise-monadin. Jos jokin yksittäinen Promise päätyy virhetilaan, ei enää seuraavia then-kutusja ajeta, vaan ketju päätyy automaattisesti \texttt{catch}-osioon.
+Koodiesimerkissä nähdään operaatioiden monadinen ketjutus. Jokainen \mintinline{js}|Promise.then|-kutsu palauttaa aina uuden Promise-monadin. Jos jokin yksittäinen Promise päätyy virhetilaan, ei enää seuraavia then-kutsuja ajeta, vaan ketju päätyy automaattisesti \texttt{catch}-osioon.
 
-Käytännössä koko ohjelma on siis vain yhdistetty funktio, jossa ollaan määritelty räätälöityä logiikkaa siihen, miten funktiokutsut käsitellään. Kuitenkaan \mintinline{js}|Promise.catch| ei liity suoraan monadisuuteen, eikä käytännössä oikeellisesti implementoidun monadin tarvitsisi käyttää sellaista \cite{promises-spec-94}.
+Käytännössä koko ohjelma on siis vain yhdistetty funktio, jossa on määritelty räätälöityä logiikkaa siihen, miten funktiokutsut käsitellään. Kuitenkaan \mintinline{js}|Promise.catch| ei liity suoraan monadisuuteen, eikä käytännössä oikeellisesti implementoidun monadin tarvitsisi käyttää sellaista \cite{promises-spec-94}.
 
 Raja on häilyvä. Onko JavaScriptin Promise monadi vai ei? Matemaatikkojen mielestä monadi on \textquote{yksinkertaisesti} monoidi endofunktoreiden kategoriassa \cite{bartosz_category_for_progamers_10,monad_wikipedia,stackoverflow_what_monad}. Toisten mielestä monadi on asia, jolla on \texttt{flatMap}-metodi \cite{stackoverflow_flatmap_monad}.
 
@@ -519,11 +519,11 @@ TypeScriptissä tulotyyppejä voi määritellä käyttäen objekteja tai Record-
 // Tyypin mahdollisten erilaisten alkioiden määrä: värimahdollisuudet * istuinmahdollisuudet -> tulotyyppi
 type Car = {type: "car", color: string; seats: number;}
 \end{minted}
-    \caption{Tulotyyppi-esimerkki TypeScriptissä. Tulotyyppi tulee siitä, että tyypin osien määrän voi kertoa keskenään saadakseen tyypin kokonaisen permutaatioden määrän}
+    \caption{Tulotyyppi-esimerkki TypeScriptissä. Tulotyyppi tulee siitä, että tyypin osien määrän voi kertoa keskenään saadakseen tyypin kokonaisen permutaatioiden määrän}
     \label{code:ts_product_type}
 \end{code}
 
-\textbf{Summatyyppi} (sum type) mahdollistaa arvon, joka voi olla yksi useista ennalta määritellyistä tyypeistä.TypeScriptissä summatyyppejä voi määritellä käyttäen diskriminoituja unioneja (discriminated union) (Koodiesimerkki \ref{code:ts_sum_type}). \citep{algebraic_data_types,holvikari2021category}
+\textbf{Summatyyppi} (sum type) mahdollistaa arvon, joka voi olla yksi useista ennalta määritellyistä tyypeistä. TypeScriptissä summatyyppejä voi määritellä käyttäen diskriminoituja unioneja (discriminated union) (Koodiesimerkki \ref{code:ts_sum_type}). \citep{algebraic_data_types,holvikari2021category}
 
 \begin{code}
     \begin{minted}{typescript}
@@ -532,7 +532,7 @@ type MotorBike = {type: "motorbike", top_speed: number; wheelieability:number;}
 // Tyypin mahdollisten erilaisten alkioiden määrä: autojen määrä + moottoripyörien määrä -> summatyyppi
 type Vehicle = Car | MotorBike
 \end{minted}
-    \caption{Summatyyppi-esimerkki TypeScriptissä. Summatyyppi tulee siitä, että tyypin osien määrän voi summata keskenään saadakseen tyypin kokonaisen permutaatioden määrän}
+    \caption{Summatyyppi-esimerkki TypeScriptissä. Summatyyppi tulee siitä, että tyypin osien määrän voi summata keskenään saadakseen tyypin kokonaisen permutaatioiden määrän}
     \label{code:ts_sum_type}
 \end{code}
 
@@ -549,7 +549,7 @@ Funktionaalisen ohjelmoinnin kirjastoilla halutaan tuoda \gls{ts}-ekosysteemiin 
 
 \subsection{Promise-tietorakenne on miltei monadi}
 
-JavaScriptissä oleva Promise-tietorakenne toimii miltei kuin monadi, muttei ole sitä määritelmällisesti matematiikan kategoriateorian mukaan \cite{stackoverflow:why_monad,promises-spec-94}. Tässä osassa puidaan miksi se on merkittävää, miksi se pääsi tapahtumaan, ja mitä merkitystä sillä edes on, että JavaScriptissä ei ole standardoitua tapaa luoda monadeja.
+JavaScriptissä oleva Promise-tietorakenne toimii miltei kuin monadi, muttei ole sitä määritelmällisesti matematiikan kategoriateorian mukaan \cite{stackoverflow:why_monad,promises-spec-94}. Tässä osassa puidaan miten tämä pääsi tapahtumaan, ja mitä merkitystä sillä edes on, että JavaScriptissä ei ole standardoitua tapaa luoda monadeja.
 
 JavaScriptin kehitys perustuu vahvasti takaperin yhteensopivuuteen, mikä estää merkittäviä muutoksia kielen rakenteisiin ilman riskiä rikkoa olemassa olevia verkkosivuja \cite{prototype_library_trends}. Selaimet eivät voi myöskään tehdä omin päin rikkovia muutoksia \cite{against_self_closing_tags,proposal-joint-iteration}. Jos vierailee lääkärin vastaanoton verkkosivulla selvittääkseen aukioloajat, kumpi selain on paras: se, joka näyttää vastaanoton aukioloajat, vai se, joka ei näytä mitään, koska on ottanut uuden JavaScript-version käyttöön?
 

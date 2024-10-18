@@ -25,16 +25,16 @@ Kokemuksien mukaan voi olla vaikeaa olla käyttämättä työkaluja, joiden näk
 
 Työpaikalla keskusteluissa on näkynyt käytänteitä, että ennen kuin jotakin tarvitaan kolmesti, ei sille ole kannattavaa kirjoittaa uudelleenkäytettävää abstraktiota.
 
-Toisaalta kun kehitetään ulkoisia rajapintoja on tilanne eri, sillä on pidettävä huolta taaksepäin suuntautuvasta yhteensopivuudesta.
+Toisaalta kun kehitetään ulkoisia rajapintoja, on tilanne eri, sillä on pidettävä huolta taaksepäin suuntautuvasta yhteensopivuudesta.
 
-Uudelleenkäytettävien palikoiden löytäminen ei myöskään ole itsetäänselvyys. On keskusteltu siitä, että kannattaisi välttää logiikan koostamista, ja toisinaan suosia yksinkertaisuuksia ja kovakoodattua tietoa, jotta sen etsiminen olisi koodikannasta helpompaa (esimerkiksi käyttämällä grep-komentorivikomentoa).
+Uudelleenkäytettävien palikoiden löytäminen ei myöskään ole itsestäänselvyys. On keskusteltu siitä, että kannattaisi välttää logiikan koostamista, ja toisinaan suosia yksinkertaisuuksia ja kovakoodattua tietoa, jotta sen etsiminen olisi koodikannasta helpompaa (esimerkiksi käyttämällä grep-komentorivikomentoa).
 
 Uudelleenkäytettävyyttä voidaan harjoittaa erinäköisillä koodikäytänteillä, kuten erinäköisin funktionaalisen ohjelmoinnin periaattein, tai olio-ohjelmoinnin periaattein. Archibaldin mukaan koodikäytänteet usein epäonnistuvat tehtävässään, kun niissä yritetään liikaa pysytellä niiden puhtaissa akateemisissa raameissa \cite{pennane_fp_gist}.
 
 
 
 \section{Tehokkuus}
-Tehokkuutta ei ole suotavaa miettiä liikaa enen kuin ohjelmoidaan systeemejä, jotka todella riippuvat siitä. Monet ovat tätä mieltä \cite{pennane_fp_gist,prematureoptimization}. Kun tehokkuusongelmat alkavat näkyä, on kokemusten mukaan todennäköisempää, että yhden ohjelman kriisipesäkkeen (hot spot) korjaamisella tilanne voidaan korjata, eikä tuhannen sivalluksen kuolema ole todennäköisin.
+Tehokkuutta ei ole suotavaa miettiä liikaa ennen kuin ohjelmoidaan systeemejä, jotka todella riippuvat siitä. Monet ovat tätä mieltä \cite{pennane_fp_gist,prematureoptimization}. Kun tehokkuusongelmat alkavat näkyä, on kokemusten mukaan todennäköisempää, että yhden ohjelman kriisipesäkkeen (hot spot) korjaamisella tilanne voidaan korjata, eikä tuhannen sivalluksen kuolema ole todennäköisin.
 
 Ohjelman tehokkuuteen vaikuttavien asioiden tiedostaminen kuitenkin ennaltaehkäisee ongelmatilanteita. Esimerkiksi tiedon kopioinnin tai \texttt{reduce}-funktion välttämisellä voidaan ajaa proaktiivisesti ohjelmaa toimivampaan suuntaan.
 
