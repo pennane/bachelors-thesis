@@ -459,10 +459,12 @@ const helloMaybe = (): string | Error =>
 
 const addExclamation = (x: string) => x + "!"
 const toUpperCase = (x: string) => x.toUpperCase()
+const reverse = (x: string) => x.split("").reverse().join("")
 
 Result.of(helloMaybe())
  .bind(addExclamation)
  .bind(toUpperCase)
+ .bind(reverse)
 \end{minted}
     \caption{Monadisia operaatioita ketjutettuna Result-monadiin. Annettavat funktiot voivat palauttaa käärimättömiä arvoja johtuen Result-monadin implementaatiosta}
     \label{code:result_monad_example_2}
@@ -476,11 +478,52 @@ Jos yksikin monadin funktioketjusta epäonnistuu, suoritus lakkaa ja virhe palau
 const monad = Result.of(helloMaybe())
     .bind(addExclamation)
     .bind(toUpperCase)
+    .bind(reverse)
  const value = monad.value
- // value on joko "HELLO WORLD!" tai Error("Sorry, bad failure")
+ // value on joko "!DLROW OLLEH" tai Error("Sorry, bad failure")
 \end{minted}
     \caption{Arvon voi poistaa monadin kontekstista yksinkertaisesti hakemalla \mintinline{js}|value|-kenttää }
     \label{code:result_monad_example_3}
 \end{code}
 
 Eri ohjelmointikielissä tai kirjastoissa monadeista arvon ulos saaminen voi poiketa. Matemaattisessa määritelmässä arvoa ei ole tarkoitus koskaan saada pois monadista. Esimerkiksi Haskellissa lähtökohtaisesti arvo kuuluu aina jättää monadinsa kontekstiin, eikä sitä tulisi käsitellä suoraan \cite{haskellallmonad}.
+
+Result-monadin luominen ja käyttäminen vaatii ohjelmiston kehittäjiltä ylimääräistä kontekstiä funktionaalisista käsitteistä. Kontekstin poistamiseksi voidaan käyttää räätälöidyn monadin sijasta JavaScriptin \texttt{Promise}-tietorakennetta (Koodiesimerkki \ref{code:result_monad_example_4}).
+
+\begin{code}
+    \begin{minted}{typescript}
+const mightSayHello = async () => {
+    if (Math.random() > 0.5) {
+        throw new Error("Sorry, bad failure")
+    }
+    return 'hello world'
+}
+    
+const promise = Promise.resolve(mightSayHello())
+    .then(x => x+"!")
+    .then(x => x.toUpperCase())
+    .then(x => x.split("").reverse().join(""))
+//  .catch(x => x)
+\end{minted}
+    \caption{Result-monadi-esimerkki käytten JavaScriptin sisäänrakennettua Promise-tietorakennetta. Toimintaperiaate vastaa aiempaa koodiesimerkkiä, eikä vaadi erillisiä kirjastoja}
+    \label{code:result_monad_example_4}
+\end{code}
+
+\texttt{Promise}:n käyttäminen Result-monadin sijasta voi selkeyttää ohjelmakoodin luettavuutta JavaScript-kehittäjille. Toisaalta \texttt{Promise}:n käyttäminen esimerkin tavalla tuo turhaa monimutkaisuutta, sillä \texttt{Promise}:n luontainen asynkronisuus tuo turhia tehokkuushaittoja, kun operaatiot eivät muuten olisi asynkronisia \cite{mdn_promise}.
+
+Ohjelmistokehittäjä Jake Archibald suosisi ohjelman kirjoittamista vielä enemmän JavaScriptin tyylillä (Koodiesimerkki \ref{code:archibald_bro}) \cite{pennane_fp_gist} .
+
+\begin{code}
+    \begin{minted}{typescript}
+function someWellNamedFunction(): string | null {
+    const result = mightSayHello();
+    if (result === null) return;
+    return reverse(result + '!').toUpperCase();
+}
+\end{minted}
+    \caption{Ohjelmistokehittäjä Jake Archibaldin versio funktiosta \cite{pennane_fp_gist}. Versio suosii imperatiivisia tapoja toteuttaa funktio}
+    \label{code:archibald_bro}
+\end{code}
+
+Saman asian voi siis toteuttaa monella eri tavalla. On suositeltavaa asettaa tiukan arvioinnin alle se, mikä versio sopii mihinkin tilanteeseen.
+
