@@ -389,7 +389,14 @@ Monadi tulee esille funktionaalisessa ohjelmoinnissa erittäin usein. Se on alun
 
 Ohjelmoinnissa ohjelman sivuvaikutukset ovat miltei vaatimus. Funktionaalisessa ohjelmoinnissa sivuvaikutukset eivät sovi. Monadeilla onnistuttiin tuomaan sivuvaikutuksia funktionaaliseen ohjelmointiin säilyttäen ohjelmien ennustettavuus ja puhtaus, mutta kuitenkin siten, että koodi pysyy ulkoisesti sivuvaikutuksettomalta vaikuttavana. \citep{computerphile_monad}
 
-Ohjelmoinnissa monadeilla voidaan hallita sivuvaikutuksia, ketjuttaa operaatioita ja yhtenäistää abstraktioita \cite{computerphile_monad,bartosz_category_for_progamers_10,stackoverflow_what_monad}. Ohjelmoinnissa monadi on kieliagnostinen käsite.
+Ohjelmoinnissa monadeilla voidaan hallita sivuvaikutuksia, ketjuttaa operaatioita ja yhtenäistää abstraktioita \cite{computerphile_monad,bartosz_category_for_progamers_10,stackoverflow_what_monad}. Ohjelmoinnissa monadi on kieliagnostinen käsite. Monadin voi kuvitella olevan lähetys, jota kuljetetaan tehtaasta toiseen. Jokainen tehdas aina pitää huolen, että arvo on kääritty johonkin laatikkoon (monadiin) (Kuva \ref{fig:monad})
+
+\begin{figure}[ht]
+    \centering
+    \AltText{Monadin voi kuvitella olevan lähetys jota prosessoidaan eri tehtaissa. Tehdas saattaa muuttaa monadin toiseksi lähetykseksi.}{\includegraphics[width=10cm]{bromad}}
+    \caption{Monadisten operaation ketjuttaminen kuvattuna laatikoin ja tehtain. Laatikko (monadi) kuljetetaan (bind) tehtaiden (function) läpi. Laatikon sisälle ei nähdä suoraan, ennen kuin se avataan}
+    \label{fig:monad}
+\end{figure}
 
 Tässä luvussa käydään läpi, mitä ovat yleiset monadit, miten implementoida monadi, miten niitä käytetään, ja lopulta pyritään tiivistämään miten monadeja voi ajatella ohjelmoinnissa.
 
