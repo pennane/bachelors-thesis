@@ -59,7 +59,7 @@ Funktionaalinen ohjelmointi mahdollistaa koodin uudelleenkäytettävyyden. Lambd
 
 Jos kombinaattoreille haluaa etsiä vastaavanlaista määritelmää olio-ohjelmoinnin termeistä, voisi niitä ajatella olevan perustavanlaatuisia suunittelumalleja.
 
-Kombinaattori \mintinline{javascript}|compose| on tapa tehdä yhdistettyjä funktioita, joista kerrotaan enemmän seuraavassa osassa.
+Kombinaattori \mintinline{javascript}|compose| on tapa tehdä yhdistettyjä funktioita, joista kerrotaan enemmän seuraavassa luvussa.
 
 \begin{code}
     \begin{minted}{javascript}
@@ -180,7 +180,7 @@ Joukko-oppi on matematiikan haara, joka tutkii joukkojen ominaisuuksia ja niiden
 
 Tyyppiteoria puolestaan on matematiikan haara, joka tutkii arvojen luokittelua, ja miten niitä käsitellään ohjelmoinnissa ja logiikassa \cite{type_theory,algebraic_data_types}.
 
-Tyyppien ja joukkojen semanttinen ero on nyanssinen \cite{type_vs_set}. Ohjelmoinnissa puhutaan usein tyypeistä. Insinööriopintojen matematiikassa joukot ovat olleet vahvasti läsnä. Tässä osassa pääajatuksena on miettiä, kuinka asiat muutetaan funktioilla toisiksi, asiat voi mieltää kuuluvan joukkoihin tai tyyppeihin, kumpaa nyt ymmärtää paremmin. Oikea määritelmä saattaa lähestyä \glsdisp{category_theory}{kategoriateoriaa}, mutta erottaminen ei liene olevan tällä tasolla relevanttia.
+Tyyppien ja joukkojen semanttinen ero on nyanssinen \cite{type_vs_set}. Ohjelmoinnissa puhutaan usein tyypeistä. Insinööriopintojen matematiikassa joukot ovat olleet vahvasti läsnä. Tässä luvussa pääajatuksena on miettiä, kuinka asiat muutetaan funktioilla toisiksi, asiat voi mieltää kuuluvan joukkoihin tai tyyppeihin, kumpaa nyt ymmärtää paremmin. Oikea määritelmä saattaa lähestyä \glsdisp{category_theory}{kategoriateoriaa}, mutta erottaminen ei liene olevan tällä tasolla relevanttia.
 
 Ihmisillä on kuitenkin kyky hahmottaa asioita joukkoina (tai tyyppeinä). Koko maailman voi mallintaa niillä (Kuva \ref{fig:fruit_set}) \cite{algebraic_data_types}.
 
@@ -387,9 +387,12 @@ Kategoriateoriassa peruspalikat ovat kategoriat \cite[9]{milewski2017category}. 
 
 Monadi tulee esille funktionaalisessa ohjelmoinnissa erittäin usein. Se on alun perin teoreettinen rakenne, joka on löytynyt 1900-luvun puolivälin jälkeen kategoriateoriaa tutkivien matemaatikkojen ansiosta \cite{Beck2003}. Monadin hyöty ohjelmoinnissa ilmeni vasta myöhemmin 1990-luvulla \cite{computerphile_monad}.
 
-Ohjelmoinnissa monadilla voidaan hallita sivuvaikutuksia, ketjuttaa operaatioita ja yhtenäistää abstraktioita \cite{computerphile_monad,bartosz_category_for_progamers_10,stackoverflow_what_monad}. Ohjelmoinnissa monadi on kieliagnostinen käsite.
+Ohjelmoinnissa ohjelman sivuvaikutukset ovat miltei vaatimus. Funktionaalisessa ohjelmoinnissa sivuvaikutukset eivät sovi. Monadeilla onnistuttiin tuomaan sivuvaikutuksia funktionaaliseen ohjelmointiin säilyttäen ohjelmien ennustettavuus ja puhtaus, mutta kuitenkin siten, että koodi pysyy ulkoisesti sivuvaikutuksettomalta vaikuttavana. \citep{computerphile_monad}
 
-Tässä osassa käydään läpi, mitä ovat yleiset monadit, miten implementoida monadi, miten niitä käytetään, ja lopulta pyritään tiivistämään miten monadeja voi ajatella ohjelmoinnissa.
+Ohjelmoinnissa monadeilla voidaan hallita sivuvaikutuksia, ketjuttaa operaatioita ja yhtenäistää abstraktioita \cite{computerphile_monad,bartosz_category_for_progamers_10,stackoverflow_what_monad}. Ohjelmoinnissa monadi on kieliagnostinen käsite.
+
+Tässä luvussa käydään läpi, mitä ovat yleiset monadit, miten implementoida monadi, miten niitä käytetään, ja lopulta pyritään tiivistämään miten monadeja voi ajatella ohjelmoinnissa.
+
 
 \subsection{Yleiset monadit}
 
@@ -415,7 +418,7 @@ Konkreettisesti monadilla tulee siis olla kaksi toimintoa: \texttt{of} ja \textt
 
 Näillä kahdella toiminnolla voidaan luoda rakenteita, jotka käyttäytyvät kuin monadi. Monadin täydet hyödyt eivät kuitenkaan ilmene, jos rakenne ei myös täytä monadien kolmea sääntöä: vasen identiteetti (left identity), oikea identiteetti (right identity), ja liitännäisyys (associativity) \cite{haskellmonadlaws}. Jos kaikki kolme sääntöä toteutuu, voidaan luoda työkaluja, joissa voidaan käyttää mitä tahansa monadia, ja silloin monadi on määritelmän mukaisesti monadi.
 
-Osassa \textquote{Promise-tietorakenne on miltei monadi} puidaan sitä, miksei JavaScriptin \texttt{Promise} ole määritelmällisesti täydellisesti monadi, ja miksei ilman ulkoisia kirjastoja JavaScriptiin voida enää tuoda määritelmän täyttäviä monadeja. Kuitenkin rakenne, joka on kuin monadi, voi myös olla erittäin hyödyllinen. Siksi ei tarkemmin käsitellä, miten monadin määritelmän voi oikeellisesti täyttää.
+Luvussa \textquote{Promise-tietorakenne on miltei monadi} puidaan sitä, miksei JavaScriptin \texttt{Promise} ole määritelmällisesti täydellisesti monadi, ja miksei ilman ulkoisia kirjastoja JavaScriptiin voida enää tuoda määritelmän täyttäviä monadeja. Kuitenkin rakenne, joka on kuin monadi, voi myös olla erittäin hyödyllinen. Siksi ei tarkemmin käsitellä, miten monadin määritelmän voi oikeellisesti täyttää.
 
 
 \subsection{Monadin käyttäminen}
@@ -461,7 +464,7 @@ Myös kokemusten perusteella työpaikalla on havaittu funktionaalisen ohjelmoinn
 
 Pragmaattista funktionaalista ohjelmointia vaikuttaa siis olevan se, että otetaan vain mitä tarvitaan \cite{dear_functional_bros,martin2017pragmaticfp,cantarella_fp_haitat}. Toisaalta se, mitä tarvitaan ei ole välittömästi selvää. Toisille pragmaattista on jättää kaikki matemaattinen teoria pois ohjelmoinnista heti kättelyssä, toisille kategoriateorian rakenteiden käyttäminen, kun ne oikeasti sopivat mallintamaan ongelmaa \cite{holvikari2021category,martin2017pragmaticfp}.
 
-Tässä insinöörityössä tarkempia pragmaattisia funktionaalisen ohjelmoinnin käytäntöjä pyritään tuomaan esille neljännessä osassa \textquote{Funktionaalisia käytänteitä ei-funktionaalisissa ohjelmointikielissä}, ja siitä eteenpäin.
+Tässä insinöörityössä tarkempia pragmaattisia funktionaalisen ohjelmoinnin käytäntöjä pyritään tuomaan esille neljännessä luvussa \textquote{Funktionaalisia käytänteitä ei-funktionaalisissa ohjelmointikielissä}, ja siitä eteenpäin.
 
 \section{Funktionaalinen ohjelmointi \& TypeScript}
 JavaScript ei ole funktionaalinen ohjelmointikieli, vaikka se funktionaalisuutta tukeekin \cite{is_reduce_bad}. TypeScriptin tyyppijärjestelmällä funktionaalisesta ohjelmoinnista saa jo mieluisampaa \cite{holvikari2021category}.
@@ -549,7 +552,7 @@ Funktionaalisen ohjelmoinnin kirjastoilla halutaan tuoda \gls{ts}-ekosysteemiin 
 
 \subsection{Promise-tietorakenne on miltei monadi}
 
-JavaScriptissä oleva Promise-tietorakenne toimii miltei kuin monadi, muttei ole sitä määritelmällisesti matematiikan kategoriateorian mukaan \cite{stackoverflow:why_monad,promises-spec-94}. Tässä osassa puidaan miten tämä pääsi tapahtumaan, ja mitä merkitystä sillä edes on, että JavaScriptissä ei ole standardoitua tapaa luoda monadeja.
+JavaScriptissä oleva Promise-tietorakenne toimii miltei kuin monadi, muttei ole sitä määritelmällisesti matematiikan kategoriateorian mukaan \cite{stackoverflow:why_monad,promises-spec-94}. Tässä luvussa puidaan miten tämä pääsi tapahtumaan, ja mitä merkitystä sillä edes on, että JavaScriptissä ei ole standardoitua tapaa luoda monadeja.
 
 JavaScriptin kehitys perustuu vahvasti takaperin yhteensopivuuteen, mikä estää merkittäviä muutoksia kielen rakenteisiin ilman riskiä rikkoa olemassa olevia verkkosivuja \cite{prototype_library_trends}. Selaimet eivät voi myöskään tehdä omin päin rikkovia muutoksia \cite{against_self_closing_tags,proposal-joint-iteration}. Jos vierailee lääkärin vastaanoton verkkosivulla selvittääkseen aukioloajat, kumpi selain on paras: se, joka näyttää vastaanoton aukioloajat, vai se, joka ei näytä mitään, koska on ottanut uuden JavaScript-version käyttöön?
 
