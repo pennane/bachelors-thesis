@@ -36,7 +36,7 @@ Esimerkiksi olio-ohjelmoinnissa, tai muuten imperatiivisessa ohjelmoinnissa, for
             \\
         \end{array}
     \]
-    \caption{Ramda.js-kirjaston funktioita listojen käsittelyyn ohjelmoinnissa \cite{ramda:docs}. Kaikki nämä voitaisiin korvata for-silmukoilla imperatiivisessa paradigmassa}
+    \caption{Ramda.js-kirjaston funktioita listojen käsittelyyn ohjelmoinnissa \cite{ramda:docs}. Kaikki nämä voitaisiin korvata for-silmukoilla imperatiivisessa paradigmassa.}
     \label{fig:ramdacmds}
 \end{figure}
 
@@ -73,7 +73,7 @@ const convertUsersToLeaderboardUsers = (users: Array<User>, anonymizeUsers: bool
     R.sortWith([R.descend(R.prop("score"))])
 )(users)
 \end{minted}
-    \caption{Funktio, muuttaa listan käyttäjiä sellaisiksi, että niitä voidaan käyttää tuloslistoilla. Funktio on yhdistetty monesta funktiosta käyttämällä Ramda.js-kirjaston funktioita. Funktiossa käytetään useita muita funktioita, joiden toiminnan lukijan on tiedettävä tai arvattava}
+    \caption{Funktio, muuttaa listan käyttäjiä sellaisiksi, että niitä voidaan käyttää tuloslistoilla. Funktio on yhdistetty monesta funktiosta käyttämällä Ramda.js-kirjaston funktioita. Funktiossa käytetään useita muita funktioita, joiden toiminnan lukijan on tiedettävä tai arvattava.}
     \label{code:js_garbage_pipe}
 \end{code}
 
@@ -91,7 +91,7 @@ const convertUsersToLeaderboardUsers = (users: Array<User>, anonymizeUsers: bool
     }))
     .sort((userA, userB) => userB.score - userA.score)
     \end{minted}
-    \caption{Toiminnaltaan sama funktio, mutta käytettynä on vain JavaScriptin sisäänrakennettuja palikoita. Useampi lukija ymmärtää funktion, sillä se ei käytä ulkoisia kirjastoja}
+    \caption{Toiminnaltaan sama funktio, mutta käytettynä on vain JavaScriptin sisäänrakennettuja palikoita. Useampi lukija ymmärtää funktion, sillä se ei käytä ulkoisia kirjastoja.}
     \label{code:js_legit_pipe}
 \end{code}
 
@@ -133,7 +133,7 @@ objectFromEntries(entries)
 console.timeEnd('Immutable')
 // Immutable: 112.718017578125 ms
 \end{minted}
-    \caption{Funktio, joka ottaa listan avain-arvo-pareja ja luo niistä olion. Olion luonnissa ei käytetä ollenkaan mutatointia Funktion suorittaminen 1000 avain-arvo-parille kesti noin 113 millisekuntia}
+    \caption{Funktio, joka ottaa listan avain-arvo-pareja ja luo niistä olion. Olion luonnissa ei käytetä ollenkaan mutatointia Funktion suorittaminen 1000 avain-arvo-parille kesti noin 113 millisekuntia.}
     \label{code:js_just_mutate_immutable}
 \end{code}
 
@@ -158,7 +158,7 @@ objectFromEntries(entries)
 console.timeEnd('Mutable')
 // Mutable: 0.35693359375 ms
 \end{minted}
-    \caption{Sama funktio kuin aiempi. Ainoa ero, että pareja iteroidessa luotavaa oliota mutatoidaan. Funktion suorittaminen 1000:lle avain-arvo-parille kesti vain n. 0,4 millisekuntia}
+    \caption{Sama funktio kuin aiempi. Ainoa ero, että pareja iteroidessa luotavaa oliota mutatoidaan. Funktion suorittaminen 1000:lle avain-arvo-parille kesti vain noin 0,4 millisekuntia.}
     \label{code:js_just_mutate_mutable}
 \end{code}
 
@@ -188,7 +188,7 @@ type Quiz = {
 }
          
 \end{minted}
-    \caption{Mahdollinen lähestymistapa yksinkertaiselle tietovisan mallinnukselle. Malli koostuu visasta (Quiz) ja se kysymyksistä (Question)}
+    \caption{Mahdollinen lähestymistapa yksinkertaiselle tietovisan mallinnukselle. Malli koostuu visasta (Quiz) ja se kysymyksistä (Question).}
     \label{code:ts_first_quiz}
 \end{code}
 
@@ -227,7 +227,7 @@ type Quiz = {
     questions: NonEmptyArray<Question> 
 }       
     \end{minted}
-    \caption{Vaihtoehtoinen lähestymistapa tietovisan mallintamiselle, jossa käytetään itsemääritettyä NonEmptyArray-tyyppiä}
+    \caption{Vaihtoehtoinen lähestymistapa tietovisan mallintamiselle, jossa käytetään itsemääritettyä NonEmptyArray-tyyppiä.}
     \label{code:ts_non_empty_quiz}
 \end{code}
 
@@ -266,13 +266,13 @@ type Question = {
     incorrectAnswers: Array<IncorrectAnswer>
 }
     \end{minted}
-    \caption{Kysymykseen voi tarkentaa millaisia vastauksia hyväksytään}
+    \caption{Kysymykseen voi tarkentaa millaisia vastauksia hyväksytään.}
     \label{code:ts_question_with_explicit_answer_types}
 \end{code}
 
 Malli ei enää valehtele. Voi kuitenkin olla, että tulevaisuudessa on tarve luoda visalle enemmän ominaisuuksia. Voidaan haluta rajoittaa, että kysymyksessä voi valita vain yhden vaihtoehdon, tai usean. Voidaan esimerkiksi haluta antaa mahdollisuus antaa vastauksena vapaata tekstiä \cite{impossiblebetter}. Muita tarpeita voi olla loputtomasti.
 
-\textbf{Voidaan ottaa käyttöön summatyyppejä.} Sen sijasta, että lisättäisiin tyyppeihin uusia kenttiä kuten \mintinline{javascript}|isMultipleAnswerQuestion| tai \mintinline{javascript}|isFreeForm|, voidaan puolestaan luoda jokaiselle fundamentaalisesti erilaiselle asialle kokonaan oma tyyppinsä, ja yhdistää ne yhdeksi summatyypiksi. Näin pidetään huolta, että jokaisella asialla voi olla vain kenttiä, jotka kuuluvat sille.
+\textbf{Voidaan ottaa käyttöön summatyyppejä.} Sen sijasta, että lisättäisiin tyyppeihin uusia kenttiä kuten \mintinline{javascript}|isMultipleAnswerQuestion| tai \mintinline{javascript}|isFreform|, voidaan puolestaan luoda jokaiselle fundamentaalisesti erilaiselle asialle kokonaan oma tyyppinsä, ja yhdistää ne yhdeksi summatyypiksi. Näin pidetään huolta, että jokaisella asialla voi olla vain kenttiä, jotka kuuluvat sille.
 
 \begin{code}
     \begin{minted}[highlightlines={20}]{typescript}
@@ -290,14 +290,14 @@ type SingleAnswerQuestion = {
     incorrectAnswers: Array<IncorrectAnswer>
 }
 
-type FreeFormQuestion = {
-    type: "freeFormQuestion"
+type FreformQuestion = {
+    type: "freformQuestion"
     question: string
 }
 
-type Question = MultipleAnswerQuestion | SingleAnswerQuestion | FreeFormQuestion
+type Question = MultipleAnswerQuestion | SingleAnswerQuestion | FreformQuestion
     \end{minted}
-    \caption{Kysymysten mallintaminen summatyypillä. Monivalintakysymykselle, yksinkertaiselle kysymykselle ja vapaatekstikentälliselle kysymykselle on jokaiselle oma tyyppi. Tyypit on nostettu yhteen summatyyppiin (Question)}
+    \caption{Kysymysten mallintaminen summatyypillä. Monivalintakysymykselle, yksinkertaiselle kysymykselle ja vapaatekstikentälliselle kysymykselle on jokaiselle oma tyyppi. Tyypit on nostettu yhteen summatyyppiin (Question).}
     \label{code:ts_sum_type_nice}
 \end{code}
 
@@ -326,7 +326,7 @@ const mightWorkMightNot = (): Maybe<string> => {
     return "hello world"
 }
     \end{minted}
-    \caption{Mahdollisesti puuttuvan paluuarvon malli. Maybe voi sisältää jonkin tyypin tai arvon \texttt{null}}
+    \caption{Mahdollisesti puuttuvan paluuarvon malli. Maybe voi sisältää jonkin tyypin tai arvon \texttt{null}.}
     \label{code:ts_null_sum}
 \end{code}
 
@@ -348,7 +348,7 @@ const mightWorkMightNot = (): Result<string> => {
     return { value: "hello world" }
 }
     \end{minted}
-    \caption{Vaihtoehtoinen malli mahdollisesti epäonnistuvalle paluuarvolle. Result on joko Success, tai Failure. Molemmissa tapauksissa arvo on kuitenkin yhden kentän objekti, jonka ansiosta tyyppiin voi tallentaa \texttt{null}-arvon ilman, että tietoa menetetään}
+    \caption{Vaihtoehtoinen malli mahdollisesti epäonnistuvalle paluuarvolle. Result on joko Success, tai Failure. Molemmissa tapauksissa arvo on kuitenkin yhden kentän objekti, jonka ansiosta tyyppiin voi tallentaa \texttt{null}-arvon ilman, että tietoa menetetään.}
     \label{code:ts_better_result_sum}
 \end{code}
 
@@ -366,7 +366,7 @@ const failureOf = (error: string): Failure =>
 const successOf = <T>(value: T): Success<T> => 
     ({ value })
     \end{minted}
-    \caption{Apufunktioita Result-tyypin tarkastamiseen ja luomiseen TypeScriptissä}
+    \caption{Apufunktioita Result-tyypin tarkastamiseen ja luomiseen TypeScriptissä.}
     \label{code:result_helpers}
 \end{code}
 
@@ -399,7 +399,7 @@ pipe([
 // Palauttaa { value : "HELLO WORLD!}
 // tai { error: Error("Sorry, bad failure.") }
     \end{minted}
-    \caption{Esimerkki yhdistetystä funktiosta Result-tyypin kanssa. Jokaisen välifunktion on tarkastettava, onko edellinen kutsu onnistunut vai ei}
+    \caption{Esimerkki yhdistetystä funktiosta Result-tyypin kanssa. Jokaisen välifunktion on tarkastettava, onko edellinen kutsu onnistunut vai ei.}
     \label{code:result_pipe_example}
 \end{code}
 
@@ -443,7 +443,7 @@ class Result {
     }
 }
 \end{minted}
-    \caption{Result implementoituna monadiksi. Result monadeja voi luoda staattisella \mintinline{js}|Result.of|-metodilla, ja monadiin voi ketjuttaa operaatioita \mintinline{js}|Result.prototype.bind|-metodilla. Jos ketjutuksessa monadin arvo on Error, niin ketjutus lopetetaan, ja saatu virhearvo kuljetetaan suoraan lävitse}
+    \caption{Result implementoituna monadiksi. Result monadeja voi luoda staattisella \mintinline{js}|Result.of|-metodilla, ja monadiin voi ketjuttaa operaatioita \mintinline{js}|Result.prototype.bind|-metodilla. Jos ketjutuksessa monadin arvo on Error, niin ketjutus lopetetaan, ja saatu virhearvo kuljetetaan suoraan lävitse.}
     \label{code:result_monad_impl}
 \end{code}
 
@@ -465,7 +465,7 @@ Result.of(helloMaybe())
  .bind(toUpperCase)
  .bind(reverse)
 \end{minted}
-    \caption{Monadisia operaatioita ketjutettuna Result-monadiin. Annettavat funktiot voivat palauttaa käärimättömiä arvoja johtuen Result-monadin implementaatiosta}
+    \caption{Monadisia operaatioita ketjutettuna Result-monadiin. Annettavat funktiot voivat palauttaa käärimättömiä arvoja johtuen Result-monadin implementaatiosta.}
     \label{code:result_monad_example_2}
 \end{code}
 
@@ -481,7 +481,7 @@ const monad = Result.of(helloMaybe())
  const value = monad.value
  // value on joko "!DLROW OLLEH" tai Error("Sorry, bad failure")
 \end{minted}
-    \caption{Arvon voi poistaa monadin kontekstista yksinkertaisesti hakemalla \mintinline{js}|value|-kenttää }
+    \caption{Arvon voi poistaa monadin kontekstista yksinkertaisesti hakemalla \mintinline{js}|value|-kenttää.}
     \label{code:result_monad_example_3}
 \end{code}
 
@@ -504,7 +504,7 @@ const promise = Promise.resolve(mightSayHello())
     .then(x => x.split("").reverse().join(""))
 //  .catch(x => x)
 \end{minted}
-    \caption{Result-monadi-esimerkki käyttäen JavaScriptin sisäänrakennettua Promise-tietorakennetta. Toimintaperiaate vastaa aiempaa koodiesimerkkiä, eikä vaadi erillisiä kirjastoja}
+    \caption{Result-monadi-esimerkki käyttäen JavaScriptin sisäänrakennettua Promise-tietorakennetta. Toimintaperiaate vastaa aiempaa koodiesimerkkiä, eikä vaadi erillisiä kirjastoja.}
     \label{code:result_monad_example_4}
 \end{code}
 
@@ -520,7 +520,7 @@ function someWellNamedFunction(): string | null {
     return reverse(result + '!').toUpperCase();
 }
 \end{minted}
-    \caption{Ohjelmistokehittäjä Jake Archibaldin versio funktiosta \cite{pennane_fp_gist}. Versio suosii imperatiivisia tapoja toteuttaa funktio}
+    \caption{Ohjelmistokehittäjä Jake Archibaldin versio funktiosta \cite{pennane_fp_gist}. Versio suosii imperatiivisia tapoja toteuttaa funktio.}
     \label{code:archibald_bro}
 \end{code}
 

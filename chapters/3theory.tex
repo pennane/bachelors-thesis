@@ -41,7 +41,7 @@ const either = f => g => x => f(x) || g(x)
 const max    = x => y => x > y ? x : y
 const pipe   = fs => x => fs.reduce((acc, f) => f(acc), x)
 \end{minted}
-    \caption{Esimerkkejä insinöörityössä käytettävistä nimeämiskäytänteistä. Muun muassafunktio \texttt{map} ottaa ensin yhden funktion (f), ja tämän jälkeen monta arvoa (xs). \texttt{Pipe} ottaa ensin monta funktiota (fs), ja tämän jälkeen yhden arvon (x)}
+    \caption{Esimerkkejä insinöörityössä käytettävistä nimeämiskäytänteistä. Muun muassafunktio \texttt{map} ottaa ensin yhden funktion (f), ja tämän jälkeen monta arvoa (xs). \texttt{Pipe} ottaa ensin monta funktiota (fs), ja tämän jälkeen yhden arvon (x).}
     \label{code:javascript_naming_convention_example}
 \end{code}
 
@@ -72,7 +72,7 @@ const flip          = f => y => x => f (x) (y)
 const compose       = f => g => x => f (g (x)) 
 const substitution  = f => g => x => f (x) (g (x))
 \end{minted}
-    \caption{Yleiset kombinaattorit esitettynä JavaScriptissä \cite{javascript_combinators}. Kombinaattoreilla voi esittää lambda-kalkyyliä. Kombinaattoreilla voi muokata funktioiden toimintaa, ja yhdistää funktioita yhdistetyiksi funktioiksi}
+    \caption{Yleiset kombinaattorit esitettynä JavaScriptissä \cite{javascript_combinators}. Kombinaattoreilla voi esittää lambda-kalkyyliä. Kombinaattoreilla voi muokata funktioiden toimintaa, ja yhdistää funktioita yhdistetyiksi funktioiksi.}
     \label{code:javascript_combinators}
 \end{code}
 
@@ -116,7 +116,7 @@ const h = pipe(f)(g)
 // tai vaihtoehtoisesti
 const h = compose(g)(f)
 \end{minted}
-    \caption{JavaScript-esimerkki funktiokompositiosta pipe- ja compose-funktioilla}
+    \caption{JavaScript-esimerkki funktiokompositiosta pipe- ja compose-funktioilla.}
     \label{code:javascript_pipe_composition}
 \end{code}
 
@@ -145,7 +145,7 @@ i(5) // (((5 + 1) * 2) - 3) = 9
 const i = compose([h, g, f])
 i(5) // (((5 + 1) * 2) - 3) = 9
 \end{minted}
-    \caption{JavaScript-esimerkki yhdistettyjen funktioiden luomisesta käyttäen \texttt{reduce} ja \texttt{reduceRight} funktioita. Nämä versiot voivat ottaa mielivaltaisen määrän funktioita argumenttina}
+    \caption{JavaScript-esimerkki yhdistettyjen funktioiden luomisesta käyttäen \texttt{reduce} ja \texttt{reduceRight} funktioita. Nämä versiot voivat ottaa mielivaltaisen määrän funktioita argumenttina.}
     \label{code:javascript_better_pipe}
 \end{code}
 
@@ -167,7 +167,7 @@ const pipeline = pipe([rejectOdds, map(multiplyBy10)])
 
 pipeline([1, 2, 3, 4]) // [20, 40]
 \end{minted}
-    \caption{JavaScript-esimerkki yhdistettyjen funktioiden käyttämisestä laskutoimituksiin. Erilaiset operaatiot on pilkottu uudelleenkäytettäviksi funktioiksi}
+    \caption{JavaScript-esimerkki yhdistettyjen funktioiden käyttämisestä laskutoimituksiin. Erilaiset operaatiot on pilkottu uudelleenkäytettäviksi funktioiksi.}
     \label{code:javascript_composition_example}
 \end{code}
 
@@ -221,7 +221,7 @@ const aToB = (a: SetA): SetB => {
     }
 }  
 \end{minted}
-    \caption{Havainnollistava funktio, joka muuttaa joukon A, \{a,b,c\}, joukoksi B, \{1, 2, 3\}}
+    \caption{Havainnollistava funktio, joka muuttaa joukon A, \{a,b,c\}, joukoksi B, \{1, 2, 3\}.}
     \label{code:ts_set_example}
 \end{code}
 
@@ -231,7 +231,7 @@ Tarkastellaan konkreettisempaa esimerkkiä lähtien koodiesimerkistä \ref{code:
     \begin{minted}{typescript}
 const divide = (x:number) => (y:number) => x / y
 \end{minted}
-    \caption{Funktio, joka jakaa numeron toisella}
+    \caption{Funktio, joka jakaa numeron toisella.}
     \label{code:ts_set_theory_3}
 \end{code}
 
@@ -271,7 +271,7 @@ const isNonZero = (x: number): x is NonZero =>
     \label{code:ts_type_mayhem}
 \end{code}
 
-Ajatuksena on, että joukko \mintinline{javascript}|Rational| sisältää kaikki JavaScriptin tukemat rationaaliluvut, ja että joukko \mintinline{javascript}|NonZero| muuten sama paitsi ilman nollaa (kuva \reef{fig:set-esimerkki}).
+Ajatuksena on, että joukko \mintinline{javascript}|Rational| sisältää kaikki JavaScriptin tukemat rationaaliluvut, ja että joukko \mintinline{javascript}|NonZero| muuten sama paitsi ilman nollaa (kuva \ref{fig:set-esimerkki}).
 
 
 
@@ -289,13 +289,13 @@ Jos jakamisesimerkkiin määritetään joukot funktion argumenttien oikeiksi raj
     \begin{minted}{typescript}
 const divide = (x: Rational) => (y: NonZero) => x / y as Rational
 \end{minted}
-    \caption{Korrekti versio. Funktiolle annettavat arvot on varmistettava kuuluvan oikeisiin joukkoihin jossain vaiheessa ennen funktioon syöttöä käyttäen määriteltyjä \mintinline{javascript}|isRational|- ja \mintinline{javascript}|isNonZero|-funktioita }
+    \caption{Korrekti versio. Funktiolle annettavat arvot on varmistettava kuuluvan oikeisiin joukkoihin jossain vaiheessa ennen funktioon syöttöä käyttäen määriteltyjä \mintinline{javascript}|isRational|- ja \mintinline{javascript}|isNonZero|-funktioita.}
     \label{code:ts_set_theory_6}
 \end{code}
 
 Aiempaan esimerkkiin voisi päätyä, vaikkei olisi koskaan kuullut joukko-opista. Päällimmäisenä ajatuksena on kuitenkin se, että jos syötteitä ja palautusarvoja miettii joukkojen kannalta, syntyy luotettavampaa ohjelmakoodia ja vähemmän yllätyksiä. Tyypit ovat jo itsessään joukkoja, mutta niiden yksityiskohdat riippuvat käytössä olevasta, esimerkiksi ohjelmointikielen, tyyppijärjestelmästä \cite{type_theory}. Siksi ajatuksen tasolla joukkojen ajattelu on hyödyllistä.
 
-Argumentit ja palautusarvot (tyypit) voi tietysti mieltää joukkoina myös \glsdisp{composed_function}{yhdistetyissä funktioissa} (kuva \reef{fig:function_composition_in_sets}). Vaikka ohjelmoinnissa joukko-oppia ei rinnasteta ainoastaan funktionaaliseen ohjelmointiin,  joukko-opin ajattelu on siinä vähintäänkin tervetullutta.
+Argumentit ja palautusarvot (tyypit) voi tietysti mieltää joukkoina myös \glsdisp{composed_function}{yhdistetyissä funktioissa} (kuva \ref{fig:function_composition_in_sets}). Vaikka ohjelmoinnissa joukko-oppia ei rinnasteta ainoastaan funktionaaliseen ohjelmointiin,  joukko-opin ajattelu on siinä vähintäänkin tervetullutta.
 
 \begin{figure}[htbp]
     \centering
@@ -366,7 +366,7 @@ Argumentit ja palautusarvot (tyypit) voi tietysti mieltää joukkoina myös \gls
         \draw[->] (A4b) -- (C4b);
     \end{tikzpicture}
     \vspace{10pt}
-    \caption{Funktioiden yhdistäminen joukko-opin näkökulmasta. Funktiot A$\,\to\,$B ja B$\,\to\,$C yhdistämällä saadaan A$\,\to\,$C. Älykkäällä kääntäjällä voi poistaa turhia laskutoimituksia. Keskimmäisen joukon evaluointi on käytännössä turhaa, jos funktiot ovat puhtaita}
+    \caption{Funktioiden yhdistäminen joukko-opin näkökulmasta. Funktiot A$\,\to\,$B ja B$\,\to\,$C yhdistämällä saadaan A$\,\to\,$C. Älykkäällä kääntäjällä voi poistaa turhia laskutoimituksia. Keskimmäisen joukon evaluointi on käytännössä turhaa, jos funktiot ovat puhtaita.}
     \label{fig:function_composition_in_sets}
 \end{figure}
 
@@ -389,12 +389,12 @@ Monadi tulee esille funktionaalisessa ohjelmoinnissa erittäin usein. Se on alun
 
 Ohjelmoinnissa ohjelman sivuvaikutukset ovat miltei vaatimus. Funktionaalisessa ohjelmoinnissa sivuvaikutukset eivät sovi. Monadeilla onnistuttiin tuomaan sivuvaikutuksia funktionaaliseen ohjelmointiin säilyttäen ohjelmien ennustettavuus ja puhtaus mutta kuitenkin siten, että koodi pysyy ulkoisesti sivuvaikutuksettomalta vaikuttavana. \citep{computerphile_monad}
 
-Ohjelmoinnissa monadeilla voidaan hallita sivuvaikutuksia, ketjuttaa operaatioita ja yhtenäistää abstraktioita \cite{computerphile_monad,bartosz_category_for_progamers_10,stackoverflow_what_monad}. Ohjelmoinnissa monadi on kieliagnostinen käsite. Monadin voi kuvitella olevan lähetys, jota kuljetetaan tehtaasta toiseen. Jokainen tehdas aina pitää huolen, että arvo on kääritty johonkin laatikkoon (monadiin) (kuva \reef{fig:monad}).
+Ohjelmoinnissa monadeilla voidaan hallita sivuvaikutuksia, ketjuttaa operaatioita ja yhtenäistää abstraktioita \cite{computerphile_monad,bartosz_category_for_progamers_10,stackoverflow_what_monad}. Ohjelmoinnissa monadi on kieliagnostinen käsite. Monadin voi kuvitella olevan lähetys, jota kuljetetaan tehtaasta toiseen. Jokainen tehdas aina pitää huolen, että arvo on kääritty johonkin laatikkoon (monadiin) (kuva \ref{fig:monad}).
 
 \begin{figure}[ht]
     \centering
     \AltText{Monadin voi kuvitella olevan lähetys jota prosessoidaan eri tehtaissa. Tehdas saattaa muuttaa monadin toiseksi lähetykseksi.}{\includegraphics[width=10cm]{bromad}}
-    \caption{Monadisten operaation ketjuttaminen kuvattuna laatikoin ja tehtain. Laatikko (monadi) kuljetetaan (bind) tehtaiden (function) läpi. Laatikon sisälle ei nähdä suoraan, ennen kuin se avataan}
+    \caption{Monadisten operaation ketjuttaminen kuvattuna laatikoin ja tehtain. Laatikko (monadi) kuljetetaan (bind) tehtaiden (function) läpi. Laatikon sisälle ei nähdä suoraan, ennen kuin se avataan.}
     \label{fig:monad}
 \end{figure}
 
@@ -442,7 +442,7 @@ fetch("https://some.imaginary.api.com/v1")
     .then(users => users.map(user => user.id))
     .catch(error => Array.of()) 
     \end{minted}
-    \caption{Promise-tietorakenteella bind-operaatioiden ketjutus, jossa haetaan käyttäjätietoja kuvitteellisesta ulkoisesta rajapinnasta. Jos mikään yksittäinen askel päätyy virhetilaan, palauttaa ohjelma tyhjän listan kutsumalla \mintinline{js}|Array.of|-metodia}
+    \caption{Promise-tietorakenteella bind-operaatioiden ketjutus, jossa haetaan käyttäjätietoja kuvitteellisesta ulkoisesta rajapinnasta. Jos mikään yksittäinen askel päätyy virhetilaan, palauttaa ohjelma tyhjän listan kutsumalla \mintinline{js}|Array.of|-metodia.}
     \label{code:promise_monad_concise}
 \end{code}
 
@@ -494,7 +494,7 @@ function rnd(min: number, max: number) {
 const rnd2 = (min, max) => Math.floor(Math.random() * max) + min;
 const rnd3 = min => max => Math.floor(Math.random() * max) + min;
 \end{minted}
-    \caption{Kolme eri tapaa kirjoittaa funktio JavaScriptissä \cite{okhravi-g-discussion}. Funktiomäärittely, funktioilmaus ja osittain sovellettava funktioilmaus}
+    \caption{Kolme eri tapaa kirjoittaa funktio JavaScriptissä \cite{okhravi-g-discussion}. Funktiomäärittely, funktioilmaus ja osittain sovellettava funktioilmaus.}
     \label{code:javascript_function_types}
 \end{code}
 
@@ -506,7 +506,7 @@ function A()  { return "moi"; }
 function B(f) { return f(); }
 B(A) // "moi"
 \end{minted}
-    \caption{Funktioiden ensiluokkaisuus JavaScriptissä. Funktiolle B voidaan antaa funktio argumenttina}
+    \caption{Funktioiden ensiluokkaisuus JavaScriptissä. Funktiolle B voidaan antaa funktio argumenttina.}
     \label{code:js_first_class}
 \end{code}
 
@@ -529,7 +529,7 @@ TypeScriptissä tulotyyppejä voi määritellä käyttäen objekteja tai Record-
 // Tyypin mahdollisten erilaisten alkioiden määrä: värimahdollisuudet * istuinmahdollisuudet -> tulotyyppi
 type Car = {type: "car", color: string; seats: number;}
 \end{minted}
-    \caption{Tulotyyppi-esimerkki TypeScriptissä. Tulotyyppi tulee siitä, että tyypin osien määrän voi kertoa keskenään saadakseen tyypin kokonaisen permutaatioiden määrän}
+    \caption{Tulotyyppi-esimerkki TypeScriptissä. Tulotyyppi tulee siitä, että tyypin osien määrän voi kertoa keskenään saadakseen tyypin kokonaisen permutaatioiden määrän.}
     \label{code:ts_product_type}
 \end{code}
 
@@ -542,7 +542,7 @@ type MotorBike = {type: "motorbike", top_speed: number; wheelieability:number;}
 // Tyypin mahdollisten erilaisten alkioiden määrä: autojen määrä + moottoripyörien määrä -> summatyyppi
 type Vehicle = Car | MotorBike
 \end{minted}
-    \caption{Summatyyppi-esimerkki TypeScriptissä. Summatyyppi tulee siitä, että tyypin osien määrän voi summata keskenään saadakseen tyypin kokonaisen permutaatioiden määrän}
+    \caption{Summatyyppi-esimerkki TypeScriptissä. Summatyyppi tulee siitä, että tyypin osien määrän voi summata keskenään saadakseen tyypin kokonaisen permutaatioiden määrän.}
     \label{code:ts_sum_type}
 \end{code}
 
