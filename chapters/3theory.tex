@@ -19,7 +19,7 @@ Teoriaosuudessa pyritään pitämään sisältö mielenkiintoisena liimaamalla k
 
 \section{Funktionaalinen ohjelmointi}
 
-Funktionaalinen ohjelmointi on ohjelmointiparadigma, jonka juuret ulottuvat 1930-luvulle ja lambda-kalkyylin kehitykseen. Lähestymistapa korostaa funktioiden käyttöä perusyksikköinä ja pyrkii välttämään \glsdisp{immutable_data}{muuttuvia tiloja} (mutability) sekä \glsdisp{side_effects}{sivuvaikutuksia} (side-effects). Funktionaalisen ohjelmoinnin keskeisiä käsitteitä ovat \glsdisp{pure_function}{puhtaat funktiot}, \glsdisp{higher_order_function}{korkeamman asteen funktiot}, \glsdisp{composed_function}{yhdistetyt funktiot}, sekä \gls{declarative_programming}. Funktiot ovat funktionaalisessa ohjelmoinnissa tosiaankin keskiössä. \citep{Tan2004,computerphile_lambda}
+Funktionaalinen ohjelmointi on ohjelmointiparadigma, jonka juuret ulottuvat 1930-luvulle ja lambda-kalkyylin kehitykseen. Lähestymistapa korostaa funktioiden käyttöä perusyksikköinä ja pyrkii välttämään \glsdisp{immutable_data}{muuttuvia tiloja} (mutability) sekä \glsdisp{side_effects}{sivuvaikutuksia} (side-effects). Funktionaalisen ohjelmoinnin keskeisiä käsitteitä ovat \glsdisp{pure_function}{puhtaat funktiot}, \glsdisp{higher_order_function}{korkeamman asteen funktiot}, \glsdisp{composed_function}{yhdistetyt funktiot} sekä \gls{declarative_programming}. Funktiot ovat funktionaalisessa ohjelmoinnissa tosiaankin keskiössä. \citep{Tan2004,computerphile_lambda}
 
 \subsection{Työn nimeämiskäytänteet}
 
@@ -55,7 +55,7 @@ Puhtaiden funktioiden perusta on matematiikassa. Jos matemaattinen funktio $f(x)
 
 \subsection{Kombinaattorit}
 
-Funktionaalinen ohjelmointi mahdollistaa koodin uudelleenkäytettävyyden. Lambda-kalkyylin perustein joka ikisien ongelman voi purkaa pieniksi funktioiksi \cite{BlellochHarper2015}. Lambda-kalkyylistä johdetut kombinaattorit voi ottaa osaksi ohjelmoijan työkalupakkia missä tahansa ohjelmointikielessä, joka kohtelee funktioita samalla tavalla kuin muuttujia (first-class citizen) (Koodiesimerkki \ref{code:javascript_combinators}).
+Funktionaalinen ohjelmointi mahdollistaa koodin uudelleenkäytettävyyden. Lambda-kalkyylin perustein joka ikisien ongelman voi purkaa pieniksi funktioiksi \cite{BlellochHarper2015}. Lambda-kalkyylistä johdetut kombinaattorit voi ottaa osaksi ohjelmoijan työkalupakkia missä tahansa ohjelmointikielessä, joka kohtelee funktioita samalla tavalla kuin muuttujia (first-class citizen) (koodiesimerkki \ref{code:javascript_combinators}).
 
 Jos kombinaattoreille haluaa etsiä vastaavanlaista määritelmää olio-ohjelmoinnin termeistä, voisi niitä ajatella olevan perustavanlaatuisia suunittelumalleja.
 
@@ -72,7 +72,7 @@ const flip          = f => y => x => f (x) (y)
 const compose       = f => g => x => f (g (x)) 
 const substitution  = f => g => x => f (x) (g (x))
 \end{minted}
-    \caption{Yleiset kombinaattorit esitettynä JavaScriptissä \cite{javascript_combinators}. Kombinaattoreilla voi esittää lambda-kalkyyliä. Kombinaattoreilla voi muokata funktioiden toimintaa, ja yhdistää funktioita yhdiste funktioiksi}
+    \caption{Yleiset kombinaattorit esitettynä JavaScriptissä \cite{javascript_combinators}. Kombinaattoreilla voi esittää lambda-kalkyyliä. Kombinaattoreilla voi muokata funktioiden toimintaa, ja yhdistää funktioita yhdistetyiksi funktioiksi}
     \label{code:javascript_combinators}
 \end{code}
 
@@ -98,14 +98,14 @@ const g = x => x + 3
 
 const h = x => f(g(x))
 \end{minted}
-    \caption{JavaScript-esimerkki yhdistetystä funktiosta h ilman pipe tai compose funktiota}
+    \caption{JavaScript-esimerkki yhdistetystä funktiosta h ilman pipe- tai compose-funktiota}
     \label{code:javascript_manual_composition}
 \end{code}
 
 Funktionaalisissa ohjelmointikielissä yhdistettyjä funktioita pystyy usein kirjoittamaan käyttäen kieleen sisäänrakennettuja operaattoreja, joilla funktioiden yhdistäminen on helppoa ja suoraan osana ohjelmointikieltä \cite{fsharpcomposition,haskellcomposition}.
 JavaScriptissä ei ole vastaavanlaista sisäänrakennettua operaattoria.
 (Vaikkakin sellainen on ollut kehitteillä \cite{tc39_pipeline_operator}.)
-Operaattorin voi kuitenkin kirjoittaa funktiona helposti osaksi mitä tahansa koodikantaa (Koodiesimerkki \ref{code:javascript_pipe_composition}).
+Operaattorin voi kuitenkin kirjoittaa funktiona helposti osaksi mitä tahansa koodikantaa (koodiesimerkki \ref{code:javascript_pipe_composition}).
 
 \begin{code}
     \begin{minted}{javascript}
@@ -116,7 +116,7 @@ const h = pipe(f)(g)
 // tai vaihtoehtoisesti
 const h = compose(g)(f)
 \end{minted}
-    \caption{JavaScript-esimerkki funktiokompositiosta pipe ja compose funktioilla}
+    \caption{JavaScript-esimerkki funktiokompositiosta pipe- ja compose-funktioilla}
     \label{code:javascript_pipe_composition}
 \end{code}
 
@@ -128,7 +128,7 @@ Tulevissa koodiesimerkeissä tullaan suosimaan funktioiden yhdistämistä käytt
 
 Esimerkin \ref{code:javascript_pipe_composition} \texttt{pipe} ja \texttt{compose} toimivat vain kahdelle funktiolle kerrallaan. Tämä tapa seuraa lambda-kalkyyliä \cite{computerphile_lambda}. Ohjelmointikielen mukaan voi kuitenkin olla mieluisaa kirjoittaa funktiot niin, että ne tukevat suoraan mielivaltaista määrää funktioita.
 
-JavaScriptissä näin voi tehdä esimerkiksi hyödyntämällä Array-tietorakennetta (Koodiesimerkki \ref{code:javascript_better_pipe}).
+JavaScriptissä näin voi tehdä esimerkiksi hyödyntämällä Array-tietorakennetta (koodiesimerkki \ref{code:javascript_better_pipe}).
 
 \begin{code}
     \begin{minted}{javascript}
@@ -149,7 +149,7 @@ i(5) // (((5 + 1) * 2) - 3) = 9
     \label{code:javascript_better_pipe}
 \end{code}
 
-Mikä tästä sitten tekee loistavaa? Se, että ohjelmointi on kerrankin oikeasti kuin LEGO palikoilla leikkimistä (Koodiesimerkki \ref{code:javascript_composition_example}).
+Mikä tästä sitten tekee loistavaa? Se, että ohjelmointi on kerrankin oikeasti kuin LEGO-palikoilla leikkimistä (koodiesimerkki \ref{code:javascript_composition_example}).
 
 \begin{code}
     \begin{minted}{javascript}
@@ -176,13 +176,13 @@ Esimerkissä näytetyt funktiot ovat hyvin yksinkertaisia. Kuitenkin ne ovat tä
 \section{Tyyppiteoria ja joukko-oppi}
 Tämä osa pyrkii kirjoittamaan matemaattisista käsitteistä käytännönläheisesti ja mahdollisesti suuresti yksinkertaistaen. Ajatuksena on, että ylemmän tason ajattelumalli välittyisi tekstissä tarkkojen määritelmien sijasta.
 
-Joukko-oppi on matematiikan haara, joka tutkii joukkojen ominaisuuksia ja niiden välisiä suhteita. Ohjelmoinnissa joukko-oppi ilmenee yksinkertaisimmin joukko-tietorakenteiden kautta, jotka mahdollistavat uniikkien alkioiden käsittelyn tehokkaasti ja ilmaisuvoimaisesti \cite{mdn_set,mdn_set_methods}. On myös luotu ohjelmointikieli, joka perustuu kokonaan joukko-oppiin \cite{SETL_SET_LANGUAGE}.
+Joukko-oppi on matematiikan haara, joka tutkii joukkojen ominaisuuksia ja niiden välisiä suhteita. Ohjelmoinnissa joukko-oppi ilmenee yksinkertaisimmin joukkotietorakenteiden kautta, jotka mahdollistavat uniikkien alkioiden käsittelyn tehokkaasti ja ilmaisuvoimaisesti \cite{mdn_set,mdn_set_methods}. On myös luotu ohjelmointikieli, joka perustuu kokonaan joukko-oppiin \cite{SETL_SET_LANGUAGE}.
 
 Tyyppiteoria puolestaan on matematiikan haara, joka tutkii arvojen luokittelua, ja miten niitä käsitellään ohjelmoinnissa ja logiikassa \cite{type_theory,algebraic_data_types}.
 
 Tyyppien ja joukkojen semanttinen ero on nyanssinen \cite{type_vs_set}. Ohjelmoinnissa puhutaan usein tyypeistä. Insinööriopintojen matematiikassa joukot ovat olleet vahvasti läsnä. Tässä luvussa pääajatuksena on miettiä, kuinka asiat muutetaan funktioilla toisiksi, asiat voi mieltää kuuluvan joukkoihin tai tyyppeihin, kumpaa nyt ymmärtää paremmin. Oikea määritelmä saattaa lähestyä \glsdisp{category_theory}{kategoriateoriaa}, mutta erottaminen ei liene olevan tällä tasolla relevanttia.
 
-Ihmisillä on kuitenkin kyky hahmottaa asioita joukkoina (tai tyyppeinä). Koko maailman voi mallintaa niillä (Kuva \ref{fig:fruit_set}) \cite{algebraic_data_types}.
+Ihmisillä on kuitenkin kyky hahmottaa asioita joukkoina (tai tyyppeinä). Koko maailman voi mallintaa niillä (kuva\ref{fig:fruit_set}) \cite{algebraic_data_types}.
 
 \begin{figure}[ht]
     \centering
@@ -194,20 +194,20 @@ Ihmisillä on kuitenkin kyky hahmottaa asioita joukkoina (tai tyyppeinä). Koko 
 Koska koko maailman voi mallintaa joukkoina (tai tyyppeinä), voidaan niillä mallintaa myös ohjelmia.
 
 
-\subsection{Joukko-tietorakenne}
+\subsection{Joukkotietorakenne}
 
-Ohjelmoinnissa joukko-tietorakennetta käytetään hyvin laajasti, ja sen merkitys on keskeinen monissa ohjelmointikielissä, kuten Pythonissa, Javassa ja JavaScriptissä. Joukko-tietorakenne mahdollistaa alkioiden tallentamisen ilman duplikaatteja. Sen operaatiot, kuten unioni, leikkaus ja erotus, ovat suoraan peräisin matemaattisesta joukko-opista. Joukko-tietorakenteen tehokkuus ja yksinkertaisuus tekevät siitä tehokkaan työkalun monenlaisissa sovelluksissa. \citep{mdn_set,ecma_spec}
+Ohjelmoinnissa joukkotietorakennetta käytetään hyvin laajasti, ja sen merkitys on keskeinen monissa ohjelmointikielissä, kuten Pythonissa, Javassa ja JavaScriptissä. Joukkotietorakenne mahdollistaa alkioiden tallentamisen ilman duplikaatteja. Sen operaatiot, kuten unioni, leikkaus ja erotus, ovat suoraan peräisin matemaattisesta joukko-opista. Joukkotietorakenteen tehokkuus ja yksinkertaisuus tekevät siitä tehokkaan työkalun monenlaisissa sovelluksissa. \citep{mdn_set,ecma_spec}
 
-Joukko-tietorakenne kuvaa joukko-opin joukkoa. Joukko-tietorakenteessa säilytetään kokoelma uniikkeja alkioita. Joukko-tietorakenne on ohjelmoinnissa mieluinen työkalu sen tehokkuuden ansiosta. \citep{ecma_spec}
+Joukkotietorakenne kuvaa joukko-opin joukkoa. Joukkotietorakenteessa säilytetään kokoelma uniikkeja alkioita. Joukkotietorakenne on ohjelmoinnissa mieluinen työkalu sen tehokkuuden ansiosta. \citep{ecma_spec}
 
-Kokemusten mukaan ohjelmoija ei usein mieti joukko-tietorakennetta matemaattisista lähtökohdista. Tästä kuitenkin voisi olla hyötyä, sillä Joukko-opin periaatteiden ymmärtäminen ja soveltaminen ohjelmoinnissa ei ainoastaan tehostuskeino, vaan myös laajentaa näkemystä siitä, miten abstraktit matemaattiset konseptit voidaan muuttaa konkreettisiksi työkaluiksi. Tämä yhdistelmä tarjoaa ohjelmoijille sekä teoreettisen että käytännöllisen perustan, joka on arvokas monissa erilaisissa sovelluksissa ja ongelmanratkaisutilanteissa \cite{bartosz_category_for_progamers}.
+Kokemusten mukaan ohjelmoija ei usein mieti joukkotietorakennetta matemaattisista lähtökohdista. Tästä kuitenkin voisi olla hyötyä, sillä joukko-opin periaatteiden ymmärtäminen ja soveltaminen ohjelmoinnissa ei ainoastaan tehostuskeino, vaan myös laajentaa näkemystä siitä, miten abstraktit matemaattiset konseptit voidaan muuttaa konkreettisiksi työkaluiksi. Tämä yhdistelmä tarjoaa ohjelmoijille sekä teoreettisen että käytännöllisen perustan, joka on arvokas monissa erilaisissa sovelluksissa ja ongelmanratkaisutilanteissa \cite{bartosz_category_for_progamers}.
 
 \subsection{Funktioilla joukoista toisiin}
 Kun ohjelmoinnissa pohditaan joukko-opin hyödyntämistä, kehittyy \glsdisp{language_agnostic}{kieliriippumaton} kyky kirjoittaa koodia. Kun miettii, mitä ylipäätään voi laskea, pääsee ohjelmoinnissa omalle abstraktille tasolle. \citep{Tan2004,BlellochHarper2015}
 
 Matemaattisesti joukkojen välille voidaan tehdä kuvauksia, tai toisin sanoen funktioita. Merkintä funktiosta, joka \textquote{muuttaa} joukon $A$ joukoksi $B$, on esimerkiksi yksinkertaisesti $A \to B$ \cite{mellin2005joukkooppi}. Funktio muuttaa minkä tahansa joukon $A$ alkion joksikin joukon $B$ alkioksi.
 
-Funktionaalisessa ohjelmoinnissa puhtaiden funktioiden voidaan ajatella aina olevan rinnastettaessa jonkin joukon muutokseksi johonkin toiseen joukkoon (Esimerkkikoodi \ref{code:ts_set_example}) \cite{bartosz_category_for_progamers}. (Toisaalta funktioiden argumentit ja palautusarvot ovat aina joukkoja riippumatta siitä onko funktio puhdas vai ei. Ei-puhtaat funktiot eivät kuitenkaan välttämättä luo yksikäsitteisiä muutoksia joukkojen alkioille.)
+Funktionaalisessa ohjelmoinnissa puhtaiden funktioiden voidaan ajatella aina olevan rinnastettaessa jonkin joukon muutokseksi johonkin toiseen joukkoon (koodiesimerkki \ref{code:ts_set_example}) \cite{bartosz_category_for_progamers}. (Toisaalta funktioiden argumentit ja palautusarvot ovat aina joukkoja riippumatta siitä onko funktio puhdas vai ei. Ei-puhtaat funktiot eivät kuitenkaan välttämättä luo yksikäsitteisiä muutoksia joukkojen alkioille.)
 
 \begin{code}
     \begin{minted}{typescript}
@@ -237,7 +237,7 @@ const divide = (x:number) => (y:number) => x / y
 
 
 
-Funktio ottaa kaksi numeroa, ja jakaa ensimmäisen toisella. Argumentit on tyypitetty JavaScript-numeroiksi. Jos kyseistä funktiota haluaa käyttää, ohjelmoijan tulisi tietää, että nollalla ei voi jakaa, ja että jos niin kuitenkin tehdään, JavaScript palauttaa arvon \mintinline{javascript}|Infinity| (tai erityisemmässä tapauksessa \mintinline{javascript}|NaN|) (Koodiesimerkki \ref{code:ts_division}).
+Funktio ottaa kaksi numeroa, ja jakaa ensimmäisen toisella. Argumentit on tyypitetty JavaScript-numeroiksi. Jos kyseistä funktiota haluaa käyttää, ohjelmoijan tulisi tietää, että nollalla ei voi jakaa ja että jos niin kuitenkin tehdään, JavaScript palauttaa arvon \mintinline{javascript}|Infinity| (tai erityisemmässä tapauksessa \mintinline{javascript}|NaN|) (koodiesimerkki \ref{code:ts_division}).
 
 
 \begin{code}
@@ -252,7 +252,7 @@ console.log(0/0)  // NaN
 
 Jos jakolaskufunktion kehitykseen halutaan soveltaa joukko-oppia, voi olla mieluista määritellä argumenteille spesifimmät joukot, sillä joukkona JavaScriptin \mintinline{javascript}|number| sisältää epämieluisia arvoja laskujen kannalta (\mintinline{javascript}|[NaN, Infinity, -Infinity]|).
 
-Voidaan luoda jakolaskua varten joukot \mintinline{javascript}|Rational| ja \mintinline{javascript}|NonZero|, ja ohjelmoida ne TypeScript tyypeiksi (Koodiesimerkki \ref{code:ts_type_mayhem}).
+Voidaan luoda jakolaskua varten joukot \mintinline{javascript}|Rational| ja \mintinline{javascript}|NonZero|, ja ohjelmoida ne TypeScript-tyypeiksi (koodiesimerkki \ref{code:ts_type_mayhem}).
 
 \begin{code}
     \begin{minted}{typescript}
@@ -267,11 +267,11 @@ const isRational = (x: number): x is Rational =>
 const isNonZero = (x: number): x is NonZero => 
     isRational(x) && x !== 0
 \end{minted}
-    \caption{Rational ja NonZero joukkojen määritelmät TypeScriptissä}
+    \caption{Rational- ja NonZero-joukkojen määritelmät TypeScriptissä}
     \label{code:ts_type_mayhem}
 \end{code}
 
-Ajatuksena on, että joukko \mintinline{javascript}|Rational| sisältää kaikki JavaScriptin tukemat rationaaliluvut, ja että joukko \mintinline{javascript}|NonZero| muuten sama paitsi ilman nollaa (Kuva \ref{fig:set-esimerkki}).
+Ajatuksena on, että joukko \mintinline{javascript}|Rational| sisältää kaikki JavaScriptin tukemat rationaaliluvut, ja että joukko \mintinline{javascript}|NonZero| muuten sama paitsi ilman nollaa (kuva\ref{fig:set-esimerkki}).
 
 
 
@@ -283,19 +283,19 @@ Ajatuksena on, että joukko \mintinline{javascript}|Rational| sisältää kaikki
 \end{figure}
 
 
-Jos jakamisesimerkkiin määritetään joukot funktion argumenttien oikeiksi rajoitteiksi, ei funktiota voi käyttää väärin. TypeScript ei anna ajaa koodia, jos arvojen ei ole varmistettu kuuluvan oikeisiin joukkoihin (Koodiesimerkki \ref{code:ts_set_theory_6}) \cite{typsecript_website}.
+Jos jakamisesimerkkiin määritetään joukot funktion argumenttien oikeiksi rajoitteiksi, ei funktiota voi käyttää väärin. TypeScript ei anna ajaa koodia, jos arvojen ei ole varmistettu kuuluvan oikeisiin joukkoihin (koodiesimerkki \ref{code:ts_set_theory_6}) \cite{typsecript_website}.
 
 \begin{code}
     \begin{minted}{typescript}
 const divide = (x: Rational) => (y: NonZero) => x / y as Rational
 \end{minted}
-    \caption{Korrekti versio. Funktiolle annettavat arvot on varmistettava kuuluvan oikeisiin joukkoihin jossain vaiheessa ennen funktioon syöttöä käyttäen määriteltyjä \mintinline{javascript}|isRational| ja \mintinline{javascript}|isNonZero| funktioita }
+    \caption{Korrekti versio. Funktiolle annettavat arvot on varmistettava kuuluvan oikeisiin joukkoihin jossain vaiheessa ennen funktioon syöttöä käyttäen määriteltyjä \mintinline{javascript}|isRational|- ja \mintinline{javascript}|isNonZero|-funktioita }
     \label{code:ts_set_theory_6}
 \end{code}
 
-Aiempaan esimerkkiin voisi päätyä vaikkei olisi koskaan kuullut joukko-opista. Päällimmäisenä ajatuksena on kuitenkin se, että jos syötteitä ja palautusarvoja miettii joukkojen kannalta, syntyy luotettavampaa ohjelmakoodia ja vähemmän yllätyksiä. Tyypit ovat jo itsessään joukkoja, mutta niiden yksityiskohdat riippuvat käytössä olevasta, esimerkiksi ohjelmointikielen, tyyppijärjestelmästä \cite{type_theory}. Siksi ajatuksen tasolla joukkojen ajattelu on hyödyllistä.
+Aiempaan esimerkkiin voisi päätyä, vaikkei olisi koskaan kuullut joukko-opista. Päällimmäisenä ajatuksena on kuitenkin se, että jos syötteitä ja palautusarvoja miettii joukkojen kannalta, syntyy luotettavampaa ohjelmakoodia ja vähemmän yllätyksiä. Tyypit ovat jo itsessään joukkoja, mutta niiden yksityiskohdat riippuvat käytössä olevasta, esimerkiksi ohjelmointikielen, tyyppijärjestelmästä \cite{type_theory}. Siksi ajatuksen tasolla joukkojen ajattelu on hyödyllistä.
 
-Argumentit ja palautusarvot (tyypit) voi tietysti mieltää joukkoina myös \glsdisp{composed_function}{yhdistetyissä funktioissa} (Kuva \ref{fig:function_composition_in_sets}). Vaikka ohjelmoinnissa joukko-oppia ei rinnasteta ainoastaan funktionaaliseen ohjelmointiin,  joukko-opin ajattelu on siinä vähintäänkin tervetullutta.
+Argumentit ja palautusarvot (tyypit) voi tietysti mieltää joukkoina myös \glsdisp{composed_function}{yhdistetyissä funktioissa} (kuva\ref{fig:function_composition_in_sets}). Vaikka ohjelmoinnissa joukko-oppia ei rinnasteta ainoastaan funktionaaliseen ohjelmointiin,  joukko-opin ajattelu on siinä vähintäänkin tervetullutta.
 
 \begin{figure}[htbp]
     \centering
@@ -377,19 +377,19 @@ Argumentit ja palautusarvot (tyypit) voi tietysti mieltää joukkoina myös \gls
 Joukko-oppi ei ole ainoa ohjelmointiin sovellettava matemaattinen osa-alue. Funktionaaliselle ohjelmoinnille oleellisin ja syvällisin osa-alue on \gls{category_theory} \cite{bartosz_category_for_progamers,promises-spec-94,dear_functional_bros}.
 
 
-Kategoriateoria tutkii matemaattisia rakenteita ja niiden välisiä suhteita erittäin abstraktilla tasolla. Se keskittyy objektien (kuten joukkojen tai tyyppien) ja niiden välillä olevien morfismien (funktioiden tai muunnosten) tutkimiseen \cite{bartosz_category_for_progamers}. Kategoriateorian avulla voidaan ymmärtää ja formalisoida monimutkaisia matemaattisia ja ohjelmallisia rakenteita. \cite{bartosz_category_for_progamers,promises-spec-94,category_theory}
-Kategoriateoriaa ohjelmoijille opettavan Bartosz Milewskin kokemusten mukaan, vaikka algebra tai kalkyyli olisi ohjelmoijalle ajatuksena hirveää, kategoriateoria on kuitenkin erityisen mieluisaa sen suuresta teoreettisuudesta huolimatta. \cite[9]{milewski2017category}.
+Kategoriateoria tutkii matemaattisia rakenteita ja niiden välisiä suhteita erittäin abstraktilla tasolla. Se keskittyy objektien (kuten joukkojen tai tyyppien) ja niiden välillä olevien morfismien (funktioiden tai muunnosten) tutkimiseen \cite{bartosz_category_for_progamers}. Kategoriateorian avulla voidaan ymmärtää ja formalisoida monimutkaisia matemaattisia ja ohjelmallisia rakenteita. \citep{bartosz_category_for_progamers,promises-spec-94,category_theory}
+Kategoriateoriaa ohjelmoijille opettavan Bartosz Milewskin kokemusten mukaan, vaikka algebra tai kalkyyli olisi ohjelmoijalle ajatuksena hirveää, kategoriateoria on kuitenkin erityisen mieluisaa sen suuresta teoreettisuudesta huolimatta. \citep[9]{milewski2017category}.
 
-Kategoriateoriassa peruspalikat ovat kategoriat \cite[9]{milewski2017category}. Kategoria on rakenne, joka koostuu morfismeista. Esimerkiksi joukot ja funktiot koostavat kategorian, jossa joukot ovat kategorian objektit, ja funktiot kategorian morfismit \cite{category_theory}. Kategoriateoriaan ei perehdytä tarkemmin tässä työssä monadirakennetta lukuun ottamatta. Ei ole käytännönläheistä tuoda tavattoman teoreettisia käsitteitä työhön, jossa tavoitteena on etsiä jonkin kaltaista konkretiaa.
+Kategoriateoriassa peruspalikat ovat kategoriat \cite[9]{milewski2017category}. Kategoria on rakenne, joka koostuu morfismeista. Esimerkiksi joukot ja funktiot koostavat kategorian, jossa joukot ovat kategorian objektit, ja funktiot kategorian morfismit \cite{category_theory}. Kategoriateoriaan ei perehdytä tarkemmin tässä työssä monadirakennetta lukuun ottamatta. Ei ole käytännönläheistä tuoda tavattoman teoreettisia käsitteitä työhön, jossa tavoitteena on etsiä jonkinkaltaista konkretiaa.
 
 
 \section{Monadi}
 
 Monadi tulee esille funktionaalisessa ohjelmoinnissa erittäin usein. Se on alun perin teoreettinen rakenne, joka on löytynyt 1900-luvun puolivälin jälkeen kategoriateoriaa tutkivien matemaatikkojen ansiosta \cite{Beck2003}. Monadin hyöty ohjelmoinnissa ilmeni vasta myöhemmin 1990-luvulla \cite{computerphile_monad}.
 
-Ohjelmoinnissa ohjelman sivuvaikutukset ovat miltei vaatimus. Funktionaalisessa ohjelmoinnissa sivuvaikutukset eivät sovi. Monadeilla onnistuttiin tuomaan sivuvaikutuksia funktionaaliseen ohjelmointiin säilyttäen ohjelmien ennustettavuus ja puhtaus, mutta kuitenkin siten, että koodi pysyy ulkoisesti sivuvaikutuksettomalta vaikuttavana. \citep{computerphile_monad}
+Ohjelmoinnissa ohjelman sivuvaikutukset ovat miltei vaatimus. Funktionaalisessa ohjelmoinnissa sivuvaikutukset eivät sovi. Monadeilla onnistuttiin tuomaan sivuvaikutuksia funktionaaliseen ohjelmointiin säilyttäen ohjelmien ennustettavuus ja puhtaus mutta kuitenkin siten, että koodi pysyy ulkoisesti sivuvaikutuksettomalta vaikuttavana. \citep{computerphile_monad}
 
-Ohjelmoinnissa monadeilla voidaan hallita sivuvaikutuksia, ketjuttaa operaatioita ja yhtenäistää abstraktioita \cite{computerphile_monad,bartosz_category_for_progamers_10,stackoverflow_what_monad}. Ohjelmoinnissa monadi on kieliagnostinen käsite. Monadin voi kuvitella olevan lähetys, jota kuljetetaan tehtaasta toiseen. Jokainen tehdas aina pitää huolen, että arvo on kääritty johonkin laatikkoon (monadiin) (Kuva \ref{fig:monad})
+Ohjelmoinnissa monadeilla voidaan hallita sivuvaikutuksia, ketjuttaa operaatioita ja yhtenäistää abstraktioita \cite{computerphile_monad,bartosz_category_for_progamers_10,stackoverflow_what_monad}. Ohjelmoinnissa monadi on kieliagnostinen käsite. Monadin voi kuvitella olevan lähetys, jota kuljetetaan tehtaasta toiseen. Jokainen tehdas aina pitää huolen, että arvo on kääritty johonkin laatikkoon (monadiin) (kuva\ref{fig:monad}).
 
 \begin{figure}[ht]
     \centering
@@ -403,36 +403,36 @@ Tässä luvussa käydään läpi, mitä ovat yleiset monadit, miten implementoid
 
 \subsection{Yleiset monadit}
 
-\texttt{Promise, Maybe, Either, Result, State, IO, ja Lista (Array)}. Nämä ovat esimerkkejä yleisesti käytetyistä monadeista. \cite{monad_wikipedia,bartosz_category_for_progamers_10}
+\texttt{Promise, Maybe, Either, Result, State, IO, ja Lista (Array)}. Nämä ovat esimerkkejä yleisesti käytetyistä monadeista. \citep{monad_wikipedia,bartosz_category_for_progamers_10}
 
 Pintapuolisesti tarkasteltuna esitetyt käsitteet vaikuttavat hyvin erilaisilta, sillä niiden käyttötarkoitukset ja rakenteet vaihtelevat merkittävästi. Esimerkiksi \texttt{Promise} käsittelee asynkronisia operaatioita, kun taas \texttt{Maybe} kuvastaa mahdollisia arvoja, jotka voivat olla olemassa tai olla olematta. \texttt{Either} ja \texttt{Result} tarjoavat mekanismin virheiden käsittelyyn, ja \texttt{State} mahdollistaa tila-arvojen kantamisen funktioiden läpi. \texttt{IO} käsittelee sivuvaikutuksia, ja \texttt{Lista (Array)} tarjoaa toistuvien arvojen käsittelyn.
 
-Kuitenkin näitä kaikkia yhdistää yhteinen abstraktio. Ne kaikki toteuttavat tietyt perustoiminnot \texttt{bind} (\texttt{flatMap/chain}) ja \texttt{of} (\texttt{unit/pure}). Näiden operaatioiden avulla monadit voivat kapseloida laskennan tilan tai sivuvaikutuksen, tarjoten yhdenmukaisen tavan yhdistää operaatioita ja siirtää tietoa laskentaketjujen läpi.
+Kuitenkin näitä kaikkia yhdistää yhteinen abstraktio. Ne kaikki toteuttavat tietyt perustoiminnot \texttt{bind} (\texttt{flatMap/chain}) ja \texttt{of} (\texttt{unit/pure}). Näiden operaatioiden avulla monadit voivat kapseloida laskennan tilan tai sivuvaikutuksen, mikä tarjoaa yhdenmukaisen tavan yhdistää operaatioita ja siirtää tietoa laskentaketjujen läpi.
 
 JavaScriptissä \mintinline{js}|Array| toteuttaa toiminnon \texttt{bind} \mintinline{js}|Array.prototype.flatMap|-metodilla, ja \texttt{of} toiminnon staattisella \mintinline{js}|Array.of|-metodilla \cite{stackoverflow_flatmap_monad,stackoverflow_js_array_monad}.
 
 
-JavaScriptin \mintinline{js}|Promise| toteuttaa toiminnon \texttt{bind} \mintinline{javascript}|Promise.prototype.then|-metodilla, ja \texttt{of} toiminnon staattisella \mintinline{javascript}|Promise.resolve| ja \mintinline{javascript}|Promise.reject| metodeilla \cite{read-it-later-11481,stackoverflow:why_monad,promises-spec-94}.
+JavaScriptin \mintinline{js}|Promise| toteuttaa toiminnon \texttt{bind} \mintinline{javascript}|Promise.prototype.then|-metodilla, ja \texttt{of}-toiminnon staattisella \mintinline{javascript}|Promise.resolve| ja \mintinline{javascript}|Promise.reject| metodeilla \cite{read-it-later-11481,stackoverflow:why_monad,promises-spec-94}.
 
-Vaikka JavaScriptin \mintinline{js}|Promise| ja \mintinline{js}|Array| toteuttavatkin monadin \texttt{bind} ja \texttt{of} toiminnot, se ei tee niistä automaattisesti monadeja kategoriateorian tai funktionaalisen ohjelmoinnin sääntöjen mukaan \cite{promises-spec-94,stackoverflow:why_monad,stackoverflow_js_array_monad}. Kehittäjä Jake Archibaldin mukaan akateemisten käsitteiden seuraaminen puhtaasti ei kuitenkaan usein johda käytännöllisiin ratkaisuihin \cite{pennane_fp_gist}. Tästä syystä on kohtuullista puhua näistä rakenteista monadeina, vaikkeivat ne sitä puhtaasti olisikaan.
+Vaikka JavaScriptin \mintinline{js}|Promise| ja \mintinline{js}|Array| toteuttavatkin monadin \texttt{bind}- ja \texttt{of}-toiminnot, se ei tee niistä automaattisesti monadeja kategoriateorian tai funktionaalisen ohjelmoinnin sääntöjen mukaan \cite{promises-spec-94,stackoverflow:why_monad,stackoverflow_js_array_monad}. Kehittäjä Jake Archibaldin mukaan akateemisten käsitteiden seuraaminen puhtaasti ei kuitenkaan usein johda käytännöllisiin ratkaisuihin \cite{pennane_fp_gist}. Tästä syystä on kohtuullista puhua näistä rakenteista monadeina, vaikkeivat ne sitä puhtaasti olisikaan.
 
 
 \subsection{Monadin implementointi}
 
 Konkreettisesti monadilla tulee siis olla kaksi toimintoa: \texttt{of} ja \texttt{bind}. Toiminto \texttt{of} käärii arvoja monadiin. Toiminnon voidaan ajatella olevan monadin konstruktori. \citep{stackoverflow_what_monad}
 
-\texttt{Bind}-toiminnolla muutetaan monadiin käärittyä arvoa antamalla toiminnolle funktio, joka palauttaa toisen saman tyypin monadin. \cite{stackoverflow_what_monad} \texttt{Bind}-toiminto on käytännössä sama kuin tunnetumpi \texttt{map}-toiminto. Erona on, että \texttt{map} palauttaa muokatun arvon, joka on kääritty samaan monadiin, kun taas \texttt{bind} mahdollistaa monadin sisällä olevan arvon muuttamisen ja sen ketjuttamisen muihin monadisiin operaatioihin.
+\texttt{Bind}-toiminnolla muutetaan monadiin käärittyä arvoa antamalla toiminnolle funktio, joka palauttaa toisen saman tyypin monadin \cite{stackoverflow_what_monad}.  \texttt{Bind}-toiminto on käytännössä sama kuin tunnetumpi \texttt{map}-toiminto. Erona on, että \texttt{map} palauttaa muokatun arvon, joka on kääritty samaan monadiin, kun taas \texttt{bind} mahdollistaa monadin sisällä olevan arvon muuttamisen ja sen ketjuttamisen muihin monadisiin operaatioihin.
 
 Näillä kahdella toiminnolla voidaan luoda rakenteita, jotka käyttäytyvät kuin monadi. Monadin täydet hyödyt eivät kuitenkaan ilmene, jos rakenne ei myös täytä monadien kolmea sääntöä: vasen identiteetti (left identity), oikea identiteetti (right identity), ja liitännäisyys (associativity) \cite{haskellmonadlaws}. Jos kaikki kolme sääntöä toteutuu, voidaan luoda työkaluja, joissa voidaan käyttää mitä tahansa monadia, ja silloin monadi on määritelmän mukaisesti monadi.
 
-Luvussa \textquote{Promise-tietorakenne on miltei monadi} puidaan sitä, miksei JavaScriptin \texttt{Promise} ole määritelmällisesti täydellisesti monadi, ja miksei ilman ulkoisia kirjastoja JavaScriptiin voida enää tuoda määritelmän täyttäviä monadeja. Kuitenkin rakenne, joka on kuin monadi, voi myös olla erittäin hyödyllinen. Siksi ei tarkemmin käsitellä, miten monadin määritelmän voi oikeellisesti täyttää.
+Luvussa \textquote{Promise-tietorakenne on miltei monadi} puidaan sitä, miksei JavaScriptin \texttt{Promise} ole määritelmällisesti täydellisesti monadi ja miksei ilman ulkoisia kirjastoja JavaScriptiin voida enää tuoda määritelmän täyttäviä monadeja. Kuitenkin rakenne, joka on kuin monadi, voi myös olla erittäin hyödyllinen. Siksi ei tarkemmin käsitellä, miten monadin määritelmän voi oikeellisesti täyttää.
 
 
 \subsection{Monadin käyttäminen}
 
-Monadeja käytetään operaatioiden ketjuttamiseen. Monadeilla voi käytännössä tehdä yhdistettyjä funktioita, joissa on mukautettu tapa hallita mitä yhdisteen funktiokutsujen välissä tapahtuu.
+Monadeja käytetään operaatioiden ketjuttamiseen. Monadeilla voi käytännössä tehdä yhdistettyjä funktioita, joissa on mukautettu tapa hallita, mitä yhdisteen funktiokutsujen välissä tapahtuu.
 
-Käydään esimerkkinä JavaScriptin \texttt{Promise}-tietorakennetta (joka toimii kuin monadi) (Koodiesimerkki \ref{code:promise_monad_concise}).
+Käydään esimerkkinä JavaScriptin \texttt{Promise}-tietorakennetta (joka toimii kuin monadi) (koodiesimerkki \ref{code:promise_monad_concise}).
 
 \begin{code}
     \begin{minted}{typescript}
@@ -469,21 +469,21 @@ Myös Cantarella mainitsee opinnäytetyönsä loppupuolella ajatuksen, että mit
 
 Myös kokemusten perusteella työpaikalla on havaittu funktionaalisen ohjelmoinnin toimivan kohtuullisen hyvin ripoteltuna proseduraalisen ohjelmakoodin.
 
-Pragmaattista funktionaalista ohjelmointia vaikuttaa siis olevan se, että otetaan vain mitä tarvitaan \cite{dear_functional_bros,martin2017pragmaticfp,cantarella_fp_haitat}. Toisaalta se, mitä tarvitaan ei ole välittömästi selvää. Toisille pragmaattista on jättää kaikki matemaattinen teoria pois ohjelmoinnista heti kättelyssä, toisille kategoriateorian rakenteiden käyttäminen, kun ne oikeasti sopivat mallintamaan ongelmaa \cite{holvikari2021category,martin2017pragmaticfp}.
+Pragmaattista funktionaalista ohjelmointia vaikuttaa siis olevan se, että otetaan vain, mitä tarvitaan \cite{dear_functional_bros,martin2017pragmaticfp,cantarella_fp_haitat}. Toisaalta se, mitä tarvitaan ei ole välittömästi selvää. Toisille pragmaattista on jättää kaikki matemaattinen teoria pois ohjelmoinnista heti kättelyssä, toisille kategoriateorian rakenteiden käyttäminen, kun ne oikeasti sopivat mallintamaan ongelmaa \cite{holvikari2021category,martin2017pragmaticfp}.
 
 Tässä insinöörityössä tarkempia pragmaattisia funktionaalisen ohjelmoinnin käytäntöjä pyritään tuomaan esille neljännessä luvussa \textquote{Funktionaalisia käytänteitä ei-funktionaalisissa ohjelmointikielissä}, ja siitä eteenpäin.
 
 \section{Funktionaalinen ohjelmointi \& TypeScript}
 JavaScript ei ole funktionaalinen ohjelmointikieli, vaikka se funktionaalisuutta tukeekin \cite{is_reduce_bad}. TypeScriptin tyyppijärjestelmällä funktionaalisesta ohjelmoinnista saa jo mieluisampaa \cite{holvikari2021category}.
 
-JavaScriptia halutaan käyttää kaikkeen ohjelmointiin, vaikka usein erinäköisiin tehtäviin olisi parempiakin ohjelmointikieliä tarjolla. Voi itse päättää, onko pragmaattista käyttää kaikkeen samaa työkalua, ja säästää opiskelussa, vai käyttää aikaa uuden sopivamman työkalun löytämiseen, ja säästää toteuttamisessa.
+JavaScriptia halutaan käyttää kaikkeen ohjelmointiin, vaikka usein erinäköisiin tehtäviin olisi parempiakin ohjelmointikieliä tarjolla. Voi itse päättää, onko pragmaattista käyttää kaikkeen samaa työkalua, ja säästää opiskelussa, tai käyttää aikaa uuden sopivamman työkalun löytämiseen, ja säästää toteuttamisessa.
 
 
 \subsection{Kielen sopivuus funktionaaliseen ohjelmointiin}
 
 Vaikka TypeScript ei ole pohjimmiltaan funktionaalinen ohjelmointikieli, on sillä ominaisuuksia, joilla funktionaalisesta ohjelmoinnista tulee verraten helppoa.
 
-TypeScriptissä on käytännössä kolme eri tapaa määrittää funktioita (Esimerkkikoodi \ref{code:javascript_function_types}). Nuolifunktioilla voidaan harjoittaa funktionaaliselle ohjelmoinnille tyypillistä argumenttien yksi kerrallaan antamista.
+TypeScriptissä on käytännössä kolme eri tapaa määrittää funktioita (koodiesimerkki \ref{code:javascript_function_types}). Nuolifunktioilla voidaan harjoittaa funktionaaliselle ohjelmoinnille tyypillistä argumenttien yksi kerrallaan antamista.
 
 
 \begin{code}
@@ -498,7 +498,7 @@ const rnd3 = min => max => Math.floor(Math.random() * max) + min;
     \label{code:javascript_function_types}
 \end{code}
 
-Koska funktioita voi käyttää JavaScriptissä kuin muuttujia (first-class citizen), voi niitä antaa argumentteina toisille funktioille (Koodiesimerkki \ref{code:js_first_class}). Tämä mahdollistaa funktionaaliselle ohjelmoinnille tyypillisten \glsdisp{higher_order_function}{korkeamman asteen funktioiden} luomisen, ja käyttämisen.
+Koska funktioita voi käyttää JavaScriptissä kuin muuttujia (first-class citizen), voi niitä antaa argumentteina toisille funktioille (koodiesimerkki \ref{code:js_first_class}). Tämä mahdollistaa funktionaaliselle ohjelmoinnille tyypillisten \glsdisp{higher_order_function}{korkeamman asteen funktioiden} luomisen, ja käyttämisen.
 
 \begin{code}
     \begin{minted}{javascript}
@@ -517,12 +517,12 @@ Funktionaalisen ohjelmoinnin piireissä TypeScriptin tyyppijärjestelmää arvos
 
 TypeScriptin tyypit ovat mieluisia funktionaaliselle ohjelmoinnille. TypeScript mahdollistaa funktionaaliselle ohjelmoinnille olennaisten algebrallisten tietotyyppien määrittelemistä \cite{holvikari2021category}.
 
-Algebralliset tietotyypit ovat osa funktionaalisen ohjelmoinnin maailmaa. Niiden käyttämisen on huomattu olevan järkevää ja luontevaa \cite{holvikari2021category,hickey_maybe_not,algebraic_data_types}
+Algebralliset tietotyypit ovat osa funktionaalisen ohjelmoinnin maailmaa. Niiden käyttämisen on huomattu olevan järkevää ja luontevaa \cite{holvikari2021category,hickey_maybe_not,algebraic_data_types}.
 
 Yksinkertaisesti algebralliset tietotyypit ovat keino määritellä ja käsitellä monimutkaisia datastruktuureja, jotka koostuvat perustietotyypeistä yhdistämällä niitä eri tavoin. Tyypillisesti algebralliset tietotyypit jaetaan kahteen päätyyppiin: tulo- ja summatyypit.
 
 \textbf{Tulotyyppi} (product type) kuvaa tietorakenteita, joissa yhdistetään useita arvoja yhdeksi kokonaisuudeksi, esimerkiksi luokkien tai tietueiden (records) avulla.
-TypeScriptissä tulotyyppejä voi määritellä käyttäen objekteja tai Record-tyyppejä (Koodiesimerkki \ref{code:ts_product_type}). \citep{algebraic_data_types,holvikari2021category}
+TypeScriptissä tulotyyppejä voi määritellä käyttäen objekteja tai Record-tyyppejä (koodiesimerkki \ref{code:ts_product_type}). \citep{algebraic_data_types,holvikari2021category}
 
 \begin{code}
     \begin{minted}{typescript}
@@ -533,7 +533,7 @@ type Car = {type: "car", color: string; seats: number;}
     \label{code:ts_product_type}
 \end{code}
 
-\textbf{Summatyyppi} (sum type) mahdollistaa arvon, joka voi olla yksi useista ennalta määritellyistä tyypeistä. TypeScriptissä summatyyppejä voi määritellä käyttäen diskriminoituja unioneja (discriminated union) (Koodiesimerkki \ref{code:ts_sum_type}). \citep{algebraic_data_types,holvikari2021category}
+\textbf{Summatyyppi} (sum type) mahdollistaa arvon, joka voi olla yksi useista ennalta määritellyistä tyypeistä. TypeScriptissä summatyyppejä voi määritellä käyttäen diskriminoituja unioneja (discriminated union) (koodiesimerkki \ref{code:ts_sum_type}). \citep{algebraic_data_types,holvikari2021category}
 
 \begin{code}
     \begin{minted}{typescript}
@@ -547,25 +547,25 @@ type Vehicle = Car | MotorBike
 \end{code}
 
 
-Vaikka TypeScriptin tyyppijärjestelmä on vankkarakenteinen, ei se varmista kaikista monimutkaisimpien tyyppien \glsdisp{correctness}{oikeellisuutta} \cite{holvikari2021category}. Sellaisiin tarvitaan jokin pohjimmiltaan funktionaalinen ohjelmointikieli, kuten Haskell \cite{holvikari2021category}.
+Vaikka TypeScriptin tyyppijärjestelmä on vankkarakenteinen, ei se varmista kaikista monimutkaisimpien tyyppien \glsdisp{correctness}{oikeellisuutta}. Sellaisiin tarvitaan jokin pohjimmiltaan funktionaalinen ohjelmointikieli, kuten Haskell. \citep{holvikari2021category}
 
 \subsection{Kirjastot}
 
-Funktionaalista ohjelmointia on pyritty pitämään elossa erinäköisin kirjastoin, joissa hyväksikäytetään kielen ominaisuuksia, ja luodaan kirjastoja, joiden käyttäminen vaatii ohjelmoijalta täysin uuden syntaksin opettelemista JavaScript syntaksin lisäksi \cite{ramda,sanctuary,crocks,fpts,holvikari2021category}.
+Funktionaalista ohjelmointia on pyritty pitämään elossa erinäköisin kirjastoin, joissa hyväksikäytetään kielen ominaisuuksia ja luodaan kirjastoja, joiden käyttäminen vaatii ohjelmoijalta täysin uuden syntaksin opettelemista JavaScript syntaksin lisäksi \cite{ramda,sanctuary,crocks,fpts,holvikari2021category}.
 
-Kokemusten perusteella syntaksierot ovat todella hidastava tekijä. Ohjelmoijat olettavat ohjelmoivansa TypeScript-projektissa TypeScriptiä. Tai yleisemmin sanottuna: ohjelmoijat olettavat ohjelmoivansa sitä ohjelmointikieltä mitä ohjelmoivat.
+Kokemusten perusteella syntaksierot ovat todella hidastava tekijä. Ohjelmoijat olettavat ohjelmoivansa TypeScript-projektissa TypeScriptiä. Tai yleisemmin sanottuna: ohjelmoijat olettavat ohjelmoivansa sitä ohjelmointikieltä, mitä ohjelmoivat.
 
 Funktionaalisen ohjelmoinnin kirjastoilla halutaan tuoda \gls{ts}-ekosysteemiin sitä, mitä siitä puuttuu. Kuitenkin on kirjasto kuinka hyvälaatuinen tahansa, tulee TypeScriptin tyyppijärjestelmän rajoitteet kuitenkin lopulta vastaan \cite{holvikari2021category}.
 
 \subsection{Promise-tietorakenne on miltei monadi}
 
-JavaScriptissä oleva Promise-tietorakenne toimii miltei kuin monadi, muttei ole sitä määritelmällisesti matematiikan kategoriateorian mukaan \cite{stackoverflow:why_monad,promises-spec-94}. Tässä luvussa puidaan miten tämä pääsi tapahtumaan, ja mitä merkitystä sillä edes on, että JavaScriptissä ei ole standardoitua tapaa luoda monadeja.
+JavaScriptissä oleva Promise-tietorakenne toimii miltei kuin monadi, muttei ole sitä määritelmällisesti matematiikan kategoriateorian mukaan \cite{stackoverflow:why_monad,promises-spec-94}. Tässä luvussa puidaan, miten tämä pääsi tapahtumaan ja mitä merkitystä sillä edes on, että JavaScriptissä ei ole standardoitua tapaa luoda monadeja.
 
 JavaScriptin kehitys perustuu vahvasti takaperin yhteensopivuuteen, mikä estää merkittäviä muutoksia kielen rakenteisiin ilman riskiä rikkoa olemassa olevia verkkosivuja \cite{prototype_library_trends}. Selaimet eivät voi myöskään tehdä omin päin rikkovia muutoksia \cite{against_self_closing_tags,proposal-joint-iteration}. Jos vierailee lääkärin vastaanoton verkkosivulla selvittääkseen aukioloajat, kumpi selain on paras: se, joka näyttää vastaanoton aukioloajat, vai se, joka ei näytä mitään, koska on ottanut uuden JavaScript-version käyttöön?
 
 Kuitenkin JavaScript kehittyy. Vuonna 2015 Promise-tietorakenne lisättiin JavaScriptiin ratkaisemaan callback-funktioiden hallinnan ongelmia asynkronisessa ohjelmoinnissa \cite{mdn_promise,callbackhell}. Promise-tietorakenteen juuret ovat funktionaalisessa ohjelmoinnissa. Promise-tietorakenne on rakenteeltaan sellainen, että sen voi kuvata monadina \cite{promises-spec-94,stackoverflow:why_monad}.
 
-Kun Promise-tietorakennetta oltiin tuomassa osaksi JavaScriptia, keskusteltiin tulisiko JavaScriptin Promise-tietorakenteen noudattaa \glsdisp{monad}{monadirakennetta} \cite{promises-spec-94}. Keskustelu jäi tuloksettomaksi, vaikka muutokset implementointiehdotukseen olisivat olleet pienet monadin sääntöjen pitämiseksi.
+Kun Promise-tietorakennetta oltiin tuomassa osaksi JavaScriptia, keskusteltiin, tulisiko JavaScriptin Promise-tietorakenteen noudattaa \glsdisp{monad}{monadirakennetta} \cite{promises-spec-94}. Keskustelu jäi tuloksettomaksi, vaikka muutokset implementointiehdotukseen olisivat olleet pienet monadin sääntöjen pitämiseksi.
 
 Yksityiskohdat eivät liene merkittäviä, mutta lopputulos on se, ettei JavaScriptin Promise-tietorakennetta saatu täyttämään kaikkia monadien sääntöjä.
 

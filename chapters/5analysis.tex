@@ -15,7 +15,7 @@ Yli 20 vuotta JavaScriptia ohjelmoinut Archibald pyrkii ohjelmoimaan koodia, jok
 
 Hän suosii for-silmukoiden käyttämistä funktionaalisen \texttt{reduce}-funktion sijasta, ja perustelee valintaa luettavuudella \cite{is_reduce_bad,pennane_x_convo,pennane_fp_gist}. Yleisesti Archibald kuitenkin kokee funktionaalisen ohjelmoinnin olevan tuonut positiivisa vaikutteita JavaScriptiin \cite{pennane_x_convo}. Luettavuuden kannalta merkittävimpiä tekijöitä ovat keskimääräinen rivin pituus, tunnisteiden määrä per rivi ja keskimääräinen sulkeiden määrä \cite[8]{busereadability}. Edsger Dijkstran mukaan ohjelman luettavuus riippuu suurelta osin sen \glsdisp{ohjausrakenne}{ohjausrakenteiden} yksinkertaisuudesta \cite{dijkstra1976discipline}. Ohjelmoijat oppivat ensin for-silmukoita, ennen kuin ymmärtävät, mitä \texttt{reduce} (tai \texttt{fold}) tarkoittaa. Kuitenkin tunnisteet ja rakenteet, jotka ohjelmoija tuntee, ovat henkilökohtaisia ja perustuvat kokemuksiin sekä opiskelutaustaan.
 
-Myös Python ohjelmointikielen luojana tunnettu Guido van Rossum halusi poistatti Python 3 versiosta \texttt{reduce}-funktion, ja perusteli sitä luettavuudella, ja kielen yksinkertaistamisella \cite{vanrossum2008reduce}.
+Myös Pythonin luojana tunnettu Guido van Rossum halusi poistatti Python 3 versiosta \texttt{reduce}-funktion, ja perusteli sitä luettavuudella, ja kielen yksinkertaistamisella \cite{vanrossum2008reduce}.
 
 Voi siis ajatella, että luettavuus on tarpeellista suhteuttaa työympäristöön. Jos koodikannassa suositaan funktioiden yhdistelemistä, tätä käytäntöä kannattaa noudattaa. Jos taas for-silmukoita käytetään mieluummin \texttt{reduce}-funktion sijasta, ne ovat parempi valinta.
 
@@ -23,9 +23,7 @@ Kokemuksien mukaan voi olla vaikeaa olla käyttämättä työkaluja, joiden näk
 
 \section{Uudelleenkäytettävyys}
 
-Työpaikalla keskusteluissa on näkynyt käytänteitä, että ennen kuin jotakin tarvitaan kolmesti, ei sille ole kannattavaa kirjoittaa uudelleenkäytettävää abstraktiota.
-
-Toisaalta kun kehitetään ulkoisia rajapintoja, on tilanne eri, sillä on pidettävä huolta taaksepäin suuntautuvasta yhteensopivuudesta.
+Työpaikalla keskusteluissa on näkynyt käytänteitä, että ennen kuin jotakin tarvitaan kolmesti, ei sille ole kannattavaa kirjoittaa uudelleenkäytettävää abstraktiota. Toisaalta kehitettäessä ulkoisia rajapintoja, on tilanne eri, sillä on pidettävä huolta taaksepäin suuntautuvasta yhteensopivuudesta.
 
 Uudelleenkäytettävien palikoiden löytäminen ei myöskään ole itsestäänselvyys. On keskusteltu siitä, että kannattaisi välttää logiikan koostamista, ja toisinaan suosia yksinkertaisuuksia ja kovakoodattua tietoa, jotta sen etsiminen olisi koodikannasta helpompaa (esimerkiksi käyttämällä grep-komentorivikomentoa).
 

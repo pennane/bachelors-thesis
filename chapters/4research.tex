@@ -3,22 +3,22 @@
 \vspace{21.5pt}
 \chapter{Funktionaalisia käytänteitä ei-funktionaalisissa ohjelmointikielissä}
 
-Tässä luvussa pyritään esittämään kaikista oleellisin, mitä funktionaalisella ohjelmoinnilla voidaan saada aikaan. Teoreettisen perustan ja kokemusten avulla tuodaan esille mitä funktionaalinen ohjelmointi on koetusti parhaimmillaan.
+Tässä luvussa pyritään esittämään kaikista oleellisin, mitä funktionaalisella ohjelmoinnilla voidaan saada aikaan. Teoreettisen perustan ja kokemusten avulla tuodaan esille, mitä funktionaalinen ohjelmointi on koetusti parhaimmillaan.
 
-Ajatuksena on, että kun ohjelma on mallinnettu oikein, ei ole suurta merkitystä ohjelmoidaanko olio-ohjelmointia, imperatiivista ohjelmointia, vai funktionaalista ohjelmointia. Olio-ohjelmoinnissa mallinnus saatettaisiin hoitaa rajapinnoilla (interface). Funktionaalisen ohjelmoinnin tapa mallintaa on käyttää tyyppejä ja abstrakteja (algebrallisia) tietorakenteita.
+Ajatuksena on, että kun ohjelma on mallinnettu oikein, ei ole suurta merkitystä, ohjelmoidaanko olio-ohjelmointia, imperatiivista ohjelmointia, vai funktionaalista ohjelmointia. Olio-ohjelmoinnissa mallinnus saatettaisiin hoitaa rajapinnoilla (interface). Funktionaalisen ohjelmoinnin tapa mallintaa on käyttää tyyppejä ja abstrakteja (algebrallisia) tietorakenteita.
 
-Tuodaan ilmi millaisia käytänteitä voidaan ripotella ohjelmointiin, vaikka ohjelmointikieli ei varsinaisesti olisi funktionaalinen.
+Tuodaan ilmi, millaisia käytänteitä voidaan ripotella ohjelmointiin, vaikka ohjelmointikieli ei varsinaisesti olisi funktionaalinen.
 
-Pyritään herättämään ajatuksia milloin ja miten funktioita kannattaa käyttää. Esitetään kuinka suuressa roolissa ongelmien mallintaminen on. Kun ongelmien mallit pureskellaan oikeisiin joukkoihin, saadaan turvallisempaa ohjelmakoodia. Silloin on myös helpompi kirjoittaa deklaratiivista koodia, joka on funktionaaliselle ohjelmoinnin ominaista.
+Pyritään herättämään ajatuksia, milloin ja miten funktioita kannattaa käyttää. Esitetään, kuinka suuressa roolissa ongelmien mallintaminen on. Kun ongelmien mallit pureskellaan oikeisiin joukkoihin, saadaan turvallisempaa ohjelmakoodia. Silloin on myös helpompi kirjoittaa deklaratiivista koodia, joka on funktionaaliselle ohjelmoinnille ominaista.
 
 
 
 \section{Opi kerran, käytä kaikkialla}
 
-Funktionaalinen ohjelmointi kannustaa asioiden uudelleenkäytettävyyteen. Funktionaalisessa ohjelmoinnissa etsitään yleisiä teemoja, ja viedään toistuvia malleja funktioiksi, jotta voidaan kirjoittaa funktioiden nimiä syntaksin sijasta.
+Funktionaalinen ohjelmointi kannustaa asioiden uudelleenkäytettävyyteen. Funktionaalisessa ohjelmoinnissa etsitään yleisiä teemoja ja viedään toistuvia malleja funktioiksi, jotta voidaan kirjoittaa funktioiden nimiä syntaksin sijasta.
 
 
-Esimerkiksi olio-ohjelmoinnissa, tai muuten imperatiivisessa ohjelmoinnissa, for-silmukalla toteutettavat algoritmit voidaan yleistää funktioiksi (Kuva \ref{fig:ramdacmds}). Onko helpompaa opetella ääretön määrä funktioita, vai yksi kielirakenne: for-silmukka?
+Esimerkiksi olio-ohjelmoinnissa, tai muuten imperatiivisessa ohjelmoinnissa, for-silmukalla toteutettavat algoritmit voidaan yleistää funktioiksi (kuva\ref{fig:ramdacmds}). Onko helpompaa opetella ääretön määrä funktioita, vai yksi kielirakenne: for-silmukka?
 
 \begin{figure}[ht]
     \centering
@@ -48,7 +48,7 @@ Yksinkertaisiakin funktioita voi olla vaikea hahmottaa koodista. Mikään ei pak
 
 Kannattanee käyttää ohjelmointikielen sisäänrakennettuja funktioita, ja metodeja aina kun mahdollista. Näin voi maksimoida sen, että koodi ymmärretään. Jos kyse on jostakin projektin sisäisestä kirjastosta, voi olla hyödyllistä lisätä funktiolle kommentti, jos se tunnetaan muissa ohjelmointiympäristöissä jollain toisella nimellä.
 
-Jos on kyse jostain toimintaympäristökohtaisesta funktiosta, eikä perustavanlaatuisesta yleispätevästä funktiosta, on tärkeää, että funktio nimetään mahdollisimman kuvaavasti. Esimerkiksi sen sijaan, että nimeää funktion nimellä \textquote{processUsers}, voi miettiä tarvitseeko funktion kutsupaikoissa ymmärtää enemmän siitä mitä funktio tekee? Jos kontekstista on selvää, mitä funktio tekee, nimen voi jättää sellaiseksi kuin on. Jos konteksti ei avaa toimintaa enemmän, \textquote{processUsers} on erittäin ympäripyöreä nimi.
+Jos on kyse jostain toimintaympäristökohtaisesta funktiosta, eikä perustavanlaatuisesta yleispätevästä funktiosta, on tärkeää, että funktio nimetään mahdollisimman kuvaavasti. Esimerkiksi sen sijaan, että nimeää funktion nimellä \textquote{processUsers}, voi miettiä, tarvitseeko funktion kutsupaikoissa ymmärtää enemmän siitä, mitä funktio tekee. Jos kontekstista on selvää, mitä funktio tekee, nimen voi jättää sellaiseksi kuin on. Jos konteksti ei avaa toimintaa enemmän, \textquote{processUsers} on erittäin ympäripyöreä nimi.
 
 \section{Yhdistetyt funktiot}
 
@@ -58,7 +58,7 @@ Yhdistettyjen funktioiden avulla voidaan saavuttaa korkea taso ohjelmoinnin jous
 
 Yhdistetyt funktiot eivät kuitenkaan automaattisesti takaa koodin luettavuutta. Liiallinen abstraktio voi tehdä koodista vaikeasti seurattavaa, erityisesti jos funktion yhdisteleminen tuo mukanaan monimutkaisia käsitteitä, jotka eivät ole suoraan yhteydessä ratkaistavaan ongelmaan. Turha abstraktio voi johtaa tilanteeseen, jossa koodin toiminnan ymmärtämiseksi täytyy perehtyä moniin välivaiheisiin ja ylimääräisiin konsepteihin, vaikka ongelma itsessään olisi yksinkertainen.
 
-Esimerkkikoodi \ref{code:js_garbage_pipe} näyttää tilanteen, jossa Ramda.js-kirjastoa on käytetty yhdistetyn funktion rakentamiseen. Vaikka funktio toimii, sen ymmärtämiseen tarvitsee paljon ylimääräistä tietoa.
+Koodiesimerkki \ref{code:js_garbage_pipe} näyttää tilanteen, jossa Ramda.js-kirjastoa on käytetty yhdistetyn funktion rakentamiseen. Vaikka funktio toimii, sen ymmärtämiseen tarvitsee paljon ylimääräistä tietoa.
 
 \begin{code}
     \begin{minted}{typescript}
@@ -103,16 +103,16 @@ Pitää siis pitää mielessä ohjelmointikieli, jossa toimitaan. Säännöt tul
 
 \section{Puhdas funktio ei ole aina paras ratkaisu}
 
-Funktionaalisessa ohjelmoinnissa pyritään välttämään mutatointia, eli ajonaikaisten muuttujien arvojen muuttamista. Tietorakenteiden muuttamisen sijasta pyritään luomaan tietorakenteista uusia kopioita, ja jättämään vanhat ennalleen \cite{immutablejs_immutable,hickey_persistent_2009}.
+Funktionaalisessa ohjelmoinnissa pyritään välttämään mutatointia, eli ajonaikaisten muuttujien arvojen muuttamista. Tietorakenteiden muuttamisen sijasta pyritään luomaan tietorakenteista uusia kopioita ja jättämään vanhat ennalleen \cite{immutablejs_immutable,hickey_persistent_2009}.
 
 Joissain ohjelmointikielissä, tai ohjelmointikielien kirjastoissa, muuttumattomien tietorakenteiden käyttäminen on saatu varsin tehokkaaksi \cite{hickey_persistent_2009,immutablejs_immutable}. Näin ei kuitenkaan ole asian laita JavaScriptissä, tai ohjelmointikielissä yleisesti. Tiedon mutatointi on nopeaa ja kopiointi hidasta \cite{turner_trauring_copying_2020}. Näin ollen, jos kirjoitetaan funktioita, jotka palauttavat aina uusia kopioita, vanhojen mutatoimisen sijasta, saadaan usein hidasta ja tehotonta ohjelmakoodia.
 
 Jossain vaiheessa ohjelman suoritusta tietokoneen bitit kääntyvät nollista ykkösiin, tai toisin sanoen mutatoituvat \cite{is_reduce_bad}. Niin tietokoneet toimivat, minkä vuoksi mutaatiota ei saa pelätä, kunhan sen hoitaa asianmukaisesti.
 
-Jos funktio mutatoi ainoastaan muuttujia, joita se itse luo funktion ajon ajaksi, ei ole koodin turvallisuuden kannalta toiminnallista merkitystä mitä funktion sisällä tapahtuu. Kuitenkin tehokkuusvoitot voivat olla huomattavat versioihin, joissa mutatointia ei harjoiteta kuten seuraavat esimerkit osoittavat.
+Jos funktio mutatoi ainoastaan muuttujia, joita se itse luo funktion ajon ajaksi, ei ole koodin turvallisuuden kannalta toiminnallista merkitystä mitä funktion sisällä tapahtuu. Kuitenkin tehokkuusvoitot voivat olla huomattavat versioihin, joissa mutatointia ei harjoiteta, kuten seuraavat esimerkit osoittavat.
 
-Esimerkkinä funktio, joka ottaa sisään listan avain-arvo-pareja, ja luo niistä olion, josta voi hakea arvoja avainten perusteella. Näytetään kaksi (funktionaalista) tapaa toteuttaa tämä mielivaltainen funktio.
-Versio, joka ei mutatoi muuttujia missään vaiheessa (Koodiesimerkki \ref{code:js_just_mutate_immutable}), ja versio, joka mutatoi vain itse luomiaan muuttujia (Koodiesimerkki \ref{code:js_just_mutate_mutable}).
+Esimerkkinä on funktio, joka ottaa sisään listan avain-arvo-pareja, ja luo niistä olion, josta voi hakea arvoja avainten perusteella. Näytetään kaksi (funktionaalista) tapaa toteuttaa tämä mielivaltainen funktio:
+versio, joka ei mutatoi muuttujia missään vaiheessa (koodiesimerkki \ref{code:js_just_mutate_immutable}), ja versio, joka mutatoi vain itse luomiaan muuttujia (koodiesimerkki \ref{code:js_just_mutate_mutable}).
 
 Tarkkailijan näkökulmasta molemmat funktiot ovat kuitenkin puhtaita.
 
@@ -133,11 +133,11 @@ objectFromEntries(entries)
 console.timeEnd('Immutable')
 // Immutable: 112.718017578125 ms
 \end{minted}
-    \caption{Funktio, joka ottaa listan avain-arvo-pareja ja luo niistä olion. Olion luonnissa ei käytetä ollenkaan mutatointia Funktion suorittaminen 1000:lle avain-arvo-parille kesti n. 113 millisekuntia}
+    \caption{Funktio, joka ottaa listan avain-arvo-pareja ja luo niistä olion. Olion luonnissa ei käytetä ollenkaan mutatointia Funktion suorittaminen 1000 avain-arvo-parille kesti noin 113 millisekuntia}
     \label{code:js_just_mutate_immutable}
 \end{code}
 
-Täysin mutatoimattomalla versiolla kesti luoda tuhannesta avaimesta olio yli 300 kertaa kauemmin, kuin versiolla, joka mutatoi käyttämiään muuttujia (113 ms ja 0.4 ms).
+Täysin mutatoimattomalla versiolla kesti luoda tuhannesta avaimesta olio yli 300 kertaa kauemmin kuin versiolla, joka mutatoi käyttämiään muuttujia (113 ms ja 0,4 ms).
 
 
 \begin{code}
@@ -158,11 +158,11 @@ objectFromEntries(entries)
 console.timeEnd('Mutable')
 // Mutable: 0.35693359375 ms
 \end{minted}
-    \caption{Sama funktio kuin aiempi. Ainoa ero, että pareja iteroidessa luotavaa oliota mutatoidaan. Funktion suorittaminen 1000:lle avain-arvo-parille kesti vain n. 0.4 millisekuntia}
+    \caption{Sama funktio kuin aiempi. Ainoa ero, että pareja iteroidessa luotavaa oliota mutatoidaan. Funktion suorittaminen 1000:lle avain-arvo-parille kesti vain n. 0,4 millisekuntia}
     \label{code:js_just_mutate_mutable}
 \end{code}
 
-Useimmiten ohjelman tehokkuudella ei ole paljoa merkitystä, ja luotettavuus ja luettavuus on syytä pitää etusijalla. Kuitenkin tässä tilanteessa tehokkuuserot ovat niin merkittävät, että jos 1 000:n avain-arvo-parin sijasta, olisi käytetty 100 000, tai vaikka 1 000 000 avain-arvo-paria, mutatoimaton versio ei välttämättä olisi suoriutunut tehtävästä koskaan. Näitä määriä yritettiin, mutta suoritukset lopetettiin kesken, kun alkoi näyttämään, ettei tehtävä tosiaan ollut suoriutumassa koskaan.
+Useimmiten ohjelman tehokkuudella ei ole paljoa merkitystä, ja luotettavuus ja luettavuus on syytä pitää etusijalla. Kuitenkin tässä tilanteessa tehokkuuserot ovat niin merkittävät, että jos 1 000 avain-arvo-parin sijasta, olisi käytetty 100 000, tai vaikka 1 000 000 avain-arvo-paria, mutatoimaton versio ei välttämättä olisi suoriutunut tehtävästä koskaan. Näitä määriä yritettiin, mutta suoritukset lopetettiin kesken, kun alkoi näyttämään, ettei tehtävä tosiaan ollut suoriutumassa koskaan.
 
 \section{Ongelmien mallintaminen lisää turvallisuutta}
 
@@ -199,7 +199,7 @@ Mallintamisessa on kuitenkin ongelma. Se valehtelee. Sillä voidaan kuvata tiloj
 
 Jos mallissa käytetään listaa, mutta se ei kuitenkaan todellisuudessa saisi olla tyhjä, niin ohjelmoijan on tarkistettava koodissa manuaalisesti, että listan sisältö on läsnä.
 
-Vastauksena ongelmaan on luoda tyyppi listalle, joka yksiselitteisesti ei voi olla tyhjä (Koodiesimerkki \ref{code:ts_non_empty}).
+Vastauksena ongelmaan on luoda tyyppi listalle, joka yksiselitteisesti ei voi olla tyhjä (koodiesimerkki \ref{code:ts_non_empty}).
 
 \begin{code}
     \begin{minted}{typescript}
@@ -212,7 +212,7 @@ type NonEmptyArray<T> = {
     \label{code:ts_non_empty}
 \end{code}
 
-Tyypillä on kenttä \mintinline{javascript}|first|, jonka arvon on oltava olemassa. Ja kenttä \mintinline{javascript}|rest|, jossa säilytetään listan loput alkiot. Tuon kentän lista taas on tavallinen \mintinline{javascript}|Array|. Pelkällä tyypin muutoksella voidaan pitää huolta että listassa on 0..n sijasta 1..n alkiota.
+Tyypillä on kenttä \mintinline{javascript}|first|, jonka arvon on oltava olemassa, ja kenttä \mintinline{javascript}|rest|, jossa säilytetään listan loput alkiot. Tuon kentän lista taas on tavallinen \mintinline{javascript}|Array|. Pelkällä tyypin muutoksella voidaan pitää huolta, että listassa on 0..n sijasta 1..n alkiota.
 
 \begin{code}
     \begin{minted}[highlightlines={3,4,9}]{typescript}
@@ -231,15 +231,15 @@ type Quiz = {
     \label{code:ts_non_empty_quiz}
 \end{code}
 
-Nyt tietovisassa on oltava vähintään yksi kysymys (Koodiesimerkki \ref{code:ts_non_empty_quiz}), ja jokaisella kysymyksellä vähintään yksi vastaus. Kuitenkin oikeita vastauksia ei ole välttämättä ainuttakaan, sillä kenttä \mintinline{typescript}|correctAnswerIncides| on edelleen tyypiltään \mintinline{typescript}|Array<number>|.
+Nyt tietovisassa on oltava vähintään yksi kysymys (koodiesimerkki \ref{code:ts_non_empty_quiz}), ja jokaisella kysymyksellä vähintään yksi vastaus. Kuitenkin oikeita vastauksia ei ole välttämättä ainuttakaan, sillä kenttä \mintinline{typescript}|correctAnswerIncides| on edelleen tyypiltään \mintinline{typescript}|Array<number>|.
 
 Staattisella tyyppijärjestelmällä voi pitää huolen, että mallia seurataan. Tarkastuksia tyhjyydestä ei tarvitse tehdä if-lauseilla. Malli ei kuitenkaan ole vieläkään täydellinen.
 
-\textbf{Kenttien arvot voivat olla mitä tahansa.} Mikään ei pidä huolta, että esimerkiksi kentän \mintinline{typescript}|correctAnswerIncides| indeksit ovat \glsdisp{correctness}{oikeellisia}. Myös kaikki, joissa tyyppinä on \mintinline{typescript}|string| voivat ottaa vastaan mitä tahansa merkkijonoja. Myös tyhjiä merkkijonoja.
+\textbf{Kenttien arvot voivat olla mitä tahansa.} Mikään ei pidä huolta, että esimerkiksi kentän \mintinline{typescript}|correctAnswerIncides| indeksit ovat \glsdisp{correctness}{oikeellisia}. Myös kaikki, joissa tyyppinä on \mintinline{typescript}|string| voivat ottaa vastaan mitä tahansa merkkijonoja, myös tyhjiä merkkijonoja.
 
-Merkkijonojen validointi TypeScriptin tyyppijärjestelmässä on kuitenkin hieman vaivalloista, eikä välttämättä tarpeellista. Kenttä \mintinline{typescript}|correctAnswerIncides| on kuitenkin ajatuksena erittäin huono, sillä malli ei millään tavalla määrittele miten se liittyy kysymykseen tarkemmin. Mikään ei estä laittamasta täysin päättömiä numeroita \textquote{oikeiksi} indekseiksi. Korjauskeinona on paras keino: kentän poistaminen.
+Merkkijonojen validointi TypeScriptin tyyppijärjestelmässä on kuitenkin hieman vaivalloista, eikä välttämättä tarpeellista. Kenttä \mintinline{typescript}|correctAnswerIncides| on kuitenkin ajatuksena erittäin huono, sillä malli ei millään tavalla määrittele, miten se liittyy kysymykseen tarkemmin. Mikään ei estä laittamasta täysin päättömiä numeroita \textquote{oikeiksi} indekseiksi. Korjauskeinona on paras keino: kentän poistaminen.
 
-Kentän voi poistaa kokonaan, jos mallinnusta viedään pidemmälle. Voidaan sopia, että on olemassa kahdenlaisia vastauksia. Oikeita tai vääriä. Tämä on varsin helppo mallintaa (Koodiesimerkki \ref{code:ts_answer_types})
+Kentän voi poistaa kokonaan, jos mallinnusta viedään pidemmälle. Voidaan sopia, että on olemassa kahdenlaisia vastauksia: oikeita tai vääriä. Tämä on varsin helppo mallintaa (koodiesimerkki \ref{code:ts_answer_types})
 
 \begin{code}
     \begin{minted}{typescript}
@@ -256,7 +256,7 @@ type IncorrectAnswer = {
     \label{code:ts_answer_types}
 \end{code}
 
-Uusilla tyypeillä voidaan mallintaa kysymyksiä \glsdisp{correctness}{oikeellisemmin}. Voidaan myös määrittää, että kysymyksellä on oltava vähintään yksi oikea vastaus, ja nolla tai useampi väärä vastaus (Koodiesimerkki \ref{code:ts_question_with_explicit_answer_types}).
+Uusilla tyypeillä voidaan mallintaa kysymyksiä \glsdisp{correctness}{oikeellisemmin}. Voidaan myös määrittää, että kysymyksellä on oltava vähintään yksi oikea vastaus, ja nolla tai useampi väärä vastaus (koodiesimerkki \ref{code:ts_question_with_explicit_answer_types}).
 
 \begin{code}
     \begin{minted}[highlightlines={3,4}]{typescript}
@@ -301,9 +301,9 @@ type Question = MultipleAnswerQuestion | SingleAnswerQuestion | FreeFormQuestion
     \label{code:ts_sum_type_nice}
 \end{code}
 
-Kysymysten \mintinline{javascript}|type|-kentän perusteella voidaan tarkistaa millaisesta kysymyksestä on todella kyse, jonka jälkeen voidaan suorittaa koodia, joka liittyy vain kyseisen kysymystyypin toimintaan.
+Kysymysten \mintinline{javascript}|type|-kentän perusteella voidaan tarkistaa, millaisesta kysymyksestä on todella kyse, jonka jälkeen voidaan suorittaa koodia, joka liittyy vain kyseisen kysymystyypin toimintaan.
 
-Todellisuutta mallintavilla malleilla saadaan luotettavampaa koodia, ja poistetaan turhia if-lauseita. Myös jos mallista poistetaan mahdottomat tilat, niitä ei tarvitse edes testata.
+Todellisuutta mallintavilla malleilla saadaan luotettavampaa koodia ja poistetaan turhia if-lauseita. Myös jos mallista poistetaan mahdottomat tilat, niitä ei tarvitse edes testata.
 
 \subsection{Virheet mukaan mallintamiseen}
 
@@ -314,7 +314,7 @@ Miten on hyvä mallintaa tilanteita, kun virheitä tapahtuu?
 Yleisesti imperatiivisissa paradigmoissa virhetilanteissa metodit ja funktiot palauttavat \texttt{null}-arvoja, virheitä tai poikkeuksia.
 Funktionaalisessa ohjelmoinnissa voidaan käyttää samoja keinoja, mutta useimmin funktioiden suorituksen räjäyttämisen sijasta funktiot palauttavat summatyyppejä, tai monadeja, joissa voi olla sisällä joko oikea palautus- tai virhetyyppi.
 
-TypeScriptissä yksinkertaisimmillaan tämän voi toteuttaa yhdellä omalla tyypillä (Koodiesimerkki \ref{code:ts_null_sum}).
+TypeScriptissä yksinkertaisimmillaan tämän voi toteuttaa yhdellä omalla tyypillä (koodiesimerkki \ref{code:ts_null_sum}).
 
 \begin{code}
     \begin{minted}{typescript}
@@ -331,9 +331,9 @@ const mightWorkMightNot = (): Maybe<string> => {
 \end{code}
 
 Deklaratiivisesti funktio kertoo, että se saattaa palauttaa merkkijonon, tai saattaa olla palauttamatta. Ehkä se on merkkijono, ehkä se ei ole.
-Tyypin käyttäminen on hieman tönkköä, sillä jos funktion oikea palautusarvo on null, on mahdotonta sanoa oliko funktiokutsu onnistunut vai ei.
+Tyypin käyttäminen on hieman tönkköä, sillä jos funktion oikea palautusarvo on null, on mahdotonta sanoa, oliko funktiokutsu onnistunut vai ei.
 
-Tyypin voi viedä pidemmälle, jos arvot kääritään objekteihin. Vaihdetaan nimi Result-tyypiksi, että tyyppi voi kapseloida myös virheitä. (Koodiesimerkki \ref{code:ts_better_result_sum}.)
+Tyypin voi viedä pidemmälle, jos arvot kääritään objekteihin. Vaihdetaan nimi Result-tyypiksi, että tyyppi voi kapseloida myös virheitä. (koodiesimerkki \ref{code:ts_better_result_sum}.)
 
 \begin{code}
     \begin{minted}{typescript}
@@ -348,12 +348,12 @@ const mightWorkMightNot = (): Result<string> => {
     return { value: "hello world" }
 }
     \end{minted}
-    \caption{Vaihtoehtoinen malli mahdollisesti epäonnistuvalle paluuarvolle. Result on joko Success, tai Failure. Molemmissa tapauksissa arvo on kuitenkin yhden kentän objekti, jonka ansiosta tyyppiin voi tallentaa \texttt{null}-arvon ilman että tietoa menetetään}
+    \caption{Vaihtoehtoinen malli mahdollisesti epäonnistuvalle paluuarvolle. Result on joko Success, tai Failure. Molemmissa tapauksissa arvo on kuitenkin yhden kentän objekti, jonka ansiosta tyyppiin voi tallentaa \texttt{null}-arvon ilman, että tietoa menetetään}
     \label{code:ts_better_result_sum}
 \end{code}
 
 
-Näin Result-tyyppi voi sisältää myös arvon \mintinline{typescript}|null|, sillä Result-objektin tarkan tyypin voi nyt päätellä ilman sitä. Nyt tarkan tyypin voi määrittää \mintinline{typescript}|value| tai \mintinline{typescript}|error| kentän läsnäolosta tai puutteesta. Näin rakennettuna tyypille on myös helppo rakentaa apufunktioita, joilla selvitetään, onko paluuarvo onnistunut, vai ei. Voi myös luoda apufunktiot, joilla luoda Result-objekteja. (Koodiesimerkki \ref{code:result_helpers}).
+Näin Result-tyyppi voi sisältää myös arvon \mintinline{typescript}|null|, sillä Result-objektin tarkan tyypin voi nyt päätellä ilman sitä. Nyt tarkan tyypin voi määrittää \mintinline{typescript}|value|- tai \mintinline{typescript}|error|-kentän läsnäolosta tai puutteesta. Näin rakennettuna tyypille on myös helppo rakentaa apufunktioita, joilla selvitetään, onko paluuarvo onnistunut, vai ei. Voi myös luoda apufunktiot, joilla luoda Result-objekteja (koodiesimerkki \ref{code:result_helpers}).
 
 \begin{code}
     \begin{minted}{typescript}
@@ -399,7 +399,7 @@ pipe([
 // Palauttaa { value : "HELLO WORLD!}
 // tai { error: Error("Sorry, bad failure.") }
     \end{minted}
-    \caption{Esimerkki yhdistetystä funktiosta Result-tyypin kanssa. Jokaisen välifunktion on tarkastettava onko edellinen kutsu onnistunut vai ei}
+    \caption{Esimerkki yhdistetystä funktiosta Result-tyypin kanssa. Jokaisen välifunktion on tarkastettava, onko edellinen kutsu onnistunut vai ei}
     \label{code:result_pipe_example}
 \end{code}
 
@@ -416,7 +416,7 @@ Result-tyypillä on kuitenkin jotain, jolla sen voi viedä vielä askelta pidemm
 
 Monadi oli suuressa osassa teoriaosuudessa. Jatketaan mahdollisesti epäonnistuvan ohjelman toteuttamista siten, että siinä on mukana monadisia periaatteita. Monadia käyttämällä voidaan siirtää virheentarkastuksen if-lauseet yhteen paikkaan keskitetysti.
 
-Luodaan \texttt{Result}-monadi (Koodiesimerkki \ref{code:result_monad_impl}).
+Luodaan \texttt{Result}-monadi (koodiesimerkki \ref{code:result_monad_impl}).
 
 
 \begin{code}
@@ -447,7 +447,7 @@ class Result {
     \label{code:result_monad_impl}
 \end{code}
 
-Jos \texttt{Result}-monadi otetaan käyttöön aiemman osan koodiesimerkkiin, huomataan luettavan koodin määrän pienentyneen (Koodiesimerkki \ref{code:result_monad_example_2}).
+Jos \texttt{Result}-monadi otetaan käyttöön aiemman osan koodiesimerkkiin, huomataan luettavan koodin määrän pienentyneen (koodiesimerkki \ref{code:result_monad_example_2}).
 
 \begin{code}
     \begin{minted}{typescript}
@@ -469,7 +469,7 @@ Result.of(helloMaybe())
     \label{code:result_monad_example_2}
 \end{code}
 
-Jos yksikin monadin funktioketjusta epäonnistuu, suoritus lakkaa ja virhe palautuu loppuun asti. Arvon voi vetää ulos monadista useilla eri tavoilla. Implementaation ansiosta tässä yhteydessä arvon voi ottaa ulos monadista yksinkertaisesti käyttäen \texttt{value}-kenttää (Koodiesimerkki \ref{code:result_monad_example_3})
+Jos yksikin monadin funktioketjusta epäonnistuu, suoritus lakkaa ja virhe palautuu loppuun asti. Arvon voi vetää ulos monadista useilla eri tavoilla. Implementaation ansiosta tässä yhteydessä arvon voi ottaa ulos monadista yksinkertaisesti käyttäen \texttt{value}-kenttää (koodiesimerkki \ref{code:result_monad_example_3})
 
 
 \begin{code}
@@ -487,7 +487,7 @@ const monad = Result.of(helloMaybe())
 
 Eri ohjelmointikielissä tai kirjastoissa monadeista arvon ulos saaminen voi poiketa. Matemaattisessa määritelmässä arvoa ei ole tarkoitus koskaan saada pois monadista. Esimerkiksi Haskellissa lähtökohtaisesti arvo kuuluu aina jättää monadinsa kontekstiin, eikä sitä tulisi käsitellä suoraan \cite{haskellallmonad}.
 
-Result-monadin luominen ja käyttäminen vaatii ohjelmiston kehittäjiltä ylimääräistä kontekstia funktionaalisista käsitteistä. Kontekstin poistamiseksi voidaan käyttää räätälöidyn monadin sijasta JavaScriptin \texttt{Promise}-tietorakennetta (Koodiesimerkki \ref{code:result_monad_example_4}).
+Result-monadin luominen ja käyttäminen vaatii ohjelmiston kehittäjiltä ylimääräistä kontekstia funktionaalisista käsitteistä. Kontekstin poistamiseksi voidaan käyttää räätälöidyn monadin sijasta JavaScriptin \texttt{Promise}-tietorakennetta (koodiesimerkki \ref{code:result_monad_example_4}).
 
 \begin{code}
     \begin{minted}{typescript}
@@ -510,7 +510,7 @@ const promise = Promise.resolve(mightSayHello())
 
 \texttt{Promise}:n käyttäminen Result-monadin sijasta voi selkeyttää ohjelmakoodin luettavuutta JavaScript-kehittäjille. Toisaalta \texttt{Promise}:n käyttäminen esimerkin tavalla tuo turhaa monimutkaisuutta, sillä \texttt{Promise}:n luontainen asynkronisuus tuo turhia tehokkuushaittoja, kun operaatiot eivät muuten olisi asynkronisia \cite{mdn_promise}.
 
-Ohjelmistokehittäjä Jake Archibald suosisi ohjelman kirjoittamista vielä enemmän JavaScriptin tyylillä (Koodiesimerkki \ref{code:archibald_bro}) \cite{pennane_fp_gist} .
+Ohjelmistokehittäjä Jake Archibald suosisi ohjelman kirjoittamista vielä enemmän JavaScriptin tyylillä (koodiesimerkki \ref{code:archibald_bro}) \cite{pennane_fp_gist} .
 
 \begin{code}
     \begin{minted}{typescript}
