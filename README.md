@@ -1,6 +1,6 @@
 # Metropolia Bachelor's Thesis - Arttu Pennanen
 
-Evaluating the Pragmatic Application of Functional Programming
+Evaluating Pragmatic Application of Functional Programming
 
 Thanks to panunu et al. for the [TeX template](https://github.com/panunu/metropolia-thesis-latex).
 

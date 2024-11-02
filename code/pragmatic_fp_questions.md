@@ -2,7 +2,7 @@
 
 I'm working on my bachelor's thesis at Metropolia UAS in Helsinki, Finland, for a degree in ICT. I love fp, but have faced much backlash and claims of being too clever. I'm trying to find ways to incorporate fp into non-fp worlds without making people angry!
 
-The working name for the thesis is "Evaluating the Pragmatic Application of Functional Programming", which will be released in Finnish only.
+The working name for the thesis is "Evaluating Pragmatic Application of Functional Programming", which will be released in Finnish only.
 
 Any way, my main interest lies in language-agnostic FP principles that can be blended into non-FP code without relying on heavyweight FP libraries that conflict with the language’s native syntax (mainly js/ts in this case)
 
